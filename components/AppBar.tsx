@@ -147,7 +147,10 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
   return (
     <ElevationScroll {...props}>
       <AppBar sx={{ backgroundColor: theme.palette.background.paper }}>
-        <Container size={smallFrame ? 'xs' : mediumFrame ? 'sm' : 'md'}>
+        <Container
+          py={theme.spacing(3)}
+          size={smallFrame ? 'xs' : mediumFrame ? 'sm' : 'md'}
+        >
           <Toolbar>
             <Grid alignItems="center" container spacing={1}>
               <Grid item>
@@ -161,9 +164,15 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
                 </IconButton>
               </Grid>
               <Grid item>
-                <Typography variant="h6" color="primary.dark">
-                  LOGO
-                </Typography>
+                <Link href={'/'} passHref>
+                  <Typography
+                    style={{ cursor: 'pointer' }}
+                    variant="h6"
+                    color="primary.dark"
+                  >
+                    LOGO
+                  </Typography>
+                </Link>
               </Grid>
               <Grid item flexGrow={1} />
               {renderMenuList}
