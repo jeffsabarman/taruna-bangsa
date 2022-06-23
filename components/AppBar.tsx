@@ -148,7 +148,7 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
     <ElevationScroll {...props}>
       <AppBar sx={{ backgroundColor: theme.palette.background.paper }}>
         <Container
-          py={theme.spacing(3)}
+          py={mediumFrame ? theme.spacing(1) : theme.spacing(3)}
           size={smallFrame ? 'xs' : mediumFrame ? 'sm' : 'md'}
         >
           <Toolbar>

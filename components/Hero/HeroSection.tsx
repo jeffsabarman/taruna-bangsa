@@ -12,12 +12,14 @@ import React, { FC } from 'react';
 import Container from '../Container';
 import Image from 'next/image';
 import HeroImage from '../../public/images/hero-dev.jpg';
+import { useRouter } from 'next/router';
 
 interface HeroSectionProps extends BoxProps {}
 
 const HeroSection: FC = (props) => {
   /** Utilities */
   const theme = useTheme();
+  const router = useRouter();
   const styles = {
     ctaBtn: {
       backgroundColor: theme.palette.primary.light,
@@ -69,8 +71,8 @@ const HeroSection: FC = (props) => {
             <Image
               src={HeroImage}
               alt="Taruna Bangsa Hero Image"
-              width={mediumFrame ? 500 : 800}
-              height={mediumFrame ? 500 : 800}
+              width={mediumFrame ? 400 : 800}
+              height={mediumFrame ? 400 : 800}
             />
           </Grid>
         )}
@@ -143,6 +145,7 @@ const HeroSection: FC = (props) => {
                   variant="contained"
                   sx={styles['ctaBtn']}
                   disableElevation
+                  onClick={() => router.push('/contact-us')}
                 >
                   Contact us
                 </Button>

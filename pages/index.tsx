@@ -1,3 +1,4 @@
+import EducationForEmpowerment from '@/components/Hero/EducationForEmpowerment';
 import HeroSection from '@/components/Hero/HeroSection';
 import { Button, Typography } from '@mui/material';
 import { NextPage } from 'next';
@@ -8,6 +9,7 @@ const Home: NextPage = () => {
   return (
     <>
       <HeroSection />
+      <EducationForEmpowerment />
     </>
   );
 };
