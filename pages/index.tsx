@@ -1,6 +1,6 @@
-import EducationForEmpowerment from '@/components/Hero/EducationForEmpowerment';
-import HeroSection from '@/components/Hero/HeroSection';
-import { Button, Typography } from '@mui/material';
+import EducationForEmpowerment from '@/components/Home/EducationForEmpowerment';
+import HeroSection from '@/components/Home/HeroSection';
+import WhyTb from '@/components/Home/WhyTb';
 import { NextPage } from 'next';
 import React from 'react';
 import 'typeface-ubuntu';
@@ -10,6 +10,7 @@ const Home: NextPage = () => {
     <>
       <HeroSection />
       <EducationForEmpowerment />
+      <WhyTb />
     </>
   );
 };

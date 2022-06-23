@@ -15,6 +15,7 @@ import React, { FC, useMemo, useState } from 'react';
 import Container from '@/components/Container';
 import SideDrawer from '@/components/SideDrawer';
 import { useRouter } from 'next/router';
+import { useResponsive } from 'helpers/custom-hooks';
 
 interface ElevationScrollProps {
   window?: () => Window;
@@ -103,8 +104,7 @@ export const MENU_LIST: Array<MenuItem> = [
 const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
   /** Utilities */
   const theme = useTheme();
-  const mediumFrame = useMediaQuery(theme.breakpoints.down('lg'));
-  const smallFrame = useMediaQuery(theme.breakpoints.down('sm'));
+  const { SmallDesktop, Phone } = useResponsive();
   const styles = {
     hamburger: {
       display: { lg: 'none' },
@@ -148,8 +148,8 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
     <ElevationScroll {...props}>
       <AppBar sx={{ backgroundColor: theme.palette.background.paper }}>
         <Container
-          py={mediumFrame ? theme.spacing(1) : theme.spacing(3)}
-          size={smallFrame ? 'xs' : mediumFrame ? 'sm' : 'md'}
+          py={SmallDesktop ? theme.spacing(1) : theme.spacing(3)}
+          size={Phone ? 'xs' : SmallDesktop ? 'sm' : 'md'}
         >
           <Toolbar>
             <Grid alignItems="center" container spacing={1}>

@@ -1,32 +1,33 @@
 import { Box, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
 import Container from '@/components/Container';
+import { Waves } from '@/public/images/svg';
+import { useResponsive } from 'helpers/custom-hooks';
 
 const EducationForEmpowerment = () => {
   const theme = useTheme();
-  const smallFrame = useMediaQuery(theme.breakpoints.down('md'));
-  const extraSmallFrame = useMediaQuery(theme.breakpoints.down('sm'));
+  const { Phone, SmallDesktop, Tablet } = useResponsive();
 
   return (
     <Box bgcolor={theme.palette.primary.dark}>
       <Grid container justifyContent="center" alignItems="center">
         <Grid item xs>
           <Container
-            py={extraSmallFrame ? theme.spacing(8) : theme.spacing(12)}
-            size={extraSmallFrame ? 'sm' : smallFrame ? 'md' : 'lg'}
+            pt={Phone ? theme.spacing(8) : theme.spacing(12)}
+            size={Phone ? 'sm' : Tablet ? 'md' : SmallDesktop ? 'lg' : 'xl'}
           >
             <Typography
-              variant={extraSmallFrame ? 'h6' : 'h5'}
+              variant={Phone ? 'h6' : Tablet ? 'h5' : 'h4'}
               color="whitesmoke"
               textAlign="center"
             >
               Education for Empowerment
             </Typography>
             <Typography
-              mt={extraSmallFrame ? theme.spacing(4) : theme.spacing(8)}
+              mt={Phone ? theme.spacing(4) : theme.spacing(8)}
               color="whitesmoke"
               textAlign="center"
-              variant={extraSmallFrame ? 'body2' : 'body1'}
+              variant={Phone ? 'body2' : 'body1'}
             >
               We are a school that empowers students to thrive in academic
               excellence; personal, social and emotional growth that are needed
@@ -34,6 +35,7 @@ const EducationForEmpowerment = () => {
             </Typography>
           </Container>
         </Grid>
+        <Waves />
       </Grid>
     </Box>
   );
