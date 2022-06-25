@@ -42,13 +42,9 @@ const MenuItem: FC<MenuItemProps> = ({ label, href, ...props }) => {
       color: active ? theme.palette.primary.dark : theme.palette.grey[600],
       textTransform: 'capitalize',
       padding: '1rem 2rem',
-      borderRadius: active ? 0 : null,
-      borderBottom: active ? '2px solid' : null,
       '&:hover': {
-        boxShadow: `inset 20rem 0 0 0 ${theme.palette.primary.dark}`,
-        color: theme.palette.background.paper,
-        borderBottom: null,
-        borderRadius: 2,
+        color: theme.palette.primary.dark,
+        backgroundColor: theme.palette.background.paper,
       },
     },
   };

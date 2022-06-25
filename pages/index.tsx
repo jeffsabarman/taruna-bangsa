@@ -1,4 +1,3 @@
-import EducationForEmpowerment from '@/components/Home/EducationForEmpowerment';
 import HeroSection from '@/components/Home/HeroSection';
 import WhyTb from '@/components/Home/WhyTb';
 import { NextPage } from 'next';
@@ -9,7 +8,6 @@ const Home: NextPage = () => {
   return (
     <>
       <HeroSection />
-      <EducationForEmpowerment />
       <WhyTb />
     </>
   );
