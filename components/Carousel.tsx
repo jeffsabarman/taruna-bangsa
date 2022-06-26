@@ -13,7 +13,14 @@ import ElasticCarousel, {
 const Pagination = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   margin: 2rem 0px;
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0.6rem;
+  border-radius: 0.4rem;
 `;
 
 const Indicator = styled.button`
@@ -22,9 +29,17 @@ const Indicator = styled.button`
   outline: none;
   cursor: pointer;
   border-radius: 1rem;
-  margin-right: 1rem;
-  background-color: ${(p: any) => (p.active ? '#001980' : 'none')};
+  margin-right: 0.4rem;
+  margin-left: 0.4rem;
+  background-color: ${(p: any) => (p.active ? '#001980' : 'lightgrey')};
   border: none;
+`;
+
+const ImageCarousel = styled.img`
+  width: 100vw;
+  object-fit: cover;
+  cursor: pointer;
+  position: relative;
 `;
 
 type ImageLink = {
@@ -99,13 +114,10 @@ const CarouselItem = (props: { image: ImageLink | undefined }) => {
   const { SmallDesktop, Desktop } = useResponsive();
 
   return (
-    <img
+    <ImageCarousel
       onClick={() => props?.image?.link}
       style={{
-        height: SmallDesktop ? '50vh' : Desktop ? '72vh' : '82vh',
-        width: '100vw',
-        objectFit: 'cover',
-        cursor: 'pointer',
+        height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh',
       }}
       src={props?.image?.url}
       alt="Taruna Bangsa Banner Image"
@@ -122,9 +134,9 @@ const Carousel: FC<IElasticCarouselProps> = ({
 
   return (
     <StyledElasticCarousel
+      {...props}
       breakPoints={breakPoints}
       renderArrow={CarouselArrow}
-      {...props}
       // @ts-ignore
       renderPagination={StyledPagination}
     >
