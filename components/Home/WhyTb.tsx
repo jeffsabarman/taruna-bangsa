@@ -72,7 +72,7 @@ const BulletLists: FC<{ label: string }> = ({ label }) => {
 
 const WhyTb = () => {
   const theme = useTheme();
-  const { Phone, SmallDesktop, Desktop, Tablet } = useResponsive();
+  const { Phone, SmallDesktop, Desktop } = useResponsive();
   const styles = {
     readHeader: {
       backgroundColor: theme.palette.secondary.main,
@@ -85,7 +85,7 @@ const WhyTb = () => {
   };
 
   return (
-    <Box bgcolor={theme.palette.primary.dark}>
+    <Box bgcolor={theme.palette.primary.main}>
       <Rectangle
         // @ts-ignore
         size={Phone ? 'xs' : 'sm'}
@@ -109,7 +109,7 @@ const WhyTb = () => {
             <Typography
               display="inline-block"
               sx={styles['whiteHeader']}
-              color={theme.palette.primary.dark}
+              color={theme.palette.primary.main}
               variant={Phone ? 'h6' : 'h5'}
             >
               TB?
@@ -125,8 +125,14 @@ const WhyTb = () => {
         </Container>
       </Grid>
       <Grid container justifyContent="flex-end">
-        <Polygon size="xl" />
-        <Polygon size="xl" />
+        <Polygon
+          // @ts-ignore
+          size="xl"
+        />
+        <Polygon
+          // @ts-ignore
+          size="xl"
+        />
       </Grid>
     </Box>
   );

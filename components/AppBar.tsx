@@ -39,11 +39,11 @@ const MenuItem: FC<MenuItemProps> = ({ label, href, ...props }) => {
   const styles = {
     '&.MuiButton-text': {
       fontSize: '1rem',
-      color: active ? theme.palette.primary.dark : theme.palette.grey[600],
+      color: active ? theme.palette.primary.main : theme.palette.grey[600],
       textTransform: 'capitalize',
       padding: '1rem 2rem',
       '&:hover': {
-        color: theme.palette.primary.dark,
+        color: theme.palette.primary.main,
         backgroundColor: theme.palette.background.paper,
       },
     },
@@ -104,7 +104,7 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
   const styles = {
     hamburger: {
       display: { lg: 'none' },
-      color: theme.palette.primary.dark,
+      color: theme.palette.primary.main,
     },
   };
 
@@ -164,7 +164,7 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
                   <Typography
                     style={{ cursor: 'pointer' }}
                     variant="h6"
-                    color="primary.dark"
+                    color="primary"
                   >
                     LOGO
                   </Typography>
