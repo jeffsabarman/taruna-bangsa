@@ -1,4 +1,5 @@
 import Academics from '@/components/Home/Academics';
+import Facilities from '@/components/Home/Facilities';
 import HeroSection from '@/components/Home/HeroSection';
 import WhyTb from '@/components/Home/WhyTb';
 import { NextPage } from 'next';
@@ -11,6 +12,7 @@ const Home: NextPage = () => {
       <HeroSection />
       <WhyTb />
       <Academics />
+      <Facilities />
     </>
   );
 };

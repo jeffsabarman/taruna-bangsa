@@ -10,6 +10,10 @@ import ElasticCarousel, {
   RenderPaginationProps,
 } from 'react-elastic-carousel';
 
+type IndicatorProps = {
+  active: boolean;
+};
+
 const Pagination = styled.div`
   display: flex;
   flex-direction: row;
@@ -23,7 +27,7 @@ const Pagination = styled.div`
   border-radius: 0.4rem;
 `;
 
-const Indicator = styled.button`
+const Indicator = styled.button<IndicatorProps>`
   width: 2rem;
   height: 0.4rem;
   outline: none;
@@ -101,7 +105,6 @@ const StyledPagination: FC<PaginationProps> = ({
           <Indicator
             key={page}
             onClick={() => onClick(page)}
-            // @ts-ignore
             active={isActivePage}
           />
         );

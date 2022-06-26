@@ -5,7 +5,17 @@ import Container from '@/components/Container';
 import { ArrowRight as ArrowRightIcon } from '@mui/icons-material';
 import styled from '@emotion/styled';
 
-const Polygon = styled.div`
+type PolygonProps = {
+  size?: 'xs' | 'sm' | 'lg' | 'xl';
+  primary?: boolean;
+  secondary?: boolean;
+};
+
+type RectangleProps = {
+  size: 'xs' | 'sm';
+};
+
+const Polygon = styled.div<PolygonProps>`
   width: 0;
   height: 0;
   border-style: solid;
@@ -26,10 +36,8 @@ const Polygon = styled.div`
       : 'transparent transparent transparent #FBBA00'};
 `;
 
-const Rectangle = styled.div`
-  /* width: ${(p: any) => (p.size === 'xs' ? '2.8rem' : '6.8rem')}; */
+const Rectangle = styled.div<RectangleProps>`
   width: 8vw;
-  /* height: ${(p: any) => (p.size === 'xs' ? '4.8rem' : '12rem')}; */
   height: 13vw;
   background: #ed168d;
 `;
@@ -50,16 +58,8 @@ const BulletLists: FC<{ label: string }> = ({ label }) => {
   return (
     <Grid container alignItems="center" spacing={3}>
       <Grid item mt={Phone ? theme.spacing(0) : theme.spacing(1)}>
-        <Polygon
-          // @ts-ignore
-          size={Phone ? 'xs' : Tablet ? 'sm' : 'lg'}
-          primary
-        />
-        <Polygon
-          // @ts-ignore
-          size={Phone ? 'xs' : Tablet ? 'sm' : 'lg'}
-          secondary
-        />
+        <Polygon size={Phone ? 'xs' : Tablet ? 'sm' : 'lg'} primary />
+        <Polygon size={Phone ? 'xs' : Tablet ? 'sm' : 'lg'} secondary />
       </Grid>
       <Grid item xs>
         <Typography variant={Tablet ? 'body2' : 'h6'} color="whitesmoke">
@@ -86,10 +86,7 @@ const WhyTb = () => {
 
   return (
     <Box bgcolor={theme.palette.primary.main}>
-      <Rectangle
-        // @ts-ignore
-        size={Phone ? 'xs' : 'sm'}
-      />
+      <Rectangle size={Phone ? 'xs' : 'sm'} />
       <Grid container direction="column">
         <Container
           py={Phone ? theme.spacing(4) : theme.spacing(12)}
@@ -125,14 +122,8 @@ const WhyTb = () => {
         </Container>
       </Grid>
       <Grid container justifyContent="flex-end">
-        <Polygon
-          // @ts-ignore
-          size="xl"
-        />
-        <Polygon
-          // @ts-ignore
-          size="xl"
-        />
+        <Polygon size="xl" />
+        <Polygon size="xl" />
       </Grid>
     </Box>
   );
