@@ -1,6 +1,7 @@
 import Academics from '@/components/Home/Academics';
 import Facilities from '@/components/Home/Facilities';
 import HeroSection from '@/components/Home/HeroSection';
+import NewsAndEvents from '@/components/Home/NewsAndEvents';
 import WhyTb from '@/components/Home/WhyTb';
 import { NextPage } from 'next';
 import React from 'react';
@@ -13,6 +14,7 @@ const Home: NextPage = () => {
       <WhyTb />
       <Academics />
       <Facilities />
+      <NewsAndEvents />
     </>
   );
 };
