@@ -16,6 +16,7 @@ import Container from '@/components/Container';
 import SideDrawer from '@/components/SideDrawer';
 import { useRouter } from 'next/router';
 import { useResponsive } from 'helpers/custom-hooks';
+import Image from 'next/image';
 
 interface ElevationScrollProps {
   window?: () => Window;
@@ -161,13 +162,7 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
               </Grid>
               <Grid item>
                 <Link href={'/'} passHref>
-                  <Typography
-                    style={{ cursor: 'pointer' }}
-                    variant="h6"
-                    color="primary"
-                  >
-                    LOGO
-                  </Typography>
+                  <Image src="/images/stb-logo.svg" width={300} height={100} />
                 </Link>
               </Grid>
               <Grid item flexGrow={1} />
