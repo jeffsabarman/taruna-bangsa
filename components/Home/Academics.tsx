@@ -57,11 +57,13 @@ const Academics = () => {
                 excellence; personal, social and emotional growth that are
                 needed for success in their live and livelihood."
         >
-          {ACADEMICS_LIST?.map((academic: Academic, idx) => (
-            <Grid item xs={12} sm={6} lg={3} key={idx}>
-              <AcademicCard data={academic} />
-            </Grid>
-          ))}
+          <Grid container spacing={4}>
+            {ACADEMICS_LIST?.map((academic: Academic, idx) => (
+              <Grid item xs={12} sm={6} lg={3} key={idx}>
+                <AcademicCard data={academic} />
+              </Grid>
+            ))}
+          </Grid>
         </HeaderLayout>
       </Grid>
     </Box>

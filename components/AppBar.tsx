@@ -17,46 +17,16 @@ import SideDrawer from '@/components/SideDrawer';
 import { useRouter } from 'next/router';
 import { useResponsive } from 'helpers/custom-hooks';
 import Image from 'next/image';
+import MenuItem from '@/components/MenuItem';
 
 interface ElevationScrollProps {
   window?: () => Window;
   children: React.ReactElement;
 }
 
-interface MenuItemProps extends LinkProps {
-  label: string;
-}
-
 type MenuItem = {
   path: string;
   label: string;
-};
-
-const MenuItem: FC<MenuItemProps> = ({ label, href, ...props }) => {
-  /** Utilities */
-  const theme = useTheme();
-  const router = useRouter();
-  const active = router.pathname === `/${href}`;
-  const styles = {
-    '&.MuiButton-text': {
-      fontSize: '1rem',
-      color: active ? theme.palette.primary.main : theme.palette.grey[600],
-      textTransform: 'capitalize',
-      padding: '1rem 2rem',
-      '&:hover': {
-        color: theme.palette.primary.main,
-        backgroundColor: theme.palette.background.paper,
-      },
-    },
-  };
-
-  return (
-    <Link href={href} passHref {...props}>
-      <Button size="small" sx={styles['&.MuiButton-text']} variant="text">
-        {label}
-      </Button>
-    </Link>
-  );
 };
 
 const ElevationScroll = (props: ElevationScrollProps) => {
@@ -74,27 +44,27 @@ const ElevationScroll = (props: ElevationScrollProps) => {
 export const MENU_LIST: Array<MenuItem> = [
   {
     path: 'about-us',
-    label: 'About Us',
+    label: 'Tentang Kami',
   },
   {
     path: 'why-tb',
-    label: 'Why TB?',
+    label: 'Mengapa STB?',
   },
   {
     path: 'academics',
-    label: 'Academics',
+    label: 'Akademik',
   },
   {
     path: 'facilities',
-    label: 'Facilities',
+    label: 'Fasilitas',
   },
   {
     path: 'news-and-events',
-    label: 'News & events',
+    label: 'Berita & Acara',
   },
   {
     path: 'contact-us',
-    label: 'Contact Us',
+    label: 'Hubungi Kami',
   },
 ];
 

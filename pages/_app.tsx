@@ -7,6 +7,7 @@ import { CacheProvider } from '@emotion/react';
 import theme from '@/styles/theme';
 import createEmotionCache from '@/styles/createemotionCache';
 import ElevationAppBar from '@/components/AppBar';
+import Footer from '@/components/Footer';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -23,6 +24,7 @@ export default function MyApp(props: any) {
         <CssBaseline />
         <ElevationAppBar />
         <Component {...pageProps} />
+        <Footer />
       </ThemeProvider>
     </CacheProvider>
   );

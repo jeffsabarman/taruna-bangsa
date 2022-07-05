@@ -7,7 +7,7 @@ import { OverridableComponent } from '@mui/material/OverridableComponent';
 interface HeaderLayoutProps {
   children?: ReactNode;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   titleProps?: OverridableComponent<TypographyTypeMap<{}, 'span'>>;
   mode?: 'dark' | 'light';
 }
@@ -53,7 +53,6 @@ const HeaderLayout: FC<HeaderLayoutProps> = ({
         container
         item
         xs
-        spacing={4}
       >
         {children}
       </Grid>

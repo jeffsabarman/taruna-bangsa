@@ -4,37 +4,11 @@ import React, { FC } from 'react';
 import Container from '@/components/Container';
 import { ArrowRight as ArrowRightIcon } from '@mui/icons-material';
 import styled from '@emotion/styled';
-
-type PolygonProps = {
-  size?: 'xs' | 'sm' | 'lg' | 'xl';
-  primary?: boolean;
-  secondary?: boolean;
-};
+import { Polygon } from '@/components/Shapes';
 
 type RectangleProps = {
   size: 'xs' | 'sm';
 };
-
-const Polygon = styled.div<PolygonProps>`
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: ${(p: any) =>
-    p.size === 'xs'
-      ? '8px 0 8px 12px'
-      : p.size === 'sm'
-      ? '14px 0 14px 20px'
-      : p.size === 'lg'
-      ? '18px 0 18px 24px'
-      : '24px 0 24px 36px'};
-  display: inline-block;
-  border-color: ${(p: any) =>
-    p.primary
-      ? 'transparent transparent transparent #00c4f0'
-      : p.secondary
-      ? 'transparent transparent transparent #FF0000'
-      : 'transparent transparent transparent #FBBA00'};
-`;
 
 const Rectangle = styled.div<RectangleProps>`
   width: 8vw;

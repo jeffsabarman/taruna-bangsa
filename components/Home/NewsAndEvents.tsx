@@ -1,5 +1,7 @@
-import { Grid, useTheme } from '@mui/material';
+import { Box, Button, Grid, useMediaQuery, useTheme } from '@mui/material';
+import { useResponsive } from 'helpers/custom-hooks';
 import React from 'react';
+import { PrimaryButton } from '../Button';
 import HeaderLayout from '../HeaderLayout';
 import NewsEventsCard from '../NewsEventsCard';
 
@@ -36,23 +38,27 @@ const NewsAndEvents = () => {
   const theme = useTheme();
 
   return (
-    <HeaderLayout title="News / Events" subtitle="">
+    <HeaderLayout title="News / Events">
       <Grid
         container
-        xs
         justifyContent="center"
         alignItems="center"
         spacing={4}
         sx={{ mt: theme.spacing(4) }}
       >
         {NEWS_EVENTS?.map(({ imageUrl, caption }, idx) => (
-          <Grid item key={idx}>
+          <Grid item xs key={idx}>
             <NewsEventsCard
               variant={idx % 2 === 0 ? 'dark' : 'light'}
               {...{ imageUrl, caption }}
             />
           </Grid>
         ))}
+        <Box mt={theme.spacing(8)}>
+          <PrimaryButton disableElevation variant="contained">
+            Baca Selengkapnya
+          </PrimaryButton>
+        </Box>
       </Grid>
     </HeaderLayout>
   );

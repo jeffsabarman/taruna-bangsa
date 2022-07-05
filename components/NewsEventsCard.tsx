@@ -17,14 +17,7 @@ const NewsEventsCard: FC<NewsEventsCardProps> = ({
 }) => {
   /** Utilities */
   const theme = useTheme();
-  const { SmallDesktop } = useResponsive();
-  /** Functions */
-  const getImageStyle = () => {
-    const width = SmallDesktop ? 260 : 352;
-    const height = SmallDesktop ? 141 : 233.54;
-
-    return { width, height };
-  };
+  const { Tablet } = useResponsive();
 
   return (
     <Box
@@ -35,16 +28,12 @@ const NewsEventsCard: FC<NewsEventsCardProps> = ({
           ? theme.palette.primary.main
           : theme.palette.primary.light
       }
+      sx={{ minWidth: '16rem', maxWidth: '22rem' }}
     >
       <Box position="relative">
-        <Image
-          src={imageUrl}
-          width={getImageStyle().width}
-          height={getImageStyle().height}
-          objectFit="cover"
-        />
+        <img src={imageUrl} style={{ width: '100%', objectFit: 'cover' }} />
       </Box>
-      <Box width={getImageStyle().width} p={theme.spacing(4)}>
+      <Box py={theme.spacing(2)} px={theme.spacing(3)}>
         <Typography variant="h6" color="whitesmoke">
           {caption}
         </Typography>
