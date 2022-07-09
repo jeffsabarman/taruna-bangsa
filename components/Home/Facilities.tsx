@@ -44,7 +44,7 @@ const Facilities = () => {
       <Grid container direction="column">
         <HeaderLayout
           mode="dark"
-          title="Facilities"
+          title="Fasilitas"
           subtitle="We are a school that empowers students to thrive in academic excellence; personal, social and emotional growth that are needed for success in their live and livelihood."
         >
           <Grid item xs>

@@ -73,7 +73,7 @@ const WhyTb = () => {
               color="whitesmoke"
               variant={Phone ? 'h6' : 'h5'}
             >
-              Why
+              Mengapa
             </Typography>
           </Grid>
           <Grid item>
@@ -83,7 +83,7 @@ const WhyTb = () => {
               color={theme.palette.primary.main}
               variant={Phone ? 'h6' : 'h5'}
             >
-              TB?
+              STB?
             </Typography>
           </Grid>
           <Grid mt={theme.spacing(3)} container direction="column" spacing={4}>
