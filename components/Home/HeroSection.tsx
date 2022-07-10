@@ -11,7 +11,7 @@ import {
 import React, { FC } from 'react';
 import { useRouter } from 'next/router';
 import { useResponsive } from 'helpers/custom-hooks';
-import Carousel from '@/components/Carousel';
+import { HeroCarousel } from '@/components/Carousel';
 
 const HeroSection: FC = (props) => {
   /** Utilities */
@@ -44,7 +44,7 @@ const HeroSection: FC = (props) => {
         sx={{ height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh' }}
       >
         <Grid item xs>
-          <Carousel enableAutoPlay showArrows={false} images={images} />
+          <HeroCarousel enableAutoPlay showArrows={false} images={images} />
         </Grid>
       </Grid>
     </Box>

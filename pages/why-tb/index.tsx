@@ -16,7 +16,6 @@ const WhyTBPages = () => {
     <Box mt={largerThanPhone || Phone ? theme.spacing(12) : theme.spacing(8)}>
       <WhyTb />
       <Academics />
-      <Divider />
     </Box>
   );
 };

@@ -8,6 +8,7 @@ const Footer = () => {
   const theme = useTheme();
   return (
     <Grid container direction="column">
+      <Divider />
       <Grid
         item
         container

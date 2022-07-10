@@ -1,7 +1,6 @@
 import { Box, Grid, Typography, useTheme } from '@mui/material';
 import { useResponsive } from 'helpers/custom-hooks';
 import React from 'react';
-import Container from '@/components/Container';
 import AcademicCard, { Academic } from '../AcademicCard';
 import HeaderLayout from '@/components/HeaderLayout';
 

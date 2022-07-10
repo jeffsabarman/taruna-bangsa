@@ -11,3 +11,35 @@ export const useResponsive = () => {
 
   return { BigDesktop, Desktop, SmallDesktop, Tablet, Phone };
 };
+
+export const useBackgroundTypography = () => {
+  /** Utilities */
+  const theme = useTheme();
+  const styles = {
+    yellowHeader: {
+      backgroundColor: theme.palette.warning.main,
+      p: theme.spacing(1),
+    },
+    lighblueHeader: {
+      backgroundColor: theme.palette.primary.light,
+      p: theme.spacing(1),
+    },
+    redHeader: {
+      backgroundColor: theme.palette.secondary.main,
+      p: theme.spacing(1),
+    },
+    greyHeader: {
+      backgroundColor: theme.palette.grey[500],
+      p: theme.spacing(1),
+    },
+    primaryHeader: {
+      backgroundColor: theme.palette.primary.main,
+      p: theme.spacing(1),
+    },
+    divider: {
+      borderWidth: 1.5,
+      borderColor: theme.palette.grey[400],
+    },
+  };
+  return styles;
+};
