@@ -121,6 +121,8 @@ const StyledPagination: FC<PaginationProps> = ({
   activePage,
   onClick,
 }) => {
+  // const { SmallDesktop, Desktop, Phone } = useResponsive();
+
   return (
     <Pagination>
       {pages.map((page) => {
@@ -130,6 +132,9 @@ const StyledPagination: FC<PaginationProps> = ({
             key={page}
             onClick={() => onClick(page)}
             active={isActivePage}
+            // style={{
+            //   width: Phone ? '1rem' : '2rem',
+            // }}
           />
         );
       })}
@@ -138,13 +143,14 @@ const StyledPagination: FC<PaginationProps> = ({
 };
 
 const CarouselItem = (props: { image: ImageLink | undefined }) => {
-  const { SmallDesktop, Desktop } = useResponsive();
+  const { SmallDesktop, Desktop, Tablet, Phone } = useResponsive();
 
   return (
     <ImageCarousel
       onClick={() => props?.image?.link}
       style={{
-        height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh',
+        // height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh',
+        height: Phone ? '75vw' : Tablet ? '65vw' : '50vw',
       }}
       src={props?.image?.url}
       alt="Taruna Bangsa Banner Image"

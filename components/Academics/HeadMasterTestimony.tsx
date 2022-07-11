@@ -4,6 +4,7 @@ import Image, { StaticImageData } from 'next/image';
 import React, { FC, useMemo } from 'react';
 import Container from '../Container';
 import { BackwardPolygon } from '../Shapes';
+import { useResponsive } from 'helpers/custom-hooks';
 
 interface HeadMasterTestimonyProps {
   headMasterImage: StaticImageData;
@@ -49,6 +50,9 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
     },
   };
 
+  /** Media Query */
+  const { SmallDesktop, Tablet, Phone } = useResponsive();
+
   /** Functions */
   const getTitleStyle = useMemo(() => {
     switch (themeColor) {
@@ -68,14 +72,21 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
 
   return (
     <Box>
-      <Grid container spacing={3}>
-        <Grid item xs md={6}>
-          <Box p={theme.spacing(4)}>
+      <Grid container spacing={SmallDesktop ? 1 : 3}>
+        <Grid
+          item
+          xs={SmallDesktop ? 12 : 6}
+          // md={SmallDesktop ? 12 : 6}
+        >
+          <Box
+            // p={SmallDesktop ? theme.spacing(2) : theme.spacing(4)}
+            pt={theme.spacing(4)}
+          >
             <Grid container justifyContent="center">
               <Box position="relative" bottom={0} left={0}>
                 <Image
-                  width={400}
-                  height={400}
+                  width={Phone ? 320 : Tablet ? 400 : SmallDesktop ? 480 : 400}
+                  height={Phone ? 320 : Tablet ? 400 : SmallDesktop ? 480 : 400}
                   src={headMasterImage}
                   alt="Taruna Bangsa Headmaster"
                   style={{
@@ -100,10 +111,19 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
             </Grid>
           </Box>
         </Grid>
-        <Grid item xs md={6}>
-          <Container py={theme.spacing(4)}>
+        <Grid
+          item
+          xs={SmallDesktop ? 12 : 6}
+          // md={SmallDesktop ? 12 : 6}
+        >
+          <Container py={theme.spacing(4)} size={Phone ? 'xs' : 'md'}>
             <Grid container direction="column" spacing={3}>
-              <Grid container alignItems="flex-end" direction="column" item>
+              <Grid
+                container
+                alignItems={SmallDesktop ? 'flex-start' : 'flex-end'}
+                direction="column"
+                item
+              >
                 <Grid item>
                   <Typography
                     textAlign="right"
@@ -128,10 +148,16 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
                 </Grid>
               </Grid>
               <Grid item>
-                <Typography variant="h6" textAlign="right">
+                <Typography
+                  variant="h6"
+                  textAlign={SmallDesktop ? 'left' : 'right'}
+                >
                   {headMasterName}
                 </Typography>
-                <Typography variant="subtitle2" textAlign="right">
+                <Typography
+                  variant="subtitle2"
+                  textAlign={SmallDesktop ? 'left' : 'right'}
+                >
                   {headMasterRole}
                 </Typography>
               </Grid>
@@ -139,7 +165,11 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
                 <Divider sx={styles.divider} />
               </Grid>
               <Grid item>
-                <Typography color="GrayText" variant="body2" textAlign="right">
+                <Typography
+                  color="GrayText"
+                  variant="body2"
+                  textAlign={SmallDesktop ? 'left' : 'right'}
+                >
                   {testimony}
                 </Typography>
               </Grid>

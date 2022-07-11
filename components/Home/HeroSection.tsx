@@ -16,7 +16,7 @@ import { HeroCarousel } from '@/components/Carousel';
 const HeroSection: FC = (props) => {
   /** Utilities */
   const theme = useTheme();
-  const { Phone, SmallDesktop, Desktop } = useResponsive();
+  const { Phone, Tablet, SmallDesktop, Desktop } = useResponsive();
 
   /** Media Queries */
   const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
@@ -41,7 +41,11 @@ const HeroSection: FC = (props) => {
     >
       <Grid
         container
-        sx={{ height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh' }}
+        // sx={{ height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh' }}
+        // sx={{ height: SmallDesktop ? '70vw' : Desktop ? '80vw' : '90vh' }}
+        sx={{
+          height: Phone ? '75vw' : Tablet ? '65vw' : '50vw',
+        }}
       >
         <Grid item xs>
           <HeroCarousel enableAutoPlay showArrows={false} images={images} />

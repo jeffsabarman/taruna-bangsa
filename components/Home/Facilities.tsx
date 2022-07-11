@@ -3,6 +3,7 @@ import { Box, BoxProps, Grid, useTheme } from '@mui/material';
 // import Image from 'next/image';
 import React, { CSSProperties, FC, ReactNode } from 'react';
 import HeaderLayout from '../HeaderLayout';
+import { useResponsive } from 'helpers/custom-hooks';
 
 type ImageProps = {
   orientation: 'landscape' | 'portrait';
@@ -38,6 +39,7 @@ const FacilityImage: FC<FacilityImage> = ({ url, orientation, ...props }) => {
 
 const Facilities = () => {
   const theme = useTheme();
+  const { Phone } = useResponsive();
 
   return (
     <Box bgcolor={theme.palette.primary.main}>

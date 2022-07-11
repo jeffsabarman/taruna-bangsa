@@ -132,7 +132,11 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
               </Grid>
               <Grid item>
                 <Link href={'/'} passHref>
-                  <Image src="/images/stb-logo.svg" width={300} height={100} />
+                  <Image
+                    src="/images/stb-logo.svg"
+                    width={Phone ? 200 : 300}
+                    height={Phone ? 50 : 100}
+                  />
                 </Link>
               </Grid>
               <Grid item flexGrow={1} />

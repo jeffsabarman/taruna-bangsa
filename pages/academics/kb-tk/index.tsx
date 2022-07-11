@@ -116,7 +116,7 @@ const teachers = [
 const AcademicKBTK: FC = (props) => {
   /** Utilities */
   const theme = useTheme();
-  const { Phone, SmallDesktop, Desktop } = useResponsive();
+  const { Phone, SmallDesktop, Desktop, Tablet } = useResponsive();
 
   /** Media Queries */
   const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
@@ -130,7 +130,8 @@ const AcademicKBTK: FC = (props) => {
       >
         <Grid
           container
-          sx={{ height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh' }}
+          // sx={{ height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh' }}
+          sx={{ height: Phone ? '75vw' : Tablet ? '65vw' : '50vw' }}
         >
           <Grid item xs>
             <HeroCarousel enableAutoPlay showArrows={false} images={images} />
@@ -148,10 +149,10 @@ const AcademicKBTK: FC = (props) => {
           headMasterName="Fransiska Xaveria E.S., S.Pd, M.M."
           headMasterRole="Kepala KB - TK Taruna Bangsa"
         />
-        <Container size="lg" mt={8}>
+        <Container size={Phone ? 'xs' : 'lg'} mt={Phone ? 4 : 8}>
           <YearGroupSection sections={sections} />
         </Container>
-        <Container size="lg" my={8}>
+        <Container size={Phone ? 'xs' : 'lg'} my={Phone ? 4 : 8}>
           <VisionMission
             themeColor="yellow"
             vision="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -206,7 +207,7 @@ const AcademicKBTK: FC = (props) => {
           </Box>
         </Container>
       </Box>
-      <Container
+      {/* <Container
         py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}
         size={Phone ? 'xs' : SmallDesktop ? 'sm' : 'md'}
       >
@@ -217,7 +218,7 @@ const AcademicKBTK: FC = (props) => {
             teachersList={teachers}
           />
         </Container>
-      </Container>
+      </Container> */}
     </>
   );
 };
