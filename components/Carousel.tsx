@@ -122,6 +122,7 @@ const StyledPagination: FC<PaginationProps> = ({
   onClick,
 }) => {
   // const { SmallDesktop, Desktop, Phone } = useResponsive();
+  const theme = useTheme();
 
   return (
     <Pagination>
@@ -170,8 +171,10 @@ const HeroCarousel: FC<IElasticCarouselProps> = ({
       {...props}
       breakPoints={breakPoints}
       renderArrow={CarouselArrow}
-      // @ts-ignore
-      renderPagination={StyledPagination}
+      renderPagination={({ pages, activePage, onClick }) => (
+        // @ts-ignore
+        <StyledPagination {...{ pages, activePage, onClick }} />
+      )}
     >
       {images?.map((image, idx) => (
         <CarouselItem key={idx} image={image} />
