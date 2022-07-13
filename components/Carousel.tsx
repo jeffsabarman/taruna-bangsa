@@ -60,6 +60,7 @@ const ImageCarousel = styled.img`
 type ImageLink = {
   url: string;
   link: string;
+  alt: string;
 };
 
 export type GridImageSets = {
@@ -142,12 +143,13 @@ const CarouselItem = (props: { image: ImageLink | undefined }) => {
 
   return (
     <ImageCarousel
-      onClick={() => props?.image?.link}
+      onClick={() => window.open(props?.image?.link)}
       style={{
         height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh',
       }}
       src={props?.image?.url}
-      alt="Taruna Bangsa Banner Image"
+      // alt="Taruna Bangsa Banner Image"
+      alt={props?.image?.alt}
     />
   );
 };

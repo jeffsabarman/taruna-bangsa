@@ -8,10 +8,25 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useResponsive } from 'helpers/custom-hooks';
 import { HeroCarousel } from '@/components/Carousel';
+//* Sanity
+import sanityClient from 'client';
+import { MAIN_CAROUSEL_IMAGES } from 'utils/groq';
+
+/** Mocked Data */
+// const images = [
+//   {
+//     url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
+//     link: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
+//   },
+//   {
+//     url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
+//     link: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
+//   },
+// ];
 
 const HeroSection: FC = (props) => {
   /** Utilities */
@@ -21,17 +36,35 @@ const HeroSection: FC = (props) => {
   /** Media Queries */
   const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
 
-  /** Mocked Data */
-  const images = [
-    {
-      url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
-      link: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-      link: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-    },
-  ];
+  /** State */
+  const [images, setImages] = useState<
+    { url: string; link: string; alt: string }[]
+  >([]);
+
+  /** Functions */
+  const getMainCarouselImages = async () => {
+    try {
+      const mainCarouselImages = await sanityClient.fetch(MAIN_CAROUSEL_IMAGES);
+      setImages(
+        mainCarouselImages?.map(
+          (image: { _id: string; alt: string; url: string; link: string }) => {
+            return {
+              url: image?.url,
+              link: image?.link,
+              alt: image?.alt,
+            };
+          },
+        ),
+      );
+    } catch (err) {
+      console.log(err, '<<< errr');
+    }
+  };
+
+  /** Hooks */
+  useEffect(() => {
+    getMainCarouselImages();
+  }, []);
 
   return (
     <Box
