@@ -12,7 +12,7 @@ export const MAIN_CAROUSEL_IMAGES = groq`
 export const NEWS_AND_EVENTS = groq`
 *[_type == "newsEvents" && !(_id in path('drafts.**'))] {
   _id,
-   title,
+  "caption": title,
   "imageUrl": mainImage.asset->url,
 }
 `;

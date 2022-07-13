@@ -28,13 +28,30 @@ const NewsEventsCard: FC<NewsEventsCardProps> = ({
           ? theme.palette.primary.main
           : theme.palette.primary.light
       }
-      sx={{ minWidth: '16rem', maxWidth: '22rem' }}
+      sx={{
+        minWidth: '16rem',
+        maxWidth: '22rem',
+        height: '100%',
+        // height,
+        // width: '100%',
+      }}
     >
       <Box position="relative">
-        <img src={imageUrl} style={{ width: '100%', objectFit: 'cover' }} />
+        <img
+          src={imageUrl}
+          style={{ width: '100%', objectFit: 'cover', height: '14rem' }}
+        />
       </Box>
-      <Box py={theme.spacing(2)} px={theme.spacing(3)}>
-        <Typography variant="h6" color="whitesmoke">
+      <Box
+        py={theme.spacing(2)}
+        px={theme.spacing(3)}
+        sx={{ overflow: 'auto' }}
+      >
+        <Typography
+          // variant="h6"
+          variant="subtitle1"
+          color="whitesmoke"
+        >
           {caption}
         </Typography>
       </Box>
