@@ -266,6 +266,7 @@ const GridCarousel: FC<IElasticCarouselProps> = ({
 
 const TeacherImage = styled.img`
   width: 100%;
+  height: 20rem;
   object-fit: cover;
   border-radius: 14px;
 `;

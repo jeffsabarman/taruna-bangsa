@@ -17,6 +17,7 @@ import VisionMission from '@/components/Academics/VisionMission';
 import SchedulesAndActivities from '@/components/ContactUs/SchedulesAndActivities';
 import Exculpatories from '@/components/ContactUs/Exculpatories';
 import Teachers from '@/components/Academics/Teachers';
+import HeroSection from '@/components/Home/HeroSection';
 
 const sections = [
   {
@@ -27,16 +28,16 @@ const sections = [
 ];
 
 /** Mocked Data */
-const images = [
-  {
-    url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
-    link: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-    link: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-  },
-];
+// const images = [
+//   {
+//     url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
+//     link: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
+//   },
+//   {
+//     url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
+//     link: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
+//   },
+// ];
 
 const schedules = [
   'KB : Senin - Jumat : 10.00 - 12.00 WIB',
@@ -118,7 +119,7 @@ const AcademicSMA: FC = (props) => {
 
   return (
     <>
-      <Box
+      {/* <Box
         position="relative"
         mt={largerThanPhone || Phone ? theme.spacing(12) : theme.spacing(8)}
         {...props}
@@ -131,7 +132,8 @@ const AcademicSMA: FC = (props) => {
             <HeroCarousel enableAutoPlay showArrows={false} images={images} />
           </Grid>
         </Grid>
-      </Box>
+      </Box> */}
+      <HeroSection />
       <Container
         py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}
         size={Phone ? 'xs' : SmallDesktop ? 'sm' : 'md'}

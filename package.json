@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.9.3",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.4",
+    "@portabletext/react": "^1.0.6",
     "@sanity/client": "^3.3.2",
     "groq": "^2.29.3",
     "moment": "^2.29.4",

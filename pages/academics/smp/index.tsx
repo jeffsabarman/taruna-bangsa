@@ -17,6 +17,7 @@ import VisionMission from '@/components/Academics/VisionMission';
 import SchedulesAndActivities from '@/components/ContactUs/SchedulesAndActivities';
 import Exculpatories from '@/components/ContactUs/Exculpatories';
 import Teachers from '@/components/Academics/Teachers';
+import HeroSection from '@/components/Home/HeroSection';
 
 const sections = [
   {
@@ -118,7 +119,7 @@ const AcademicSMP: FC = (props) => {
 
   return (
     <>
-      <Box
+      {/* <Box
         position="relative"
         mt={largerThanPhone || Phone ? theme.spacing(12) : theme.spacing(8)}
         {...props}
@@ -131,7 +132,8 @@ const AcademicSMP: FC = (props) => {
             <HeroCarousel enableAutoPlay showArrows={false} images={images} />
           </Grid>
         </Grid>
-      </Box>
+      </Box> */}
+      <HeroSection />
       <Container
         py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}
         size={Phone ? 'xs' : SmallDesktop ? 'sm' : 'md'}

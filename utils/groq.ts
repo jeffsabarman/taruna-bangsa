@@ -30,8 +30,8 @@ export const EDUCATIONS_KB_TK = groq`
   },
   teachers[] {
     name,
-    jobTitle,
-    "imageUrl": imageFile.asset->url
+    "role": jobTitle,
+    "image": imageFile.asset->url
   }
 }
 `;
@@ -50,7 +50,7 @@ export const EDUCATIONS_SD = groq`
   teachers[] {
     name,
     jobTitle,
-    "imageUrl": imageFile.asset->url
+    "image": imageFile.asset->url
   }
 }
 `;
@@ -69,7 +69,7 @@ export const EDUCATIONS_SMP = groq`
   teachers[] {
     name,
     jobTitle,
-    "imageUrl": imageFile.asset->url
+    "image": imageFile.asset->url
   }
 }
 `;
@@ -88,7 +88,7 @@ export const EDUCATIONS_SMA = groq`
   teachers[] {
     name,
     jobTitle,
-    "imageUrl": imageFile.asset->url
+    "image": imageFile.asset->url
   }
 }
 `;

@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { useResponsive } from 'helpers/custom-hooks';
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import headMasterPic from '@/public/images/fransiska-xaveria.png';
 import Container from '@/components/Container';
 import YearGroupSection from '@/components/Academics/YearGroupSection';
@@ -17,6 +17,12 @@ import VisionMission from '@/components/Academics/VisionMission';
 import SchedulesAndActivities from '@/components/ContactUs/SchedulesAndActivities';
 import Exculpatories from '@/components/ContactUs/Exculpatories';
 import Teachers from '@/components/Academics/Teachers';
+import HeroSection from '@/components/Home/HeroSection';
+//* Sanity
+import sanityClient from 'client';
+import { EDUCATIONS_KB_TK } from '@/utils/groq';
+import { PortableText } from '@portabletext/react';
+import { ptComponents } from '@/components/shared/PortableTextComponent';
 
 const sections = [
   {
@@ -32,16 +38,16 @@ const sections = [
 ];
 
 /** Mocked Data */
-const images = [
-  {
-    url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
-    link: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-    link: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-  },
-];
+// const images = [
+//   {
+//     url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
+//     link: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
+//   },
+//   {
+//     url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
+//     link: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
+//   },
+// ];
 
 const schedules = [
   'KB : Senin - Jumat : 10.00 - 12.00 WIB',
@@ -86,32 +92,32 @@ const exculImageSets = [
   },
 ];
 
-const teachers = [
-  {
-    image:
-      'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    name: 'Mr.John Doe',
-    role: 'Wali Kelas TK - A',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    name: 'Mr.John Doe',
-    role: 'Wali Kelas TK - A',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    name: 'Mr.John Doe',
-    role: 'Wali Kelas TK - A',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    name: 'Mr.John Doe',
-    role: 'Wali Kelas TK - A',
-  },
-];
+// const teachers = [
+//   {
+//     image:
+//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+//     name: 'Mr.John Doe',
+//     role: 'Wali Kelas TK - A',
+//   },
+//   {
+//     image:
+//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+//     name: 'Mr.John Doe',
+//     role: 'Wali Kelas TK - A',
+//   },
+//   {
+//     image:
+//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+//     name: 'Mr.John Doe',
+//     role: 'Wali Kelas TK - A',
+//   },
+//   {
+//     image:
+//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+//     name: 'Mr.John Doe',
+//     role: 'Wali Kelas TK - A',
+//   },
+// ];
 
 const AcademicKBTK: FC = (props) => {
   /** Utilities */
@@ -121,9 +127,26 @@ const AcademicKBTK: FC = (props) => {
   /** Media Queries */
   const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
 
+  /** State */
+  // const [academicData, setAcademicData] = useState();
+  const [teachers, setTeachers] = useState([]);
+
+  /** Functions */
+  const getAcademicData = async () => {
+    const academicData = await sanityClient.fetch(EDUCATIONS_KB_TK);
+    console.log(academicData, '<<< academic Data');
+    // setAcademicData(academicData);
+    setTeachers(academicData?.teachers);
+  };
+
+  /** Hooks */
+  useEffect(() => {
+    getAcademicData();
+  }, []);
+
   return (
     <>
-      <Box
+      {/* <Box
         position="relative"
         mt={largerThanPhone || Phone ? theme.spacing(12) : theme.spacing(8)}
         {...props}
@@ -136,7 +159,8 @@ const AcademicKBTK: FC = (props) => {
             <HeroCarousel enableAutoPlay showArrows={false} images={images} />
           </Grid>
         </Grid>
-      </Box>
+      </Box> */}
+      <HeroSection />
       <Container
         py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}
         size={Phone ? 'xs' : SmallDesktop ? 'sm' : 'md'}
