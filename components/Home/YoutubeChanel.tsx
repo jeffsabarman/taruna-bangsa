@@ -17,7 +17,7 @@ const YoutubeChanel = () => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
           style={{
-            width: '90vw',
+            width: Phone ? '90vw' : '80vw',
             height: Phone ? '50vw' : '45vw',
           }}
         />

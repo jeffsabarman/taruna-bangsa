@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 type PolygonProps = {
-  size?: 'xs' | 'sm' | 'lg' | 'xl' | '2xl';
+  size?: 'xs' | 'sm' | 'lg' | 'xl' | '2xl' | 'md';
   primary?: boolean;
   secondary?: boolean;
   tertiary?: boolean;
