@@ -51,7 +51,7 @@ export const MENU_LIST: Array<MenuItem> = [
     label: 'Mengapa STB?',
   },
   {
-    path: 'academics/sma',
+    path: 'academics',
     label: 'Akademik',
   },
   {

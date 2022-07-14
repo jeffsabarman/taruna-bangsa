@@ -11,6 +11,8 @@ interface HeadMasterTestimonyProps {
   headMasterRole: string;
   testimony: string;
   themeColor: ThemeColor;
+  inverted?: boolean;
+  testimonialSenderRole?: string;
 }
 
 const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
@@ -19,6 +21,8 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
   headMasterRole,
   testimony,
   themeColor,
+  inverted,
+  testimonialSenderRole = '{testimonialS}',
 }) => {
   /** Utilities */
   const theme = useTheme();
@@ -69,83 +73,175 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
   return (
     <Box>
       <Grid container spacing={3}>
-        <Grid item xs md={6}>
-          <Box p={theme.spacing(4)}>
-            <Grid container justifyContent="center">
-              <Box position="relative" bottom={0} left={0}>
-                <Image
-                  width={400}
-                  height={400}
-                  src={headMasterImage}
-                  alt="Taruna Bangsa Headmaster"
-                  style={{
-                    backgroundColor: theme.palette.primary.main,
-                    borderRadius: '50%',
-                  }}
-                  objectFit="cover"
-                />
-                <BackwardPolygon
-                  grey={themeColor === 'grey'}
-                  primary={themeColor === 'lightblue'}
-                  secondary={themeColor === 'red'}
-                  style={{ position: 'absolute', left: 10, bottom: 48 }}
-                />
-                <BackwardPolygon
-                  grey={themeColor === 'grey'}
-                  primary={themeColor === 'lightblue'}
-                  secondary={themeColor === 'red'}
-                  style={{ position: 'absolute', left: 36, bottom: 48 }}
-                />
+        {inverted ? (
+          <>
+            <Grid item xs md={6}>
+              <Container py={theme.spacing(4)}>
+                <Grid container direction="column" spacing={3}>
+                  <Grid container alignItems="flex-end" direction="column" item>
+                    <Grid item>
+                      <Typography
+                        textAlign="right"
+                        sx={styles.primaryHeader}
+                        display="inline-block"
+                        color="whitesmoke"
+                        variant="h6"
+                      >
+                        Pesan dari
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography
+                        textAlign="right"
+                        sx={getTitleStyle}
+                        display="inline-block"
+                        color="whitesmoke"
+                        variant="h6"
+                      >
+                        {testimonialSenderRole}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="h6" textAlign="right">
+                      {headMasterName}
+                    </Typography>
+                    <Typography variant="subtitle2" textAlign="right">
+                      {headMasterRole}
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Divider sx={styles.divider} />
+                  </Grid>
+                  <Grid item>
+                    <Typography
+                      color="GrayText"
+                      variant="body2"
+                      textAlign="right"
+                    >
+                      {testimony}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Container>
+            </Grid>
+            <Grid item xs md={6}>
+              <Box p={theme.spacing(4)}>
+                <Grid container justifyContent="center">
+                  <Box position="relative" bottom={0} left={0}>
+                    <Image
+                      width={400}
+                      height={400}
+                      src={headMasterImage}
+                      alt="Taruna Bangsa Headmaster"
+                      style={{
+                        backgroundColor: theme.palette.primary.main,
+                        borderRadius: '50%',
+                      }}
+                      objectFit="cover"
+                    />
+                    <BackwardPolygon
+                      grey={themeColor === 'grey'}
+                      primary={themeColor === 'lightblue'}
+                      secondary={themeColor === 'red'}
+                      style={{ position: 'absolute', left: 10, bottom: 48 }}
+                    />
+                    <BackwardPolygon
+                      grey={themeColor === 'grey'}
+                      primary={themeColor === 'lightblue'}
+                      secondary={themeColor === 'red'}
+                      style={{ position: 'absolute', left: 36, bottom: 48 }}
+                    />
+                  </Box>
+                </Grid>
               </Box>
             </Grid>
-          </Box>
-        </Grid>
-        <Grid item xs md={6}>
-          <Container py={theme.spacing(4)}>
-            <Grid container direction="column" spacing={3}>
-              <Grid container alignItems="flex-end" direction="column" item>
-                <Grid item>
-                  <Typography
-                    textAlign="right"
-                    sx={styles.primaryHeader}
-                    display="inline-block"
-                    color="whitesmoke"
-                    variant="h6"
-                  >
-                    Pesan dari
-                  </Typography>
+          </>
+        ) : (
+          <>
+            <Grid item xs md={6}>
+              <Box p={theme.spacing(4)}>
+                <Grid container justifyContent="center">
+                  <Box position="relative" bottom={0} left={0}>
+                    <Image
+                      width={400}
+                      height={400}
+                      src={headMasterImage}
+                      alt="Taruna Bangsa Headmaster"
+                      style={{
+                        backgroundColor: theme.palette.primary.main,
+                        borderRadius: '50%',
+                      }}
+                      objectFit="cover"
+                    />
+                    <BackwardPolygon
+                      grey={themeColor === 'grey'}
+                      primary={themeColor === 'lightblue'}
+                      secondary={themeColor === 'red'}
+                      style={{ position: 'absolute', left: 10, bottom: 48 }}
+                    />
+                    <BackwardPolygon
+                      grey={themeColor === 'grey'}
+                      primary={themeColor === 'lightblue'}
+                      secondary={themeColor === 'red'}
+                      style={{ position: 'absolute', left: 36, bottom: 48 }}
+                    />
+                  </Box>
                 </Grid>
-                <Grid item>
-                  <Typography
-                    textAlign="right"
-                    sx={getTitleStyle}
-                    display="inline-block"
-                    color="whitesmoke"
-                    variant="h6"
-                  >
-                    Kepala Sekolah
-                  </Typography>
-                </Grid>
-              </Grid>
-              <Grid item>
-                <Typography variant="h6" textAlign="right">
-                  {headMasterName}
-                </Typography>
-                <Typography variant="subtitle2" textAlign="right">
-                  {headMasterRole}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Divider sx={styles.divider} />
-              </Grid>
-              <Grid item>
-                <Typography color="GrayText" variant="body2" textAlign="right">
-                  {testimony}
-                </Typography>
-              </Grid>
+              </Box>
             </Grid>
-          </Container>
-        </Grid>
+            <Grid item xs md={6}>
+              <Container py={theme.spacing(4)}>
+                <Grid container direction="column" spacing={3}>
+                  <Grid container alignItems="flex-end" direction="column" item>
+                    <Grid item>
+                      <Typography
+                        textAlign="right"
+                        sx={styles.primaryHeader}
+                        display="inline-block"
+                        color="whitesmoke"
+                        variant="h6"
+                      >
+                        Pesan dari
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography
+                        textAlign="right"
+                        sx={getTitleStyle}
+                        display="inline-block"
+                        color="whitesmoke"
+                        variant="h6"
+                      >
+                        {testimonialSenderRole}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="h6" textAlign="right">
+                      {headMasterName}
+                    </Typography>
+                    <Typography variant="subtitle2" textAlign="right">
+                      {headMasterRole}
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Divider sx={styles.divider} />
+                  </Grid>
+                  <Grid item>
+                    <Typography
+                      color="GrayText"
+                      variant="body2"
+                      textAlign="right"
+                    >
+                      {testimony}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Container>
+            </Grid>
+          </>
+        )}
       </Grid>
     </Box>
   );

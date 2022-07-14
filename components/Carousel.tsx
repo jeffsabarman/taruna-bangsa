@@ -285,6 +285,8 @@ const TeacherCarouselItem = ({
           return theme.palette.primary.light;
         case 'grey':
           return theme.palette.grey[500];
+        case 'white':
+          return theme.palette.background.paper;
 
         default:
           return theme.palette.warning.main;
@@ -298,8 +300,16 @@ const TeacherCarouselItem = ({
         <TeacherImage src={teacher.image} alt="Guru Taruna Bangsa" />
       </Grid>
       <Grid item>
-        <Typography variant="subtitle2">{teacher.name}</Typography>
-        <Typography variant="body2" color="GrayText">
+        <Typography
+          variant="subtitle2"
+          color={themeColor === 'white' ? 'whitesmoke' : undefined}
+        >
+          {teacher.name}
+        </Typography>
+        <Typography
+          variant="body2"
+          color={themeColor === 'white' ? 'whitesmoke' : 'GrayText'}
+        >
           {teacher.role}
         </Typography>
       </Grid>
