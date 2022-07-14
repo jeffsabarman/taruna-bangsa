@@ -80,7 +80,7 @@ const Facilities = () => {
                   : Tablet
                   ? 'repeat(2, 1fr)'
                   : 'repeat(3, 1fr)',
-                gap: Phone ? 3 : Tablet ? 2 : 1,
+                gap: Phone ? 3 : 2,
                 gridTemplateRows: Phone
                   ? 'repeat(6, 48vw)'
                   : Tablet

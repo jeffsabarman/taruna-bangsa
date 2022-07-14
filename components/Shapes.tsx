@@ -20,7 +20,8 @@ export const Polygon = styled.div<PolygonProps>`
       : p.size === 'lg'
       ? '18px 0 18px 24px'
       : p.size === '2xl'
-      ? '48px 0 48px 58px'
+      ? // ? '48px 0 48px 58px'
+        '36px 0 36px 48px'
       : '24px 0 24px 36px'};
   display: inline-block;
   border-color: ${(p: any) =>

@@ -229,6 +229,10 @@ const GridCarousel: FC<IElasticCarouselProps> = ({
       renderArrow={CarouselArrow}
       // @ts-ignore
       // renderPagination={StyledPagination}
+      // renderPagination={({ pages, activePage, onClick }) => (
+      //   // @ts-ignore
+      //   <StyledPagination {...{ pages, activePage, onClick }} />
+      // )}
     >
       {gridImages?.map((gridImage, idx) => (
         <Box
@@ -333,7 +337,11 @@ const TeacherCarousel: FC<IElasticCarouselProps> = ({
       breakPoints={breakPoints}
       renderArrow={CarouselArrow}
       // @ts-ignore
-      renderPagination={StyledPagination}
+      // renderPagination={StyledPagination}
+      // renderPagination={({ pages, activePage, onClick }) => (
+      //   // @ts-ignore
+      //   <StyledPagination {...{ pages, activePage, onClick }} />
+      // )}
     >
       {teachersList?.map((teacher, idx) => (
         <TeacherCarouselItem

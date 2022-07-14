@@ -207,7 +207,7 @@ const AcademicKBTK: FC = (props) => {
           </Box>
         </Container>
       </Box>
-      {/* <Container
+      <Container
         py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}
         size={Phone ? 'xs' : SmallDesktop ? 'sm' : 'md'}
       >
@@ -218,7 +218,7 @@ const AcademicKBTK: FC = (props) => {
             teachersList={teachers}
           />
         </Container>
-      </Container> */}
+      </Container>
     </>
   );
 };
