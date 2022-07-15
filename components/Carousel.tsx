@@ -64,13 +64,34 @@ type ImageLink = {
 };
 
 export type GridImageSets = {
-  imageSets: {
-    1: string;
-    2: string;
-    3: string;
-    4: string;
-    5: string;
-  };
+  imageSets: { url: string; alt: string }[];
+  // imageSets: {
+  // 1: string;
+  // 2: string;
+  // 3: string;
+  // 4: string;
+  // 5: string;
+  // 1: {
+  //   url: string;
+  //   alt: string;
+  // };
+  // 2: {
+  //   url: string;
+  //   alt: string;
+  // };
+  // 3: {
+  //   url: string;
+  //   alt: string;
+  // };
+  // 4: {
+  //   url: string;
+  //   alt: string;
+  // };
+  // 5: {
+  //   url: string;
+  //   alt: string;
+  // };
+  // };
 };
 
 interface IElasticCarouselProps extends Partial<ReactElasticCarouselProps> {
@@ -188,10 +209,11 @@ const Image = styled.img<ImageProps>`
 
 interface GridImage extends BoxProps {
   url: string;
+  alt: string;
   orientation: 'landscape' | 'portrait';
 }
 
-const GridImage: FC<GridImage> = ({ url, orientation, ...props }) => {
+const GridImage: FC<GridImage> = ({ url, alt, orientation, ...props }) => {
   const { sx, ...other } = props;
   const styles = {
     container: {
@@ -203,7 +225,7 @@ const GridImage: FC<GridImage> = ({ url, orientation, ...props }) => {
   };
   return (
     <Box sx={styles.container} {...other}>
-      <Image src={url} orientation={orientation} />
+      <Image src={url} alt={alt} orientation={orientation} />
     </Box>
   );
 };
@@ -235,28 +257,43 @@ const GridCarousel: FC<IElasticCarouselProps> = ({
         >
           <GridImage
             orientation="landscape"
-            url={gridImage.imageSets['1']}
+            // url={gridImage.imageSets['1']?.url}
+            // alt={gridImage.imageSets['1']?.alt}
+            url={gridImage.imageSets[0]?.url}
+            alt={gridImage.imageSets[0]?.alt}
             sx={{ gridColumn: '1', gridRow: '1' }}
           />
           <GridImage
             orientation="portrait"
             sx={{ gridColumn: '2', gridRow: '1/3' }}
-            url={gridImage.imageSets['2']}
+            // url={gridImage.imageSets['2']?.url}
+            // alt={gridImage.imageSets['2']?.alt}
+            url={gridImage.imageSets[1]?.url}
+            alt={gridImage.imageSets[1]?.alt}
           />
           <GridImage
             orientation="landscape"
             sx={{ gridColumn: '3', gridRow: '1' }}
-            url={gridImage.imageSets['3']}
+            // url={gridImage.imageSets['3']?.url}
+            // alt={gridImage.imageSets['3']?.alt}
+            url={gridImage.imageSets[2]?.url}
+            alt={gridImage.imageSets[2]?.alt}
           />
           <GridImage
             orientation="landscape"
             sx={{ gridColumn: '1', gridRow: '2' }}
-            url={gridImage.imageSets['4']}
+            // url={gridImage.imageSets['4']?.url}
+            // alt={gridImage.imageSets['4']?.alt}
+            url={gridImage.imageSets[3]?.url}
+            alt={gridImage.imageSets[3]?.alt}
           />
           <GridImage
             orientation="landscape"
             sx={{ gridColumn: '3', gridRow: '2' }}
-            url={gridImage.imageSets['5']}
+            // url={gridImage.imageSets['5']?.url}
+            // alt={gridImage.imageSets['5']?.alt}
+            url={gridImage.imageSets[4]?.url}
+            alt={gridImage.imageSets[4]?.alt}
           />
         </Box>
       ))}
@@ -266,7 +303,7 @@ const GridCarousel: FC<IElasticCarouselProps> = ({
 
 const TeacherImage = styled.img`
   width: 100%;
-  height: 20rem;
+  height: 24rem;
   object-fit: cover;
   border-radius: 14px;
 `;
@@ -331,7 +368,8 @@ const TeacherCarousel: FC<IElasticCarouselProps> = ({
     >
       {teachersList?.map((teacher, idx) => (
         <TeacherCarouselItem
-          key={idx}
+          // key={idx}
+          key={teacher?.name}
           teacher={teacher}
           themeColor={themeColor}
         />

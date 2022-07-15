@@ -49,48 +49,48 @@ const sections = [
 //   },
 // ];
 
-const schedules = [
-  'KB : Senin - Jumat : 10.00 - 12.00 WIB',
-  'TK : Senin - Jumat : 08.00 - 11.30 WIB',
-];
+// const schedules = [
+//   'KB : Senin - Jumat : 10.00 - 12.00 WIB',
+//   'TK : Senin - Jumat : 08.00 - 11.30 WIB',
+// ];
 
-const activities = [
-  'Field trip / karyawisata',
-  'Kunjungan belajar',
-  'Pemeriksaan gigi',
-  'Aktivitas di luar kelas (membatik, menanam)',
-  'Perayaan HUT RI dan Hari Besar Nasional (Kartini, Sumpah Pemuda, dll)',
-  'Kegiatan akhir semester',
-  'Porseni',
-];
+// const activities = [
+//   'Field trip / karyawisata',
+//   'Kunjungan belajar',
+//   'Pemeriksaan gigi',
+//   'Aktivitas di luar kelas (membatik, menanam)',
+//   'Perayaan HUT RI dan Hari Besar Nasional (Kartini, Sumpah Pemuda, dll)',
+//   'Kegiatan akhir semester',
+//   'Porseni',
+// ];
 
-const exculpatories = [
-  'Seni : Fashion & Modeling, Modern Dance, Balet, Lukis, Keyboard, Gitar, Vocal',
-  'Bahasa : Bahasa Inggris, Bahasa Mandarin',
-  'Olahraga : Futsal, Renang, Anggar',
-  'Keterampilan : Bakery',
-];
+// const exculpatories = [
+//   'Seni : Fashion & Modeling, Modern Dance, Balet, Lukis, Keyboard, Gitar, Vocal',
+//   'Bahasa : Bahasa Inggris, Bahasa Mandarin',
+//   'Olahraga : Futsal, Renang, Anggar',
+//   'Keterampilan : Bakery',
+// ];
 
-const exculImageSets = [
-  {
-    imageSets: {
-      1: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-      2: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
-      3: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-      4: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-      5: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-    },
-  },
-  {
-    imageSets: {
-      1: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-      2: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
-      3: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-      4: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-      5: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-    },
-  },
-];
+// const exculImageSets = [
+//   {
+//     imageSets: {
+//       1: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//       2: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
+//       3: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//       4: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//       5: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//     },
+//   },
+//   {
+//     imageSets: {
+//       1: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//       2: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
+//       3: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//       4: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//       5: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//     },
+//   },
+// ];
 
 // const teachers = [
 //   {
@@ -129,7 +129,11 @@ const AcademicKBTK: FC = (props) => {
 
   /** State */
   // const [academicData, setAcademicData] = useState();
+  const [schedules, setSchedules] = useState([]);
   const [teachers, setTeachers] = useState([]);
+  const [typeOfActivites, setTypeOfActivites] = useState([]);
+  const [exculpatories, setExculpatories] = useState([]);
+  const [exculImageSets, setExculImageSets] = useState([]);
 
   /** Functions */
   const getAcademicData = async () => {
@@ -137,6 +141,34 @@ const AcademicKBTK: FC = (props) => {
     console.log(academicData, '<<< academic Data');
     // setAcademicData(academicData);
     setTeachers(academicData?.teachers);
+    setSchedules(academicData?.scheduleKBM);
+    setTypeOfActivites(academicData?.typeOfAcitvity);
+    setExculpatories(academicData?.extracurricular);
+
+    const exculImages = academicData?.extracurricularImages;
+    console.log(exculImages?.length, '<<< length');
+
+    let idx = 0;
+    const cutPoint = 5;
+    let structuredExculImages: any = [];
+
+    while (idx * cutPoint < exculImages?.length) {
+      structuredExculImages.push({
+        imageSets: exculImages
+          ?.slice(idx * cutPoint, (idx + 1) * cutPoint)
+          ?.map((imageSet: { url: string; alt: string }) => {
+            return { url: imageSet?.url, alt: imageSet?.alt };
+          }),
+      });
+      idx++;
+    }
+
+    console.log(structuredExculImages, '<< struct');
+    setExculImageSets(structuredExculImages);
+
+    // setExculImageSets(
+    //   aca
+    // );
   };
 
   /** Hooks */
@@ -214,7 +246,7 @@ const AcademicKBTK: FC = (props) => {
           </Box>
           <Box mt={4}>
             <SchedulesAndActivities
-              activities={activities}
+              activities={typeOfActivites}
               schedules={schedules}
             />
           </Box>

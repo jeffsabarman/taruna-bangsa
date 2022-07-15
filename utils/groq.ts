@@ -25,8 +25,8 @@ export const EDUCATIONS_KB_TK = groq`
   typeOfAcitvity,
   extracurricular,
   extracurricularImages[] {
-    imageTitle,
-    "imageUrl": imageFile.asset->url
+    "alt": imageTitle,
+    "url": imageFile.asset->url
   },
   teachers[] {
     name,
@@ -44,8 +44,8 @@ export const EDUCATIONS_SD = groq`
   typeOfAcitvity,
   extracurricular,
   extracurricularImages[] {
-    imageTitle,
-    "imageUrl": imageFile.asset->url
+    "alt": imageTitle,
+    "url": imageFile.asset->url
   },
   teachers[] {
     name,

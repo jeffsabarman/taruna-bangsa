@@ -1,11 +1,16 @@
 import { Circle } from '@mui/icons-material';
 import { Box, Grid, Typography } from '@mui/material';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import ListItem from '@/components/ListItem';
+//* Sanity
+import { PortableText } from '@portabletext/react';
+import { ptComponents } from '@/components/shared/PortableTextComponent';
 
 interface SchedulesAndActivitiesProps {
-  schedules: string[];
-  activities: string[];
+  // schedules: string[];
+  schedules: any;
+  // activities: string[];
+  activities: any[];
 }
 
 const SchedulesAndActivities: FC<SchedulesAndActivitiesProps> = ({
@@ -19,9 +24,10 @@ const SchedulesAndActivities: FC<SchedulesAndActivitiesProps> = ({
           Jadwal KBM
         </Typography>
         <Box mt={3}>
-          {schedules.map((point, idx) => (
+          <PortableText value={schedules} components={ptComponents} />
+          {/* {schedules.map((point, idx) => (
             <ListItem key={idx} point={point} />
-          ))}
+          ))} */}
         </Box>
       </Grid>
       <Grid item xs={12} md={6}>
@@ -29,9 +35,10 @@ const SchedulesAndActivities: FC<SchedulesAndActivitiesProps> = ({
           Jenis Kegiatan
         </Typography>
         <Box mt={3}>
-          {activities.map((point, idx) => (
+          <PortableText value={activities} components={ptComponents} />
+          {/* {activities.map((point, idx) => (
             <ListItem key={idx} point={point} />
-          ))}
+          ))} */}
         </Box>
       </Grid>
     </Grid>
