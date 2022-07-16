@@ -7,7 +7,9 @@ import {
   useTheme,
   Typography,
   Divider,
+  Box,
 } from '@mui/material';
+import { ACADEMICS_SUBMENU } from 'helpers/constants';
 import Link, { LinkProps } from 'next/link';
 import { useRouter } from 'next/router';
 import React, { FC, useState } from 'react';
@@ -77,27 +79,30 @@ const MenuItem: FC<MenuItemProps> = ({ label, href, ...props }) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
         MenuListProps={{ onMouseLeave: handleClose }}
-        sx={{ mt: theme.spacing(1) }}
+        sx={{
+          mt: theme.spacing(1),
+        }}
       >
         <MenuList disableListWrap sx={styles['&.MuiMenuList-root']}>
-          <MUIMenuItem
-            onClick={() => router.push('/academics/kb-tk')}
-            sx={styles['&.MuiMenuItem-root']}
-          >
-            <ListItemText>KB/TK</ListItemText>
-          </MUIMenuItem>
-          <Divider />
-          <MUIMenuItem onClick={() => router.push('/academics/sd')}>
-            <ListItemText>SD</ListItemText>
-          </MUIMenuItem>
-          <Divider />
-          <MUIMenuItem onClick={() => router.push('/academics/smp')}>
-            <ListItemText>SMP</ListItemText>
-          </MUIMenuItem>
-          <Divider />
-          <MUIMenuItem onClick={() => router.push('/academics/sma')}>
-            <ListItemText>SMA</ListItemText>
-          </MUIMenuItem>
+          {ACADEMICS_SUBMENU.map((submenu) => (
+            <Box key={submenu.path}>
+              <MUIMenuItem
+                onClick={() => router.push(submenu.path)}
+                sx={styles['&.MuiMenuItem-root']}
+              >
+                <ListItemText
+                  primaryTypographyProps={{
+                    fontSize: '1rem',
+                    fontWeight: '500',
+                    color: theme.palette.grey[600],
+                  }}
+                >
+                  {submenu.label}
+                </ListItemText>
+              </MUIMenuItem>
+              <Divider sx={{ padding: 0 }} />
+            </Box>
+          ))}
         </MenuList>
       </Menu>
     </>
