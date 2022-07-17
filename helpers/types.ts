@@ -4,4 +4,5 @@ export type ThemeColor =
   | 'blue'
   | 'lightblue'
   | 'grey'
+  | 'white'
   | undefined;

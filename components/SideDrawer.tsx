@@ -1,6 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import Drawer from '@mui/material/Drawer';
 import {
+  Grid,
   List,
   ListItem,
   ListItemButton,
@@ -8,9 +9,13 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import { MENU_LIST } from './AppBar';
-import { Close as CloseIcon } from '@mui/icons-material';
+import {
+  Close as CloseIcon,
+  KeyboardArrowDown as KeyboardArrowDownIcon,
+} from '@mui/icons-material';
 import { useRouter } from 'next/router';
+import SideMenuListItem from './SideMenuListItem';
+import { ACADEMICS_SUBMENU, MENU_LIST } from 'helpers/constants';
 
 interface IDrawerProps {
   open: boolean;
@@ -25,14 +30,13 @@ const SideDrawer: FC<IDrawerProps> = ({ open, onClose }) => {
   const styles = {
     listContainer: {
       width: smallFrame ? '100vw' : '40vw',
-      background:
-        'radial-gradient(circle, rgba(0,51,255,1) 0%, rgba(0,25,128,1) 100%)',
+      background: theme.palette.primary.dark,
       height: '100%',
     },
     listItemText: {
       color: theme.palette.grey['300'],
-      padding: theme.spacing(3),
-      textAlign: 'center' as 'center',
+      padding: theme.spacing(1),
+      marginLeft: theme.spacing(2),
       fontSize: '1.2rem',
     },
   };
@@ -42,6 +46,27 @@ const SideDrawer: FC<IDrawerProps> = ({ open, onClose }) => {
     router.push(path);
     onClose();
   };
+
+  /** Components */
+  const renderMenuItem = useMemo(() => {
+    return MENU_LIST?.map(({ path, label }) => {
+      return label === 'Akademik' ? (
+        <SideMenuListItem
+          submenus={ACADEMICS_SUBMENU}
+          key={path}
+          label="Akademik"
+          onClickSubmenu={onClose}
+        />
+      ) : (
+        <ListItemButton key={path} onClick={() => handleNavigate(path)}>
+          <ListItemText
+            primaryTypographyProps={styles.listItemText}
+            primary={label}
+          />
+        </ListItemButton>
+      );
+    });
+  }, [MENU_LIST]);
 
   return (
     <Drawer
@@ -59,16 +84,7 @@ const SideDrawer: FC<IDrawerProps> = ({ open, onClose }) => {
             <CloseIcon sx={{ color: theme.palette.grey['300'] }} />
           </ListItemButton>
         </ListItem>
-        {MENU_LIST.map(({ path, label }) => (
-          <ListItem key={path} disablePadding>
-            <ListItemButton onClick={() => handleNavigate(path)}>
-              <ListItemText
-                primaryTypographyProps={styles.listItemText}
-                primary={label}
-              />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {renderMenuItem}
       </List>
     </Drawer>
   );
