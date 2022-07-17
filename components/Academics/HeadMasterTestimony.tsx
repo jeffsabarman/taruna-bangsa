@@ -1,4 +1,11 @@
-import { Box, Divider, Grid, Typography, useTheme } from '@mui/material';
+import {
+  Box,
+  Divider,
+  Grid,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 import { ThemeColor } from 'helpers/types';
 import Image, { StaticImageData } from 'next/image';
 import React, { FC, useMemo } from 'react';
@@ -56,6 +63,7 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
 
   /** Media Query */
   const { SmallDesktop, Tablet, Phone } = useResponsive();
+  const customSmallPhone = useMediaQuery('(max-width:360px)');
 
   /** Functions */
   const getTitleStyle = useMemo(() => {
@@ -76,16 +84,27 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
 
   return (
     <Box>
-      <Grid container spacing={3}>
+      <Grid
+        container
+        direction={
+          SmallDesktop ? (inverted ? 'column-reverse' : 'column') : 'row'
+        }
+        spacing={Phone ? 1 : 3}
+      >
         {inverted ? (
           <>
             <Grid item xs md={6}>
-              <Container py={theme.spacing(4)}>
+              <Container py={theme.spacing(4)} size={Phone ? 'xs' : 'md'}>
                 <Grid container direction="column" spacing={3}>
-                  <Grid container alignItems="flex-end" direction="column" item>
+                  <Grid
+                    container
+                    alignItems="flex-start"
+                    direction="column"
+                    item
+                  >
                     <Grid item>
                       <Typography
-                        textAlign="right"
+                        // textAlign="right"
                         sx={styles.primaryHeader}
                         display="inline-block"
                         color="whitesmoke"
@@ -96,21 +115,28 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
                     </Grid>
                     <Grid item>
                       <Typography
-                        textAlign="right"
+                        // textAlign="right"
                         sx={getTitleStyle}
                         display="inline-block"
                         color="whitesmoke"
                         variant="h6"
                       >
                         {testimonialSenderRole}
+                        {/* {headMasterRole} */}
                       </Typography>
                     </Grid>
                   </Grid>
                   <Grid item>
-                    <Typography variant="h6" textAlign="right">
+                    <Typography
+                      variant="h6"
+                      // textAlign="right"
+                    >
                       {headMasterName}
                     </Typography>
-                    <Typography variant="subtitle2" textAlign="right">
+                    <Typography
+                      variant="subtitle2"
+                      // textAlign="right"
+                    >
                       {headMasterRole}
                     </Typography>
                   </Grid>
@@ -121,7 +147,7 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
                     <Typography
                       color="GrayText"
                       variant="body2"
-                      textAlign="right"
+                      // textAlign="right"
                     >
                       {testimony}
                     </Typography>
@@ -134,8 +160,8 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
                 <Grid container justifyContent="center">
                   <Box position="relative" bottom={0} left={0}>
                     <Image
-                      width={400}
-                      height={400}
+                      width={Phone ? 400 : SmallDesktop ? 450 : 500}
+                      height={Phone ? 400 : SmallDesktop ? 450 : 500}
                       src={headMasterImage}
                       alt="Taruna Bangsa Headmaster"
                       style={{
@@ -149,12 +175,14 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
                       primary={themeColor === 'lightblue'}
                       secondary={themeColor === 'red'}
                       style={{ position: 'absolute', left: 10, bottom: 48 }}
+                      size={customSmallPhone ? 'sm' : 'md'}
                     />
                     <BackwardPolygon
                       grey={themeColor === 'grey'}
                       primary={themeColor === 'lightblue'}
                       secondary={themeColor === 'red'}
                       style={{ position: 'absolute', left: 36, bottom: 48 }}
+                      size={customSmallPhone ? 'sm' : 'md'}
                     />
                   </Box>
                 </Grid>
@@ -168,8 +196,10 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
                 <Grid container justifyContent="center">
                   <Box position="relative" bottom={0} left={0}>
                     <Image
-                      width={400}
-                      height={400}
+                      // width={400}
+                      // height={400}
+                      width={Phone ? 400 : SmallDesktop ? 450 : 500}
+                      height={Phone ? 400 : SmallDesktop ? 450 : 500}
                       src={headMasterImage}
                       alt="Taruna Bangsa Headmaster"
                       style={{
@@ -183,24 +213,31 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
                       primary={themeColor === 'lightblue'}
                       secondary={themeColor === 'red'}
                       style={{ position: 'absolute', left: 10, bottom: 48 }}
+                      size={customSmallPhone ? 'sm' : 'md'}
                     />
                     <BackwardPolygon
                       grey={themeColor === 'grey'}
                       primary={themeColor === 'lightblue'}
                       secondary={themeColor === 'red'}
                       style={{ position: 'absolute', left: 36, bottom: 48 }}
+                      size={customSmallPhone ? 'sm' : 'md'}
                     />
                   </Box>
                 </Grid>
               </Box>
             </Grid>
             <Grid item xs md={6}>
-              <Container py={theme.spacing(4)}>
+              <Container py={theme.spacing(4)} size={Phone ? 'xs' : 'md'}>
                 <Grid container direction="column" spacing={3}>
-                  <Grid container alignItems="flex-end" direction="column" item>
+                  <Grid
+                    container
+                    alignItems={SmallDesktop ? 'flex-start' : 'flex-end'}
+                    direction="column"
+                    item
+                  >
                     <Grid item>
                       <Typography
-                        textAlign="right"
+                        textAlign={SmallDesktop ? 'left' : 'right'}
                         sx={styles.primaryHeader}
                         display="inline-block"
                         color="whitesmoke"
@@ -211,21 +248,30 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
                     </Grid>
                     <Grid item>
                       <Typography
-                        textAlign="right"
+                        textAlign={SmallDesktop ? 'left' : 'right'}
                         sx={getTitleStyle}
                         display="inline-block"
                         color="whitesmoke"
                         variant="h6"
                       >
-                        {testimonialSenderRole}
+                        {/* {testimonialSenderRole} */}
+                        {headMasterRole}
                       </Typography>
                     </Grid>
                   </Grid>
                   <Grid item>
-                    <Typography variant="h6" textAlign="right">
+                    <Typography
+                      variant="h6"
+                      // textAlign="right"
+                      textAlign={SmallDesktop ? 'left' : 'right'}
+                    >
                       {headMasterName}
                     </Typography>
-                    <Typography variant="subtitle2" textAlign="right">
+                    <Typography
+                      variant="subtitle2"
+                      // textAlign="right"
+                      textAlign={SmallDesktop ? 'left' : 'right'}
+                    >
                       {headMasterRole}
                     </Typography>
                   </Grid>
@@ -236,7 +282,7 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
                     <Typography
                       color="GrayText"
                       variant="body2"
-                      textAlign="right"
+                      // textAlign="right"
                     >
                       {testimony}
                     </Typography>
@@ -244,7 +290,7 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
                 </Grid>
               </Container>
             </Grid>
-            <Grid item>
+            {/* <Grid item>
               <Typography
                 variant="h6"
                 textAlign={SmallDesktop ? 'left' : 'right'}
@@ -269,7 +315,7 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
               >
                 {testimony}
               </Typography>
-            </Grid>
+            </Grid> */}
             {/* </Grid> */}
           </>
         )}

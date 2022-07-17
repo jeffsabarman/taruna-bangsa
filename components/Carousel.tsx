@@ -7,6 +7,7 @@ import {
   Divider,
   Grid,
   Typography,
+  useMediaQuery,
   useTheme,
 } from '@mui/material';
 import { useResponsive } from 'helpers/custom-hooks';
@@ -91,6 +92,7 @@ interface PaginationProps extends Partial<RenderPaginationProps> {
   pages: number[];
   activePage: number;
   onClick: (page: number) => void;
+  type: 'hero' | 'grid' | 'teacher';
 }
 
 const StyledElasticCarousel: FC<IElasticCarouselProps> = ({
@@ -120,6 +122,7 @@ const StyledPagination: FC<PaginationProps> = ({
   pages,
   activePage,
   onClick,
+  type,
 }) => {
   // const { SmallDesktop, Desktop, Phone } = useResponsive();
   const theme = useTheme();
@@ -130,7 +133,7 @@ const StyledPagination: FC<PaginationProps> = ({
         const isActivePage: boolean = activePage === page;
         return (
           <Indicator
-            key={page}
+            key={`${page}-${type}`}
             onClick={() => onClick(page)}
             active={isActivePage}
             // style={{
@@ -173,7 +176,7 @@ const HeroCarousel: FC<IElasticCarouselProps> = ({
       renderArrow={CarouselArrow}
       renderPagination={({ pages, activePage, onClick }) => (
         // @ts-ignore
-        <StyledPagination {...{ pages, activePage, onClick }} />
+        <StyledPagination {...{ pages, activePage, onClick, type: 'hero' }} />
       )}
     >
       {images?.map((image, idx) => (
@@ -231,7 +234,7 @@ const GridCarousel: FC<IElasticCarouselProps> = ({
       // renderPagination={StyledPagination}
       // renderPagination={({ pages, activePage, onClick }) => (
       //   // @ts-ignore
-      //   <StyledPagination {...{ pages, activePage, onClick }} />
+      //   <StyledPagination {...{ pages, activePage, onClick, type: 'grid' }} />
       // )}
     >
       {gridImages?.map((gridImage, idx) => (
@@ -281,7 +284,7 @@ const TeacherImage = styled.img`
   border-radius: 14px;
 `;
 
-const TeacherCarouselItem = ({
+export const TeacherCarouselItem = ({
   teacher,
   themeColor,
 }: {
@@ -307,10 +310,34 @@ const TeacherCarouselItem = ({
     }
   }, [themeColor]);
 
+  const { Desktop, SmallDesktop, Tablet, Phone } = useResponsive();
+  const customSmallPhone = useMediaQuery('(max-width:360px)');
+
   return (
-    <Grid mr={theme.spacing(8)} container direction="column" spacing={3}>
+    <Grid
+      // mr={SmallDesktop ? theme.spacing(4) : theme.spacing(8)}
+      mr={Desktop ? theme.spacing(4) : theme.spacing(8)}
+      container
+      direction="column"
+      spacing={3}
+    >
       <Grid item>
-        <TeacherImage src={teacher.image} alt="Guru Taruna Bangsa" />
+        <TeacherImage
+          src={teacher.image}
+          alt="Guru Taruna Bangsa"
+          style={{
+            // width: Tablet ? '16rem' : '100%',
+            height: customSmallPhone
+              ? '80vw'
+              : // : Phone
+              // ? '18rem'
+              Tablet
+              ? '18rem'
+              : SmallDesktop
+              ? '26vw'
+              : '28vw',
+          }}
+        />
       </Grid>
       <Grid item>
         <Typography
@@ -350,7 +377,9 @@ const TeacherCarousel: FC<IElasticCarouselProps> = ({
       // renderPagination={StyledPagination}
       // renderPagination={({ pages, activePage, onClick }) => (
       //   // @ts-ignore
-      //   <StyledPagination {...{ pages, activePage, onClick }} />
+      //   <StyledPagination
+      //     {...{ pages, activePage, onClick, type: 'teacher' }}
+      //   />
       // )}
     >
       {teachersList?.map((teacher, idx) => (

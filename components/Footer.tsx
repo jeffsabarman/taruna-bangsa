@@ -15,7 +15,7 @@ import { useResponsive } from 'helpers/custom-hooks';
 const Footer = () => {
   const theme = useTheme();
 
-  const { Phone } = useResponsive();
+  const { Phone, SmallDesktop, Tablet } = useResponsive();
 
   return (
     <Grid container direction="column">
@@ -27,22 +27,28 @@ const Footer = () => {
         alignItems="center"
         py={theme.spacing(4)}
       >
-        <Grid item xs={Phone ? 12 : 4} container justifyContent="center">
+        <Grid
+          item
+          xs={Tablet ? 12 : SmallDesktop ? 3 : 4}
+          container
+          justifyContent="center"
+        >
           <Image src="/images/stb-logo.svg" width={300} height={100} />
         </Grid>
         <Grid
           item
           container
-          xs={Phone ? 12 : 4}
+          // xs={Phone ? 12 : 5}
+          xs
           sx={{ py: Phone ? 3 : 0 }}
           alignItems="center"
         >
-          <Grid item xs container direction="column">
+          <Grid item xs={6} container direction="column">
             <MenuItem href="about-us" label="Tentang Kami" />
             <MenuItem href="why-tb" label="Mengapa STB?" />
             <MenuItem href="academics" label="Akademik" />
           </Grid>
-          <Grid item xs container direction="column">
+          <Grid item xs={6} container direction="column">
             <MenuItem href="facilities" label="Fasilitas" />
             <MenuItem href="news-and-events" label="Berita & Acara" />
             <MenuItem href="contact-us" label="Hubungi Kami" />
@@ -50,26 +56,50 @@ const Footer = () => {
         </Grid>
         <Grid
           item
-          xs={Phone ? 12 : 4}
+          xs={Tablet ? 12 : SmallDesktop ? 3 : 4}
           container
           justifyContent="center"
           spacing={1}
         >
           <Grid item>
-            <IconButton aria-label="" onClick={() => null}>
+            <IconButton
+              aria-label=""
+              onClick={() =>
+                window.open('https://www.instagram.com/tarunabangsasentul/')
+              }
+            >
               <Instagram />
             </IconButton>
           </Grid>
           <Grid item>
-            <IconButton aria-label="" onClick={() => null}>
+            <IconButton
+              aria-label=""
+              onClick={() =>
+                window.open(
+                  'https://www.facebook.com/sekolahtarunabangsasentul/',
+                )
+              }
+            >
               <Facebook />
             </IconButton>
           </Grid>
           <Grid item>
-            <IconButton aria-label="" onClick={() => null}>
+            <IconButton
+              aria-label=""
+              onClick={() =>
+                window.open(
+                  'https://www.youtube.com/c/SekolahTarunaBangsaSentul',
+                )
+              }
+            >
               <YouTube />
             </IconButton>
           </Grid>
+          {/* <Grid item>
+            <IconButton aria-label="" onClick={() => null}>
+              <YouTube />
+            </IconButton>
+          </Grid> */}
         </Grid>
       </Grid>
       <Grid item>

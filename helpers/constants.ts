@@ -24,27 +24,27 @@ export type MenuItem = {
 
 export const MENU_LIST: Array<MenuItem> = [
   {
-    path: 'about-us',
+    path: '/about-us',
     label: 'Tentang Kami',
   },
   {
-    path: 'why-tb',
+    path: '/why-tb',
     label: 'Mengapa STB?',
   },
   {
-    path: 'academics',
+    path: '/academics/kb-tk',
     label: 'Akademik',
   },
   {
-    path: 'facilities',
+    path: '/facilities',
     label: 'Fasilitas',
   },
   {
-    path: 'news-and-events',
+    path: '/news-and-events',
     label: 'Berita & Acara',
   },
   {
-    path: 'contact-us',
+    path: '/contact-us',
     label: 'Hubungi Kami',
   },
 ];

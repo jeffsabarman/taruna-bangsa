@@ -116,9 +116,10 @@ const teachers = [
 const AcademicKBTK: FC = (props) => {
   /** Utilities */
   const theme = useTheme();
-  const { Phone, SmallDesktop, Desktop, Tablet } = useResponsive();
 
   /** Media Queries */
+  const { Phone, SmallDesktop, Desktop, Tablet } = useResponsive();
+  const customSmallPhone = useMediaQuery('(max-width:360px)');
   const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
@@ -149,10 +150,16 @@ const AcademicKBTK: FC = (props) => {
           headMasterName="Fransiska Xaveria E.S., S.Pd, M.M."
           headMasterRole="Kepala KB - TK Taruna Bangsa"
         />
-        <Container size={Phone ? 'xs' : 'lg'} mt={Phone ? 4 : 8}>
+        <Container
+          size={Phone ? 'xs' : SmallDesktop ? 'md' : 'lg'}
+          mt={Phone ? 4 : 8}
+        >
           <YearGroupSection sections={sections} />
         </Container>
-        <Container size={Phone ? 'xs' : 'lg'} my={Phone ? 4 : 8}>
+        <Container
+          size={Phone ? 'xs' : SmallDesktop ? 'md' : 'lg'}
+          my={Phone ? 4 : 8}
+        >
           <VisionMission
             themeColor="yellow"
             vision="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -211,7 +218,12 @@ const AcademicKBTK: FC = (props) => {
         py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}
         size={Phone ? 'xs' : SmallDesktop ? 'sm' : 'md'}
       >
-        <Container size="lg" py={8}>
+        <Container
+          size={
+            customSmallPhone ? 'xs' : Phone ? 'sm' : SmallDesktop ? 'md' : 'lg'
+          }
+          py={Phone ? 4 : 8}
+        >
           <Teachers
             themeColor="yellow"
             title="KB - TK Taruna Bangsa"
