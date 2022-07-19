@@ -1,11 +1,17 @@
 import styled from '@emotion/styled';
-import { ArrowLeft, ArrowRight } from '@mui/icons-material';
+import {
+  ArrowLeft,
+  ArrowRight,
+  Circle as CircleIcon,
+  CircleOutlined as CircleOutlinedIcon,
+} from '@mui/icons-material';
 import {
   Box,
   BoxProps,
   Button,
   Divider,
   Grid,
+  IconButton,
   Typography,
   useMediaQuery,
   useTheme,
@@ -124,25 +130,52 @@ const StyledPagination: FC<PaginationProps> = ({
   onClick,
   type,
 }) => {
-  // const { SmallDesktop, Desktop, Phone } = useResponsive();
+  const { Tablet } = useResponsive();
+  const customSmallPhone = useMediaQuery('(max-width:360px)');
   const theme = useTheme();
 
+  const getSxIcon = () => {
+    return {
+      color: theme.palette.primary.light,
+      fontSize: customSmallPhone ? '1rem' : Tablet ? '1.2rem' : '1.4rem',
+    };
+  };
+
   return (
-    <Pagination>
+    // <Pagination>
+    //   {
+    <Grid
+      container
+      spacing={1}
+      justifyContent="center"
+      sx={{ position: 'absolute', bottom: Tablet ? '1rem' : '2rem' }}
+    >
       {pages.map((page) => {
         const isActivePage: boolean = activePage === page;
+
         return (
-          <Indicator
-            key={`${page}-${type}`}
-            onClick={() => onClick(page)}
-            active={isActivePage}
-            // style={{
-            //   width: Phone ? '1rem' : '2rem',
-            // }}
-          />
+          // <Indicator
+          //   key={`${page}-${type}`}
+          //   onClick={() => onClick(page)}
+          //   active={isActivePage}
+          //   // style={{
+          //   //   width: Phone ? '1rem' : '2rem',
+          //   // }}
+          // />
+          <Grid item>
+            <IconButton size="small" onClick={() => onClick(page)}>
+              {isActivePage ? (
+                <CircleIcon sx={getSxIcon()} />
+              ) : (
+                <CircleOutlinedIcon sx={getSxIcon()} />
+              )}
+            </IconButton>
+          </Grid>
         );
       })}
-    </Pagination>
+    </Grid>
+    //   }
+    // </Pagination>
   );
 };
 
@@ -154,7 +187,7 @@ const CarouselItem = (props: { image: ImageLink | undefined }) => {
       onClick={() => props?.image?.link}
       style={{
         // height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh',
-        height: Phone ? '75vw' : Tablet ? '65vw' : '50vw',
+        height: Phone ? '70vw' : Tablet ? '65vw' : '50vw',
       }}
       src={props?.image?.url}
       alt="Taruna Bangsa Banner Image"

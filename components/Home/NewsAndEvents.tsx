@@ -37,7 +37,7 @@ const NewsAndEvents = () => {
   /** Utilities */
   const theme = useTheme();
 
-  const { Phone } = useResponsive();
+  const { Desktop, Phone, Tablet } = useResponsive();
   const customSmallDesktop = useMediaQuery('(max-width:1320px)');
 
   return (
@@ -52,10 +52,13 @@ const NewsAndEvents = () => {
         {NEWS_EVENTS?.map(({ imageUrl, caption }, idx) => (
           <Grid
             item
-            xs={Phone ? 12 : customSmallDesktop ? 6 : 3}
+            xs={Phone ? 12 : Desktop ? 6 : 3}
             key={idx}
             container
             justifyContent={'center'}
+            sx={{
+              mb: Phone ? theme.spacing(2) : Desktop ? theme.spacing(4) : 0,
+            }}
           >
             <NewsEventsCard
               variant={idx % 2 === 0 ? 'dark' : 'light'}
@@ -64,7 +67,16 @@ const NewsAndEvents = () => {
           </Grid>
         ))}
         <Grid item xs={12} container justifyContent="center">
-          <Box mt={Phone ? theme.spacing(2) : theme.spacing(8)}>
+          <Box
+            mt={
+              Phone
+                ? theme.spacing(2)
+                : Tablet
+                ? theme.spacing(4)
+                : theme.spacing(8)
+            }
+            mb={Phone ? theme.spacing(2) : 0}
+          >
             <PrimaryButton disableElevation variant="contained">
               Baca Selengkapnya
             </PrimaryButton>
