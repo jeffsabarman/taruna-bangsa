@@ -108,7 +108,11 @@ const AboutUsPage: FC = (props) => {
           py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}
           size={Phone ? 'xs' : SmallDesktop ? 'md' : Desktop ? 'lg' : 'xl'}
         >
-          <Container size={'xs'} py={Phone ? 4 : 8}>
+          <Container
+            size={'xs'}
+            py={Phone ? 4 : 8}
+            pr={Tablet ? '0 !important' : '2rem'}
+          >
             <Typography
               variant={Phone ? 'subtitle1' : Tablet ? 'h6' : 'h4'}
               color="whitesmoke"
@@ -116,7 +120,7 @@ const AboutUsPage: FC = (props) => {
             >
               Pengurus Yayasan Pendidikan Taruna Bangsa
             </Typography>
-            <Box mt={theme.spacing(8)}>
+            <Box mt={theme.spacing(8)} position="relative">
               {Tablet ? (
                 <Grid
                   container
@@ -142,7 +146,11 @@ const AboutUsPage: FC = (props) => {
                   })}
                 </Grid>
               ) : (
-                <TeacherCarousel themeColor="white" teachersList={teachers} />
+                <TeacherCarousel
+                  themeColor="white"
+                  teachersList={teachers}
+                  paginationBottom={'-3rem'}
+                />
               )}
             </Box>
           </Container>
