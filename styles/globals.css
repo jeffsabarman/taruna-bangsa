@@ -14,3 +14,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.rec .rec-slider-container {
+  margin: 0px;
+}

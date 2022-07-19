@@ -54,7 +54,6 @@ const ImageCarousel = styled.img`
   width: 100vw;
   object-fit: cover;
   cursor: pointer;
-  position: relative;
 `;
 
 type ImageLink = {
@@ -166,6 +165,7 @@ const HeroCarousel: FC<IElasticCarouselProps> = ({
       renderArrow={CarouselArrow}
       // @ts-ignore
       renderPagination={StyledPagination}
+      showEmptySlots={false}
     >
       {images?.map((image, idx) => (
         <CarouselItem key={idx} image={image} />
@@ -334,7 +334,7 @@ const TeacherCarousel: FC<IElasticCarouselProps> = ({
       breakPoints={breakPoints}
       renderArrow={CarouselArrow}
       // @ts-ignore
-      renderPagination={StyledPagination}
+      // renderPagination={StyledPagination}
     >
       {teachersList?.map((teacher, idx) => (
         <TeacherCarouselItem

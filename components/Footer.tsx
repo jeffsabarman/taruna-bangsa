@@ -17,7 +17,7 @@ const Footer = () => {
         py={theme.spacing(4)}
       >
         <Grid item xs container justifyContent="center">
-          <Image src="/images/stb-logo.svg" width={300} height={100} />
+          <Image src="/images/stb-logo.svg" width={200} height={80} />
         </Grid>
         <Grid item container xs>
           <Grid item xs container direction="column">

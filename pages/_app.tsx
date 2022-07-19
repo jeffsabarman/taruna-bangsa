@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -8,6 +7,7 @@ import theme from '@/styles/theme';
 import createEmotionCache from '@/styles/createemotionCache';
 import ElevationAppBar from '@/components/AppBar';
 import Footer from '@/components/Footer';
+import '@/styles/globals.css';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();

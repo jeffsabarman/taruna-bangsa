@@ -4,14 +4,18 @@ import { TextField, TextFieldProps } from '@mui/material';
 
 export const StyledTextField: any = styled(TextField)<TextFieldProps>(
   ({ theme }) => ({
-    ' .MuiFilledInput-root': {
+    '& .MuiFilledInput-root': {
       backgroundColor: theme.palette.background.default,
       paddingTop: theme.spacing(1),
     },
-    ' .MuiFilledInput-inputMultiline': {
+    '& .MuiFilledInput-inputMultiline': {
       backgroundColor: theme.palette.background.default,
     },
     '&:hover': {
+      backgroundColor: theme.palette.background.default,
+      borderRadius: theme.shape.borderRadius,
+    },
+    '&:focus': {
       backgroundColor: theme.palette.background.default,
     },
   }),

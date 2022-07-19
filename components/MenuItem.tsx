@@ -22,7 +22,7 @@ const MenuItem: FC<MenuItemProps> = ({ label, href, ...props }) => {
   /** Utilities */
   const theme = useTheme();
   const router = useRouter();
-  const active = router.pathname === `/${href}`;
+  const active = router.pathname === `${href}`;
   const styles = {
     '&.MuiButton-text': {
       fontSize: '1rem',
