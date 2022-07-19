@@ -1,18 +1,21 @@
 import { Box, Typography } from '@mui/material';
 import React, { FC } from 'react';
 import ListItem from '@/components/ListItem';
+import { ThemeColor } from 'helpers/types';
 import { GridCarousel, GridImageSets } from '@/components/Carousel';
 
 interface ExculpatoriesProps {
   title: string;
   exculpatories: string[];
   exculImageSets: GridImageSets[];
+  themeColor: ThemeColor;
 }
 
 const Exculpatories: FC<ExculpatoriesProps> = ({
   title,
   exculpatories,
   exculImageSets,
+  themeColor,
 }) => {
   return (
     <Box>
@@ -24,8 +27,12 @@ const Exculpatories: FC<ExculpatoriesProps> = ({
           <ListItem key={idx} point={exculpatory} />
         ))}
       </Box>
-      <Box mt={8}>
-        <GridCarousel gridImages={exculImageSets} />
+      <Box mt={8} position="relative">
+        <GridCarousel
+          gridImages={exculImageSets}
+          themeColor={themeColor}
+          paginationBottom="-2rem"
+        />
       </Box>
     </Box>
   );

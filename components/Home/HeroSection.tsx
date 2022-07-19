@@ -60,7 +60,9 @@ const HeroSection: FC = (props) => {
             enableAutoPlay
             autoPlaySpeed={4000}
             showArrows={false}
+            paginationBottom={Tablet ? '1rem' : '2rem'}
             images={images}
+            themeColor="lightblue"
           />
         </Grid>
       </Grid>

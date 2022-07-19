@@ -17,6 +17,7 @@ import VisionMission from '@/components/Academics/VisionMission';
 import SchedulesAndActivities from '@/components/ContactUs/SchedulesAndActivities';
 import Exculpatories from '@/components/ContactUs/Exculpatories';
 import Teachers from '@/components/Academics/Teachers';
+import HeroSection from '@/components/Home/HeroSection';
 
 const sections = [
   {
@@ -124,7 +125,7 @@ const AcademicKBTK: FC = (props) => {
 
   return (
     <>
-      <Box
+      {/* <Box
         position="relative"
         mt={largerThanPhone || Phone ? theme.spacing(12) : theme.spacing(8)}
         {...props}
@@ -138,7 +139,8 @@ const AcademicKBTK: FC = (props) => {
             <HeroCarousel enableAutoPlay showArrows={false} images={images} />
           </Grid>
         </Grid>
-      </Box>
+      </Box> */}
+      <HeroSection />
       <Container
         py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}
         size={Phone ? 'xs' : SmallDesktop ? 'sm' : 'md'}
@@ -210,18 +212,20 @@ const AcademicKBTK: FC = (props) => {
               title="Jenis Kegiatan Ekskul KB-TK"
               exculpatories={exculpatories}
               exculImageSets={exculImageSets}
+              themeColor="blue"
             />
           </Box>
         </Container>
       </Box>
       <Container
-        py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}
+        py={SmallDesktop ? theme.spacing(2) : theme.spacing(4)}
         size={Phone ? 'xs' : SmallDesktop ? 'sm' : 'md'}
       >
         <Container
           size={
             customSmallPhone ? 'xs' : Phone ? 'sm' : SmallDesktop ? 'md' : 'lg'
           }
+          pr={Tablet ? '0 !important' : '2rem'}
           py={Phone ? 4 : 8}
         >
           <Teachers

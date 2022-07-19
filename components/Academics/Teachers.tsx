@@ -63,7 +63,7 @@ const Teachers: FC<TeachersProps> = ({ themeColor, title, teachersList }) => {
             </Typography>
           </Grid>
         </Grid>
-        <Grid item sx={{ width: '100%' }}>
+        <Grid item sx={{ width: '100%', position: 'relative' }}>
           <Box mt={Tablet ? 4 : 8}>
             {Tablet ? (
               <Grid
@@ -93,6 +93,7 @@ const Teachers: FC<TeachersProps> = ({ themeColor, title, teachersList }) => {
               <TeacherCarousel
                 teachersList={teachersList}
                 themeColor={themeColor}
+                paginationBottom={'-4rem'}
               />
             )}
           </Box>

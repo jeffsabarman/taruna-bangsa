@@ -85,6 +85,7 @@ interface IElasticCarouselProps extends Partial<ReactElasticCarouselProps> {
   gridImages?: GridImageSets[];
   teachersList?: TeacherItem[];
   themeColor?: ThemeColor;
+  paginationBottom?: string;
 }
 
 interface CarouselArrowProps {
@@ -99,6 +100,8 @@ interface PaginationProps extends Partial<RenderPaginationProps> {
   activePage: number;
   onClick: (page: number) => void;
   type: 'hero' | 'grid' | 'teacher';
+  paginationBottom?: string | number;
+  themeColor?: ThemeColor;
 }
 
 const StyledElasticCarousel: FC<IElasticCarouselProps> = ({
@@ -129,14 +132,36 @@ const StyledPagination: FC<PaginationProps> = ({
   activePage,
   onClick,
   type,
+  paginationBottom = '2rem',
+  themeColor = 'yellow',
 }) => {
   const { Tablet } = useResponsive();
   const customSmallPhone = useMediaQuery('(max-width:360px)');
   const theme = useTheme();
 
+  const getIconColor = useMemo(() => {
+    if (themeColor) {
+      switch (themeColor) {
+        case 'red':
+          return theme.palette.secondary.main;
+        case 'lightblue':
+          return theme.palette.primary.light;
+        case 'grey':
+          return theme.palette.grey[500];
+        case 'white':
+          return theme.palette.background.paper;
+        case 'blue':
+          return theme.palette.primary.main;
+
+        default:
+          return theme.palette.warning.main;
+      }
+    }
+  }, [themeColor]);
+
   const getSxIcon = () => {
     return {
-      color: theme.palette.primary.light,
+      color: getIconColor,
       fontSize: customSmallPhone ? '1rem' : Tablet ? '1.2rem' : '1.4rem',
     };
   };
@@ -148,7 +173,7 @@ const StyledPagination: FC<PaginationProps> = ({
       container
       spacing={1}
       justifyContent="center"
-      sx={{ position: 'absolute', bottom: Tablet ? '1rem' : '2rem' }}
+      sx={{ position: 'absolute', bottom: paginationBottom }}
     >
       {pages.map((page) => {
         const isActivePage: boolean = activePage === page;
@@ -198,6 +223,8 @@ const CarouselItem = (props: { image: ImageLink | undefined }) => {
 const HeroCarousel: FC<IElasticCarouselProps> = ({
   itemsToShow = 1,
   images,
+  paginationBottom = '2rem',
+  themeColor = 'lightblue',
   ...props
 }) => {
   const breakPoints = [{ width: 1, itemsToShow }];
@@ -209,7 +236,16 @@ const HeroCarousel: FC<IElasticCarouselProps> = ({
       renderArrow={CarouselArrow}
       renderPagination={({ pages, activePage, onClick }) => (
         // @ts-ignore
-        <StyledPagination {...{ pages, activePage, onClick, type: 'hero' }} />
+        <StyledPagination
+          {...{
+            pages,
+            activePage,
+            onClick,
+            type: 'hero',
+            paginationBottom,
+            themeColor,
+          }}
+        />
       )}
     >
       {images?.map((image, idx) => (
@@ -254,6 +290,8 @@ const GridImage: FC<GridImage> = ({ url, orientation, ...props }) => {
 const GridCarousel: FC<IElasticCarouselProps> = ({
   itemsToShow = 1,
   gridImages,
+  paginationBottom,
+  themeColor,
   ...props
 }) => {
   const breakPoints = [{ width: 1, itemsToShow }];
@@ -265,10 +303,19 @@ const GridCarousel: FC<IElasticCarouselProps> = ({
       renderArrow={CarouselArrow}
       // @ts-ignore
       // renderPagination={StyledPagination}
-      // renderPagination={({ pages, activePage, onClick }) => (
-      //   // @ts-ignore
-      //   <StyledPagination {...{ pages, activePage, onClick, type: 'grid' }} />
-      // )}
+      renderPagination={({ pages, activePage, onClick }) => (
+        // @ts-ignore
+        <StyledPagination
+          {...{
+            pages,
+            activePage,
+            onClick,
+            type: 'grid',
+            paginationBottom,
+            themeColor,
+          }}
+        />
+      )}
     >
       {gridImages?.map((gridImage, idx) => (
         <Box
@@ -397,6 +444,7 @@ const TeacherCarousel: FC<IElasticCarouselProps> = ({
   itemsToShow = 3,
   teachersList,
   themeColor,
+  paginationBottom,
   ...props
 }) => {
   const breakPoints = [{ width: 1, itemsToShow }];
@@ -408,12 +456,19 @@ const TeacherCarousel: FC<IElasticCarouselProps> = ({
       renderArrow={CarouselArrow}
       // @ts-ignore
       // renderPagination={StyledPagination}
-      // renderPagination={({ pages, activePage, onClick }) => (
-      //   // @ts-ignore
-      //   <StyledPagination
-      //     {...{ pages, activePage, onClick, type: 'teacher' }}
-      //   />
-      // )}
+      renderPagination={({ pages, activePage, onClick }) => (
+        // @ts-ignore
+        <StyledPagination
+          {...{
+            pages,
+            activePage,
+            onClick,
+            type: 'teacher',
+            paginationBottom,
+            themeColor,
+          }}
+        />
+      )}
     >
       {teachersList?.map((teacher, idx) => (
         <TeacherCarouselItem
