@@ -6,7 +6,13 @@ import { useResponsive } from 'helpers/custom-hooks';
 
 const ContactUs = () => {
   const theme = useTheme();
-  const { SmallDesktop } = useResponsive();
+  const { SmallDesktop, Tablet, Phone } = useResponsive();
+
+  /** Functions */
+  const getPolygonSize = () => {
+    return SmallDesktop ? 'md' : '2xl';
+  };
+
   return (
     <Grid container alignItems="stretch">
       <Grid item xs={12} md={6} bgcolor="lightblue"></Grid>
@@ -14,11 +20,17 @@ const ContactUs = () => {
         <Box bgcolor={theme.palette.primary.main}>
           <Container
             size={SmallDesktop ? 'md' : 'lg'}
-            pt={SmallDesktop ? theme.spacing(18) : theme.spacing(24)}
+            pt={
+              Phone
+                ? theme.spacing(10)
+                : SmallDesktop
+                ? theme.spacing(18)
+                : theme.spacing(24)
+            }
           >
             <Grid container justifyContent="center" alignItems="center">
               <Grid item>
-                <Typography color="whitesmoke" variant="h4">
+                <Typography color="whitesmoke" variant={Phone ? 'h5' : 'h4'}>
                   Hubungi Kami
                 </Typography>
                 <Typography mt={theme.spacing(4)} color="whitesmoke">
@@ -34,9 +46,9 @@ const ContactUs = () => {
               </Grid>
             </Grid>
           </Container>
-          <Grid container justifyContent="flex-end" p={theme.spacing(12)}>
-            <Polygon size="2xl" tertiary />
-            <Polygon size="2xl" tertiary />
+          <Grid container justifyContent="flex-end" p={theme.spacing(8)}>
+            <Polygon size={getPolygonSize()} tertiary />
+            <Polygon size={getPolygonSize()} tertiary />
           </Grid>
         </Box>
       </Grid>

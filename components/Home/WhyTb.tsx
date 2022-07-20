@@ -63,7 +63,7 @@ const WhyTb = () => {
       <Rectangle size={Phone ? 'xs' : 'sm'} />
       <Grid container direction="column">
         <Container
-          py={Phone ? theme.spacing(4) : theme.spacing(12)}
+          py={Phone ? theme.spacing(4) : theme.spacing(8)}
           size={Phone ? 'sm' : SmallDesktop ? 'md' : Desktop ? 'lg' : 'xl'}
         >
           <Grid item>

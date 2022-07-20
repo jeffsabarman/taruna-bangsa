@@ -17,6 +17,7 @@ import VisionMission from '@/components/Academics/VisionMission';
 import SchedulesAndActivities from '@/components/ContactUs/SchedulesAndActivities';
 import Exculpatories from '@/components/ContactUs/Exculpatories';
 import Teachers from '@/components/Academics/Teachers';
+import HeroSection from '@/components/Home/HeroSection';
 
 const sections = [
   {
@@ -116,27 +117,30 @@ const teachers = [
 const AcademicKBTK: FC = (props) => {
   /** Utilities */
   const theme = useTheme();
-  const { Phone, SmallDesktop, Desktop } = useResponsive();
 
   /** Media Queries */
+  const { Phone, SmallDesktop, Desktop, Tablet } = useResponsive();
+  const customSmallPhone = useMediaQuery('(max-width:360px)');
   const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
     <>
-      <Box
+      {/* <Box
         position="relative"
         mt={largerThanPhone || Phone ? theme.spacing(12) : theme.spacing(8)}
         {...props}
       >
         <Grid
           container
-          sx={{ height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh' }}
+          // sx={{ height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh' }}
+          sx={{ height: Phone ? '75vw' : Tablet ? '65vw' : '50vw' }}
         >
           <Grid item xs>
             <HeroCarousel enableAutoPlay showArrows={false} images={images} />
           </Grid>
         </Grid>
-      </Box>
+      </Box> */}
+      <HeroSection />
       <Container
         py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}
         size={Phone ? 'xs' : SmallDesktop ? 'sm' : 'md'}
@@ -148,10 +152,16 @@ const AcademicKBTK: FC = (props) => {
           headMasterName="Fransiska Xaveria E.S., S.Pd, M.M."
           headMasterRole="Kepala KB - TK Taruna Bangsa"
         />
-        <Container size="lg" mt={8}>
+        <Container
+          size={Phone ? 'xs' : SmallDesktop ? 'md' : 'lg'}
+          mt={Phone ? 4 : 8}
+        >
           <YearGroupSection sections={sections} />
         </Container>
-        <Container size="lg" my={8}>
+        <Container
+          size={Phone ? 'xs' : SmallDesktop ? 'md' : 'lg'}
+          my={Phone ? 4 : 8}
+        >
           <VisionMission
             themeColor="yellow"
             vision="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -202,15 +212,22 @@ const AcademicKBTK: FC = (props) => {
               title="Jenis Kegiatan Ekskul KB-TK"
               exculpatories={exculpatories}
               exculImageSets={exculImageSets}
+              themeColor="blue"
             />
           </Box>
         </Container>
       </Box>
       <Container
-        py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}
+        py={SmallDesktop ? theme.spacing(2) : theme.spacing(4)}
         size={Phone ? 'xs' : SmallDesktop ? 'sm' : 'md'}
       >
-        <Container size="lg" py={8}>
+        <Container
+          size={
+            customSmallPhone ? 'xs' : Phone ? 'sm' : SmallDesktop ? 'md' : 'lg'
+          }
+          pr={Tablet ? '0 !important' : '2rem'}
+          py={Phone ? 4 : 8}
+        >
           <Teachers
             themeColor="yellow"
             title="KB - TK Taruna Bangsa"

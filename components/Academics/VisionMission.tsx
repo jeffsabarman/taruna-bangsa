@@ -2,6 +2,7 @@ import { Grid, Typography, useTheme } from '@mui/material';
 import { useBackgroundTypography } from 'helpers/custom-hooks';
 import { ThemeColor } from 'helpers/types';
 import React, { FC, useMemo } from 'react';
+import { useResponsive } from 'helpers/custom-hooks';
 
 interface VisionMissionProps {
   vision: string;
@@ -17,6 +18,7 @@ const VisionMission: FC<VisionMissionProps> = ({
   /** Utilities */
   const styles = useBackgroundTypography();
   const theme = useTheme();
+  const { SmallDesktop, Tablet } = useResponsive();
 
   /** Functions */
   const getTitleStyle = useMemo(() => {
@@ -35,7 +37,7 @@ const VisionMission: FC<VisionMissionProps> = ({
 
   return (
     <Grid container spacing={8}>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={SmallDesktop ? 12 : 6}>
         <Typography
           sx={{
             ...getTitleStyle,
@@ -51,7 +53,7 @@ const VisionMission: FC<VisionMissionProps> = ({
           {vision}
         </Typography>
       </Grid>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={SmallDesktop ? 12 : 6}>
         <Typography
           sx={{
             ...getTitleStyle,

@@ -2,7 +2,8 @@ import { Box, Grid, Typography } from '@mui/material';
 import { useBackgroundTypography } from 'helpers/custom-hooks';
 import { ThemeColor } from 'helpers/types';
 import React, { FC, useMemo } from 'react';
-import { TeacherCarousel } from '../Carousel';
+import { TeacherCarousel, TeacherCarouselItem } from '../Carousel';
+import { useResponsive } from 'helpers/custom-hooks';
 
 export type TeacherItem = {
   image: string;
@@ -18,6 +19,9 @@ interface TeachersProps {
 
 const Teachers: FC<TeachersProps> = ({ themeColor, title, teachersList }) => {
   const styles = useBackgroundTypography();
+
+  /** Media Query */
+  const { Phone, Tablet } = useResponsive();
 
   /** Functions */
   const getTitleStyle = useMemo(() => {
@@ -36,12 +40,12 @@ const Teachers: FC<TeachersProps> = ({ themeColor, title, teachersList }) => {
 
   return (
     <Box>
-      <Grid container direction="column" spacing={3}>
+      <Grid container direction="column" spacing={Phone ? 2 : 3}>
         <Grid item container direction="column">
           <Grid item>
             <Typography
               display="inline-block"
-              variant="h6"
+              variant={Phone ? 'subtitle1' : 'h6'}
               color="whitesmoke"
               sx={styles.primaryHeader}
             >
@@ -51,7 +55,7 @@ const Teachers: FC<TeachersProps> = ({ themeColor, title, teachersList }) => {
           <Grid item>
             <Typography
               display="inline-block"
-              variant="h6"
+              variant={Phone ? 'subtitle1' : 'h6'}
               color="whitesmoke"
               sx={getTitleStyle}
             >
@@ -59,12 +63,41 @@ const Teachers: FC<TeachersProps> = ({ themeColor, title, teachersList }) => {
             </Typography>
           </Grid>
         </Grid>
-        <Box mt={8}>
-          <TeacherCarousel
-            teachersList={teachersList}
-            themeColor={themeColor}
-          />
-        </Box>
+        <Grid item sx={{ width: '100%', position: 'relative' }}>
+          <Box mt={Tablet ? 4 : 8}>
+            {Tablet ? (
+              <Grid
+                container
+                spacing={2}
+                flexWrap="nowrap"
+                style={{ overflow: 'auto' }}
+              >
+                {teachersList?.map((teacher) => {
+                  return (
+                    <Grid
+                      item
+                      // xs={4}
+                      key={teacher?.name}
+                    >
+                      <Box width="14rem">
+                        <TeacherCarouselItem
+                          teacher={teacher}
+                          themeColor={themeColor}
+                        />
+                      </Box>
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            ) : (
+              <TeacherCarousel
+                teachersList={teachersList}
+                themeColor={themeColor}
+                paginationBottom={'-4rem'}
+              />
+            )}
+          </Box>
+        </Grid>
       </Grid>
     </Box>
   );

@@ -1,19 +1,19 @@
 export const ACADEMICS_SUBMENU = [
   {
     label: 'KB/TK',
-    path: 'academics/kb-tk',
+    path: '/academics/kb-tk',
   },
   {
     label: 'SD',
-    path: 'academics/sd',
+    path: '/academics/sd',
   },
   {
     label: 'SMP',
-    path: 'academics/smp',
+    path: '/academics/smp',
   },
   {
     label: 'SMA',
-    path: 'academics/sma',
+    path: '/academics/sma',
   },
 ];
 
@@ -32,7 +32,7 @@ export const MENU_LIST: Array<MenuItem> = [
     label: 'Mengapa STB?',
   },
   {
-    path: '',
+    path: '/academics/kb-tk',
     label: 'Akademik',
   },
   {

@@ -1,6 +1,10 @@
 import HeadMasterTestimony from '@/components/Academics/HeadMasterTestimony';
 import VisionMission from '@/components/Academics/VisionMission';
-import { HeroCarousel, TeacherCarousel } from '@/components/Carousel';
+import {
+  HeroCarousel,
+  TeacherCarousel,
+  TeacherCarouselItem,
+} from '@/components/Carousel';
 import Container from '@/components/Container';
 import { Box, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useResponsive } from 'helpers/custom-hooks';
@@ -8,6 +12,7 @@ import React, { FC } from 'react';
 import headMasterPic from '@/public/images/lingling.png';
 import HeaderLayout from '@/components/HeaderLayout';
 import Academics from '@/components/Home/Academics';
+import HeroSection from '@/components/Home/HeroSection';
 
 /** Mocked Data */
 const images = [
@@ -51,14 +56,14 @@ const teachers = [
 const AboutUsPage: FC = (props) => {
   /** Utilities */
   const theme = useTheme();
-  const { Phone, SmallDesktop, Desktop } = useResponsive();
+  const { Phone, Tablet, SmallDesktop, Desktop } = useResponsive();
 
   /** Media Queries */
   const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
     <>
-      <Box
+      {/* <Box
         position="relative"
         mt={largerThanPhone || Phone ? theme.spacing(12) : theme.spacing(8)}
         {...props}
@@ -71,7 +76,8 @@ const AboutUsPage: FC = (props) => {
             <HeroCarousel enableAutoPlay showArrows={false} images={images} />
           </Grid>
         </Grid>
-      </Box>
+      </Box> */}
+      <HeroSection />
       <Container
         py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}
         size={Phone ? 'xs' : SmallDesktop ? 'sm' : 'md'}
@@ -86,7 +92,10 @@ const AboutUsPage: FC = (props) => {
           inverted
         />
 
-        <Container size="lg" my={8}>
+        <Container
+          size={Phone ? 'xs' : SmallDesktop ? 'md' : 'lg'}
+          my={SmallDesktop ? 6 : 8}
+        >
           <VisionMission
             themeColor="red"
             vision="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -97,18 +106,52 @@ const AboutUsPage: FC = (props) => {
       <Box bgcolor={theme.palette.primary.main}>
         <Container
           py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}
-          size={Phone ? 'xs' : SmallDesktop ? 'sm' : 'md'}
+          size={Phone ? 'xs' : SmallDesktop ? 'md' : Desktop ? 'lg' : 'xl'}
         >
-          <Container size="lg" py={8}>
+          <Container
+            size={'xs'}
+            py={Phone ? 4 : 8}
+            pr={Tablet ? '0 !important' : '2rem'}
+          >
             <Typography
-              variant={Phone ? 'h6' : 'h4'}
+              variant={Phone ? 'subtitle1' : Tablet ? 'h6' : 'h4'}
               color="whitesmoke"
               textAlign="center"
             >
               Pengurus Yayasan Pendidikan Taruna Bangsa
             </Typography>
-            <Box mt={theme.spacing(8)}>
-              <TeacherCarousel themeColor="white" teachersList={teachers} />
+            <Box mt={theme.spacing(8)} position="relative">
+              {Tablet ? (
+                <Grid
+                  container
+                  spacing={2}
+                  flexWrap="nowrap"
+                  style={{ overflow: 'auto' }}
+                >
+                  {teachers?.map((teacher) => {
+                    return (
+                      <Grid
+                        item
+                        // xs={4}
+                        key={teacher?.name}
+                      >
+                        <Box width="14rem">
+                          <TeacherCarouselItem
+                            teacher={teacher}
+                            themeColor="white"
+                          />
+                        </Box>
+                      </Grid>
+                    );
+                  })}
+                </Grid>
+              ) : (
+                <TeacherCarousel
+                  themeColor="white"
+                  teachersList={teachers}
+                  paginationBottom={'-3rem'}
+                />
+              )}
             </Box>
           </Container>
         </Container>

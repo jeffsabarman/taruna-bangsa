@@ -1,12 +1,19 @@
 import styled from '@emotion/styled';
-import { ArrowLeft, ArrowRight } from '@mui/icons-material';
+import {
+  ArrowLeft,
+  ArrowRight,
+  Circle as CircleIcon,
+  CircleOutlined as CircleOutlinedIcon,
+} from '@mui/icons-material';
 import {
   Box,
   BoxProps,
   Button,
   Divider,
   Grid,
+  IconButton,
   Typography,
+  useMediaQuery,
   useTheme,
 } from '@mui/material';
 import { useResponsive } from 'helpers/custom-hooks';
@@ -77,6 +84,7 @@ interface IElasticCarouselProps extends Partial<ReactElasticCarouselProps> {
   gridImages?: GridImageSets[];
   teachersList?: TeacherItem[];
   themeColor?: ThemeColor;
+  paginationBottom?: string;
 }
 
 interface CarouselArrowProps {
@@ -90,6 +98,9 @@ interface PaginationProps extends Partial<RenderPaginationProps> {
   pages: number[];
   activePage: number;
   onClick: (page: number) => void;
+  type: 'hero' | 'grid' | 'teacher';
+  paginationBottom?: string | number;
+  themeColor?: ThemeColor;
 }
 
 const StyledElasticCarousel: FC<IElasticCarouselProps> = ({
@@ -119,31 +130,88 @@ const StyledPagination: FC<PaginationProps> = ({
   pages,
   activePage,
   onClick,
+  type,
+  paginationBottom = '2rem',
+  themeColor = 'yellow',
 }) => {
+  const { Tablet } = useResponsive();
+  const customSmallPhone = useMediaQuery('(max-width:360px)');
+  const theme = useTheme();
+
+  const getIconColor = useMemo(() => {
+    if (themeColor) {
+      switch (themeColor) {
+        case 'red':
+          return theme.palette.secondary.main;
+        case 'lightblue':
+          return theme.palette.primary.light;
+        case 'grey':
+          return theme.palette.grey[500];
+        case 'white':
+          return theme.palette.background.paper;
+        case 'blue':
+          return theme.palette.primary.main;
+
+        default:
+          return theme.palette.warning.main;
+      }
+    }
+  }, [themeColor]);
+
+  const getSxIcon = () => {
+    return {
+      color: getIconColor,
+      fontSize: customSmallPhone ? '1rem' : Tablet ? '1.2rem' : '1.4rem',
+    };
+  };
+
   return (
-    <Pagination>
+    // <Pagination>
+    //   {
+    <Grid
+      container
+      spacing={1}
+      justifyContent="center"
+      sx={{ position: 'absolute', bottom: paginationBottom }}
+    >
       {pages.map((page) => {
         const isActivePage: boolean = activePage === page;
+
         return (
-          <Indicator
-            key={page}
-            onClick={() => onClick(page)}
-            active={isActivePage}
-          />
+          // <Indicator
+          //   key={`${page}-${type}`}
+          //   onClick={() => onClick(page)}
+          //   active={isActivePage}
+          //   // style={{
+          //   //   width: Phone ? '1rem' : '2rem',
+          //   // }}
+          // />
+          <Grid item>
+            <IconButton size="small" onClick={() => onClick(page)}>
+              {isActivePage ? (
+                <CircleIcon sx={getSxIcon()} />
+              ) : (
+                <CircleOutlinedIcon sx={getSxIcon()} />
+              )}
+            </IconButton>
+          </Grid>
         );
       })}
-    </Pagination>
+    </Grid>
+    //   }
+    // </Pagination>
   );
 };
 
 const CarouselItem = (props: { image: ImageLink | undefined }) => {
-  const { SmallDesktop, Desktop } = useResponsive();
+  const { SmallDesktop, Desktop, Tablet, Phone } = useResponsive();
 
   return (
     <ImageCarousel
       onClick={() => props?.image?.link}
       style={{
-        height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh',
+        // height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh',
+        height: Phone ? '70vw' : Tablet ? '65vw' : '50vw',
       }}
       src={props?.image?.url}
       alt="Taruna Bangsa Banner Image"
@@ -154,6 +222,8 @@ const CarouselItem = (props: { image: ImageLink | undefined }) => {
 const HeroCarousel: FC<IElasticCarouselProps> = ({
   itemsToShow = 1,
   images,
+  paginationBottom = '2rem',
+  themeColor = 'lightblue',
   ...props
 }) => {
   const breakPoints = [{ width: 1, itemsToShow }];
@@ -163,9 +233,20 @@ const HeroCarousel: FC<IElasticCarouselProps> = ({
       {...props}
       breakPoints={breakPoints}
       renderArrow={CarouselArrow}
-      // @ts-ignore
-      renderPagination={StyledPagination}
       showEmptySlots={false}
+      renderPagination={({ pages, activePage, onClick }) => (
+        // @ts-ignore
+        <StyledPagination
+          {...{
+            pages,
+            activePage,
+            onClick,
+            type: 'hero',
+            paginationBottom,
+            themeColor,
+          }}
+        />
+      )}
     >
       {images?.map((image, idx) => (
         <CarouselItem key={idx} image={image} />
@@ -209,6 +290,8 @@ const GridImage: FC<GridImage> = ({ url, orientation, ...props }) => {
 const GridCarousel: FC<IElasticCarouselProps> = ({
   itemsToShow = 1,
   gridImages,
+  paginationBottom,
+  themeColor,
   ...props
 }) => {
   const breakPoints = [{ width: 1, itemsToShow }];
@@ -220,6 +303,19 @@ const GridCarousel: FC<IElasticCarouselProps> = ({
       renderArrow={CarouselArrow}
       // @ts-ignore
       // renderPagination={StyledPagination}
+      renderPagination={({ pages, activePage, onClick }) => (
+        // @ts-ignore
+        <StyledPagination
+          {...{
+            pages,
+            activePage,
+            onClick,
+            type: 'grid',
+            paginationBottom,
+            themeColor,
+          }}
+        />
+      )}
     >
       {gridImages?.map((gridImage, idx) => (
         <Box
@@ -268,7 +364,7 @@ const TeacherImage = styled.img`
   border-radius: 14px;
 `;
 
-const TeacherCarouselItem = ({
+export const TeacherCarouselItem = ({
   teacher,
   themeColor,
 }: {
@@ -294,10 +390,34 @@ const TeacherCarouselItem = ({
     }
   }, [themeColor]);
 
+  const { Desktop, SmallDesktop, Tablet, Phone } = useResponsive();
+  const customSmallPhone = useMediaQuery('(max-width:360px)');
+
   return (
-    <Grid mr={theme.spacing(8)} container direction="column" spacing={3}>
+    <Grid
+      // mr={SmallDesktop ? theme.spacing(4) : theme.spacing(8)}
+      mr={Desktop ? theme.spacing(4) : theme.spacing(8)}
+      container
+      direction="column"
+      spacing={3}
+    >
       <Grid item>
-        <TeacherImage src={teacher.image} alt="Guru Taruna Bangsa" />
+        <TeacherImage
+          src={teacher.image}
+          alt="Guru Taruna Bangsa"
+          style={{
+            // width: Tablet ? '16rem' : '100%',
+            height: customSmallPhone
+              ? '80vw'
+              : // : Phone
+              // ? '18rem'
+              Tablet
+              ? '18rem'
+              : SmallDesktop
+              ? '26vw'
+              : '28vw',
+          }}
+        />
       </Grid>
       <Grid item>
         <Typography
@@ -324,6 +444,7 @@ const TeacherCarousel: FC<IElasticCarouselProps> = ({
   itemsToShow = 3,
   teachersList,
   themeColor,
+  paginationBottom,
   ...props
 }) => {
   const breakPoints = [{ width: 1, itemsToShow }];
@@ -335,6 +456,19 @@ const TeacherCarousel: FC<IElasticCarouselProps> = ({
       renderArrow={CarouselArrow}
       // @ts-ignore
       // renderPagination={StyledPagination}
+      renderPagination={({ pages, activePage, onClick }) => (
+        // @ts-ignore
+        <StyledPagination
+          {...{
+            pages,
+            activePage,
+            onClick,
+            type: 'teacher',
+            paginationBottom,
+            themeColor,
+          }}
+        />
+      )}
     >
       {teachersList?.map((teacher, idx) => (
         <TeacherCarouselItem

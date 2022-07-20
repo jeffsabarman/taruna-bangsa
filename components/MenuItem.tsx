@@ -29,6 +29,7 @@ const MenuItem: FC<MenuItemProps> = ({ label, href, ...props }) => {
       color: active ? theme.palette.primary.main : theme.palette.grey[600],
       textTransform: 'capitalize',
       padding: '0.4rem 2rem',
+      textAlign: 'center',
       '&:hover': {
         color: theme.palette.primary.main,
         backgroundColor: theme.palette.background.paper,

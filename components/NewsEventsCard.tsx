@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Box, Grid, Typography, useTheme } from '@mui/material';
+import { Box, Grid, Typography, useTheme, useMediaQuery } from '@mui/material';
 import { useResponsive } from 'helpers/custom-hooks';
 import Image from 'next/image';
 import React, { FC } from 'react';
@@ -17,7 +17,9 @@ const NewsEventsCard: FC<NewsEventsCardProps> = ({
 }) => {
   /** Utilities */
   const theme = useTheme();
-  const { Tablet } = useResponsive();
+  const { Phone, Tablet } = useResponsive();
+  const customSmallDesktop = useMediaQuery('(max-width:1320px)');
+  const customSmallPhone = useMediaQuery('(max-width:360px)');
 
   return (
     <Box
@@ -28,13 +30,15 @@ const NewsEventsCard: FC<NewsEventsCardProps> = ({
           ? theme.palette.primary.main
           : theme.palette.primary.light
       }
-      sx={{ minWidth: '16rem', maxWidth: '22rem' }}
+      maxWidth={customSmallPhone ? '100%' : Phone ? '20rem' : '22rem'}
+      // sx={{ minWidth: '16rem', maxWidth: '22rem' }}
+      // sx={{ width: customSmallDesktop ? '20rem' : '100%' }}
     >
       <Box position="relative">
         <img src={imageUrl} style={{ width: '100%', objectFit: 'cover' }} />
       </Box>
       <Box py={theme.spacing(2)} px={theme.spacing(3)}>
-        <Typography variant="h6" color="whitesmoke">
+        <Typography variant={Phone ? 'subtitle1' : 'h6'} color="whitesmoke">
           {caption}
         </Typography>
       </Box>

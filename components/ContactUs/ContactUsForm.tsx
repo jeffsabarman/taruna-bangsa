@@ -15,7 +15,7 @@ import emailjs from '@emailjs/browser';
 
 const ContactUsForm = () => {
   const theme = useTheme();
-  const { Tablet, SmallDesktop } = useResponsive();
+  const { Phone, Tablet, SmallDesktop } = useResponsive();
   const [emailForm, setEmailForm] = useState({
     name: '',
     email: '',
@@ -74,7 +74,7 @@ const ContactUsForm = () => {
   };
 
   return (
-    <Grid container direction="column" spacing={3}>
+    <Grid container direction="column" spacing={Phone ? 2 : 3}>
       <Snackbar
         open={alert?.show}
         autoHideDuration={6000}
