@@ -4,7 +4,9 @@ export const MAIN_CAROUSEL_IMAGES = groq`
 *[_type == "mainCarouselImages" && !(_id in path('drafts.**'))] {
 		_id,
     "alt": imageTitle,
-    "url": imageFile.asset->url,
+    // "url": imageFile.asset->url,
+    "urlSmall": imageFileSmall.asset->url,
+    "url": imageFileLarge.asset->url,
 		"link": clickLinkDestination
   }
 `;

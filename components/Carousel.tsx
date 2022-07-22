@@ -65,6 +65,7 @@ const ImageCarousel = styled.img`
 
 type ImageLink = {
   url: string;
+  urlSmall?: string;
   link: string;
   alt: string;
 };
@@ -235,7 +236,9 @@ const CarouselItem = (props: { image: ImageLink | undefined }) => {
         // height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh',
         height: Phone ? '70vw' : Tablet ? '65vw' : '50vw',
       }}
-      src={props?.image?.url}
+      src={
+        Phone ? props?.image?.urlSmall || props?.image?.url : props?.image?.url
+      }
       // alt="Taruna Bangsa Banner Image"
       alt={props?.image?.alt}
     />

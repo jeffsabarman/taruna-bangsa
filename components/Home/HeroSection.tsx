@@ -67,9 +67,16 @@ const HeroSection: FC = (props) => {
       const mainCarouselImages = await sanityClient.fetch(MAIN_CAROUSEL_IMAGES);
       setImages(
         mainCarouselImages?.map(
-          (image: { _id: string; alt: string; url: string; link: string }) => {
+          (image: {
+            _id: string;
+            alt: string;
+            url: string;
+            urlSmall: string;
+            link: string;
+          }) => {
             return {
               url: image?.url,
+              urlSmall: image?.urlSmall,
               link: image?.link,
               alt: image?.alt,
             };
