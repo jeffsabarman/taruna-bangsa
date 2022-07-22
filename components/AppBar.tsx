@@ -1,33 +1,25 @@
 import {
   AppBar,
   Toolbar,
-  Typography,
   useScrollTrigger,
   useTheme,
   Grid,
-  Button,
   IconButton,
-  useMediaQuery,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import Link, { LinkProps } from 'next/link';
-import React, { FC, useMemo, useState } from 'react';
+import Link from 'next/link';
+import React, { useMemo, useState } from 'react';
 import Container from '@/components/Container';
 import SideDrawer from '@/components/SideDrawer';
-import { useRouter } from 'next/router';
 import { useResponsive } from 'helpers/custom-hooks';
 import Image from 'next/image';
 import MenuItem from '@/components/MenuItem';
+import { MENU_LIST } from 'helpers/constants';
 
 interface ElevationScrollProps {
   window?: () => Window;
   children: React.ReactElement;
 }
-
-type MenuItem = {
-  path: string;
-  label: string;
-};
 
 const ElevationScroll = (props: ElevationScrollProps) => {
   const { children } = props;
@@ -40,33 +32,6 @@ const ElevationScroll = (props: ElevationScrollProps) => {
     elevation: trigger ? 4 : 0,
   });
 };
-
-export const MENU_LIST: Array<MenuItem> = [
-  {
-    path: 'about-us',
-    label: 'Tentang Kami',
-  },
-  {
-    path: 'why-tb',
-    label: 'Mengapa STB?',
-  },
-  {
-    path: 'academics/sma',
-    label: 'Akademik',
-  },
-  {
-    path: 'facilities',
-    label: 'Fasilitas',
-  },
-  {
-    path: 'news-and-events',
-    label: 'Berita & Acara',
-  },
-  {
-    path: 'contact-us',
-    label: 'Hubungi Kami',
-  },
-];
 
 const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
   /** Utilities */
@@ -89,7 +54,7 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
 
   /** Components */
   const renderMenuList = useMemo(() => {
-    return MENU_LIST.map(({ path, label }) => {
+    return MENU_LIST?.map(({ path, label }) => {
       return (
         <Grid
           key={path}
@@ -100,7 +65,7 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
         </Grid>
       );
     });
-  }, []);
+  }, [MENU_LIST]);
 
   const renderSideDrawer = useMemo(() => {
     return (
@@ -132,7 +97,12 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
               </Grid>
               <Grid item>
                 <Link href={'/'} passHref>
-                  <Image src="/images/stb-logo.svg" width={300} height={100} />
+                  <Image
+                    style={{ cursor: 'pointer' }}
+                    src="/images/stb-logo.svg"
+                    width={200}
+                    height={80}
+                  />
                 </Link>
               </Grid>
               <Grid item flexGrow={1} />

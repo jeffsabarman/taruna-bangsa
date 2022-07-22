@@ -41,6 +41,10 @@ const NewsAndEvents = () => {
   /** Utilities */
   const theme = useTheme();
 
+  /** Media Query */
+  const { Desktop, Phone, Tablet } = useResponsive();
+  const customSmallDesktop = useMediaQuery('(max-width:1320px)');
+
   /** State */
   const [newsEvents, setNewsEvents] = useState<NewsEvent[]>([]);
 
@@ -69,21 +73,44 @@ const NewsAndEvents = () => {
         justifyContent="center"
         // alignItems="center"
         spacing={4}
-        sx={{ mt: theme.spacing(4) }}
+        sx={{ mt: Phone ? 0 : theme.spacing(4) }}
       >
+        {/* {newsEvents?.map(({ imageUrl, caption, _id }, idx) => ( */}
+        {/* <Grid item xs key={_id}> */}
+        {/* {NEWS_EVENTS?.map(({ imageUrl, caption }, idx) => ( */}
         {newsEvents?.map(({ imageUrl, caption, _id }, idx) => (
-          <Grid item xs key={_id}>
+          <Grid
+            item
+            xs={Phone ? 12 : Desktop ? 6 : 3}
+            key={_id}
+            container
+            justifyContent={'center'}
+            sx={{
+              mb: Phone ? theme.spacing(2) : Desktop ? theme.spacing(4) : 0,
+            }}
+          >
             <NewsEventsCard
               variant={idx % 2 === 0 ? 'dark' : 'light'}
               {...{ imageUrl, caption }}
             />
           </Grid>
         ))}
-        <Box mt={theme.spacing(8)}>
-          <PrimaryButton disableElevation variant="contained">
-            Baca Selengkapnya
-          </PrimaryButton>
-        </Box>
+        <Grid item xs={12} container justifyContent="center">
+          <Box
+            mt={
+              Phone
+                ? theme.spacing(2)
+                : Tablet
+                ? theme.spacing(4)
+                : theme.spacing(8)
+            }
+            mb={Phone ? theme.spacing(2) : 0}
+          >
+            <PrimaryButton disableElevation variant="contained">
+              Baca Selengkapnya
+            </PrimaryButton>
+          </Box>
+        </Grid>
       </Grid>
     </HeaderLayout>
   );

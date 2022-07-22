@@ -1,5 +1,6 @@
 import { Grid, Typography, useTheme } from '@mui/material';
 import React, { FC } from 'react';
+import { useResponsive } from 'helpers/custom-hooks';
 
 interface YearGroupSectionProps {
   sections: { key: string; description: string }[];
@@ -8,11 +9,14 @@ interface YearGroupSectionProps {
 const YearGroupSection: FC<YearGroupSectionProps> = ({ sections }) => {
   /** Utilities */
   const theme = useTheme();
+
+  const { Phone } = useResponsive();
+
   return (
     <>
       {sections?.map(({ key, description }) => (
         <Grid
-          mb={theme.spacing(8)}
+          mb={Phone ? theme.spacing(6) : theme.spacing(8)}
           key={key}
           container
           direction="column"

@@ -33,18 +33,20 @@ const HeaderLayout: FC<HeaderLayoutProps> = ({
         >
           {title}
         </Typography>
-        <Container
-          size={Tablet ? 'xs' : SmallDesktop ? 'sm' : Desktop ? 'lg' : 'xl'}
-        >
-          <Typography
-            variant={Phone ? 'body2' : 'body1'}
-            mt={theme.spacing(4)}
-            textAlign="center"
-            color={mode === 'light' ? 'GrayText' : 'whitesmoke'}
+        {subtitle && (
+          <Container
+            size={Tablet ? 'xs' : SmallDesktop ? 'sm' : Desktop ? 'lg' : 'xl'}
           >
-            {subtitle}
-          </Typography>
-        </Container>
+            <Typography
+              variant={Phone ? 'body2' : 'body1'}
+              mt={theme.spacing(4)}
+              textAlign="center"
+              color={mode === 'light' ? 'GrayText' : 'whitesmoke'}
+            >
+              {subtitle}
+            </Typography>
+          </Container>
+        )}
       </Grid>
       <Grid
         mt={theme.spacing(4)}

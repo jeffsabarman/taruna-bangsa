@@ -51,7 +51,7 @@ const Academics = () => {
     <Box>
       <Grid container direction="column">
         <HeaderLayout
-          title="Academics"
+          title="Akademik"
           subtitle="We are a school that empowers students to thrive in academic
                 excellence; personal, social and emotional growth that are
                 needed for success in their live and livelihood."

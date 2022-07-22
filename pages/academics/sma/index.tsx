@@ -112,9 +112,10 @@ const teachers = [
 const AcademicSMA: FC = (props) => {
   /** Utilities */
   const theme = useTheme();
-  const { Phone, SmallDesktop, Desktop } = useResponsive();
 
   /** Media Queries */
+  const { Phone, SmallDesktop, Desktop, Tablet } = useResponsive();
+  const customSmallPhone = useMediaQuery('(max-width:360px)');
   const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
@@ -146,10 +147,18 @@ const AcademicSMA: FC = (props) => {
           headMasterName="Joanita Dewi Riris K., S.Pd."
           headMasterRole="Kepala SMA Taruna Bangsa"
         />
-        <Container size="lg" mt={8}>
+        <Container
+          // size="lg" mt={8}
+          size={Phone ? 'xs' : SmallDesktop ? 'md' : 'lg'}
+          mt={Phone ? 4 : 8}
+        >
           <YearGroupSection sections={sections} />
         </Container>
-        <Container size="lg" my={8}>
+        <Container
+          // size="lg" my={8}
+          my={Phone ? 4 : 8}
+          size={Phone ? 'xs' : SmallDesktop ? 'md' : 'lg'}
+        >
           <VisionMission
             themeColor="grey"
             vision="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -188,9 +197,10 @@ const AcademicSMA: FC = (props) => {
           </Box>
           <Box mt={4}>
             <Exculpatories
-              title="Jenis Kegiatan Ekskul KB-TK"
+              title="Jenis Kegiatan Ekskul SMA"
               exculpatories={exculpatories}
               exculImageSets={exculImageSets}
+              themeColor="yellow"
             />
           </Box>
         </Container>
@@ -199,7 +209,14 @@ const AcademicSMA: FC = (props) => {
         py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}
         size={Phone ? 'xs' : SmallDesktop ? 'sm' : 'md'}
       >
-        <Container size="lg" py={8}>
+        <Container
+          // size="lg" py={8}
+          size={
+            customSmallPhone ? 'xs' : Phone ? 'sm' : SmallDesktop ? 'md' : 'lg'
+          }
+          pr={Tablet ? '0 !important' : '2rem'}
+          py={Phone ? 4 : 8}
+        >
           <Teachers
             themeColor="grey"
             title="SMA Taruna Bangsa"

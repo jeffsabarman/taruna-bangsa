@@ -1,6 +1,7 @@
 import { Grid } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import HeaderLayout from '../HeaderLayout';
+import { useResponsive } from 'helpers/custom-hooks';
 //* Sanity
 import sanityClient from 'client';
 import { YOUTUBE_EMBED } from '@/utils/groq';
@@ -21,18 +22,34 @@ const YoutubeChanel = () => {
     getYoutubeEmbed();
   }, []);
 
+  //   return (
+  //     <HeaderLayout title="Subscribe Channel Youtube Kami">
+  //       <Grid item>
+  //         <iframe
+  //           width="560"
+  //           height="315"
+  //           // src="https://www.youtube.com/embed/W_EBn918k4E"
+  //           src={youtubeEmbedLink}
+
+  // const YoutubeChanel = () => {
+
+  /** Media Query */
+  const { Phone, SmallDesktop } = useResponsive();
+
   return (
     <HeaderLayout title="Subscribe Channel Youtube Kami">
-      <Grid item>
+      <Grid item sx={{ mt: Phone ? 0 : SmallDesktop ? 4 : 8 }}>
         <iframe
-          width="560"
-          height="315"
-          // src="https://www.youtube.com/embed/W_EBn918k4E"
+          // src="https://www.youtube.com/embed/kGexUZIDsQI"
           src={youtubeEmbedLink}
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
+          style={{
+            width: Phone ? '90vw' : '80vw',
+            height: Phone ? '50vw' : '45vw',
+          }}
         />
       </Grid>
     </HeaderLayout>
