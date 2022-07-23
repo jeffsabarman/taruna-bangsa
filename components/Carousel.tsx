@@ -16,6 +16,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
+import { grey } from '@mui/material/colors';
 import { useResponsive } from 'helpers/custom-hooks';
 import { ThemeColor } from 'helpers/types';
 import React, { FC, ReactNode, useMemo } from 'react';
@@ -214,7 +215,8 @@ const StyledPagination: FC<PaginationProps> = ({
               {isActivePage ? (
                 <CircleIcon sx={getSxIcon()} />
               ) : (
-                <CircleOutlinedIcon sx={getSxIcon()} />
+                // <CircleOutlinedIcon sx={getSxIcon()} />
+                <CircleIcon sx={getSxIcon()} style={{ color: grey[400] }} />
               )}
             </IconButton>
           </Grid>

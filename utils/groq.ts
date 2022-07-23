@@ -20,7 +20,8 @@ export const NEWS_AND_EVENTS = groq`
 `;
 
 export const EDUCATIONS_KB_TK = groq`
-*[_type == "educations" && educationLevel == "KB/TK" && !(_id in path('drafts.**'))][0] {
+// *[_type == "educations" && educationLevel == "KB/TK" && !(_id in path('drafts.**'))][0] {
+*[_type == "academics" && educationLevel == "KB/TK" && !(_id in path('drafts.**'))][0] {
   _id,
   educationLevel,
   scheduleKBM,

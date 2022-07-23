@@ -110,7 +110,7 @@ const HeroSection: FC = (props) => {
         <Grid item xs>
           <HeroCarousel
             enableAutoPlay
-            autoPlaySpeed={4000}
+            autoPlaySpeed={5000}
             showArrows={false}
             paginationBottom={Tablet ? '1rem' : '2rem'}
             images={images}

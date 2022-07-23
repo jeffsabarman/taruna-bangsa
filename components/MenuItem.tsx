@@ -22,11 +22,25 @@ const MenuItem: FC<MenuItemProps> = ({ label, href, ...props }) => {
   /** Utilities */
   const theme = useTheme();
   const router = useRouter();
-  const active = router.pathname === `${href}`;
+
+  const getIsActive = () => {
+    if (label === 'Akademik') {
+      return ACADEMICS_SUBMENU.map((submenu) => submenu?.path).includes(
+        router.pathname,
+      );
+    } else {
+      return router.pathname === `${href}`;
+    }
+  };
+
+  // const active = router.pathname === `${href}`;
   const styles = {
     '&.MuiButton-text': {
       fontSize: '1rem',
-      color: active ? theme.palette.primary.main : theme.palette.grey[600],
+      // color: active ? theme.palette.primary.main : theme.palette.grey[600],
+      color: getIsActive()
+        ? theme.palette.primary.main
+        : theme.palette.grey[600],
       textTransform: 'capitalize',
       padding: '0.4rem 2rem',
       textAlign: 'center',

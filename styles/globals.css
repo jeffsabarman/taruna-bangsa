@@ -18,3 +18,7 @@ a {
 .rec .rec-slider-container {
   margin: 0px;
 }
+
+ul {
+  padding-left: 1rem;
+}
