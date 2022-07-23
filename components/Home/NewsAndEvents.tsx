@@ -4,9 +4,10 @@ import React, { useEffect, useState } from 'react';
 import { PrimaryButton } from '../Button';
 import HeaderLayout from '../HeaderLayout';
 import NewsEventsCard from '../NewsEventsCard';
+import { useRouter } from 'next/router';
 //* Sanity
 import sanityClient from 'client';
-import { NEWS_AND_EVENTS } from '@/utils/groq';
+import { NEWS_AND_EVENTS_HOME } from '@/utils/groq';
 
 // const NEWS_EVENTS: Array<NewsEvent> = [
 //   {
@@ -40,6 +41,7 @@ type NewsEvent = {
 const NewsAndEvents = () => {
   /** Utilities */
   const theme = useTheme();
+  const router = useRouter();
 
   /** Media Query */
   const { Desktop, Phone, Tablet } = useResponsive();
@@ -50,7 +52,7 @@ const NewsAndEvents = () => {
 
   /** Functions */
   const getNewsEvents = async () => {
-    const newsEventsData = await sanityClient.fetch(NEWS_AND_EVENTS);
+    const newsEventsData = await sanityClient.fetch(NEWS_AND_EVENTS_HOME);
 
     setNewsEvents(
       newsEventsData.map((data: NewsEvent) => {
@@ -106,7 +108,11 @@ const NewsAndEvents = () => {
             }
             mb={Phone ? theme.spacing(2) : 0}
           >
-            <PrimaryButton disableElevation variant="contained">
+            <PrimaryButton
+              disableElevation
+              variant="contained"
+              onClick={() => router.push('/news-and-events')}
+            >
               Baca Selengkapnya
             </PrimaryButton>
           </Box>

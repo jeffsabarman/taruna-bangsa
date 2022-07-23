@@ -3,7 +3,7 @@ import { Box, Grid, Typography, useTheme, useMediaQuery } from '@mui/material';
 import { useResponsive } from 'helpers/custom-hooks';
 import Image from 'next/image';
 import React, { FC } from 'react';
-import { getShortenText } from 'helpers/mix';
+import { getShortenText } from 'helpers';
 
 interface NewsEventsCardProps {
   imageUrl: string;

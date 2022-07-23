@@ -11,8 +11,8 @@ export const MAIN_CAROUSEL_IMAGES = groq`
   }
 `;
 
-export const NEWS_AND_EVENTS = groq`
-*[_type == "newsEvents" && !(_id in path('drafts.**'))] {
+export const NEWS_AND_EVENTS_HOME = groq`
+*[_type == "newsEvents" && !(_id in path('drafts.**'))] | order(publishedAt desc) [0...4] {
   _id,
   "caption": title,
   "imageUrl": mainImage.asset->url,
@@ -120,4 +120,19 @@ export const YOUTUBE_EMBED = groq`
   "iconUrl": iconFile.asset->url,
   link
 }
+`;
+
+export const ALL_NEWS_AND_EVENTS = groq`
+*[_type == "newsEvents" && !(_id in path('drafts.**'))] | order(publishedAt desc) {
+  _id,
+  title,
+  slug,
+  "mainImageUrl": mainImage.asset->url,
+  publishedAt,
+  "bodySnippet": body[0].children[0].text
+}
+`;
+
+export const NEWS_AND_EVENTS_COUNT = groq`
+count(*[_type == "newsEvents" && !(_id in path('drafts.**')) && publishedAt < $today] | order(publishedAt desc))
 `;
