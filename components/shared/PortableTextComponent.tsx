@@ -8,6 +8,15 @@ import {
 } from '@mui/material';
 import { useResponsive } from 'helpers/custom-hooks';
 import ListItem from '@/components/ListItem';
+import sanityClient from 'client';
+import imageUrlBuilder from '@sanity/image-url';
+
+//* Image
+const builder = imageUrlBuilder(sanityClient);
+
+function urlFor(source: any) {
+  return builder.image(source);
+}
 
 //   export const authorBioPtComponents = {
 //     block: {
@@ -65,7 +74,9 @@ const getStyleLink = (value: any, objText: any) => {
   const theme = useTheme();
   return {
     textDecoration: 'underline',
-    color: isImageDesc(value) ? 'grey' : theme.palette.primary.main,
+    color:
+      // isImageDesc(value) ? 'grey' :
+      theme.palette.primary.light,
     fontStyle: objText.marks.includes('em') ? 'italic' : 'normal',
     fontWeight: objText.marks.includes('strong') ? 600 : 400,
   };
@@ -82,6 +93,157 @@ const getStyleListItem = () => {
   };
 };
 
+//* CONTENT COMPONENTS
+export const contentComponents = {
+  types: {
+    image: ({ value }: any) => {
+      console.log(value, '<<< value image');
+      return (
+        <img
+          // @ts-ignore
+          src={urlFor(value)}
+          style={{ width: '100%', height: '28vw', objectFit: 'cover' }}
+        />
+      );
+    },
+  },
+  block: {
+    normal: ({ value }: any) => {
+      //* Styling
+      const theme = useTheme();
+      if (value.children.length > 1) {
+        return (
+          <Grid
+            item
+            // container={isImageDesc(value) ? true : false}
+            // justifyContent={isImageDesc(value) ? 'center' : 'flex-start'}
+            style={{
+              marginBottom:
+                // isImageDesc(value) ? 0 :
+                theme.spacing(1),
+            }}
+          >
+            <Typography
+              variant={
+                // isImageDesc(value) ? 'body2' :
+                'body1'
+              }
+              align={
+                // isImageDesc(value) ? 'center' :
+                'left'
+              }
+              style={{
+                // ? for normal text
+                marginBottom:
+                  // isImageDesc(value) ? 0 :
+                  theme.spacing(1.8),
+                lineHeight: '2.4rem',
+              }}
+              // color="whitesmoke"
+            >
+              {value.children.map((objText: any) => {
+                // ? Handle link
+                if (isMarkIdMatch(objText?.marks, value?.markDefs)) {
+                  return (
+                    <a
+                      key={objText._key}
+                      href={getLinkHref(objText?.marks, value?.markDefs)}
+                      target={'_blank'}
+                      rel="noreferrer"
+                      style={getStyleLink(value, objText)}
+                    >
+                      {objText?.text}
+                    </a>
+                  );
+                }
+                return (
+                  <span
+                    key={objText._key}
+                    style={{
+                      // ? Handle italic
+                      fontStyle: objText.marks.includes('em')
+                        ? 'italic'
+                        : 'normal',
+                      // ? Handle bold
+                      fontWeight: objText.marks.includes('strong') ? 600 : 400,
+                      color:
+                        // isImageDesc(value) ? 'grey' :
+                        'black',
+                    }}
+                  >
+                    {
+                      // isImageDesc(value)
+                      //   ? objText.text.substring(objText.text.indexOf(':') + 1)
+                      //   :
+                      objText.text
+                    }
+                  </span>
+                );
+              })}
+            </Typography>
+          </Grid>
+        );
+      }
+      return value.children.map((objText: any) => {
+        if (objText.text === '') {
+          return (
+            <Grid
+              key={objText._key}
+              item
+              style={{
+                marginBottom:
+                  // mediaBreakPhone
+                  //   ? theme.spacing(1)
+                  //   :
+                  theme.spacing(0),
+              }}
+            >
+              <br />
+            </Grid>
+          );
+        }
+        // ? for link
+        else if (isMarkIdMatch(objText?.marks, value?.markDefs)) {
+          return (
+            <Typography key={objText._key}>
+              <a
+                href={getLinkHref(objText?.marks, value?.markDefs)}
+                target={'_blank'}
+                rel="noreferrer"
+                style={getStyleLink(value, objText)}
+              >
+                {objText?.text}
+              </a>
+            </Typography>
+          );
+        }
+        // TODO: handle text continue not new line
+        return (
+          <Grid
+            key={objText._key}
+            item
+            style={{
+              marginBottom: theme.spacing(1.8),
+            }}
+          >
+            <Typography
+              style={{
+                fontStyle: objText.marks.includes('em') ? 'italic' : 'normal',
+                fontWeight: objText.marks.includes('strong') ? 600 : 400,
+                lineHeight: '2.4rem',
+              }}
+              // color="whitesmoke"
+            >
+              {objText.text || ''}
+            </Typography>
+          </Grid>
+        );
+      });
+    },
+  },
+};
+
+//* PT COMPONENTS
 export const ptComponents = {
   block: {
     normal: ({ value }: any) => {

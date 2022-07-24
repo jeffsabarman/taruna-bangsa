@@ -13,7 +13,6 @@ const YoutubeChanel = () => {
   /** Functions */
   const getYoutubeEmbed = async () => {
     const youtubeEmbed = await sanityClient.fetch(YOUTUBE_EMBED);
-    console.log(youtubeEmbed, '<< youtubeembed');
     setYoutubeEmbedLink(youtubeEmbed?.link);
   };
 

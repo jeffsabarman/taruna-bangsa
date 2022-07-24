@@ -41,7 +41,6 @@ export default function NewsAndEventsPage({
 
   /** Media Queries */
   const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
-  console.log(newsEvents, '<<< newsEvents');
 
   return (
     <Box mt={largerThanPhone || Phone ? theme.spacing(12) : theme.spacing(8)}>
@@ -63,12 +62,13 @@ export default function NewsAndEventsPage({
           </Grid>
           {newsEvents?.length
             ? newsEvents?.map((data) => (
-                <Grid item xs={4} key={data?._id}>
+                <Grid item xs={4} key={data?._id} mb={2}>
                   <CardNewsEvent
                     imgUrl={data?.mainImageUrl}
                     publishedAt={data?.publishedAt}
                     title={data?.title}
                     body={data?.bodySnippet}
+                    slug={data?.slug?.current}
                   />
                 </Grid>
               ))

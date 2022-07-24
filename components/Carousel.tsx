@@ -196,7 +196,12 @@ const StyledPagination: FC<PaginationProps> = ({
       container
       spacing={1}
       justifyContent="center"
-      sx={{ position: 'absolute', bottom: paginationBottom }}
+      sx={{
+        position: 'absolute',
+        bottom: paginationBottom,
+        // backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        // width: '20rem',
+      }}
     >
       {pages.map((page) => {
         const isActivePage: boolean = activePage === page;
@@ -216,7 +221,7 @@ const StyledPagination: FC<PaginationProps> = ({
                 <CircleIcon sx={getSxIcon()} />
               ) : (
                 // <CircleOutlinedIcon sx={getSxIcon()} />
-                <CircleIcon sx={getSxIcon()} style={{ color: grey[400] }} />
+                <CircleIcon sx={getSxIcon()} style={{ color: grey[300] }} />
               )}
             </IconButton>
           </Grid>

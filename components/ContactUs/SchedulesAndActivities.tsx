@@ -23,8 +23,11 @@ const SchedulesAndActivities: FC<SchedulesAndActivitiesProps> = ({
         <Typography color="whitesmoke" variant="subtitle1">
           Jadwal KBM
         </Typography>
-        <Box mt={1}>
-          <PortableText value={schedules} components={ptComponents} />
+        <Box mt={1} color="whitesmoke">
+          <PortableText
+            value={schedules}
+            // components={ptComponents}
+          />
           {/* {schedules.map((point, idx) => (
             <ListItem key={idx} point={point} />
           ))} */}
@@ -34,8 +37,11 @@ const SchedulesAndActivities: FC<SchedulesAndActivitiesProps> = ({
         <Typography color="whitesmoke" variant="subtitle1">
           Jenis Kegiatan
         </Typography>
-        <Box mt={1}>
-          <PortableText value={activities} components={ptComponents} />
+        <Box mt={1} color="whitesmoke">
+          <PortableText
+            value={activities}
+            // components={ptComponents}
+          />
           {/* {activities.map((point, idx) => (
             <ListItem key={idx} point={point} />
           ))} */}

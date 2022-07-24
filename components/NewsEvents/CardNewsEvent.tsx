@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import { FC } from 'react';
 import Image from 'next/image';
 import { getShortenText, getFormatDate } from 'helpers';
+import { useRouter } from 'next/router';
 
 const StyledBox = styled(Box)(({ theme }) => ({
   backgroundColor: grey[100],
@@ -12,6 +13,7 @@ const StyledBox = styled(Box)(({ theme }) => ({
   '&:hover': {
     backgroundColor: grey[200],
   },
+  height: '100%',
 }));
 
 interface CardNewsEventProps {
@@ -19,6 +21,7 @@ interface CardNewsEventProps {
   publishedAt: string;
   title: string;
   body: string;
+  slug: string;
 }
 
 const CardNewsEvent: FC<CardNewsEventProps> = ({
@@ -26,12 +29,16 @@ const CardNewsEvent: FC<CardNewsEventProps> = ({
   publishedAt,
   title,
   body,
+  slug,
 }) => {
+  //* Routing
+  const router = useRouter();
+
   //* Style
   const theme = useTheme();
 
   return (
-    <StyledBox>
+    <StyledBox onClick={() => router.push(`news-and-events/${slug}`)}>
       <Grid container direction="column">
         <Grid item>
           <img

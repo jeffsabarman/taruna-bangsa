@@ -122,8 +122,8 @@ export const YOUTUBE_EMBED = groq`
 }
 `;
 
-export const ALL_NEWS_AND_EVENTS = groq`
-*[_type == "newsEvents" && !(_id in path('drafts.**'))] | order(publishedAt desc) {
+export const ALL_NEWS_AND_EVENTS = groq` // TODO: Add pagination
+*[_type == "newsEvents" && !(_id in path('drafts.**'))  && isVisible == true && publishedAt < $today ] | order(publishedAt desc) {
   _id,
   title,
   slug,
@@ -134,5 +134,15 @@ export const ALL_NEWS_AND_EVENTS = groq`
 `;
 
 export const NEWS_AND_EVENTS_COUNT = groq`
-count(*[_type == "newsEvents" && !(_id in path('drafts.**')) && publishedAt < $today] | order(publishedAt desc))
+count(*[_type == "newsEvents" && !(_id in path('drafts.**')) && isVisible == true && publishedAt < $today] | order(publishedAt desc))
+`;
+
+export const NEWS_AND_EVENTS_CONTENT = groq`
+*[_type == "newsEvents" && slug.current == $slug][0]{
+  _id,
+  title,
+  "mainImageUrl": mainImage.asset->url,
+  body,
+  publishedAt,
+}
 `;

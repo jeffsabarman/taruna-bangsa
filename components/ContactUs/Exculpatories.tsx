@@ -26,8 +26,11 @@ const Exculpatories: FC<ExculpatoriesProps> = ({
       <Typography variant="h6" color="whitesmoke">
         {title}
       </Typography>
-      <Box mt={3}>
-        <PortableText value={exculpatories} components={ptComponents} />
+      <Box mt={3} color="whitesmoke">
+        <PortableText
+          value={exculpatories}
+          // components={ptComponents}
+        />
         {/* {exculpatories?.map((exculpatory, idx) => (
           <ListItem key={idx} point={exculpatory} />
         ))} */}
