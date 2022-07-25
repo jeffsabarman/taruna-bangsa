@@ -28,6 +28,7 @@ interface NewsAndEventsPageProps {
     body: any;
     title: string;
     mainImageUrl: string;
+    mainImageCaption: string;
     publishedAt: string;
   };
   error: boolean;
@@ -39,7 +40,7 @@ export default function NewsAndEventsPage({
 }: NewsAndEventsPageProps) {
   /** Utilities */
   const theme = useTheme();
-  const { Phone, SmallDesktop, Desktop } = useResponsive();
+  const { Phone, SmallDesktop, Tablet, Desktop } = useResponsive();
 
   /** Media Queries */
   const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
@@ -48,7 +49,7 @@ export default function NewsAndEventsPage({
     <Box
       mt={largerThanPhone || Phone ? theme.spacing(12) : theme.spacing(8)}
       py={theme.spacing(6)}
-      px="22vw"
+      px={Phone ? '10vw' : Tablet ? '16vw' : SmallDesktop ? '22vw' : '26vw'}
     >
       {/* <Container
         py={Phone ? theme.spacing(4) : theme.spacing(8)}
@@ -68,20 +69,33 @@ export default function NewsAndEventsPage({
           </Typography>
         </Grid>
         <Grid item mb={4} xs={12}>
-          <Typography color="primary" variant="h5">
+          <Typography
+            color="primary"
+            variant={Phone ? 'h6' : 'h5'}
+            lineHeight="2.4rem"
+          >
             {newsEventsContent?.title}
           </Typography>
         </Grid>
         <Grid item>
-          <img
-            src={newsEventsContent?.mainImageUrl}
-            style={{
-              width: '100%',
-              height: '28vw',
-              objectFit: 'cover',
-              //   borderRadius: '0.5rem',
-            }}
-          />
+          <Grid container direction="column" alignItems="center">
+            <Grid item width="100%">
+              <img
+                src={newsEventsContent?.mainImageUrl}
+                style={{
+                  width: '100%',
+                  height: Phone ? '44vw' : SmallDesktop ? '34vw' : '28vw',
+                  objectFit: 'cover',
+                  //   borderRadius: '0.5rem',
+                }}
+              />
+            </Grid>
+            <Grid item>
+              <Typography variant="caption" sx={{ color: grey[500] }}>
+                {newsEventsContent?.mainImageCaption}
+              </Typography>
+            </Grid>
+          </Grid>
         </Grid>
         <Grid item>
           <PortableText

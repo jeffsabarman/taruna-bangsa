@@ -6,6 +6,8 @@ import { FC } from 'react';
 import Image from 'next/image';
 import { getShortenText, getFormatDate } from 'helpers';
 import { useRouter } from 'next/router';
+import { PortableText } from '@portabletext/react';
+import { contentComponents } from '../shared/PortableTextComponent';
 
 const StyledBox = styled(Box)(({ theme }) => ({
   backgroundColor: grey[100],
@@ -20,7 +22,7 @@ interface CardNewsEventProps {
   imgUrl: string;
   publishedAt: string;
   title: string;
-  body: string;
+  body: any;
   slug: string;
 }
 
@@ -36,6 +38,8 @@ const CardNewsEvent: FC<CardNewsEventProps> = ({
 
   //* Style
   const theme = useTheme();
+
+  console.log(body, '<< body');
 
   return (
     <StyledBox onClick={() => router.push(`news-and-events/${slug}`)}>
@@ -62,9 +66,17 @@ const CardNewsEvent: FC<CardNewsEventProps> = ({
               {getShortenText(title, 56, 58)}
             </Typography>
           </Grid>
-          <Grid item>
+          <Grid
+            item
+            maxHeight="8rem"
+            sx={{
+              overflow: 'hidden',
+              backgroundImage: `linear-gradient(rgba(255,0,0,0,0.2), ${grey[800]})`,
+            }}
+          >
             <Typography variant="caption">
-              {getShortenText(body, 120, 124)}
+              {/* {JSON.stringify(getShortenText(body, 120, 124))} */}
+              <PortableText value={body} components={contentComponents} />
             </Typography>
           </Grid>
           <Grid

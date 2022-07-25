@@ -6,6 +6,7 @@ import {
   Divider,
   useMediaQuery,
 } from '@mui/material';
+import { grey } from '@mui/material/colors';
 import { useResponsive } from 'helpers/custom-hooks';
 import ListItem from '@/components/ListItem';
 import sanityClient from 'client';
@@ -97,13 +98,33 @@ const getStyleListItem = () => {
 export const contentComponents = {
   types: {
     image: ({ value }: any) => {
-      console.log(value, '<<< value image');
+      console.log(value, '<< image');
+
+      const { Phone, SmallDesktop } = useResponsive();
+
       return (
-        <img
-          // @ts-ignore
-          src={urlFor(value)}
-          style={{ width: '100%', height: '28vw', objectFit: 'cover' }}
-        />
+        <Grid container direction="column" alignItems="center">
+          <Grid item width="100%">
+            <img
+              // @ts-ignore
+              src={urlFor(value)}
+              style={{
+                width: '100%',
+                height: Phone ? '44vw' : SmallDesktop ? '34vw' : '28vw',
+                objectFit: 'cover',
+              }}
+            />
+          </Grid>
+          <Grid item>
+            <Typography
+              variant="caption"
+              sx={{ color: grey[500] }}
+              align="center"
+            >
+              {value?.caption}
+            </Typography>
+          </Grid>
+        </Grid>
       );
     },
   },
@@ -126,7 +147,7 @@ export const contentComponents = {
             <Typography
               variant={
                 // isImageDesc(value) ? 'body2' :
-                'body1'
+                'body2'
               }
               align={
                 // isImageDesc(value) ? 'center' :
@@ -205,7 +226,7 @@ export const contentComponents = {
         // ? for link
         else if (isMarkIdMatch(objText?.marks, value?.markDefs)) {
           return (
-            <Typography key={objText._key}>
+            <Typography key={objText._key} variant="body2">
               <a
                 href={getLinkHref(objText?.marks, value?.markDefs)}
                 target={'_blank'}
@@ -233,6 +254,7 @@ export const contentComponents = {
                 lineHeight: '2.4rem',
               }}
               // color="whitesmoke"
+              variant="body2"
             >
               {objText.text || ''}
             </Typography>

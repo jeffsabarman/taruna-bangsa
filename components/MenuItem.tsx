@@ -81,6 +81,7 @@ const MenuItem: FC<MenuItemProps> = ({ label, href, ...props }) => {
           aria-owns={anchorEl ? 'simple-menu' : undefined}
           aria-haspopup="true"
           onMouseOver={handleClick}
+          // onMouseOut={handleClose}
           size="small"
           sx={styles['&.MuiButton-text']}
           variant="text"

@@ -129,7 +129,7 @@ export const ALL_NEWS_AND_EVENTS = groq` // TODO: Add pagination
   slug,
   "mainImageUrl": mainImage.asset->url,
   publishedAt,
-  "bodySnippet": body[0].children[0].text
+  "bodySnippet": body[0]
 }
 `;
 
@@ -142,6 +142,7 @@ export const NEWS_AND_EVENTS_CONTENT = groq`
   _id,
   title,
   "mainImageUrl": mainImage.asset->url,
+  "mainImageCaption": mainImage.caption,
   body,
   publishedAt,
 }

@@ -20,7 +20,7 @@ interface NewsAndEventsPageProps {
     _id: string;
     mainImageUrl: string;
     title: string;
-    bodySnippet: string;
+    bodySnippet: any;
     publishedAt: string;
     slug: {
       current: string;
