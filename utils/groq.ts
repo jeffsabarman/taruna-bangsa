@@ -40,7 +40,7 @@ export const EDUCATIONS_KB_TK = groq`
 `;
 
 export const EDUCATIONS_SD = groq`
-*[_type == "educations" && educationLevel == "SD" && !(_id in path('drafts.**'))][0] {
+*[_type == "academics" && educationLevel == "SD" && !(_id in path('drafts.**'))][0] {
   _id,
   educationLevel,
   scheduleKBM,
@@ -59,7 +59,7 @@ export const EDUCATIONS_SD = groq`
 `;
 
 export const EDUCATIONS_SMP = groq`
-*[_type == "educations" && educationLevel == "SMP" && !(_id in path('drafts.**'))][0] {
+*[_type == "academics" && educationLevel == "SMP" && !(_id in path('drafts.**'))][0] {
   _id,
   educationLevel,
   scheduleKBM,
@@ -78,7 +78,7 @@ export const EDUCATIONS_SMP = groq`
 `;
 
 export const EDUCATIONS_SMA = groq`
-*[_type == "educations" && educationLevel == "SMA" && !(_id in path('drafts.**'))][0] {
+*[_type == "academics" && educationLevel == "SMA" && !(_id in path('drafts.**'))][0] {
   _id,
   educationLevel,
   scheduleKBM,
@@ -100,8 +100,8 @@ export const INSTITUTIONAL_ADMINSTRATOR = groq`
 *[_type == "institutionalAdministrator" && !(_id in path('drafts.**'))] {
   _id,
   name,
-  jobTitle,
-  "imageUrl": image.asset->url
+  "role": jobTitle,
+  "image": image.asset->url
 }
 `;
 

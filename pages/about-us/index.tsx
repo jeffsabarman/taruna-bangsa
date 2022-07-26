@@ -8,11 +8,14 @@ import {
 import Container from '@/components/Container';
 import { Box, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useResponsive } from 'helpers/custom-hooks';
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import headMasterPic from '@/public/images/lingling.png';
 import HeaderLayout from '@/components/HeaderLayout';
 import Academics from '@/components/Home/Academics';
 import HeroSection from '@/components/Home/HeroSection';
+//* Sanity
+import sanityClient from 'client';
+import { INSTITUTIONAL_ADMINSTRATOR } from '@/utils/groq';
 
 /** Mocked Data */
 const images = [
@@ -26,32 +29,32 @@ const images = [
   },
 ];
 
-const teachers = [
-  {
-    image:
-      'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    name: 'Mr.John Doe',
-    role: 'Wali Kelas TK - A',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    name: 'Mr.John Doe',
-    role: 'Wali Kelas TK - A',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    name: 'Mr.John Doe',
-    role: 'Wali Kelas TK - A',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    name: 'Mr.John Doe',
-    role: 'Wali Kelas TK - A',
-  },
-];
+// const teachers = [
+//   {
+//     image:
+//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+//     name: 'Mr.John Doe',
+//     role: 'Wali Kelas TK - A',
+//   },
+//   {
+//     image:
+//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+//     name: 'Mr.John Doe',
+//     role: 'Wali Kelas TK - A',
+//   },
+//   {
+//     image:
+//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+//     name: 'Mr.John Doe',
+//     role: 'Wali Kelas TK - A',
+//   },
+//   {
+//     image:
+//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+//     name: 'Mr.John Doe',
+//     role: 'Wali Kelas TK - A',
+//   },
+// ];
 
 const AboutUsPage: FC = (props) => {
   /** Utilities */
@@ -60,6 +63,23 @@ const AboutUsPage: FC = (props) => {
 
   /** Media Queries */
   const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
+  const SmallLaptop = useMediaQuery('(max-width:1020px)');
+
+  /** State */
+  const [administrators, setAdministrators] = useState<
+    { image: string; name: string; role: string; _id: string }[]
+  >([]);
+
+  /** Functions */
+  const getInstitutionalAdministrators = async () => {
+    const data = await sanityClient.fetch(INSTITUTIONAL_ADMINSTRATOR);
+    setAdministrators(data);
+  };
+
+  /** Hooks */
+  useEffect(() => {
+    getInstitutionalAdministrators();
+  }, []);
 
   return (
     <>
@@ -106,6 +126,7 @@ const AboutUsPage: FC = (props) => {
       <Box bgcolor={theme.palette.primary.main}>
         <Container
           py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}
+          // pr={Tablet ? '0 !important' : '2rem'}
           size={Phone ? 'xs' : SmallDesktop ? 'md' : Desktop ? 'lg' : 'xl'}
         >
           <Container
@@ -117,27 +138,32 @@ const AboutUsPage: FC = (props) => {
               variant={Phone ? 'subtitle1' : Tablet ? 'h6' : 'h4'}
               color="whitesmoke"
               textAlign="center"
+              // pr={Phone ? '2rem' : 0}
             >
               Pengurus Yayasan Pendidikan Taruna Bangsa
             </Typography>
-            <Box mt={theme.spacing(8)} position="relative">
-              {Tablet ? (
+            <Box
+              mt={Phone ? theme.spacing(4) : theme.spacing(8)}
+              position="relative"
+            >
+              {SmallLaptop ? (
                 <Grid
                   container
                   spacing={2}
                   flexWrap="nowrap"
                   style={{ overflow: 'auto' }}
                 >
-                  {teachers?.map((teacher) => {
+                  {/* {teachers?.map((teacher) => { */}
+                  {administrators?.map((administrator) => {
                     return (
                       <Grid
                         item
                         // xs={4}
-                        key={teacher?.name}
+                        key={administrator?._id}
                       >
-                        <Box width="14rem">
+                        <Box width="14rem" mr={1}>
                           <TeacherCarouselItem
-                            teacher={teacher}
+                            teacher={administrator}
                             themeColor="white"
                           />
                         </Box>
@@ -148,7 +174,7 @@ const AboutUsPage: FC = (props) => {
               ) : (
                 <TeacherCarousel
                   themeColor="white"
-                  teachersList={teachers}
+                  teachersList={administrators}
                   paginationBottom={'-3rem'}
                 />
               )}

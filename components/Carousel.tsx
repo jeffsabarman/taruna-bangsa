@@ -189,6 +189,14 @@ const StyledPagination: FC<PaginationProps> = ({
     };
   };
 
+  // const getSxIconInactive = () => {
+  //   return {
+  //     color: `rgba(189, 189, 189, 0.8)`,
+  //     // fontSize: customSmallPhone ? '0.4rem' : Tablet ? '0.6rem' : '0.8rem',
+  //     fontSize: customSmallPhone ? '0.8rem' : Tablet ? '1rem' : '1.2rem',
+  //   };
+  // };
+
   return (
     // <Pagination>
     //   {
@@ -196,6 +204,7 @@ const StyledPagination: FC<PaginationProps> = ({
       container
       spacing={1}
       justifyContent="center"
+      // alignItems="center"
       sx={{
         position: 'absolute',
         bottom: paginationBottom,
@@ -221,7 +230,12 @@ const StyledPagination: FC<PaginationProps> = ({
                 <CircleIcon sx={getSxIcon()} />
               ) : (
                 // <CircleOutlinedIcon sx={getSxIcon()} />
-                <CircleIcon sx={getSxIcon()} style={{ color: grey[300] }} />
+                <CircleIcon
+                  sx={getSxIcon()}
+                  // sx={getSxIconInactive()}
+                  style={{ color: `rgba(189, 189, 189, 0.8)` }}
+                  // style={{ color: grey[400] }}
+                />
               )}
             </IconButton>
           </Grid>
@@ -458,14 +472,14 @@ export const TeacherCarouselItem = ({
           style={{
             // width: Tablet ? '16rem' : '100%',
             height: customSmallPhone
-              ? '80vw'
+              ? '18rem'
               : // : Phone
               // ? '18rem'
               Tablet
               ? '18rem'
               : SmallDesktop
-              ? '26vw'
-              : '28vw',
+              ? '28vw'
+              : '24vw',
           }}
         />
       </Grid>
