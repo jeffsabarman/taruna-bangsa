@@ -127,6 +127,7 @@ export const ALL_NEWS_AND_EVENTS = groq` // TODO: Add pagination
   _id,
   title,
   slug,
+  description,
   "mainImageUrl": mainImage.asset->url,
   publishedAt,
   "bodySnippet": body[0]

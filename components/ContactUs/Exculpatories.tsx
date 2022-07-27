@@ -39,7 +39,7 @@ const Exculpatories: FC<ExculpatoriesProps> = ({
         <GridCarousel
           gridImages={exculImageSets}
           themeColor={themeColor}
-          paginationBottom="-2rem"
+          paginationBottom="-3rem"
         />
       </Box>
     </Box>

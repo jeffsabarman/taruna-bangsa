@@ -22,6 +22,7 @@ interface CardNewsEventProps {
   imgUrl: string;
   publishedAt: string;
   title: string;
+  description: string;
   body: any;
   slug: string;
 }
@@ -30,6 +31,7 @@ const CardNewsEvent: FC<CardNewsEventProps> = ({
   imgUrl,
   publishedAt,
   title,
+  description,
   body,
   slug,
 }) => {
@@ -66,17 +68,9 @@ const CardNewsEvent: FC<CardNewsEventProps> = ({
               {getShortenText(title, 56, 58)}
             </Typography>
           </Grid>
-          <Grid
-            item
-            maxHeight="8rem"
-            sx={{
-              overflow: 'hidden',
-              backgroundImage: `linear-gradient(rgba(255,0,0,0,0.2), ${grey[800]})`,
-            }}
-          >
+          <Grid item>
             <Typography variant="caption">
-              {/* {JSON.stringify(getShortenText(body, 120, 124))} */}
-              <PortableText value={body} components={contentComponents} />
+              {getShortenText(description, 120, 124)}
             </Typography>
           </Grid>
           <Grid

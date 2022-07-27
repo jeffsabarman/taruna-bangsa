@@ -72,34 +72,34 @@ type ImageLink = {
 };
 
 export type GridImageSets = {
-  imageSets: { url: string; alt: string }[];
-  // imageSets: {
-  // 1: string;
-  // 2: string;
-  // 3: string;
-  // 4: string;
-  // 5: string;
-  // 1: {
-  //   url: string;
-  //   alt: string;
-  // };
-  // 2: {
-  //   url: string;
-  //   alt: string;
-  // };
-  // 3: {
-  //   url: string;
-  //   alt: string;
-  // };
-  // 4: {
-  //   url: string;
-  //   alt: string;
-  // };
-  // 5: {
-  //   url: string;
-  //   alt: string;
-  // };
-  // };
+  // imageSets: { url: string; alt: string }[];
+  imageSets: {
+    // 1: string;
+    // 2: string;
+    // 3: string;
+    // 4: string;
+    // 5: string;
+    1: {
+      url: string;
+      alt: string;
+    };
+    2: {
+      url: string;
+      alt: string;
+    };
+    3: {
+      url: string;
+      alt: string;
+    };
+    4: {
+      url: string;
+      alt: string;
+    };
+    5: {
+      url: string;
+      alt: string;
+    };
+  };
 };
 
 interface IElasticCarouselProps extends Partial<ReactElasticCarouselProps> {
@@ -115,6 +115,7 @@ interface CarouselArrowProps {
   type: any;
   onClick: () => void;
   isEdge: boolean;
+  themeColor: ThemeColor;
 }
 
 // @ts-ignore
@@ -137,8 +138,45 @@ const StyledElasticCarousel: FC<IElasticCarouselProps> = ({
   );
 };
 
-const CarouselArrow: FC<CarouselArrowProps> = ({ type, onClick, isEdge }) => {
-  const pointer = type === consts.PREV ? <ArrowLeft /> : <ArrowRight />;
+const CarouselArrow: FC<CarouselArrowProps> = ({
+  type,
+  onClick,
+  isEdge,
+  themeColor,
+}) => {
+  const theme = useTheme();
+  const getIconColor = useMemo(() => {
+    if (themeColor) {
+      switch (themeColor) {
+        case 'red':
+          return theme.palette.secondary.main;
+        case 'lightblue':
+          return theme.palette.primary.light;
+        case 'grey':
+          return theme.palette.grey[500];
+        case 'white':
+          return theme.palette.background.paper;
+        case 'blue':
+          return theme.palette.primary.main;
+
+        default:
+          return theme.palette.warning.main;
+      }
+    }
+  }, [themeColor]);
+
+  const getSxIcon = () => {
+    return {
+      color: getIconColor,
+    };
+  };
+
+  const pointer =
+    type === consts.PREV ? (
+      <ArrowLeft sx={getSxIcon()} />
+    ) : (
+      <ArrowRight sx={getSxIcon()} />
+    );
   return (
     <Button
       onClick={onClick}
@@ -279,7 +317,10 @@ const HeroCarousel: FC<IElasticCarouselProps> = ({
     <StyledElasticCarousel
       {...props}
       breakPoints={breakPoints}
-      renderArrow={CarouselArrow}
+      // renderArrow={CarouselArrow}
+      renderArrow={({ type, onClick, isEdge }) => (
+        <CarouselArrow {...{ type, onClick, isEdge, themeColor }} />
+      )}
       showEmptySlots={false}
       renderPagination={({ pages, activePage, onClick }) => (
         // @ts-ignore
@@ -348,7 +389,10 @@ const GridCarousel: FC<IElasticCarouselProps> = ({
     <StyledElasticCarousel
       {...props}
       breakPoints={breakPoints}
-      renderArrow={CarouselArrow}
+      // renderArrow={CarouselArrow}
+      renderArrow={({ type, onClick, isEdge }) => (
+        <CarouselArrow {...{ type, onClick, isEdge, themeColor }} />
+      )}
       // @ts-ignore
       // renderPagination={StyledPagination}
       renderPagination={({ pages, activePage, onClick }) => (
@@ -377,19 +421,21 @@ const GridCarousel: FC<IElasticCarouselProps> = ({
         >
           <GridImage
             orientation="landscape"
-            // url={gridImage.imageSets['1']?.url}
-            // alt={gridImage.imageSets['1']?.alt}
-            url={gridImage.imageSets[0]?.url}
-            alt={gridImage.imageSets[0]?.alt}
+            // url={gridImage.imageSets['1']}
+            url={gridImage.imageSets['1']?.url}
+            alt={gridImage.imageSets['1']?.alt}
+            // url={gridImage.imageSets[0]?.url}
+            // alt={gridImage.imageSets[0]?.alt}
             sx={{ gridColumn: '1', gridRow: '1' }}
           />
           <GridImage
             orientation="portrait"
             sx={{ gridColumn: '2', gridRow: '1/3' }}
-            // url={gridImage.imageSets['2']?.url}
-            // alt={gridImage.imageSets['2']?.alt}
-            url={gridImage.imageSets[1]?.url}
-            alt={gridImage.imageSets[1]?.alt}
+            // url={gridImage.imageSets['2']}
+            url={gridImage.imageSets['2']?.url}
+            alt={gridImage.imageSets['2']?.alt}
+            // url={gridImage.imageSets[1]?.url}
+            // alt={gridImage.imageSets[1]?.alt}
           />
           <GridImage
             orientation="landscape"
@@ -517,7 +563,11 @@ const TeacherCarousel: FC<IElasticCarouselProps> = ({
     <StyledElasticCarousel
       {...props}
       breakPoints={breakPoints}
-      renderArrow={CarouselArrow}
+      // renderArrow={CarouselArrow}
+      renderArrow={({ type, onClick, isEdge }) => (
+        <CarouselArrow {...{ type, onClick, isEdge, themeColor }} />
+      )}
+      showArrows={true}
       // @ts-ignore
       // renderPagination={StyledPagination}
       renderPagination={({ pages, activePage, onClick }) => (

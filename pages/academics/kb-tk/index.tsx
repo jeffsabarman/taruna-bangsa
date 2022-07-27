@@ -92,6 +92,57 @@ const sections = [
 //   },
 // ];
 
+const exculImageSets = [
+  {
+    imageSets: {
+      1: {
+        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+        alt: 'gambar 1',
+      },
+      2: {
+        url: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
+        alt: 'gambar 2',
+      },
+      3: {
+        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+        alt: 'gambar 1',
+      },
+      4: {
+        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+        alt: 'gambar 1',
+      },
+      5: {
+        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+        alt: 'gambar 1',
+      },
+    },
+  },
+  {
+    imageSets: {
+      1: {
+        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+        alt: 'gambar 1',
+      },
+      2: {
+        url: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
+        alt: 'gambar 2',
+      },
+      3: {
+        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+        alt: 'gambar 1',
+      },
+      4: {
+        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+        alt: 'gambar 1',
+      },
+      5: {
+        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+        alt: 'gambar 1',
+      },
+    },
+  },
+];
+
 // const teachers = [
 //   {
 //     image:
@@ -134,7 +185,7 @@ const AcademicKBTK: FC = (props) => {
   const [teachers, setTeachers] = useState([]);
   const [typeOfActivites, setTypeOfActivites] = useState([]);
   const [exculpatories, setExculpatories] = useState([]);
-  const [exculImageSets, setExculImageSets] = useState([]);
+  // const [exculImageSets, setExculImageSets] = useState([]);
 
   /** Functions */
   const getAcademicData = async () => {
@@ -149,23 +200,24 @@ const AcademicKBTK: FC = (props) => {
     const exculImages = academicData?.extracurricularImages;
     console.log(exculImages?.length, '<<< length');
 
-    let idx = 0;
-    const cutPoint = 5;
-    let structuredExculImages: any = [];
+    // ? Calcualtion for excul image
+    // let idx = 0;
+    // const cutPoint = 5;
+    // let structuredExculImages: any = [];
 
-    while (idx * cutPoint < exculImages?.length) {
-      structuredExculImages.push({
-        imageSets: exculImages
-          ?.slice(idx * cutPoint, (idx + 1) * cutPoint)
-          ?.map((imageSet: { url: string; alt: string }) => {
-            return { url: imageSet?.url, alt: imageSet?.alt };
-          }),
-      });
-      idx++;
-    }
+    // while (idx * cutPoint < exculImages?.length) {
+    //   structuredExculImages.push({
+    //     imageSets: exculImages
+    //       ?.slice(idx * cutPoint, (idx + 1) * cutPoint)
+    //       ?.map((imageSet: { url: string; alt: string }) => {
+    //         return { url: imageSet?.url, alt: imageSet?.alt };
+    //       }),
+    //   });
+    //   idx++;
+    // }
 
-    console.log(structuredExculImages, '<< struct');
-    setExculImageSets(structuredExculImages);
+    // console.log(structuredExculImages, '<< struct');
+    // setExculImageSets(structuredExculImages);
 
     // setExculImageSets(
     //   aca

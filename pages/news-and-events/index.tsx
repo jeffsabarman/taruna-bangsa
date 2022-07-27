@@ -20,6 +20,7 @@ interface NewsAndEventsPageProps {
     _id: string;
     mainImageUrl: string;
     title: string;
+    description: string;
     bodySnippet: any;
     publishedAt: string;
     slug: {
@@ -67,6 +68,7 @@ export default function NewsAndEventsPage({
                     imgUrl={data?.mainImageUrl}
                     publishedAt={data?.publishedAt}
                     title={data?.title}
+                    description={data?.description}
                     body={data?.bodySnippet}
                     slug={data?.slug?.current}
                   />
