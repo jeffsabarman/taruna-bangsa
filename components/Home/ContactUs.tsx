@@ -3,6 +3,7 @@ import React from 'react';
 import Container from '../Container';
 import { Polygon } from '@/components/Shapes';
 import { useResponsive } from 'helpers/custom-hooks';
+import ReactMap from '../GoogleMaps';
 
 const ContactUs = () => {
   const theme = useTheme();
@@ -15,7 +16,9 @@ const ContactUs = () => {
 
   return (
     <Grid container alignItems="stretch">
-      <Grid item xs={12} md={6} bgcolor="lightblue"></Grid>
+      <Grid item xs={12} md={6} minHeight={350}>
+        <ReactMap />
+      </Grid>
       <Grid item xs={12} md={6}>
         <Box bgcolor={theme.palette.primary.main}>
           <Container

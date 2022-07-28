@@ -1,5 +1,6 @@
 import ContactUsForm from '@/components/ContactUs/ContactUsForm';
 import RegistrationFlow from '@/components/ContactUs/RegistrationFlow';
+import ReactMap from '@/components/GoogleMaps';
 import HeaderLayout from '@/components/HeaderLayout';
 import {
   Box,
@@ -23,6 +24,9 @@ const ContactUs = () => {
   return (
     <Box mt={largerThanPhone || Phone ? theme.spacing(12) : theme.spacing(8)}>
       <Grid container direction="column">
+        <Grid item xs>
+          <ReactMap style={{ width: '100vw', height: 500 }} />
+        </Grid>
         <HeaderLayout title="Alur Pendaftaran Online">
           <RegistrationFlow />
         </HeaderLayout>
