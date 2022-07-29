@@ -13,6 +13,8 @@ import headMasterPic from '@/public/images/lingling.png';
 import HeaderLayout from '@/components/HeaderLayout';
 import Academics from '@/components/Home/Academics';
 import HeroSection from '@/components/Home/HeroSection';
+import { grey } from '@mui/material/colors';
+import SwipeArrow from '@/components/shared/SwipeArrow';
 //* Sanity
 import sanityClient from 'client';
 import { INSTITUTIONAL_ADMINSTRATOR } from '@/utils/groq';
@@ -147,30 +149,48 @@ const AboutUsPage: FC = (props) => {
               position="relative"
             >
               {SmallLaptop ? (
-                <Grid
-                  container
-                  spacing={2}
-                  flexWrap="nowrap"
-                  style={{ overflow: 'auto' }}
-                >
-                  {/* {teachers?.map((teacher) => { */}
-                  {administrators?.map((administrator) => {
-                    return (
-                      <Grid
-                        item
-                        // xs={4}
-                        key={administrator?._id}
-                      >
-                        <Box width="14rem" mr={1}>
-                          <TeacherCarouselItem
-                            teacher={administrator}
-                            themeColor="white"
-                          />
-                        </Box>
+                <>
+                  <Grid
+                    container
+                    spacing={2}
+                    flexWrap="nowrap"
+                    style={{ overflow: 'auto' }}
+                  >
+                    {/* {teachers?.map((teacher) => { */}
+                    {administrators?.map((administrator) => {
+                      return (
+                        <Grid
+                          item
+                          // xs={4}
+                          key={administrator?._id}
+                        >
+                          <Box width="14rem" mr={1}>
+                            <TeacherCarouselItem
+                              teacher={administrator}
+                              themeColor="white"
+                            />
+                          </Box>
+                        </Grid>
+                      );
+                    })}
+                  </Grid>
+                  <SwipeArrow color={grey[200]} />
+                  {/* <Grid item xs={12} style={{ marginTop: theme.spacing(2) }}>
+                    <Grid container spacing={1} alignItems="center">
+                      <Grid item>
+                        <Typography
+                          variant="body2"
+                          style={{ color: grey[300] }}
+                        >
+                          Scroll
+                        </Typography>
                       </Grid>
-                    );
-                  })}
-                </Grid>
+                      <Grid item style={{ marginTop: theme.spacing(1) }}>
+                        <StyledArrow />
+                      </Grid>
+                    </Grid>
+                  </Grid> */}
+                </>
               ) : (
                 <TeacherCarousel
                   themeColor="white"

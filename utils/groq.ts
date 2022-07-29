@@ -123,14 +123,15 @@ export const YOUTUBE_EMBED = groq`
 `;
 
 export const ALL_NEWS_AND_EVENTS = groq` // TODO: Add pagination
-*[_type == "newsEvents" && !(_id in path('drafts.**'))  && isVisible == true && publishedAt < $today ] | order(publishedAt desc) {
+*[_type == "newsEvents" && !(_id in path('drafts.**'))  && isVisible == true && publishedAt < $today ] | order(publishedAt desc) [$start...$end] {
   _id,
   title,
   slug,
   description,
   "mainImageUrl": mainImage.asset->url,
+  "mainImageCaption": mainImage.caption,
   publishedAt,
-  "bodySnippet": body[0]
+  // "bodySnippet": body[0]
 }
 `;
 

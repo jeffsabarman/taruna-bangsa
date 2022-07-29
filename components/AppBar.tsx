@@ -36,11 +36,12 @@ const ElevationScroll = (props: ElevationScrollProps) => {
 const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
   /** Utilities */
   const theme = useTheme();
-  const { SmallDesktop, Phone } = useResponsive();
+  const { SmallDesktop, Desktop, Phone } = useResponsive();
   const styles = {
     hamburger: {
       display: { lg: 'none' },
       color: theme.palette.primary.main,
+      marginRight: theme.spacing(3),
     },
   };
 
@@ -84,7 +85,7 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
           size={Phone ? 'xs' : SmallDesktop ? 'sm' : 'md'}
         >
           <Toolbar>
-            <Grid alignItems="center" container spacing={1}>
+            <Grid alignItems="center" container spacing={Desktop ? 0 : 1}>
               <Grid item>
                 <IconButton
                   aria-label="open drawer"
@@ -100,7 +101,7 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
                   <Image
                     style={{ cursor: 'pointer' }}
                     src="/images/stb-logo.svg"
-                    width={200}
+                    width={Phone ? 140 : 160}
                     height={80}
                   />
                 </Link>

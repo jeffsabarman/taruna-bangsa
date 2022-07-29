@@ -46,6 +46,7 @@ const NewsAndEvents = () => {
   /** Media Query */
   const { Desktop, Phone, Tablet } = useResponsive();
   const customSmallDesktop = useMediaQuery('(max-width:1320px)');
+  const customPhone = useMediaQuery('(max-width:715px)');
 
   /** State */
   const [newsEvents, setNewsEvents] = useState<NewsEvent[]>([]);
@@ -83,7 +84,7 @@ const NewsAndEvents = () => {
         {newsEvents?.map(({ imageUrl, caption, _id }, idx) => (
           <Grid
             item
-            xs={Phone ? 12 : Desktop ? 6 : 3}
+            xs={customPhone ? 12 : Desktop ? 6 : 3}
             key={_id}
             container
             justifyContent={'center'}

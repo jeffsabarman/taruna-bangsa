@@ -10,6 +10,7 @@ import {
   Box,
 } from '@mui/material';
 import { ACADEMICS_SUBMENU } from 'helpers/constants';
+import { useResponsive } from 'helpers/custom-hooks';
 import Link, { LinkProps } from 'next/link';
 import { useRouter } from 'next/router';
 import React, { FC, useState } from 'react';
@@ -22,6 +23,9 @@ const MenuItem: FC<MenuItemProps> = ({ label, href, ...props }) => {
   /** Utilities */
   const theme = useTheme();
   const router = useRouter();
+
+  /** Media Query */
+  const { Desktop } = useResponsive();
 
   const getIsActive = () => {
     if (label === 'Akademik') {
@@ -42,7 +46,7 @@ const MenuItem: FC<MenuItemProps> = ({ label, href, ...props }) => {
         ? theme.palette.primary.main
         : theme.palette.grey[600],
       textTransform: 'capitalize',
-      padding: '0.4rem 2rem',
+      padding: Desktop ? '0.4rem 1.4rem' : '0.4rem 2rem',
       textAlign: 'center',
       '&:hover': {
         color: theme.palette.primary.main,

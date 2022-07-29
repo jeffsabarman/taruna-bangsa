@@ -1,9 +1,11 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid, Typography, useTheme } from '@mui/material';
 import { useBackgroundTypography } from 'helpers/custom-hooks';
 import { ThemeColor } from 'helpers/types';
 import React, { FC, useMemo } from 'react';
 import { TeacherCarousel, TeacherCarouselItem } from '../Carousel';
 import { useResponsive } from 'helpers/custom-hooks';
+import { grey } from '@mui/material/colors';
+import SwipeArrow from '../shared/SwipeArrow';
 
 export type TeacherItem = {
   image: string;
@@ -19,6 +21,7 @@ interface TeachersProps {
 
 const Teachers: FC<TeachersProps> = ({ themeColor, title, teachersList }) => {
   const styles = useBackgroundTypography();
+  const theme = useTheme();
 
   /** Media Query */
   const { Phone, Tablet } = useResponsive();
@@ -66,29 +69,32 @@ const Teachers: FC<TeachersProps> = ({ themeColor, title, teachersList }) => {
         <Grid item sx={{ width: '100%', position: 'relative' }}>
           <Box mt={Tablet ? 4 : 8}>
             {Tablet ? (
-              <Grid
-                container
-                spacing={2}
-                flexWrap="nowrap"
-                style={{ overflow: 'auto' }}
-              >
-                {teachersList?.map((teacher) => {
-                  return (
-                    <Grid
-                      item
-                      // xs={4}
-                      key={teacher?.name}
-                    >
-                      <Box width="14rem">
-                        <TeacherCarouselItem
-                          teacher={teacher}
-                          themeColor={themeColor}
-                        />
-                      </Box>
-                    </Grid>
-                  );
-                })}
-              </Grid>
+              <>
+                <Grid
+                  container
+                  spacing={2}
+                  flexWrap="nowrap"
+                  style={{ overflow: 'auto' }}
+                >
+                  {teachersList?.map((teacher) => {
+                    return (
+                      <Grid
+                        item
+                        // xs={4}
+                        key={teacher?.name}
+                      >
+                        <Box width="14rem">
+                          <TeacherCarouselItem
+                            teacher={teacher}
+                            themeColor={themeColor}
+                          />
+                        </Box>
+                      </Grid>
+                    );
+                  })}
+                </Grid>
+                <SwipeArrow color={grey[500]} />
+              </>
             ) : (
               <TeacherCarousel
                 teachersList={teachersList}

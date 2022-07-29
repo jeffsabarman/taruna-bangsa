@@ -287,13 +287,15 @@ const StyledPagination: FC<PaginationProps> = ({
 
 const CarouselItem = (props: { image: ImageLink | undefined }) => {
   const { SmallDesktop, Desktop, Tablet, Phone } = useResponsive();
+  // const customDesktop = useMediaQuery("(max-width:)")
 
   return (
     <ImageCarousel
       onClick={() => window.open(props?.image?.link)}
       style={{
         // height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh',
-        height: Phone ? '70vw' : Tablet ? '65vw' : '50vw',
+        // height: Phone ? '70vw' : Tablet ? '65vw' : '50vw',
+        height: Phone ? '70vw' : Tablet ? '65vw' : Desktop ? '55vw' : '50vw',
       }}
       src={
         Phone ? props?.image?.urlSmall || props?.image?.url : props?.image?.url
@@ -507,6 +509,7 @@ export const TeacherCarouselItem = ({
     <Grid
       // mr={SmallDesktop ? theme.spacing(4) : theme.spacing(8)}
       mr={Desktop ? theme.spacing(4) : theme.spacing(8)}
+      ml={theme.spacing(1)}
       container
       direction="column"
       spacing={3}
@@ -537,7 +540,7 @@ export const TeacherCarouselItem = ({
           {teacher.name}
         </Typography>
         <Typography
-          variant="body2"
+          variant={Phone ? 'caption' : 'body2'}
           color={themeColor === 'white' ? 'whitesmoke' : 'GrayText'}
         >
           {teacher.role}

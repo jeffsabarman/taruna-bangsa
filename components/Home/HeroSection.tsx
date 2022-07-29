@@ -104,7 +104,8 @@ const HeroSection: FC = (props) => {
         // sx={{ height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh' }}
         // sx={{ height: SmallDesktop ? '70vw' : Desktop ? '80vw' : '90vh' }}
         sx={{
-          height: Phone ? '70vw' : Tablet ? '65vw' : '50vw',
+          // height: Phone ? '70vw' : Tablet ? '65vw' : '50vw',
+          height: Phone ? '70vw' : Tablet ? '65vw' : Desktop ? '55vw' : '50vw',
         }}
       >
         <Grid item xs>

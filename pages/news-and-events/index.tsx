@@ -5,6 +5,7 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
+  Pagination,
 } from '@mui/material';
 import { useResponsive } from 'helpers/custom-hooks';
 import React from 'react';
@@ -13,7 +14,9 @@ import CardNewsEvent from '@/components/NewsEvents/CardNewsEvent';
 import Container from '@/components/Container';
 //* Sanity
 import sanityClient from 'client';
-import { ALL_NEWS_AND_EVENTS, NEWS_AND_EVENTS_COUNT } from '@/utils/groq';
+import groq from 'groq';
+import { NEWS_AND_EVENTS_COUNT } from '@/utils/groq';
+import { useRouter } from 'next/router';
 
 interface NewsAndEventsPageProps {
   newsEvents: {
@@ -21,27 +24,49 @@ interface NewsAndEventsPageProps {
     mainImageUrl: string;
     title: string;
     description: string;
-    bodySnippet: any;
+    mainImageCaption: string;
+    // bodySnippet: any;
     publishedAt: string;
     slug: {
       current: string;
     };
   }[];
   newsEventsCount: number;
+  limit: number;
   error: boolean;
 }
 
 export default function NewsAndEventsPage({
   newsEvents,
   newsEventsCount,
+  limit,
   error,
 }: NewsAndEventsPageProps) {
   /** Utilities */
+  const router = useRouter();
+  const { page } = router?.query;
   const theme = useTheme();
-  const { Phone, SmallDesktop, Desktop } = useResponsive();
+  const { Phone, Tablet, SmallDesktop, Desktop } = useResponsive();
 
   /** Media Queries */
   const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
+  const customPhone = useMediaQuery('(max-width:700px)');
+
+  /** Functions */
+  const handleChangePage = (
+    event: React.ChangeEvent<unknown>,
+    value: number,
+  ) => {
+    // setCurrentPage(value);
+    router.push(
+      `/news-and-events?page=${value}`,
+      // `/blogs?page=${value}${getAdditionalQueryParamsBlog(
+      //   searchText,
+      //   router?.query?.category,
+      //   router?.query?.tag
+      // )}`
+    );
+  };
 
   return (
     <Box mt={largerThanPhone || Phone ? theme.spacing(12) : theme.spacing(8)}>
@@ -51,7 +76,7 @@ export default function NewsAndEventsPage({
       >
         <Grid
           container
-          spacing={3}
+          spacing={Tablet ? 3 : Desktop ? 6 : 3}
           // minHeight="100vh"
           // marginTop={theme.spacing(20)}
           // padding={10}
@@ -63,18 +88,36 @@ export default function NewsAndEventsPage({
           </Grid>
           {newsEvents?.length
             ? newsEvents?.map((data) => (
-                <Grid item xs={4} key={data?._id} mb={2}>
+                <Grid
+                  item
+                  xs={customPhone ? 12 : Desktop ? 6 : 4}
+                  key={data?._id}
+                  mb={2}
+                >
                   <CardNewsEvent
                     imgUrl={data?.mainImageUrl}
                     publishedAt={data?.publishedAt}
                     title={data?.title}
                     description={data?.description}
-                    body={data?.bodySnippet}
+                    imgCaption={data?.mainImageCaption}
+                    // body={data?.bodySnippet}
                     slug={data?.slug?.current}
                   />
                 </Grid>
               ))
             : null}
+          <Grid
+            item
+            container
+            justifyContent="center"
+            style={{ marginTop: theme.spacing(4) }}
+          >
+            <Pagination
+              count={Math.ceil(newsEventsCount / limit)}
+              color="primary"
+              onChange={handleChangePage}
+            />
+          </Grid>
         </Grid>
       </Container>
     </Box>
@@ -87,6 +130,7 @@ export async function getServerSideProps({
   query: { page: number };
 }) {
   // const { searchText, tag, category, page = 1 } = query;
+  const { page = '1' } = query;
 
   // const getAdditionalGroqQuery = () => {
   //   let additionalQuery = "";
@@ -136,11 +180,30 @@ export async function getServerSideProps({
   // let mainBlog = "";
   let error = false;
 
+  // ? Pagination
+  // TODO: Handle pagination
+  const limitPerPage = 6;
+  const start = page === '1' ? +page - 1 : (+page - 1) * limitPerPage;
+  const end = +start + limitPerPage;
+
   try {
+    const ALL_NEWS_AND_EVENTS = groq` // TODO: Add pagination
+      *[_type == "newsEvents" && !(_id in path('drafts.**'))  && isVisible == true && publishedAt < $today ] | order(publishedAt desc) [$start...$end] {
+        _id,
+        title,
+        slug,
+        description,
+        "mainImageUrl": mainImage.asset->url,
+        "mainImageCaption": mainImage.caption,
+        publishedAt,
+        // "bodySnippet": body[0]
+      }
+      `;
+
     newsEvents = await sanityClient.fetch(ALL_NEWS_AND_EVENTS, {
       today: new Date(),
-      // start: +start,
-      // end: +end,
+      start: +start,
+      end: +end,
     });
 
     newsEventsCount = await sanityClient.fetch(NEWS_AND_EVENTS_COUNT, {
@@ -159,7 +222,7 @@ export async function getServerSideProps({
       newsEvents,
       newsEventsCount,
       // allCategories,
-      // limit: limitPerPage,
+      limit: limitPerPage,
       // mainBlog,
       error,
     },

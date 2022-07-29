@@ -32,7 +32,8 @@ const NewsEventsCard: FC<NewsEventsCardProps> = ({
           : theme.palette.primary.light
       }
       maxWidth={customSmallPhone ? '100%' : Phone ? '20rem' : '22rem'}
-      // sx={{ minWidth: '16rem', maxWidth: '22rem' }}
+      width="100%"
+      // sx={{ minWidth: '18rem', maxWidth: '22rem' }}
       // sx={{ width: customSmallDesktop ? '20rem' : '100%' }}
     >
       <Box position="relative">
