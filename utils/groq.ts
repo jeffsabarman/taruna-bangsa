@@ -19,13 +19,13 @@ export const NEWS_AND_EVENTS_HOME = groq`
 }
 `;
 
-export const EDUCATIONS_KB_TK = groq`
+export const ACADEMIC_KB_TK = groq`
 // *[_type == "educations" && educationLevel == "KB/TK" && !(_id in path('drafts.**'))][0] {
 *[_type == "academics" && educationLevel == "KB/TK" && !(_id in path('drafts.**'))][0] {
   _id,
   educationLevel,
   scheduleKBM,
-  typeOfAcitvity,
+  activities,
   extracurricular,
   extracurricularImages[] {
     "alt": imageTitle,
@@ -39,12 +39,13 @@ export const EDUCATIONS_KB_TK = groq`
 }
 `;
 
-export const EDUCATIONS_SD = groq`
+export const ACADEMIC_SD = groq`
 *[_type == "academics" && educationLevel == "SD" && !(_id in path('drafts.**'))][0] {
   _id,
   educationLevel,
   scheduleKBM,
-  typeOfAcitvity,
+  // typeOfAcitvity,
+  activities,
   extracurricular,
   extracurricularImages[] {
     "alt": imageTitle,
@@ -58,12 +59,13 @@ export const EDUCATIONS_SD = groq`
 }
 `;
 
-export const EDUCATIONS_SMP = groq`
+export const ACADEMIC_SMP = groq`
 *[_type == "academics" && educationLevel == "SMP" && !(_id in path('drafts.**'))][0] {
   _id,
   educationLevel,
   scheduleKBM,
-  typeOfAcitvity,
+  // typeOfAcitvity,
+  activities,
   extracurricular,
   extracurricularImages[] {
     imageTitle,
@@ -77,12 +79,13 @@ export const EDUCATIONS_SMP = groq`
 }
 `;
 
-export const EDUCATIONS_SMA = groq`
+export const ACADEMIC_SMA = groq`
 *[_type == "academics" && educationLevel == "SMA" && !(_id in path('drafts.**'))][0] {
   _id,
   educationLevel,
   scheduleKBM,
-  typeOfAcitvity,
+  // typeOfAcitvity,
+  activities,
   extracurricular,
   extracurricularImages[] {
     imageTitle,

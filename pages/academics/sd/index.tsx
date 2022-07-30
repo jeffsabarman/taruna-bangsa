@@ -9,8 +9,9 @@ import {
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { useResponsive } from 'helpers/custom-hooks';
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import headMasterPic from '@/public/images/fransiska-xaveria.png';
+//* Components
 import Container from '@/components/Container';
 import YearGroupSection from '@/components/Academics/YearGroupSection';
 import VisionMission from '@/components/Academics/VisionMission';
@@ -18,6 +19,9 @@ import SchedulesAndActivities from '@/components/ContactUs/SchedulesAndActivitie
 import Exculpatories from '@/components/ContactUs/Exculpatories';
 import Teachers from '@/components/Academics/Teachers';
 import HeroSection from '@/components/Home/HeroSection';
+//* Sanity
+import sanityClient from 'client';
+import { ACADEMIC_SD } from '@/utils/groq';
 
 const sections = [
   {
@@ -39,75 +43,126 @@ const sections = [
 //   },
 // ];
 
-const schedules = [
-  'KB : Senin - Jumat : 10.00 - 12.00 WIB',
-  'TK : Senin - Jumat : 08.00 - 11.30 WIB',
-];
+// const schedules = [
+//   'KB : Senin - Jumat : 10.00 - 12.00 WIB',
+//   'TK : Senin - Jumat : 08.00 - 11.30 WIB',
+// ];
 
-const activities = [
-  'Field trip / karyawisata',
-  'Kunjungan belajar',
-  'Pemeriksaan gigi',
-  'Aktivitas di luar kelas (membatik, menanam)',
-  'Perayaan HUT RI dan Hari Besar Nasional (Kartini, Sumpah Pemuda, dll)',
-  'Kegiatan akhir semester',
-  'Porseni',
-];
+// const activities = [
+//   'Field trip / karyawisata',
+//   'Kunjungan belajar',
+//   'Pemeriksaan gigi',
+//   'Aktivitas di luar kelas (membatik, menanam)',
+//   'Perayaan HUT RI dan Hari Besar Nasional (Kartini, Sumpah Pemuda, dll)',
+//   'Kegiatan akhir semester',
+//   'Porseni',
+// ];
 
-const exculpatories = [
-  'Seni : Fashion & Modeling, Modern Dance, Balet, Lukis, Keyboard, Gitar, Vocal',
-  'Bahasa : Bahasa Inggris, Bahasa Mandarin',
-  'Olahraga : Futsal, Renang, Anggar',
-  'Keterampilan : Bakery',
-];
+// const exculpatories = [
+//   'Seni : Fashion & Modeling, Modern Dance, Balet, Lukis, Keyboard, Gitar, Vocal',
+//   'Bahasa : Bahasa Inggris, Bahasa Mandarin',
+//   'Olahraga : Futsal, Renang, Anggar',
+//   'Keterampilan : Bakery',
+// ];
+
+// const exculImageSets = [
+//   {
+//     imageSets: {
+//       1: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//       2: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
+//       3: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//       4: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//       5: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//     },
+//   },
+//   {
+//     imageSets: {
+//       1: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//       2: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
+//       3: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//       4: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//       5: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//     },
+//   },
+// ];
 
 const exculImageSets = [
   {
     imageSets: {
-      1: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-      2: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
-      3: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-      4: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-      5: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+      1: {
+        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+        alt: 'gambar 1',
+      },
+      2: {
+        url: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
+        alt: 'gambar 2',
+      },
+      3: {
+        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+        alt: 'gambar 1',
+      },
+      4: {
+        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+        alt: 'gambar 1',
+      },
+      5: {
+        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+        alt: 'gambar 1',
+      },
     },
   },
   {
     imageSets: {
-      1: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-      2: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
-      3: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-      4: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-      5: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+      1: {
+        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+        alt: 'gambar 1',
+      },
+      2: {
+        url: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
+        alt: 'gambar 2',
+      },
+      3: {
+        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+        alt: 'gambar 1',
+      },
+      4: {
+        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+        alt: 'gambar 1',
+      },
+      5: {
+        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+        alt: 'gambar 1',
+      },
     },
   },
 ];
 
-const teachers = [
-  {
-    image:
-      'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    name: 'Mr.John Doe',
-    role: 'Wali Kelas TK - A',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    name: 'Mr.John Doe',
-    role: 'Wali Kelas TK - A',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    name: 'Mr.John Doe',
-    role: 'Wali Kelas TK - A',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    name: 'Mr.John Doe',
-    role: 'Wali Kelas TK - A',
-  },
-];
+// const teachers = [
+//   {
+//     image:
+//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+//     name: 'Mr.John Doe',
+//     role: 'Wali Kelas TK - A',
+//   },
+//   {
+//     image:
+//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+//     name: 'Mr.John Doe',
+//     role: 'Wali Kelas TK - A',
+//   },
+//   {
+//     image:
+//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+//     name: 'Mr.John Doe',
+//     role: 'Wali Kelas TK - A',
+//   },
+//   {
+//     image:
+//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+//     name: 'Mr.John Doe',
+//     role: 'Wali Kelas TK - A',
+//   },
+// ];
 
 const AcademicSD: FC = (props) => {
   /** Utilities */
@@ -117,6 +172,29 @@ const AcademicSD: FC = (props) => {
   const { Phone, SmallDesktop, Desktop, Tablet } = useResponsive();
   const customSmallPhone = useMediaQuery('(max-width:360px)');
   const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
+
+  /** State */
+  // const [academicData, setAcademicData] = useState();
+  const [schedules, setSchedules] = useState([]);
+  const [teachers, setTeachers] = useState([]);
+  const [activities, setActivities] = useState([]);
+  const [exculpatories, setExculpatories] = useState([]);
+
+  /** Functions */
+  const getAcademicData = async () => {
+    const academicData = await sanityClient.fetch(ACADEMIC_SD);
+    console.log(academicData, '<<< academic Data SD');
+    // setAcademicData(academicData);
+    setTeachers(academicData?.teachers);
+    setSchedules(academicData?.scheduleKBM);
+    setActivities(academicData?.activities);
+    setExculpatories(academicData?.extracurricular);
+  };
+
+  /** Hooks */
+  useEffect(() => {
+    getAcademicData();
+  }, []);
 
   return (
     <>

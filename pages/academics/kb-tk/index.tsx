@@ -20,7 +20,7 @@ import Teachers from '@/components/Academics/Teachers';
 import HeroSection from '@/components/Home/HeroSection';
 //* Sanity
 import sanityClient from 'client';
-import { EDUCATIONS_KB_TK } from '@/utils/groq';
+import { ACADEMIC_KB_TK } from '@/utils/groq';
 import { PortableText } from '@portabletext/react';
 import { ptComponents } from '@/components/shared/PortableTextComponent';
 
@@ -183,22 +183,22 @@ const AcademicKBTK: FC = (props) => {
   // const [academicData, setAcademicData] = useState();
   const [schedules, setSchedules] = useState([]);
   const [teachers, setTeachers] = useState([]);
-  const [typeOfActivites, setTypeOfActivites] = useState([]);
+  const [activities, setActivities] = useState([]);
   const [exculpatories, setExculpatories] = useState([]);
   // const [exculImageSets, setExculImageSets] = useState([]);
 
   /** Functions */
   const getAcademicData = async () => {
-    const academicData = await sanityClient.fetch(EDUCATIONS_KB_TK);
+    const academicData = await sanityClient.fetch(ACADEMIC_KB_TK);
     console.log(academicData, '<<< academic Data');
     // setAcademicData(academicData);
     setTeachers(academicData?.teachers);
     setSchedules(academicData?.scheduleKBM);
-    setTypeOfActivites(academicData?.typeOfAcitvity);
+    setActivities(academicData?.activities);
     setExculpatories(academicData?.extracurricular);
 
-    const exculImages = academicData?.extracurricularImages;
-    console.log(exculImages?.length, '<<< length');
+    // const exculImages = academicData?.extracurricularImages;
+    // console.log(exculImages?.length, '<<< length');
 
     // ? Calcualtion for excul image
     // let idx = 0;
@@ -306,7 +306,7 @@ const AcademicKBTK: FC = (props) => {
           </Box>
           <Box mt={4}>
             <SchedulesAndActivities
-              activities={typeOfActivites}
+              activities={activities}
               schedules={schedules}
             />
           </Box>

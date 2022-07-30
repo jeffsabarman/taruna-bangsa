@@ -4,7 +4,10 @@ import React, { FC, useEffect } from 'react';
 import ListItem from '@/components/ListItem';
 //* Sanity
 import { PortableText } from '@portabletext/react';
-import { ptComponents } from '@/components/shared/PortableTextComponent';
+import {
+  contentComponents,
+  ptComponents,
+} from '@/components/shared/PortableTextComponent';
 
 interface SchedulesAndActivitiesProps {
   // schedules: string[];

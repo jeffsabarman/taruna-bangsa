@@ -246,8 +246,9 @@ const StyledPagination: FC<PaginationProps> = ({
       sx={{
         position: 'absolute',
         bottom: paginationBottom,
-        // backgroundColor: 'rgba(255, 255, 255, 0.5)',
-        // width: '20rem',
+        // backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        // width: '12rem',
+        // borderRadius: '0.5rem',
       }}
     >
       {pages.map((page) => {
@@ -295,7 +296,8 @@ const CarouselItem = (props: { image: ImageLink | undefined }) => {
       style={{
         // height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh',
         // height: Phone ? '70vw' : Tablet ? '65vw' : '50vw',
-        height: Phone ? '70vw' : Tablet ? '65vw' : Desktop ? '55vw' : '50vw',
+        // height: Phone ? '70vw' : Tablet ? '65vw' : Desktop ? '55vw' : '50vw',
+        height: Phone ? '70vw' : Tablet ? '65vw' : Desktop ? '55vw' : '48vw',
       }}
       src={
         Phone ? props?.image?.urlSmall || props?.image?.url : props?.image?.url
@@ -513,6 +515,7 @@ export const TeacherCarouselItem = ({
       container
       direction="column"
       spacing={3}
+      // maxWidth="20rem"
     >
       <Grid item>
         <TeacherImage

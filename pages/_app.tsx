@@ -16,7 +16,8 @@ export default function MyApp(props: any) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   return (
-    <CacheProvider value={emotionCache}>
+    // <CacheProvider value={emotionCache}>
+    <>
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
@@ -26,6 +27,7 @@ export default function MyApp(props: any) {
         <Component {...pageProps} />
         <Footer />
       </ThemeProvider>
-    </CacheProvider>
+    </>
+    // </CacheProvider>
   );
 }

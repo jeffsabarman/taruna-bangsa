@@ -89,7 +89,7 @@ const getStyleListItem = () => {
   const { Phone } = useResponsive();
   return {
     // marginBottom: theme.spacing(1),
-    fontSize: Phone ? '1.6rem' : '1.8rem',
+    fontSize: Phone ? '1.6rem' : '1rem',
     // marginLeft: Phone ? theme.spacing(4) : theme.spacing(6),
   };
 };

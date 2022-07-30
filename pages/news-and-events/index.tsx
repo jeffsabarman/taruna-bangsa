@@ -132,47 +132,6 @@ export async function getServerSideProps({
   // const { searchText, tag, category, page = 1 } = query;
   const { page = '1' } = query;
 
-  // const getAdditionalGroqQuery = () => {
-  //   let additionalQuery = "";
-  //   if (searchText) {
-  //     additionalQuery += `&& (body[].children[].text match "${searchText}" || title match "${searchText}" || description match "${searchText}")`;
-  //   }
-  //   if (tag) {
-  //     additionalQuery += `&& "${tag}" in tags`;
-  //   }
-  //   if (category) {
-  //     additionalQuery += `&& "${category}" in categories[]->title`;
-  //   }
-  //   return additionalQuery;
-  // };
-
-  // ? Pagination
-  // TODO: Handle pagination
-  // const limitPerPage = 6;
-  // const start =
-  //   page === "1" && !getAdditionalGroqQuery()
-  //     ? page
-  //     : (page - 1) * limitPerPage + (getAdditionalGroqQuery() ? 0 : 1);
-  // const end = +start + limitPerPage;
-
-  // ? Groq Query
-  // const GET_ALL_BLOGS = groq`*[${mainQuery} ${getAdditionalGroqQuery()}] | order(publishedAt desc) [$start...$end]{
-  //   _id,
-  //   title,
-  //   "name": author->name,
-  //   "imageLink": body[0]{
-  //     markDefs [0] {
-  //       href
-  //     }
-  //   },
-  //   slug,
-  //   publishedAt,
-  //   description,
-  //   "categories": categories[]->title,
-  // }`;
-
-  // const GET_BLOGS_COUNT = groq`count(*[${mainQuery} ${getAdditionalGroqQuery()}])`;
-
   // ? Default Value
   let newsEvents;
   let newsEventsCount;
@@ -196,7 +155,6 @@ export async function getServerSideProps({
         "mainImageUrl": mainImage.asset->url,
         "mainImageCaption": mainImage.caption,
         publishedAt,
-        // "bodySnippet": body[0]
       }
       `;
 
@@ -209,10 +167,6 @@ export async function getServerSideProps({
     newsEventsCount = await sanityClient.fetch(NEWS_AND_EVENTS_COUNT, {
       today: new Date(),
     });
-
-    // allCategories = await client.fetch(GET_ALL_CATEGORIES);
-
-    // mainBlog = await client.fetch(GET_MAIN_BLOG, { today: new Date() });
   } catch (err) {
     error = true;
   }
@@ -228,5 +182,3 @@ export async function getServerSideProps({
     },
   };
 }
-
-// export default NewsAndEventsPage;
