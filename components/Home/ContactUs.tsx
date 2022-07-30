@@ -17,7 +17,7 @@ const ContactUs = () => {
   return (
     <Grid container alignItems="stretch">
       <Grid item xs={12} md={6} minHeight={350}>
-        <ReactMap />
+        <ReactMap style={{ width: '100%', height: '100%' }} />
       </Grid>
       <Grid item xs={12} md={6}>
         <Box bgcolor={theme.palette.primary.main}>

@@ -18,7 +18,7 @@ const center = {
 };
 
 interface MapProps extends google.maps.MapOptions {
-  style?: { [key: string]: string };
+  style: { [key: string]: string | number };
   onClick?: (e: google.maps.MapMouseEvent) => void;
   children?: ReactNode;
   onIdle?: (map: google.maps.Map) => void;
@@ -38,11 +38,6 @@ const Map: FC<MapProps> = ({ children, style, ...options }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map>();
 
-  const initialStyle = {
-    width: '100%',
-    height: '100%',
-  };
-
   useEffect(() => {
     if (ref.current && !map) {
       setMap(
@@ -56,7 +51,7 @@ const Map: FC<MapProps> = ({ children, style, ...options }) => {
 
   return (
     <>
-      <div id="map" ref={ref} style={style ? style : initialStyle} />;
+      <div id="map" ref={ref} style={style} />;
       {Children.map(children, (child) => {
         if (isValidElement(child)) {
           // set the map prop on the child component
@@ -92,10 +87,13 @@ const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
   return null;
 };
 
-const ReactMap = ({ ...props }) => {
+const ReactMap: FC<{ style: { [key: string]: string | number } }> = ({
+  style,
+  ...props
+}) => {
   return (
     <Wrapper apiKey={process.env.GOOGLE_MAPS_API_KEY || ''} render={render}>
-      <Map {...props}>
+      <Map style={style} {...props}>
         <Marker position={center} title="Sekolah Taruna Bangsa" />
       </Map>
     </Wrapper>
