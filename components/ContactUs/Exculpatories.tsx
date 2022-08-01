@@ -5,7 +5,10 @@ import { ThemeColor } from 'helpers/types';
 import { GridCarousel, GridImageSets } from '@/components/Carousel';
 //* Sanity
 import { PortableText } from '@portabletext/react';
-import { ptComponents } from '@/components/shared/PortableTextComponent';
+import {
+  listComponents,
+  ptComponents,
+} from '@/components/shared/PortableTextComponent';
 
 interface ExculpatoriesProps {
   title: string;
@@ -29,6 +32,7 @@ const Exculpatories: FC<ExculpatoriesProps> = ({
       <Box mt={3} color="whitesmoke">
         <PortableText
           value={exculpatories}
+          components={listComponents}
           // components={ptComponents}
         />
         {/* {exculpatories?.map((exculpatory, idx) => (

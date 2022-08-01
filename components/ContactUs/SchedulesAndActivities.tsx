@@ -7,6 +7,7 @@ import { PortableText } from '@portabletext/react';
 import {
   contentComponents,
   ptComponents,
+  listComponents,
 } from '@/components/shared/PortableTextComponent';
 
 interface SchedulesAndActivitiesProps {
@@ -29,6 +30,7 @@ const SchedulesAndActivities: FC<SchedulesAndActivitiesProps> = ({
         <Box mt={1} color="whitesmoke">
           <PortableText
             value={schedules}
+            components={listComponents}
             // components={ptComponents}
           />
           {/* {schedules.map((point, idx) => (
@@ -43,6 +45,7 @@ const SchedulesAndActivities: FC<SchedulesAndActivitiesProps> = ({
         <Box mt={1} color="whitesmoke">
           <PortableText
             value={activities}
+            components={listComponents}
             // components={ptComponents}
           />
           {/* {activities.map((point, idx) => (

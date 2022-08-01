@@ -89,9 +89,40 @@ const getStyleListItem = () => {
   const { Phone } = useResponsive();
   return {
     // marginBottom: theme.spacing(1),
-    fontSize: Phone ? '1.6rem' : '1rem',
+    fontSize: '1.4rem',
     // marginLeft: Phone ? theme.spacing(4) : theme.spacing(6),
   };
+};
+
+//* LIST COMPONENTS
+export const listComponents = {
+  listItem: {
+    bullet: ({ children }: any) => {
+      return (
+        // <ListItem point={children} />
+        <li style={getStyleListItem()}>
+          <Typography
+            style={{ lineHeight: '2.4rem', color: 'whitesmoke' }}
+            variant="body2"
+          >
+            {children}
+          </Typography>
+        </li>
+      );
+    },
+    number: ({ children }: any) => {
+      return (
+        <li style={getStyleListItem()}>
+          <Typography
+            style={{ lineHeight: '2.4rem', color: 'whitesmoke' }}
+            variant="body2"
+          >
+            {children}
+          </Typography>
+        </li>
+      );
+    },
+  },
 };
 
 //* CONTENT COMPONENTS
@@ -261,6 +292,23 @@ export const contentComponents = {
           </Grid>
         );
       });
+    },
+  },
+  listItem: {
+    bullet: ({ children }: any) => {
+      return (
+        // <ListItem point={children} />
+        <li style={getStyleListItem()}>
+          <Typography style={{ lineHeight: '3.2rem' }}>{children}</Typography>
+        </li>
+      );
+    },
+    number: ({ children }: any) => {
+      return (
+        <li style={getStyleListItem()}>
+          <Typography style={{ lineHeight: '3.2rem' }}>{children}</Typography>
+        </li>
+      );
     },
   },
 };
