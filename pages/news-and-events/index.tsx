@@ -113,7 +113,7 @@ export default function NewsAndEventsPage() {
 
   useEffect(() => {
     // ? Pagination for load more
-    const limitPerPage = 2;
+    const limitPerPage = 6;
     const start =
       counterPage === 1 ? +counterPage - 1 : (+counterPage - 1) * limitPerPage;
     const end = +start + limitPerPage;
@@ -141,7 +141,7 @@ export default function NewsAndEventsPage() {
       >
         <Grid
           container
-          spacing={Tablet ? 3 : Desktop ? 6 : 3}
+          spacing={Tablet ? 3 : Desktop ? 6 : 4}
           // minHeight="100vh"
           // marginTop={theme.spacing(20)}
           // padding={10}
@@ -184,7 +184,7 @@ export default function NewsAndEventsPage() {
               color="primary"
               onChange={handleChangePage}
             /> */}
-            {newsEventsData?.length !== dataCount && (
+            {newsEventsData?.length < dataCount && (
               <Button
                 variant="contained"
                 disableElevation
