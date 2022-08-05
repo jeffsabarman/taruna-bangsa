@@ -24,7 +24,7 @@ const Teachers: FC<TeachersProps> = ({ themeColor, title, teachersList }) => {
   const theme = useTheme();
 
   /** Media Query */
-  const { Phone, Tablet } = useResponsive();
+  const { Phone, Tablet, SmallDesktop } = useResponsive();
 
   /** Functions */
   const getTitleStyle = useMemo(() => {
@@ -72,7 +72,7 @@ const Teachers: FC<TeachersProps> = ({ themeColor, title, teachersList }) => {
               <>
                 <Grid
                   container
-                  spacing={2}
+                  spacing={3}
                   flexWrap="nowrap"
                   style={{ overflow: 'auto' }}
                 >
@@ -99,7 +99,7 @@ const Teachers: FC<TeachersProps> = ({ themeColor, title, teachersList }) => {
               <TeacherCarousel
                 teachersList={teachersList}
                 themeColor={themeColor}
-                paginationBottom={'-4rem'}
+                paginationBottom={SmallDesktop ? '-3rem' : '-4rem'}
               />
             )}
           </Box>

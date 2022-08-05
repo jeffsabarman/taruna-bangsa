@@ -53,7 +53,7 @@ export const ACADEMIC_SD = groq`
   },
   teachers[] {
     name,
-    jobTitle,
+    "role": jobTitle,
     "image": imageFile.asset->url
   }
 }
@@ -73,7 +73,7 @@ export const ACADEMIC_SMP = groq`
   },
   teachers[] {
     name,
-    jobTitle,
+    "role": jobTitle,
     "image": imageFile.asset->url
   }
 }
@@ -93,7 +93,7 @@ export const ACADEMIC_SMA = groq`
   },
   teachers[] {
     name,
-    jobTitle,
+    "role": jobTitle,
     "image": imageFile.asset->url
   }
 }

@@ -1,3 +1,4 @@
+import theme from '@/styles/theme';
 import styled from '@emotion/styled';
 import {
   ArrowLeft,
@@ -109,6 +110,7 @@ interface IElasticCarouselProps extends Partial<ReactElasticCarouselProps> {
   teachersList?: TeacherItem[];
   themeColor?: ThemeColor;
   paginationBottom?: string;
+  isSetBackground?: boolean;
 }
 
 interface CarouselArrowProps {
@@ -126,6 +128,7 @@ interface PaginationProps extends Partial<RenderPaginationProps> {
   type: 'hero' | 'grid' | 'teacher';
   paginationBottom?: string | number;
   themeColor?: ThemeColor;
+  isSetBackground?: false;
 }
 
 const StyledElasticCarousel: FC<IElasticCarouselProps> = ({
@@ -195,8 +198,9 @@ const StyledPagination: FC<PaginationProps> = ({
   type,
   paginationBottom = '2rem',
   themeColor = 'yellow',
+  isSetBackground = false,
 }) => {
-  const { Tablet } = useResponsive();
+  const { Tablet, Phone } = useResponsive();
   const customSmallPhone = useMediaQuery('(max-width:360px)');
   const theme = useTheme();
 
@@ -246,40 +250,55 @@ const StyledPagination: FC<PaginationProps> = ({
       sx={{
         position: 'absolute',
         bottom: paginationBottom,
-        // backgroundColor: 'rgba(255, 255, 255, 0.2)',
-        // width: '12rem',
-        // borderRadius: '0.5rem',
       }}
     >
-      {pages.map((page) => {
-        const isActivePage: boolean = activePage === page;
+      <Grid
+        item
+        style={{
+          // backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          backgroundColor: `rgba(43, 51, 133, ${isSetBackground ? 0.6 : 0})`,
+          borderRadius: '0.5rem',
+          padding: isSetBackground
+            ? Phone
+              ? theme.spacing(0.3)
+              : theme.spacing(0.5)
+            : 0,
+          paddingLeft: Phone ? theme.spacing(0.5) : theme.spacing(2),
+          paddingRight: Phone ? theme.spacing(0.5) : theme.spacing(2),
+        }}
+      >
+        <Grid container spacing={1}>
+          {pages.map((page) => {
+            const isActivePage: boolean = activePage === page;
 
-        return (
-          // <Indicator
-          //   key={`${page}-${type}`}
-          //   onClick={() => onClick(page)}
-          //   active={isActivePage}
-          //   // style={{
-          //   //   width: Phone ? '1rem' : '2rem',
-          //   // }}
-          // />
-          <Grid item>
-            <IconButton size="small" onClick={() => onClick(page)}>
-              {isActivePage ? (
-                <CircleIcon sx={getSxIcon()} />
-              ) : (
-                // <CircleOutlinedIcon sx={getSxIcon()} />
-                <CircleIcon
-                  sx={getSxIcon()}
-                  // sx={getSxIconInactive()}
-                  style={{ color: `rgba(189, 189, 189, 0.8)` }}
-                  // style={{ color: grey[400] }}
-                />
-              )}
-            </IconButton>
-          </Grid>
-        );
-      })}
+            return (
+              // <Indicator
+              //   key={`${page}-${type}`}
+              //   onClick={() => onClick(page)}
+              //   active={isActivePage}
+              //   // style={{
+              //   //   width: Phone ? '1rem' : '2rem',
+              //   // }}
+              // />
+              <Grid item>
+                <IconButton size="small" onClick={() => onClick(page)}>
+                  {isActivePage ? (
+                    <CircleIcon sx={getSxIcon()} />
+                  ) : (
+                    // <CircleOutlinedIcon sx={getSxIcon()} />
+                    <CircleIcon
+                      sx={getSxIcon()}
+                      // sx={getSxIconInactive()}
+                      style={{ color: `rgba(189, 189, 189, 0.8)` }}
+                      // style={{ color: grey[400] }}
+                    />
+                  )}
+                </IconButton>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Grid>
     </Grid>
     //   }
     // </Pagination>
@@ -313,6 +332,7 @@ const HeroCarousel: FC<IElasticCarouselProps> = ({
   images,
   paginationBottom = '2rem',
   themeColor = 'lightblue',
+  isSetBackground = true,
   ...props
 }) => {
   const breakPoints = [{ width: 1, itemsToShow }];
@@ -336,6 +356,7 @@ const HeroCarousel: FC<IElasticCarouselProps> = ({
             type: 'hero',
             paginationBottom,
             themeColor,
+            isSetBackground,
           }}
         />
       )}
@@ -504,25 +525,25 @@ export const TeacherCarouselItem = ({
     }
   }, [themeColor]);
 
-  const { Desktop, SmallDesktop, Tablet, Phone } = useResponsive();
+  const { Desktop, SmallDesktop, Tablet, Phone, BigDesktop } = useResponsive();
   const customSmallPhone = useMediaQuery('(max-width:360px)');
 
   return (
     <Grid
       // mr={SmallDesktop ? theme.spacing(4) : theme.spacing(8)}
       mr={Desktop ? theme.spacing(4) : theme.spacing(8)}
-      ml={theme.spacing(1)}
+      // ml={theme.spacing(1)}
       container
       direction="column"
-      spacing={3}
-      // maxWidth="20rem"
+      spacing={2}
+      maxWidth={SmallDesktop ? '20rem' : BigDesktop ? '20vw' : '24vw'}
     >
       <Grid item>
         <TeacherImage
           src={teacher.image}
           alt="Guru Taruna Bangsa"
           style={{
-            // width: Tablet ? '16rem' : '100%',
+            // maxWidth: Tablet ? '16rem' : '20rem',
             height: customSmallPhone
               ? '18rem'
               : // : Phone
@@ -530,8 +551,11 @@ export const TeacherCarouselItem = ({
               Tablet
               ? '18rem'
               : SmallDesktop
-              ? '28vw'
-              : '24vw',
+              ? '26vw'
+              : BigDesktop
+              ? '24vw'
+              : '26vw',
+            marginRight: '2rem',
           }}
         />
       </Grid>
@@ -592,8 +616,8 @@ const TeacherCarousel: FC<IElasticCarouselProps> = ({
     >
       {teachersList?.map((teacher, idx) => (
         <TeacherCarouselItem
-          // key={idx}
-          key={teacher?.name}
+          key={idx}
+          // key={teacher?.name}
           teacher={teacher}
           themeColor={themeColor}
         />
