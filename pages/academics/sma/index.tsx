@@ -183,7 +183,6 @@ const AcademicSMA: FC = (props) => {
   /** Functions */
   const getAcademicData = async () => {
     const academicData = await sanityClient.fetch(ACADEMIC_SMA);
-    console.log(academicData, '<<< academic Data SMa');
     // setAcademicData(academicData);
     setTeachers(academicData?.teachers);
     setSchedules(academicData?.scheduleKBM);

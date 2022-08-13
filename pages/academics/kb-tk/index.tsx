@@ -190,7 +190,6 @@ const AcademicKBTK: FC = (props) => {
   /** Functions */
   const getAcademicData = async () => {
     const academicData = await sanityClient.fetch(ACADEMIC_KB_TK);
-    console.log(academicData, '<<< academic Data');
     // setAcademicData(academicData);
     setTeachers(academicData?.teachers);
     setSchedules(academicData?.scheduleKBM);

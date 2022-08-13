@@ -183,7 +183,10 @@ export default function NewsAndEventsPage() {
             item
             container
             justifyContent="center"
-            style={{ marginTop: theme.spacing(4) }}
+            style={{
+              marginTop: Phone ? 0 : theme.spacing(2),
+              marginBottom: theme.spacing(1),
+            }}
           >
             {/* <Pagination
               count={Math.ceil(newsEventsCount / limit)}
@@ -198,7 +201,7 @@ export default function NewsAndEventsPage() {
                 alignItems="center"
               >
                 {isLoading && (
-                  <Grid item>
+                  <Grid item mb={2}>
                     <CircularProgress
                       style={{
                         fontSize: '1.2rem',

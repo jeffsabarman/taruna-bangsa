@@ -180,12 +180,9 @@ const AcademicSD: FC = (props) => {
   const [activities, setActivities] = useState([]);
   const [exculpatories, setExculpatories] = useState([]);
 
-  console.log(teachers, '<< teachers');
-
   /** Functions */
   const getAcademicData = async () => {
     const academicData = await sanityClient.fetch(ACADEMIC_SD);
-    console.log(academicData, '<<< academic Data SD');
     // setAcademicData(academicData);
     setTeachers(academicData?.teachers);
     setSchedules(academicData?.scheduleKBM);

@@ -1,5 +1,6 @@
 import { Card, CardMedia, Typography } from '@mui/material';
 import React from 'react';
+import { useResponsive } from 'helpers/custom-hooks';
 
 type FacilityImageProps = {
   image: string;
@@ -8,6 +9,8 @@ type FacilityImageProps = {
 };
 
 const FacilityImage = ({ image, title, handleClick }: FacilityImageProps) => {
+  const { Phone } = useResponsive();
+
   return (
     <Card
       sx={{
@@ -21,7 +24,7 @@ const FacilityImage = ({ image, title, handleClick }: FacilityImageProps) => {
     >
       <CardMedia component="img" image={image} sx={{ position: 'relative' }} />
       <Typography
-        variant="body2"
+        variant={Phone ? 'caption' : 'body2'}
         p={1}
         color="whitesmoke"
         bgcolor="rgba(1,1,1,0.7)"

@@ -46,7 +46,7 @@ const facilities = [
 const Facilities = () => {
   /** Utilities */
   const theme = useTheme();
-  const { Phone } = useResponsive();
+  const { Phone, Tablet } = useResponsive();
   const [focusImageIndex, setFocusImageIndex] = useState(0);
   const [showSlider, setShowSlider] = useState(false);
 
@@ -69,9 +69,14 @@ const Facilities = () => {
               title="Fasilitas"
               subtitle="We are a school that empowers students to thrive in academic excellence; personal, social and emotional growth that are needed for success in their live and livelihood."
             >
-              <Grid mt={3} container spacing={3}>
+              <Grid mt={Phone ? 1 : 3} container spacing={3}>
                 {facilities?.map((fac, index) => (
-                  <Grid xs={4} item key={index}>
+                  <Grid
+                    xs={Phone ? 12 : Tablet ? 6 : 4}
+                    item
+                    key={index}
+                    mb={Phone ? 2 : 0}
+                  >
                     <FacilityImage
                       handleClick={() => handleZoomImage(index)}
                       title="Gedung Sekolah"
