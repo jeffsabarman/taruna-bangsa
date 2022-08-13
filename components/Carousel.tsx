@@ -227,7 +227,7 @@ const StyledPagination: FC<PaginationProps> = ({
   const getSxIcon = () => {
     return {
       color: getIconColor,
-      fontSize: customSmallPhone ? '1rem' : Tablet ? '1.2rem' : '1.4rem',
+      fontSize: customSmallPhone ? '1rem' : Phone ? '1.2rem' : '1.3rem',
     };
   };
 
@@ -265,6 +265,7 @@ const StyledPagination: FC<PaginationProps> = ({
             : 0,
           paddingLeft: Phone ? theme.spacing(0.5) : theme.spacing(2),
           paddingRight: Phone ? theme.spacing(0.5) : theme.spacing(2),
+          paddingTop: Phone ? theme.spacing(0.2) : theme.spacing(0.5),
         }}
       >
         <Grid container spacing={1}>

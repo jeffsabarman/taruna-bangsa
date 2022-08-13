@@ -44,6 +44,7 @@ const CardNewsEvent: FC<CardNewsEventProps> = ({
 
   //* Media Query
   const { Phone, Tablet, Desktop } = useResponsive();
+  const customSmallDesktop = useMediaQuery('(max-width:1000px)');
   const customPhone = useMediaQuery('(max-width:700px)');
   const customSmallPhone = useMediaQuery('(max-width:400px)');
 
@@ -60,7 +61,7 @@ const CardNewsEvent: FC<CardNewsEventProps> = ({
                 ? '64vw'
                 : customPhone
                 ? '50vw'
-                : Tablet
+                : customSmallDesktop
                 ? '32vw'
                 : Desktop
                 ? '24vw'
@@ -69,10 +70,10 @@ const CardNewsEvent: FC<CardNewsEventProps> = ({
             }}
           />
         </Grid>
-        <Grid container direction="column" spacing={2} p={3}>
+        <Grid container direction="column" spacing={2} p={3} pt={1}>
           <Grid item>
             <Typography
-              variant={Phone ? 'caption' : 'body2'}
+              variant={Phone ? 'caption' : 'caption'}
               fontWeight={600}
               color={grey[600]}
             >
@@ -104,7 +105,7 @@ const CardNewsEvent: FC<CardNewsEventProps> = ({
               },
             }}
           >
-            <Grid container spacing={1}>
+            <Grid container spacing={1} alignItems="center">
               <Grid item>
                 <Typography
                   variant={Phone ? 'caption' : 'body2'}
@@ -113,11 +114,16 @@ const CardNewsEvent: FC<CardNewsEventProps> = ({
                   Baca Lebih
                 </Typography>
               </Grid>
-              <Grid item style={{ marginTop: theme.spacing(0.5) }}>
+              <Grid
+                item
+                style={{
+                  marginTop: Phone ? theme.spacing(0.8) : theme.spacing(0.5),
+                }}
+              >
                 <ArrowIcon
                   // fontSize="small"
                   sx={{
-                    fontSize: '1.2rem',
+                    fontSize: Phone ? '1rem' : '1.2rem',
                   }}
                 />
               </Grid>

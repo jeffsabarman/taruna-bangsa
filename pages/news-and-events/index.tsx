@@ -7,6 +7,7 @@ import {
   useTheme,
   Pagination,
   Button,
+  CircularProgress,
 } from '@mui/material';
 import { useResponsive } from 'helpers/custom-hooks';
 import React, { useEffect, useState } from 'react';
@@ -19,32 +20,31 @@ import groq from 'groq';
 import { NEWS_AND_EVENTS_COUNT } from '@/utils/groq';
 import { useRouter } from 'next/router';
 
-// interface NewsAndEventsPageProps {
-//   newsEvents: {
-//     _id: string;
-//     mainImageUrl: string;
-//     title: string;
-//     description: string;
-//     mainImageCaption: string;
-//     // bodySnippet: any;
-//     publishedAt: string;
-//     slug: {
-//       current: string;
-//     };
-//   }[];
-//   newsEventsCount: number;
-//   limit: number;
-//   error: boolean;
-// }
+interface NewsAndEventsPageProps {
+  newsEvents: {
+    _id: string;
+    mainImageUrl: string;
+    title: string;
+    description: string;
+    mainImageCaption: string;
+    // bodySnippet: any;
+    publishedAt: string;
+    slug: {
+      current: string;
+    };
+  }[];
+  newsEventsCount: number;
+  limit: number;
+  error: boolean;
+}
 
+// export default function NewsAndEventsPage({
+//   newsEvents,
+//   newsEventsCount,
+//   limit,
+//   error,
+// }: NewsAndEventsPageProps) {
 export default function NewsAndEventsPage() {
-  //   {
-  //   newsEvents,
-  //   newsEventsCount,
-  //   limit,
-  //   error,
-  // }: NewsAndEventsPageProps
-
   /** Utilities */
   const router = useRouter();
   const { page } = router?.query;
@@ -54,8 +54,9 @@ export default function NewsAndEventsPage() {
   /** Media Queries */
   const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
   const customPhone = useMediaQuery('(max-width:700px)');
+  const customSmallDesktop = useMediaQuery('(max-width:1000px)');
 
-  /** State */
+  /** State */ // ? For Load More
   const [counterPage, setCounterPage] = useState(1);
   const [newsEventsData, setNewsEventsData] = useState<
     {
@@ -72,6 +73,7 @@ export default function NewsAndEventsPage() {
     }[]
   >([]);
   const [dataCount, setDataCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   /** Functions */
   const handleChangePage = (
@@ -89,11 +91,13 @@ export default function NewsAndEventsPage() {
     );
   };
 
+  // ? For Load More
   const getData = async (
     start: number,
     end: number,
     groqAllNewsEvents: any,
   ) => {
+    setIsLoading(true);
     const newsEvents = await sanityClient.fetch(groqAllNewsEvents, {
       today: new Date(),
       start: +start,
@@ -107,10 +111,11 @@ export default function NewsAndEventsPage() {
       });
       setDataCount(newsEventsCount);
     }
+    setIsLoading(false);
   };
 
   /** Hooks */
-
+  // ? For Load More
   useEffect(() => {
     // ? Pagination for load more
     const limitPerPage = 6;
@@ -141,7 +146,8 @@ export default function NewsAndEventsPage() {
       >
         <Grid
           container
-          spacing={Tablet ? 3 : Desktop ? 6 : 4}
+          spacing={Tablet ? 3 : customSmallDesktop ? 6 : Desktop ? 3 : 4}
+          px={customSmallDesktop ? 0 : Desktop ? 0 : 8}
           // minHeight="100vh"
           // marginTop={theme.spacing(20)}
           // padding={10}
@@ -157,7 +163,7 @@ export default function NewsAndEventsPage() {
             ? newsEventsData?.map((data) => (
                 <Grid
                   item
-                  xs={customPhone ? 12 : Desktop ? 6 : 4}
+                  xs={customPhone ? 12 : customSmallDesktop ? 6 : 4}
                   key={data?._id}
                   mb={2}
                 >
@@ -184,15 +190,36 @@ export default function NewsAndEventsPage() {
               color="primary"
               onChange={handleChangePage}
             /> */}
-            {newsEventsData?.length < dataCount && (
-              <Button
-                variant="contained"
-                disableElevation
-                onClick={() => setCounterPage(counterPage + 1)}
+            <Grid item>
+              <Grid
+                container
+                direction="column"
+                spacing={2}
+                alignItems="center"
               >
-                Load More
-              </Button>
-            )}
+                {isLoading && (
+                  <Grid item>
+                    <CircularProgress
+                      style={{
+                        fontSize: '1.2rem',
+                        color: theme.palette.primary.light,
+                      }}
+                    />
+                  </Grid>
+                )}
+                <Grid item>
+                  {newsEventsData?.length < dataCount && (
+                    <Button
+                      variant="contained"
+                      disableElevation
+                      onClick={() => setCounterPage(counterPage + 1)}
+                    >
+                      Load More
+                    </Button>
+                  )}
+                </Grid>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Container>
@@ -216,7 +243,7 @@ export default function NewsAndEventsPage() {
 //   let error = false;
 
 //   // ? Pagination
-//   const limitPerPage = 1;
+//   const limitPerPage = 6;
 //   const start = page === '1' ? +page - 1 : (+page - 1) * limitPerPage;
 //   const end = +start + limitPerPage;
 
