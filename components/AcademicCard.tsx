@@ -23,23 +23,23 @@ const AcademicCard: FC<AcademicCardProps> = ({ data }) => {
   const styles = {
     yellowHeader: {
       backgroundColor: theme.palette.warning.main,
-      p: theme.spacing(1),
+      px: theme.spacing(2),
     },
     lighblueHeader: {
       backgroundColor: theme.palette.primary.light,
-      p: theme.spacing(1),
+      px: theme.spacing(2),
     },
     redHeader: {
       backgroundColor: theme.palette.secondary.main,
-      p: theme.spacing(1),
+      px: theme.spacing(2),
     },
     greyHeader: {
       backgroundColor: theme.palette.grey[500],
-      p: theme.spacing(1),
+      px: theme.spacing(2),
     },
     primaryHeader: {
       backgroundColor: theme.palette.primary.main,
-      p: theme.spacing(1),
+      px: theme.spacing(2),
     },
     '&.MuiButton-text': {
       fontSize: '1.2rem',
