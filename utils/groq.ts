@@ -116,11 +116,19 @@ export const FACIILITIES_IMAGES = groq`
 }
 `;
 
+// export const YOUTUBE_EMBED = groq`
+// *[_type == "socialMedia" && platformTitle == "Youtube Embed" && !(_id in path('drafts.**'))][0] {
+//   _id,
+//   platformTitle,
+//   "iconUrl": iconFile.asset->url,
+//   link
+// }
+// `;
+
 export const YOUTUBE_EMBED = groq`
-*[_type == "socialMedia" && platformTitle == "Youtube Embed" && !(_id in path('drafts.**'))][0] {
+*[_type == "youtube" && !(_id in path('drafts.**'))][0] {
   _id,
-  platformTitle,
-  "iconUrl": iconFile.asset->url,
+  youtubeType,
   link
 }
 `;
@@ -150,5 +158,14 @@ export const NEWS_AND_EVENTS_CONTENT = groq`
   "mainImageCaption": mainImage.caption,
   body,
   publishedAt,
+}
+`;
+
+export const INSTAGRAM_POSTS = groq`
+*[_type == "instagram" && !(_id in path('drafts.**'))] | order(priority desc, _updatedAt desc) [0..2] {
+  _id,
+  postTitle,
+  link,
+  "image": imageFile.asset->url
 }
 `;

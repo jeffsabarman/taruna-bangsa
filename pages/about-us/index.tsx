@@ -13,11 +13,11 @@ import headMasterPic from '@/public/images/lingling.png';
 import HeaderLayout from '@/components/HeaderLayout';
 import Academics from '@/components/Home/Academics';
 import HeroSection from '@/components/Home/HeroSection';
-import { grey } from '@mui/material/colors';
-import SwipeArrow from '@/components/shared/SwipeArrow';
+// import { grey } from '@mui/material/colors';
+// import SwipeArrow from '@/components/shared/SwipeArrow';
 //* Sanity
-import sanityClient from 'client';
-import { INSTITUTIONAL_ADMINSTRATOR } from '@/utils/groq';
+// import sanityClient from 'client';
+// import { INSTITUTIONAL_ADMINSTRATOR } from '@/utils/groq';
 
 /** Mocked Data */
 const images = [
@@ -68,20 +68,20 @@ const AboutUsPage: FC = (props) => {
   const SmallLaptop = useMediaQuery('(max-width:1020px)');
 
   /** State */
-  const [administrators, setAdministrators] = useState<
-    { image: string; name: string; role: string; _id: string }[]
-  >([]);
+  // const [administrators, setAdministrators] = useState<
+  //   { image: string; name: string; role: string; _id: string }[]
+  // >([]);
 
   /** Functions */
-  const getInstitutionalAdministrators = async () => {
-    const data = await sanityClient.fetch(INSTITUTIONAL_ADMINSTRATOR);
-    setAdministrators(data);
-  };
+  // const getInstitutionalAdministrators = async () => {
+  //   const data = await sanityClient.fetch(INSTITUTIONAL_ADMINSTRATOR);
+  //   setAdministrators(data);
+  // };
 
   /** Hooks */
-  useEffect(() => {
-    getInstitutionalAdministrators();
-  }, []);
+  // useEffect(() => {
+  //   getInstitutionalAdministrators();
+  // }, []);
 
   return (
     <>
@@ -125,7 +125,7 @@ const AboutUsPage: FC = (props) => {
           />
         </Container>
       </Container>
-      <Box bgcolor={theme.palette.primary.main}>
+      {/* <Box bgcolor={theme.palette.primary.main}>
         <Container
           py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}
           // pr={Tablet ? '0 !important' : '2rem'}
@@ -156,7 +156,6 @@ const AboutUsPage: FC = (props) => {
                     flexWrap="nowrap"
                     style={{ overflow: 'auto' }}
                   >
-                    {/* {teachers?.map((teacher) => { */}
                     {administrators?.map((administrator) => {
                       return (
                         <Grid
@@ -175,21 +174,6 @@ const AboutUsPage: FC = (props) => {
                     })}
                   </Grid>
                   <SwipeArrow color={grey[200]} />
-                  {/* <Grid item xs={12} style={{ marginTop: theme.spacing(2) }}>
-                    <Grid container spacing={1} alignItems="center">
-                      <Grid item>
-                        <Typography
-                          variant="body2"
-                          style={{ color: grey[300] }}
-                        >
-                          Scroll
-                        </Typography>
-                      </Grid>
-                      <Grid item style={{ marginTop: theme.spacing(1) }}>
-                        <StyledArrow />
-                      </Grid>
-                    </Grid>
-                  </Grid> */}
                 </>
               ) : (
                 <TeacherCarousel
@@ -201,7 +185,7 @@ const AboutUsPage: FC = (props) => {
             </Box>
           </Container>
         </Container>
-      </Box>
+      </Box> */}
       <Academics />
     </>
   );
