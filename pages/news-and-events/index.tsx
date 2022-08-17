@@ -20,30 +20,33 @@ import groq from 'groq';
 import { NEWS_AND_EVENTS_COUNT } from '@/utils/groq';
 import { useRouter } from 'next/router';
 
-interface NewsAndEventsPageProps {
-  newsEvents: {
-    _id: string;
-    mainImageUrl: string;
-    title: string;
-    description: string;
-    mainImageCaption: string;
-    // bodySnippet: any;
-    publishedAt: string;
-    slug: {
-      current: string;
-    };
-  }[];
-  newsEventsCount: number;
-  limit: number;
-  error: boolean;
-}
+// ? For Pagination
+// interface NewsAndEventsPageProps {
+//   newsEvents: {
+//     _id: string;
+//     mainImageUrl: string;
+//     title: string;
+//     description: string;
+//     mainImageCaption: string;
+//     // bodySnippet: any;
+//     publishedAt: string;
+//     slug: {
+//       current: string;
+//     };
+//   }[];
+//   newsEventsCount: number;
+//   limit: number;
+//   error: boolean;
+// }
 
+// ? For Pagination
 // export default function NewsAndEventsPage({
 //   newsEvents,
 //   newsEventsCount,
 //   limit,
 //   error,
 // }: NewsAndEventsPageProps) {
+
 export default function NewsAndEventsPage() {
   /** Utilities */
   const router = useRouter();
@@ -56,7 +59,8 @@ export default function NewsAndEventsPage() {
   const customPhone = useMediaQuery('(max-width:700px)');
   const customSmallDesktop = useMediaQuery('(max-width:1000px)');
 
-  /** State */ // ? For Load More
+  /** State */
+  // ? For Load More
   const [counterPage, setCounterPage] = useState(1);
   const [newsEventsData, setNewsEventsData] = useState<
     {
@@ -76,20 +80,21 @@ export default function NewsAndEventsPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   /** Functions */
-  const handleChangePage = (
-    event: React.ChangeEvent<unknown>,
-    value: number,
-  ) => {
-    // setCurrentPage(value);
-    router.push(
-      `/news-and-events?page=${value}`,
-      // `/blogs?page=${value}${getAdditionalQueryParamsBlog(
-      //   searchText,
-      //   router?.query?.category,
-      //   router?.query?.tag
-      // )}`
-    );
-  };
+  // ? For Pagination
+  // const handleChangePage = (
+  //   event: React.ChangeEvent<unknown>,
+  //   value: number,
+  // ) => {
+  //   // setCurrentPage(value);
+  //   router.push(
+  //     `/news-and-events?page=${value}`,
+  //     // `/blogs?page=${value}${getAdditionalQueryParamsBlog(
+  //     //   searchText,
+  //     //   router?.query?.category,
+  //     //   router?.query?.tag
+  //     // )}`
+  //   );
+  // };
 
   // ? For Load More
   const getData = async (
@@ -118,7 +123,7 @@ export default function NewsAndEventsPage() {
   // ? For Load More
   useEffect(() => {
     // ? Pagination for load more
-    const limitPerPage = 6;
+    const limitPerPage = 2;
     const start =
       counterPage === 1 ? +counterPage - 1 : (+counterPage - 1) * limitPerPage;
     const end = +start + limitPerPage;
@@ -157,6 +162,7 @@ export default function NewsAndEventsPage() {
               Berita & Acara
             </Typography>
           </Grid>
+          {/** // ? For Pagination */}
           {/* {newsEvents?.length
             ? newsEvents?.map((data) => ( */}
           {newsEventsData?.length
@@ -188,6 +194,7 @@ export default function NewsAndEventsPage() {
               marginBottom: theme.spacing(1),
             }}
           >
+            {/** // ? For Pagination */}
             {/* <Pagination
               count={Math.ceil(newsEventsCount / limit)}
               color="primary"
@@ -204,8 +211,9 @@ export default function NewsAndEventsPage() {
                   <Grid item mb={2}>
                     <CircularProgress
                       style={{
-                        fontSize: '1.2rem',
                         color: theme.palette.primary.light,
+                        width: Phone ? '3rem' : '4rem',
+                        height: Phone ? '3rem' : '4rem',
                       }}
                     />
                   </Grid>
@@ -230,6 +238,7 @@ export default function NewsAndEventsPage() {
   );
 }
 
+// ? For pagination
 // export async function getServerSideProps({
 //   query,
 // }: {

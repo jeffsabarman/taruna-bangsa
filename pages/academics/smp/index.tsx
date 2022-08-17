@@ -19,6 +19,7 @@ import SchedulesAndActivities from '@/components/ContactUs/SchedulesAndActivitie
 import Exculpatories from '@/components/ContactUs/Exculpatories';
 import Teachers from '@/components/Academics/Teachers';
 import HeroSection from '@/components/Home/HeroSection';
+import LoadingComponent from '@/components/shared/LoadingComponent';
 //* Sanity
 import sanityClient from 'client';
 import { ACADEMIC_SMP } from '@/utils/groq';
@@ -171,23 +172,23 @@ const AcademicSMP: FC = (props) => {
   /** Media Queries */
   const { Phone, SmallDesktop, Desktop, Tablet } = useResponsive();
   const customSmallPhone = useMediaQuery('(max-width:360px)');
-  const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
 
   /** State */
-  // const [academicData, setAcademicData] = useState();
   const [schedules, setSchedules] = useState([]);
   const [teachers, setTeachers] = useState([]);
   const [activities, setActivities] = useState([]);
   const [exculpatories, setExculpatories] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   /** Functions */
   const getAcademicData = async () => {
+    setIsLoading(true);
     const academicData = await sanityClient.fetch(ACADEMIC_SMP);
-    // setAcademicData(academicData);
     setTeachers(academicData?.teachers);
     setSchedules(academicData?.scheduleKBM);
     setActivities(academicData?.activities);
     setExculpatories(academicData?.extracurricular);
+    setIsLoading(false);
   };
 
   /** Hooks */
@@ -197,20 +198,6 @@ const AcademicSMP: FC = (props) => {
 
   return (
     <>
-      {/* <Box
-        position="relative"
-        mt={largerThanPhone || Phone ? theme.spacing(12) : theme.spacing(8)}
-        {...props}
-      >
-        <Grid
-          container
-          sx={{ height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh' }}
-        >
-          <Grid item xs>
-            <HeroCarousel enableAutoPlay showArrows={false} images={images} />
-          </Grid>
-        </Grid>
-      </Box> */}
       <HeroSection />
       <Container
         py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}
@@ -225,14 +212,12 @@ const AcademicSMP: FC = (props) => {
           headMasterRole="Kepala SMP Taruna Bangsa"
         />
         <Container
-          // size="lg" mt={8}
           size={Phone ? 'xs' : SmallDesktop ? 'md' : 'lg'}
           mt={Phone ? 4 : 8}
         >
           <YearGroupSection sections={sections} />
         </Container>
         <Container
-          // size="lg" my={8}
           my={Phone ? 4 : 8}
           size={Phone ? 'xs' : SmallDesktop ? 'md' : 'lg'}
         >
@@ -264,21 +249,37 @@ const AcademicSMP: FC = (props) => {
             <Divider sx={{ borderWidth: 1, borderColor: 'whitesmoke' }} />
           </Box>
           <Box mt={4}>
-            <SchedulesAndActivities
-              activities={activities}
-              schedules={schedules}
-            />
+            {isLoading ? (
+              <Grid item container justifyContent="center">
+                <Box mt={3} mb={3}>
+                  <LoadingComponent themeColor="white" />
+                </Box>
+              </Grid>
+            ) : (
+              <SchedulesAndActivities
+                activities={activities}
+                schedules={schedules}
+              />
+            )}
           </Box>
           <Box mt={4}>
             <Divider sx={{ borderWidth: 1, borderColor: 'whitesmoke' }} />
           </Box>
           <Box mt={4}>
-            <Exculpatories
-              title="Jenis Kegiatan Ekskul SMP"
-              exculpatories={exculpatories}
-              exculImageSets={exculImageSets}
-              themeColor="blue"
-            />
+            {isLoading ? (
+              <Grid item container justifyContent="center">
+                <Box mt={3} mb={3}>
+                  <LoadingComponent themeColor="white" />
+                </Box>
+              </Grid>
+            ) : (
+              <Exculpatories
+                title="Jenis Kegiatan Ekskul SMP"
+                exculpatories={exculpatories}
+                exculImageSets={exculImageSets}
+                themeColor="white"
+              />
+            )}
           </Box>
         </Container>
       </Box>
@@ -287,18 +288,25 @@ const AcademicSMP: FC = (props) => {
         size={Phone ? 'xs' : SmallDesktop ? 'sm' : 'md'}
       >
         <Container
-          // size="lg" py={8}
           size={
             customSmallPhone ? 'xs' : Phone ? 'sm' : SmallDesktop ? 'md' : 'lg'
           }
           pr={Tablet ? '0 !important' : '2rem'}
           py={Phone ? 4 : 8}
         >
-          <Teachers
-            themeColor="lightblue"
-            title="SMP Taruna Bangsa"
-            teachersList={teachers}
-          />
+          {isLoading ? (
+            <Grid item container justifyContent="center">
+              <Box mt={3} mb={3}>
+                <LoadingComponent themeColor="lightblue" />
+              </Box>
+            </Grid>
+          ) : (
+            <Teachers
+              themeColor="lightblue"
+              title="SMP Taruna Bangsa"
+              teachersList={teachers}
+            />
+          )}
         </Container>
       </Container>
     </>

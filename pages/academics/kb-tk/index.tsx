@@ -18,11 +18,10 @@ import SchedulesAndActivities from '@/components/ContactUs/SchedulesAndActivitie
 import Exculpatories from '@/components/ContactUs/Exculpatories';
 import Teachers from '@/components/Academics/Teachers';
 import HeroSection from '@/components/Home/HeroSection';
+import LoadingComponent from '@/components/shared/LoadingComponent';
 //* Sanity
 import sanityClient from 'client';
 import { ACADEMIC_KB_TK } from '@/utils/groq';
-import { PortableText } from '@portabletext/react';
-import { ptComponents } from '@/components/shared/PortableTextComponent';
 
 const sections = [
   {
@@ -177,50 +176,23 @@ const AcademicKBTK: FC = (props) => {
   /** Media Queries */
   const { Phone, SmallDesktop, Desktop, Tablet } = useResponsive();
   const customSmallPhone = useMediaQuery('(max-width:360px)');
-  const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
 
   /** State */
-  // const [academicData, setAcademicData] = useState();
   const [schedules, setSchedules] = useState([]);
   const [teachers, setTeachers] = useState([]);
   const [activities, setActivities] = useState([]);
   const [exculpatories, setExculpatories] = useState([]);
-  // const [exculImageSets, setExculImageSets] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   /** Functions */
   const getAcademicData = async () => {
+    setIsLoading(true);
     const academicData = await sanityClient.fetch(ACADEMIC_KB_TK);
-    // setAcademicData(academicData);
     setTeachers(academicData?.teachers);
     setSchedules(academicData?.scheduleKBM);
     setActivities(academicData?.activities);
     setExculpatories(academicData?.extracurricular);
-
-    // const exculImages = academicData?.extracurricularImages;
-    // console.log(exculImages?.length, '<<< length');
-
-    // ? Calcualtion for excul image
-    // let idx = 0;
-    // const cutPoint = 5;
-    // let structuredExculImages: any = [];
-
-    // while (idx * cutPoint < exculImages?.length) {
-    //   structuredExculImages.push({
-    //     imageSets: exculImages
-    //       ?.slice(idx * cutPoint, (idx + 1) * cutPoint)
-    //       ?.map((imageSet: { url: string; alt: string }) => {
-    //         return { url: imageSet?.url, alt: imageSet?.alt };
-    //       }),
-    //   });
-    //   idx++;
-    // }
-
-    // console.log(structuredExculImages, '<< struct');
-    // setExculImageSets(structuredExculImages);
-
-    // setExculImageSets(
-    //   aca
-    // );
+    setIsLoading(false);
   };
 
   /** Hooks */
@@ -230,21 +202,6 @@ const AcademicKBTK: FC = (props) => {
 
   return (
     <>
-      {/* <Box
-        position="relative"
-        mt={largerThanPhone || Phone ? theme.spacing(12) : theme.spacing(8)}
-        {...props}
-      >
-        <Grid
-          container
-          // sx={{ height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh' }}
-          sx={{ height: Phone ? '75vw' : Tablet ? '65vw' : '50vw' }}
-        >
-          <Grid item xs>
-            <HeroCarousel enableAutoPlay showArrows={false} images={images} />
-          </Grid>
-        </Grid>
-      </Box> */}
       <HeroSection />
       <Container
         py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}
@@ -304,21 +261,37 @@ const AcademicKBTK: FC = (props) => {
             <Divider sx={{ borderWidth: 1, borderColor: 'whitesmoke' }} />
           </Box>
           <Box mt={4}>
-            <SchedulesAndActivities
-              activities={activities}
-              schedules={schedules}
-            />
+            {isLoading ? (
+              <Grid item container justifyContent="center">
+                <Box mt={3} mb={3}>
+                  <LoadingComponent themeColor="white" />
+                </Box>
+              </Grid>
+            ) : (
+              <SchedulesAndActivities
+                activities={activities}
+                schedules={schedules}
+              />
+            )}
           </Box>
           <Box mt={4}>
             <Divider sx={{ borderWidth: 1, borderColor: 'whitesmoke' }} />
           </Box>
           <Box mt={4}>
-            <Exculpatories
-              title="Jenis Kegiatan Ekskul KB-TK"
-              exculpatories={exculpatories}
-              exculImageSets={exculImageSets}
-              themeColor="blue"
-            />
+            {isLoading ? (
+              <Grid item container justifyContent="center">
+                <Box mt={3} mb={3}>
+                  <LoadingComponent themeColor="white" />
+                </Box>
+              </Grid>
+            ) : (
+              <Exculpatories
+                title="Jenis Kegiatan Ekskul KB-TK"
+                exculpatories={exculpatories}
+                exculImageSets={exculImageSets}
+                themeColor="white"
+              />
+            )}
           </Box>
         </Container>
       </Box>
@@ -333,11 +306,19 @@ const AcademicKBTK: FC = (props) => {
           pr={Tablet ? '0 !important' : '2rem'}
           py={Phone ? 4 : 8}
         >
-          <Teachers
-            themeColor="yellow"
-            title="KB - TK Taruna Bangsa"
-            teachersList={teachers}
-          />
+          {isLoading ? (
+            <Grid item container justifyContent="center">
+              <Box mt={3} mb={3}>
+                <LoadingComponent themeColor="yellow" />
+              </Box>
+            </Grid>
+          ) : (
+            <Teachers
+              themeColor="yellow"
+              title="KB - TK Taruna Bangsa"
+              teachersList={teachers}
+            />
+          )}
         </Container>
       </Container>
     </>

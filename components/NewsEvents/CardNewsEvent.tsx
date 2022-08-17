@@ -109,7 +109,7 @@ const CardNewsEvent: FC<CardNewsEventProps> = ({
               <Grid item>
                 <Typography
                   variant={Phone ? 'caption' : 'body2'}
-                  fontWeight={600}
+                  fontWeight={500}
                 >
                   Baca Lebih
                 </Typography>

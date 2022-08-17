@@ -5,6 +5,7 @@ import { PrimaryButton } from '../Button';
 import HeaderLayout from '../HeaderLayout';
 import NewsEventsCard from '../NewsEventsCard';
 import { useRouter } from 'next/router';
+import LoadingComponent from '../shared/LoadingComponent';
 //* Sanity
 import sanityClient from 'client';
 import { NEWS_AND_EVENTS_HOME } from '@/utils/groq';
@@ -50,11 +51,12 @@ const NewsAndEvents = () => {
 
   /** State */
   const [newsEvents, setNewsEvents] = useState<NewsEvent[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   /** Functions */
   const getNewsEvents = async () => {
+    setIsLoading(true);
     const newsEventsData = await sanityClient.fetch(NEWS_AND_EVENTS_HOME);
-
     setNewsEvents(
       newsEventsData.map((data: NewsEvent) => {
         return {
@@ -62,6 +64,7 @@ const NewsAndEvents = () => {
         };
       }),
     );
+    setIsLoading(false);
   };
 
   /** Hooks */
@@ -76,28 +79,31 @@ const NewsAndEvents = () => {
         justifyContent="center"
         // alignItems="center"
         spacing={4}
-        sx={{ mt: Phone ? 0 : theme.spacing(4) }}
+        sx={{ mt: Phone ? 0 : theme.spacing(3) }}
       >
-        {/* {newsEvents?.map(({ imageUrl, caption, _id }, idx) => ( */}
-        {/* <Grid item xs key={_id}> */}
-        {/* {NEWS_EVENTS?.map(({ imageUrl, caption }, idx) => ( */}
-        {newsEvents?.map(({ imageUrl, caption, _id }, idx) => (
-          <Grid
-            item
-            xs={customPhone ? 12 : Desktop ? 6 : 3}
-            key={_id}
-            container
-            justifyContent={'center'}
-            sx={{
-              mb: Phone ? theme.spacing(2) : Desktop ? theme.spacing(4) : 0,
-            }}
-          >
-            <NewsEventsCard
-              variant={idx % 2 === 0 ? 'dark' : 'light'}
-              {...{ imageUrl, caption }}
-            />
+        {isLoading ? (
+          <Grid item>
+            <LoadingComponent />
           </Grid>
-        ))}
+        ) : (
+          newsEvents?.map(({ imageUrl, caption, _id }, idx) => (
+            <Grid
+              item
+              xs={customPhone ? 12 : Desktop ? 6 : 3}
+              key={_id}
+              container
+              justifyContent={'center'}
+              sx={{
+                mb: Phone ? theme.spacing(2) : Desktop ? theme.spacing(4) : 0,
+              }}
+            >
+              <NewsEventsCard
+                variant={idx % 2 === 0 ? 'dark' : 'light'}
+                {...{ imageUrl, caption }}
+              />
+            </Grid>
+          ))
+        )}
         <Grid item xs={12} container justifyContent="center">
           <Box
             mt={
