@@ -1,6 +1,5 @@
 import {
   Box,
-  Divider,
   Grid,
   Typography,
   useMediaQuery,
@@ -11,6 +10,7 @@ import {
 } from '@mui/material';
 import { useResponsive } from 'helpers/custom-hooks';
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 //* Components
 import CardNewsEvent from '@/components/NewsEvents/CardNewsEvent';
 import Container from '@/components/Container';
@@ -18,7 +18,9 @@ import Container from '@/components/Container';
 import sanityClient from 'client';
 import groq from 'groq';
 import { NEWS_AND_EVENTS_COUNT } from '@/utils/groq';
-import { useRouter } from 'next/router';
+//* Jotai
+import { newsEventsAtom, counterPageAtom, dataCountAtom } from 'pages/_app';
+import { useAtom } from 'jotai';
 
 // ? For Pagination
 // interface NewsAndEventsPageProps {
@@ -61,23 +63,29 @@ export default function NewsAndEventsPage() {
 
   /** State */
   // ? For Load More
-  const [counterPage, setCounterPage] = useState(1);
-  const [newsEventsData, setNewsEventsData] = useState<
-    {
-      _id: string;
-      mainImageUrl: string;
-      title: string;
-      description: string;
-      mainImageCaption: string;
-      // bodySnippet: any;
-      publishedAt: string;
-      slug: {
-        current: string;
-      };
-    }[]
-  >([]);
-  const [dataCount, setDataCount] = useState(0);
+  // const [counterPage, setCounterPage] = useState(1);
+  // const [newsEventsData, setNewsEventsData] = useState<
+  //   {
+  //     _id: string;
+  //     mainImageUrl: string;
+  //     title: string;
+  //     description: string;
+  //     mainImageCaption: string;
+  //     // bodySnippet: any;
+  //     publishedAt: string;
+  //     slug: {
+  //       current: string;
+  //     };
+  //   }[]
+  // >([]);
+  // const [dataCount, setDataCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [isClickLoadMore, setIsClickLoadMore] = useState(false);
+
+  /** Jotai */
+  const [newsEventsData, setNewsEventsData] = useAtom(newsEventsAtom);
+  const [counterPage, setCounterPage] = useAtom(counterPageAtom);
+  const [dataCount, setDataCount] = useAtom(dataCountAtom);
 
   /** Functions */
   // ? For Pagination
@@ -119,11 +127,16 @@ export default function NewsAndEventsPage() {
     setIsLoading(false);
   };
 
+  const handleClickLoadMore = () => {
+    setCounterPage(counterPage + 1);
+    setIsClickLoadMore(true);
+  };
+
   /** Hooks */
   // ? For Load More
   useEffect(() => {
     // ? Pagination for load more
-    const limitPerPage = 2;
+    const limitPerPage = 6;
     const start =
       counterPage === 1 ? +counterPage - 1 : (+counterPage - 1) * limitPerPage;
     const end = +start + limitPerPage;
@@ -139,8 +152,10 @@ export default function NewsAndEventsPage() {
           publishedAt,
         }
         `;
-
-    getData(start, end, ALL_NEWS_AND_EVENTS);
+    if (newsEventsData.length === 0 || isClickLoadMore) {
+      getData(start, end, ALL_NEWS_AND_EVENTS);
+    }
+    setIsClickLoadMore(false);
   }, [counterPage]);
 
   return (
@@ -223,7 +238,7 @@ export default function NewsAndEventsPage() {
                     <Button
                       variant="contained"
                       disableElevation
-                      onClick={() => setCounterPage(counterPage + 1)}
+                      onClick={handleClickLoadMore}
                     >
                       Load More
                     </Button>

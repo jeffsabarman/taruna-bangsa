@@ -8,9 +8,28 @@ import createEmotionCache from '@/styles/createemotionCache';
 import ElevationAppBar from '@/components/AppBar';
 import Footer from '@/components/Footer';
 import '@/styles/globals.css';
+import { atom } from 'jotai';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
+export const newsEventsAtom = atom<
+  {
+    _id: string;
+    mainImageUrl: string;
+    title: string;
+    description: string;
+    mainImageCaption: string;
+    // bodySnippet: any;
+    publishedAt: string;
+    slug: {
+      current: string;
+    };
+  }[]
+>([]);
+
+export const counterPageAtom = atom<number>(1);
+
+export const dataCountAtom = atom<number>(0);
 
 export default function MyApp(props: any) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;

@@ -129,8 +129,6 @@ export const listComponents = {
 export const contentComponents = {
   types: {
     image: ({ value }: any) => {
-      console.log(value, '<< image');
-
       const { Phone, SmallDesktop } = useResponsive();
 
       return (
@@ -141,7 +139,7 @@ export const contentComponents = {
               src={urlFor(value)}
               style={{
                 width: '100%',
-                height: Phone ? '44vw' : SmallDesktop ? '34vw' : '28vw',
+                height: Phone ? '44vw' : SmallDesktop ? '34vw' : '30vw',
                 objectFit: 'cover',
               }}
             />

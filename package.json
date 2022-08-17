@@ -18,6 +18,7 @@
     "@sanity/client": "^3.3.2",
     "@sanity/image-url": "^1.0.1",
     "groq": "^2.29.3",
+    "jotai": "^1.7.8",
     "moment": "^2.29.4",
     "next": "12.1.6",
     "react": "18.2.0",
