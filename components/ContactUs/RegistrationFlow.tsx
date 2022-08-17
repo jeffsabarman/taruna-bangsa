@@ -1,9 +1,23 @@
-import { Grid, Typography, useTheme } from '@mui/material';
+import { Grid, Typography, useTheme, useMediaQuery } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import React from 'react';
+
+const StyledSpanLink = styled('span')(({ theme }) => ({
+  color: theme.palette.primary.light,
+  textDecoration: 'underline',
+  '&:hover': {
+    cursor: 'pointer',
+    color: theme.palette.primary.main,
+  },
+}));
 
 const RegistrationFlow = () => {
   /** Utilities */
   const theme = useTheme();
+
+  /** Media Query */
+  const customSmallPhone = useMediaQuery('(max-width:390px)');
+
   return (
     <Grid container direction="column" spacing={3}>
       <Grid item container xs spacing={1}>
@@ -11,9 +25,21 @@ const RegistrationFlow = () => {
           <Typography color="GrayText">1.</Typography>
         </Grid>
         <Grid item xs>
-          <Typography color="GrayText">
+          {/* <Typography color="GrayText">
             Pendaftar mengakses web tarunabangsa.quintal.id/apply untuk
             registrasi awal mendapatkan akses login ke Formulir Pendaftaran
+          </Typography> */}
+          <Typography color="GrayText">
+            Pendaftar mengakses{' '}
+            <StyledSpanLink
+              onClick={() =>
+                window.open('https://tarunabangsa.quintal.id/apply')
+              }
+            >
+              web
+            </StyledSpanLink>{' '}
+            untuk registrasi awal mendapatkan akses login ke Formulir
+            Pendaftaran
           </Typography>
         </Grid>
       </Grid>
@@ -32,9 +58,20 @@ const RegistrationFlow = () => {
           <Typography color="GrayText">3.</Typography>
         </Grid>
         <Grid item xs>
-          <Typography color="GrayText">
+          {/* <Typography color="GrayText">
             Pengisian Formulir Pendaftaran dan mengirim dokumen pendukung secara
             online melalui web tarunabangsa.quintal.id/apply
+          </Typography> */}
+          <Typography color="GrayText">
+            Pengisian Formulir Pendaftaran dan mengirim dokumen pendukung secara
+            online melalui{' '}
+            <StyledSpanLink
+              onClick={() =>
+                window.open('https://tarunabangsa.quintal.id/apply')
+              }
+            >
+              web
+            </StyledSpanLink>{' '}
           </Typography>
         </Grid>
       </Grid>

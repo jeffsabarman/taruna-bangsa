@@ -51,7 +51,7 @@ const Map: FC<MapProps> = ({ children, style, ...options }) => {
 
   return (
     <>
-      <div id="map" ref={ref} style={style} />;
+      <div id="map" ref={ref} style={style} />
       {Children.map(children, (child) => {
         if (isValidElement(child)) {
           // set the map prop on the child component

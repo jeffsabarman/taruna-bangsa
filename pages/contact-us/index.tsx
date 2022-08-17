@@ -12,13 +12,19 @@ const ContactUs = () => {
   const { Phone } = useResponsive();
 
   /** Media Queries */
+  const customSmallPhone = useMediaQuery('(max-width:350px)');
   const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
     <Box mt={largerThanPhone || Phone ? theme.spacing(12) : theme.spacing(8)}>
       <Grid container direction="column">
         <Grid item xs>
-          <ReactMap style={{ width: '100vw', height: 500 }} />
+          <ReactMap
+            style={{
+              width: customSmallPhone ? '100%' : '100vw',
+              height: Phone ? 300 : 500,
+            }}
+          />
         </Grid>
         <HeaderLayout title="Alur Pendaftaran Online">
           <RegistrationFlow />

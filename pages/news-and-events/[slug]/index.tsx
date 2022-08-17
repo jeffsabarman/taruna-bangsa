@@ -68,12 +68,12 @@ export default function NewsAndEventsPage({
                 style={{
                   width: '100%',
                   height: Phone
-                    ? '48vw'
+                    ? '52vw'
                     : Tablet
-                    ? '40vw'
+                    ? '44vw'
                     : SmallDesktop
                     ? '36vw'
-                    : '30vw',
+                    : '32vw',
                   objectFit: 'cover',
                 }}
               />
