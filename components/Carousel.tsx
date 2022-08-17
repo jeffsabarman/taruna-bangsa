@@ -219,6 +219,19 @@ const CarouselItem = (props: { image: ImageLink | undefined }) => {
   );
 };
 
+const SliderCarouselItem = (props: { image: ImageLink | undefined }) => {
+  const { SmallDesktop, Desktop, Tablet, Phone } = useResponsive();
+
+  return (
+    <ImageCarousel
+      onClick={() => props?.image?.link}
+      src={props?.image?.url}
+      alt="Taruna Bangsa Slider Image"
+      style={{ height: 500 }}
+    />
+  );
+};
+
 const HeroCarousel: FC<IElasticCarouselProps> = ({
   itemsToShow = 1,
   images,
@@ -476,6 +489,42 @@ const TeacherCarousel: FC<IElasticCarouselProps> = ({
           teacher={teacher}
           themeColor={themeColor}
         />
+      ))}
+    </StyledElasticCarousel>
+  );
+};
+
+export const SliderCarousel: FC<IElasticCarouselProps> = ({
+  itemsToShow = 1,
+  images,
+  paginationBottom = '2rem',
+  themeColor = 'lightblue',
+  ...props
+}) => {
+  const breakPoints = [{ width: 1, itemsToShow }];
+
+  return (
+    <StyledElasticCarousel
+      {...props}
+      breakPoints={breakPoints}
+      renderArrow={CarouselArrow}
+      showEmptySlots={false}
+      renderPagination={({ pages, activePage, onClick }) => (
+        // @ts-ignore
+        <StyledPagination
+          {...{
+            pages,
+            activePage,
+            onClick,
+            type: 'hero',
+            paginationBottom,
+            themeColor,
+          }}
+        />
+      )}
+    >
+      {images?.map((image, idx) => (
+        <SliderCarouselItem key={idx} image={image} />
       ))}
     </StyledElasticCarousel>
   );

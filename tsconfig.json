@@ -18,7 +18,8 @@
     "paths": {
       "@/components/*": ["components/*"],
       "@/styles/*": ["styles/*"],
-      "@/public/*": ["public/*"]
+      "@/public/*": ["public/*"],
+      "@/utils/*": ["utils/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "public/images/svg.js"],

@@ -33,7 +33,7 @@ const Footer = () => {
           container
           justifyContent="center"
         >
-          <Image src="/images/stb-logo.svg" width={200} height={80} />
+          <Image src="/images/stb-logo.svg" width={160} height={80} />
         </Grid>
         <Grid
           item
