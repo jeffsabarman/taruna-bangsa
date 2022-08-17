@@ -129,7 +129,7 @@ export const listComponents = {
 export const contentComponents = {
   types: {
     image: ({ value }: any) => {
-      const { Phone, SmallDesktop } = useResponsive();
+      const { Phone, Tablet, SmallDesktop } = useResponsive();
 
       return (
         <Grid container direction="column" alignItems="center">
@@ -139,7 +139,13 @@ export const contentComponents = {
               src={urlFor(value)}
               style={{
                 width: '100%',
-                height: Phone ? '44vw' : SmallDesktop ? '34vw' : '30vw',
+                height: Phone
+                  ? '48vw'
+                  : Tablet
+                  ? '40vw'
+                  : SmallDesktop
+                  ? '36vw'
+                  : '30vw',
                 objectFit: 'cover',
               }}
             />

@@ -395,9 +395,25 @@ const GridImage: FC<GridImage> = ({ url, alt, orientation, ...props }) => {
       ...sx,
     },
   };
+  const { Phone, Tablet } = useResponsive();
+
   return (
     <Box sx={styles.container} {...other}>
-      <Image src={url} alt={alt} orientation={orientation} />
+      <Image
+        src={url}
+        alt={alt}
+        orientation={orientation}
+        style={{
+          height:
+            orientation === 'landscape'
+              ? Phone
+                ? '48vw'
+                : Tablet
+                ? '100%'
+                : '14vw'
+              : '100%',
+        }}
+      />
     </Box>
   );
 };
@@ -410,6 +426,9 @@ const GridCarousel: FC<IElasticCarouselProps> = ({
   ...props
 }) => {
   const breakPoints = [{ width: 1, itemsToShow }];
+  const { Phone, Tablet } = useResponsive();
+
+  // TODO: HANDLE RESPONSIVE
 
   return (
     <StyledElasticCarousel
@@ -440,9 +459,17 @@ const GridCarousel: FC<IElasticCarouselProps> = ({
           key={idx}
           sx={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 1,
-            gridTemplateRows: 'repeat(2, 14vw)',
+            gridTemplateColumns: Phone
+              ? 'repeat(2, 100%)'
+              : Tablet
+              ? 'repeat(2, 1fr)'
+              : 'repeat(3, 1fr)',
+            gap: Phone ? 3 : Tablet ? 2 : 1,
+            gridTemplateRows: Phone
+              ? 'repeat(6, 48vw)'
+              : Tablet
+              ? 'repeat(3, 26vw)'
+              : 'repeat(2, 14vw)',
           }}
         >
           <GridImage
@@ -456,7 +483,10 @@ const GridCarousel: FC<IElasticCarouselProps> = ({
           />
           <GridImage
             orientation="portrait"
-            sx={{ gridColumn: '2', gridRow: '1/3' }}
+            sx={{
+              gridColumn: Phone ? '1' : Tablet ? '1/3' : '2',
+              gridRow: Phone ? '5/7' : Tablet ? '3/5' : '1/3',
+            }}
             // url={gridImage.imageSets['2']}
             url={gridImage.imageSets['2']?.url}
             alt={gridImage.imageSets['2']?.alt}
@@ -465,7 +495,10 @@ const GridCarousel: FC<IElasticCarouselProps> = ({
           />
           <GridImage
             orientation="landscape"
-            sx={{ gridColumn: '3', gridRow: '1' }}
+            sx={{
+              gridColumn: Phone ? '1' : Tablet ? '2' : '3',
+              gridRow: Phone ? '2' : '1',
+            }}
             // url={gridImage.imageSets['3']?.url}
             // alt={gridImage.imageSets['3']?.alt}
             url={gridImage.imageSets[2]?.url}
@@ -473,7 +506,7 @@ const GridCarousel: FC<IElasticCarouselProps> = ({
           />
           <GridImage
             orientation="landscape"
-            sx={{ gridColumn: '1', gridRow: '2' }}
+            sx={{ gridColumn: '1', gridRow: Phone ? '3' : '2' }}
             // url={gridImage.imageSets['4']?.url}
             // alt={gridImage.imageSets['4']?.alt}
             url={gridImage.imageSets[3]?.url}
@@ -481,7 +514,10 @@ const GridCarousel: FC<IElasticCarouselProps> = ({
           />
           <GridImage
             orientation="landscape"
-            sx={{ gridColumn: '3', gridRow: '2' }}
+            sx={{
+              gridColumn: Phone ? '1' : Tablet ? '2' : '3',
+              gridRow: Phone ? '4' : '2',
+            }}
             // url={gridImage.imageSets['5']?.url}
             // alt={gridImage.imageSets['5']?.alt}
             url={gridImage.imageSets[4]?.url}

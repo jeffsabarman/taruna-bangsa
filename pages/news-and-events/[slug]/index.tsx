@@ -67,7 +67,13 @@ export default function NewsAndEventsPage({
                 src={newsEventsContent?.mainImageUrl}
                 style={{
                   width: '100%',
-                  height: Phone ? '44vw' : SmallDesktop ? '34vw' : '30vw',
+                  height: Phone
+                    ? '48vw'
+                    : Tablet
+                    ? '40vw'
+                    : SmallDesktop
+                    ? '36vw'
+                    : '30vw',
                   objectFit: 'cover',
                 }}
               />

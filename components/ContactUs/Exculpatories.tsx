@@ -39,7 +39,7 @@ const Exculpatories: FC<ExculpatoriesProps> = ({
           <ListItem key={idx} point={exculpatory} />
         ))} */}
       </Box>
-      <Box mt={8} position="relative">
+      <Box mt={8} position="relative" mb={4}>
         <GridCarousel
           gridImages={exculImageSets}
           themeColor={themeColor}
