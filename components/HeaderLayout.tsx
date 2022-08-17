@@ -1,4 +1,10 @@
-import { Grid, Typography, TypographyTypeMap, useTheme } from '@mui/material';
+import {
+  Grid,
+  Typography,
+  TypographyTypeMap,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 import { useResponsive } from 'helpers/custom-hooks';
 import React, { FC, ReactNode } from 'react';
 import Container from '@/components/Container';
@@ -20,14 +26,18 @@ const HeaderLayout: FC<HeaderLayoutProps> = ({
 }) => {
   const theme = useTheme();
   const { Phone, Tablet, SmallDesktop, Desktop } = useResponsive();
+  const customSmallPhone = useMediaQuery('(max-width:350px)');
+
   return (
     <Container
-      py={Phone ? theme.spacing(4) : theme.spacing(12)}
+      py={
+        Phone ? theme.spacing(4) : Tablet ? theme.spacing(8) : theme.spacing(12)
+      }
       size={Phone ? 'sm' : SmallDesktop ? 'md' : Desktop ? 'lg' : 'xl'}
     >
       <Grid item xs justifyContent="center" alignItems="center">
         <Typography
-          variant={Phone ? 'h6' : 'h4'}
+          variant={Phone ? 'h6' : Tablet ? 'h5' : 'h4'}
           color={mode === 'light' ? 'primary' : 'whitesmoke'}
           textAlign="center"
         >
@@ -49,7 +59,13 @@ const HeaderLayout: FC<HeaderLayoutProps> = ({
         )}
       </Grid>
       <Grid
-        mt={theme.spacing(4)}
+        mt={
+          Phone
+            ? theme.spacing(4)
+            : Tablet
+            ? theme.spacing(6)
+            : theme.spacing(8)
+        }
         justifyContent="center"
         alignItems="center"
         container

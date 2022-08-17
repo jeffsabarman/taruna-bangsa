@@ -3,6 +3,7 @@ import { Box, Grid, Typography, useTheme, useMediaQuery } from '@mui/material';
 import { useResponsive } from 'helpers/custom-hooks';
 import Image from 'next/image';
 import React, { FC } from 'react';
+import { getShortenText } from 'helpers';
 
 interface NewsEventsCardProps {
   imageUrl: string;
@@ -31,15 +32,23 @@ const NewsEventsCard: FC<NewsEventsCardProps> = ({
           : theme.palette.primary.light
       }
       maxWidth={customSmallPhone ? '100%' : Phone ? '20rem' : '22rem'}
-      // sx={{ minWidth: '16rem', maxWidth: '22rem' }}
+      width="100%"
+      // sx={{ minWidth: '18rem', maxWidth: '22rem' }}
       // sx={{ width: customSmallDesktop ? '20rem' : '100%' }}
     >
       <Box position="relative">
-        <img src={imageUrl} style={{ width: '100%', objectFit: 'cover' }} />
+        <img
+          src={imageUrl}
+          style={{ width: '100%', objectFit: 'cover', height: '16rem' }}
+        />
       </Box>
       <Box py={theme.spacing(2)} px={theme.spacing(3)}>
-        <Typography variant={Phone ? 'subtitle1' : 'h6'} color="whitesmoke">
-          {caption}
+        <Typography
+          // variant={Phone ? 'subtitle1' : 'h6'}
+          variant="subtitle1"
+          color="whitesmoke"
+        >
+          {getShortenText(caption, 34, 36)}
         </Typography>
       </Box>
     </Box>
