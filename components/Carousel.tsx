@@ -200,7 +200,7 @@ const StyledPagination: FC<PaginationProps> = ({
   themeColor = 'yellow',
   isSetBackground = false,
 }) => {
-  const { Tablet, Phone } = useResponsive();
+  const { Phone } = useResponsive();
   const customSmallPhone = useMediaQuery('(max-width:360px)');
   const theme = useTheme();
 
