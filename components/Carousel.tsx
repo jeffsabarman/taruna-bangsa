@@ -286,12 +286,9 @@ const StyledPagination: FC<PaginationProps> = ({
                   {isActivePage ? (
                     <CircleIcon sx={getSxIcon()} />
                   ) : (
-                    // <CircleOutlinedIcon sx={getSxIcon()} />
                     <CircleIcon
                       sx={getSxIcon()}
-                      // sx={getSxIconInactive()}
                       style={{ color: `rgba(189, 189, 189, 0.8)` }}
-                      // style={{ color: grey[400] }}
                     />
                   )}
                 </IconButton>
