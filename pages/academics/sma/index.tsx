@@ -28,91 +28,31 @@ const sections = [
   {
     key: 'SMA',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      'SMA Taruna Bangsa merupakan sekolah yang bernaung di bawah Yayasan Pendidikan Taruna Bangsa, yang memiliki motto Mengasah Otak Mengolah Bakat.',
+  },
+  {
+    key: '',
+    description:
+      'Sesuai dengan visi SMA Taruna Bangsa, untuk mewujudkan Peserta Didik yang Berbudi Pekerti Luhur, Berkarakter Pelajar Pancasila, Unggul dalam Prestasi, Berwawasan Lingkungan, Menguasai Iptek, dan Kompetitif dalam Era Globalisasi, kami selalu memotivasi dan mendampingi peserta didik selama berproses dalam kegiatan pembelajaran, baik melalui pembelajaran intrakurikuler, ekstrakurikuler, maupun pendidikan karakter. Sehingga peserta didik SMA Taruna Bangsa menjadi pribadi yang dewasa, mandiri, kreatif, dan penuh semangat menghadapi dalam tantangan untuk berkompetisi secara positif, serta siap melanjutkan pendidikan ke jenjang yang lebih tinggi.',
+  },
+  {
+    key: '',
+    description:
+      'Bimbingan guru-guru yang handal dan berkualitas, menghantarkan putra-putri SMA Taruna Bangsa meraih berbagai prestasi bidang akademik maupun non akademik, baik tingkat kabupaten, tingkat provinsi, tingkat nasional, maupun internasional. Setiap tahunnya, lulusan SMA Taruna Bangsa selalu ada yang diterima di Perguruan Tinggi Negeri (PTN), baik melalui jalur SNMPTN, jalur prestasi, maupun jalur SBMPTN. Selain itu lulusan SMA Taruna Bangsa ada juga yang melanjutkan di Perguruan Tinggi swasta favorit, baik di Indonesia maupun di Luar Negeri.',
   },
 ];
 
-/** Mocked Data */
-// const images = [
-//   {
-//     url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
-//     link: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
-//   },
-//   {
-//     url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-//     link: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-//   },
-// ];
+const VISSIONS = [
+  'Terwujudnya Peserta Didik yang Berbudi Pekerti Luhur, Berkarakter  Pelajar Pancasila, Unggul dalam Prestasi, Berwawasan Lingkungan, Menguasai Iptek, dan Kompetitif dalam Era Globalisasi.',
+];
 
-// const schedules = [
-//   'KB : Senin - Jumat : 10.00 - 12.00 WIB',
-//   'TK : Senin - Jumat : 08.00 - 11.30 WIB',
-// ];
-
-// const activities = [
-//   'Field trip / karyawisata',
-//   'Kunjungan belajar',
-//   'Pemeriksaan gigi',
-//   'Aktivitas di luar kelas (membatik, menanam)',
-//   'Perayaan HUT RI dan Hari Besar Nasional (Kartini, Sumpah Pemuda, dll)',
-//   'Kegiatan akhir semester',
-//   'Porseni',
-// ];
-
-// const exculpatories = [
-//   'Seni : Fashion & Modeling, Modern Dance, Balet, Lukis, Keyboard, Gitar, Vocal',
-//   'Bahasa : Bahasa Inggris, Bahasa Mandarin',
-//   'Olahraga : Futsal, Renang, Anggar',
-//   'Keterampilan : Bakery',
-// ];
-
-// const exculImageSets = [
-//   {
-//     imageSets: {
-//       1: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       2: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
-//       3: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       4: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       5: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//     },
-//   },
-//   {
-//     imageSets: {
-//       1: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       2: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
-//       3: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       4: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       5: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//     },
-//   },
-// ];
-
-// const teachers = [
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-// ];
+const MISSIONS = [
+  'Menumbuh-kembangkan karakter peserta didik yang religius, jujur, disiplin, santun, bertanggung jawab, berkebinekaan global, bergotong royong, mandiri, bernalar kritis, kreatif, dan cinta tanah air.',
+  'Mengembangkan pembelajaran yang aktif, kreatif, dan inovatif.',
+  'Membudayakan kepedulian terhadap lingkungan dalam setiap kegiatan.',
+  'Mengembangkan bidang iptek berdasarkan minat, bakat, dan potensi peserta didik.',
+  'Mewujudkan peserta didik yang tangguh guna meningkatkan daya saing bangsa di era globalisasi.',
+];
 
 const exculImageSets = [
   {
@@ -223,8 +163,9 @@ const AcademicSMA: FC = (props) => {
         >
           <VisionMission
             themeColor="grey"
-            vision="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            mission="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            visions={VISSIONS}
+            missionSub="Untuk mewujudkan Visi yang telah dirumuskan, SMA Taruna Bangsa menetapkan misi sebagai berikut :"
+            missions={MISSIONS}
           />
         </Container>
       </Container>
@@ -237,12 +178,14 @@ const AcademicSMA: FC = (props) => {
             Kurikulum
           </Typography>
           <Typography mt={4} color="whitesmoke" variant="body2">
-            Kami percaya bahwa program akademik yang baik dikombinasikan dengan
-            kurikulum sosial-emosional yang mendukung mengarah pada kesuksesan
-            siswa. Program akademik Sekolah Taruna Bangsa mencerminkan praktik
-            sesuai kurikulum yg berlaku dengan instruksi berbasis standar;
-            kurikulum berbasis penelitian; penilaian reguler; pekerjaan rumah;
-            dan peluang pengayaan yang memperluas cakrawala.
+            SMA Taruna Bangsa menggunakan Kurikulum yang berlaku secara
+            nasional, yaitu Kurikulum Merdeka untuk kelas X dan Kurikulum 2013
+            yang disederhanakan/diadaptasi secara mandiri untuk kelas XI dan
+            XII. Dalam Kurikulum Merdeka, pembelajaran dibagi mejadi dua
+            kegiatan utama: Pembelajaran Intrakurikuler Proyek Penguatan Profil
+            Pelajar Pancasila Dalam Kurikulum 2013, pembelajaran mengarah pada
+            pengetahuan, keterampilan, dan sikap/karakter, yang dikembangkan
+            dalam kehidupan sehari-hari.
           </Typography>
 
           <Box mt={4}>

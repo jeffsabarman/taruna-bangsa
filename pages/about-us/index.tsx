@@ -7,17 +7,12 @@ import {
 } from '@/components/Carousel';
 import Container from '@/components/Container';
 import { Box, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
-import { useResponsive } from 'helpers/custom-hooks';
+import { useBackgroundTypography, useResponsive } from 'helpers/custom-hooks';
 import React, { FC, useEffect, useState } from 'react';
 import headMasterPic from '@/public/images/lingling.png';
 import HeaderLayout from '@/components/HeaderLayout';
 import Academics from '@/components/Home/Academics';
 import HeroSection from '@/components/Home/HeroSection';
-// import { grey } from '@mui/material/colors';
-// import SwipeArrow from '@/components/shared/SwipeArrow';
-//* Sanity
-// import sanityClient from 'client';
-// import { INSTITUTIONAL_ADMINSTRATOR } from '@/utils/groq';
 
 /** Mocked Data */
 const images = [
@@ -31,74 +26,28 @@ const images = [
   },
 ];
 
-// const teachers = [
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-// ];
+const VISSIONS = [
+  'Terwujudnya sekolah yang berkarakter Pancasila, Unggul, dan Berprestasi.',
+];
+
+const MISSIONS = [
+  'Menumbuh-kembangkan karakter warga sekolah sesuai dengan nilai-nilai Pancasila.',
+  'Membentuk pribadi yang siap bersaing dalam era globalisasi.',
+  'Memotivasi warga sekolah untuk berprestasi dalam segala bidang.',
+];
 
 const AboutUsPage: FC = (props) => {
   /** Utilities */
   const theme = useTheme();
   const { Phone, Tablet, SmallDesktop, Desktop } = useResponsive();
+  const styles = useBackgroundTypography();
 
   /** Media Queries */
   const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
   const SmallLaptop = useMediaQuery('(max-width:1020px)');
 
-  /** State */
-  // const [administrators, setAdministrators] = useState<
-  //   { image: string; name: string; role: string; _id: string }[]
-  // >([]);
-
-  /** Functions */
-  // const getInstitutionalAdministrators = async () => {
-  //   const data = await sanityClient.fetch(INSTITUTIONAL_ADMINSTRATOR);
-  //   setAdministrators(data);
-  // };
-
-  /** Hooks */
-  // useEffect(() => {
-  //   getInstitutionalAdministrators();
-  // }, []);
-
   return (
     <>
-      {/* <Box
-        position="relative"
-        mt={largerThanPhone || Phone ? theme.spacing(12) : theme.spacing(8)}
-        {...props}
-      >
-        <Grid
-          container
-          sx={{ height: SmallDesktop ? '60vh' : Desktop ? '80vh' : '90vh' }}
-        >
-          <Grid item xs>
-            <HeroCarousel enableAutoPlay showArrows={false} images={images} />
-          </Grid>
-        </Grid>
-      </Box> */}
       <HeroSection />
       <Container
         py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}
@@ -107,7 +56,11 @@ const AboutUsPage: FC = (props) => {
         <HeadMasterTestimony
           themeColor="red"
           headMasterImage={headMasterPic}
-          testimony="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          testimony="Selamat datang di situs web Taruna Bangsa.
+          Salam sejahtera untuk kita semua.
+          Yayasan Pendidikan Taruna Bangsa bergerak di bidang pendidikan, mulai dari jenjang KB, TK, SD, SMP dan SMA. Kami terus mengupayakan peningkatan sarana dan prasarana, serta kualitas tenaga pendidik dan kependidikan yang sesuai dengan perkembangan teknologi dan informasi, sehingga mampu bersaing dan menghasilkan lulusan yang berkualitas dalam karakter, pengetahuan, dan keterampilan.
+          Berpedoman pada visi dan misi Yayasan Pendidikan Taruna Bangsa, serta motto Sekolah Taruna Bangsa: “Mengasah Otak Mengolah Bakat”,  dan berpegang teguh pada nilai-nilai karakter Pelajar Pancasila, kami berusaha menjadikan peserta didik Taruna Bangsa menjadi pribadi siap bersaing di era globalisasi dan berprestasi di bidangnya.
+          Terima kasih dan Salam Sehat"
           headMasterName="Ling Ling Dewi Murniati, S.E."
           headMasterRole="Direktur Eksekutif Sekolah Taruna Bangsa"
           testimonialSenderRole="Direktur Eksekutif STB"
@@ -120,9 +73,106 @@ const AboutUsPage: FC = (props) => {
         >
           <VisionMission
             themeColor="red"
-            vision="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            mission="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            visions={VISSIONS}
+            missions={MISSIONS}
           />
+        </Container>
+        <Container>
+          <Grid container alignItems="flex-start" direction="column">
+            <Typography
+              sx={{
+                ...styles.primaryHeader,
+              }}
+              color="whitesmoke"
+              display="inline-block"
+              variant="subtitle1"
+            >
+              Nilai-Nilai
+            </Typography>
+            <Typography
+              sx={{
+                ...styles.redHeader,
+              }}
+              color="whitesmoke"
+              display="inline-block"
+              variant="subtitle1"
+            >
+              Sekolah Taruna Bangsa
+            </Typography>
+          </Grid>
+          <Container mt={4}>
+            <Grid container spacing={1} xs direction="column">
+              <Grid
+                direction="row"
+                alignItems="flex-start"
+                container
+                spacing={1}
+              >
+                <Typography component="span" variant="h4">
+                  &#183;
+                </Typography>
+                <Grid item xs={11} ml={3} mt={1}>
+                  <Typography variant="body2" color="GrayText">
+                    Kami merayakan proses pembelajaran dan penemuan dengan penuh
+                    semangat serta berupaya berkontribusi untuk menjadi pemimpin
+                    masa depan.
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid
+                direction="row"
+                alignItems="flex-start"
+                container
+                spacing={1}
+                mt={1}
+              >
+                <Typography component="span" variant="h4">
+                  &#183;
+                </Typography>
+                <Grid item xs={11} ml={3} mt={1}>
+                  <Typography variant="body2" color="GrayText">
+                    Kami menumbuhkan pemikiran kritis, rasa ingin tahu serta
+                    mengutamakan sikap pemecahan masalah.
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid
+                direction="row"
+                alignItems="flex-start"
+                container
+                spacing={1}
+                mt={1}
+              >
+                <Typography component="span" variant="h4">
+                  &#183;
+                </Typography>
+                <Grid item xs={11} ml={3} mt={1}>
+                  <Typography variant="body2" color="GrayText">
+                    Kami membangun hubungan harmonis yang berakar pada
+                    integritas diri, rasa saling menghormati dan komunikasi
+                    terbuka.
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid
+                direction="row"
+                alignItems="flex-start"
+                container
+                spacing={1}
+                mt={1}
+              >
+                <Typography component="span" variant="h4">
+                  &#183;
+                </Typography>
+                <Grid item xs={11} ml={3} mt={1}>
+                  <Typography variant="body2" color="GrayText">
+                    Kami mendukung inklusivitas, memelihara pemberdayaan untuk
+                    menciptakan dampak positif bagi masyarakat kita.
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Container>
         </Container>
       </Container>
       {/* <Box bgcolor={theme.palette.primary.main}>

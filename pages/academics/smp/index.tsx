@@ -28,8 +28,32 @@ const sections = [
   {
     key: 'SMP',
     description:
-      'SMP Taruna bangsa merupakan sekolah yang berada di bawah naungan Yayasan Pendidikan Taruna Bangsaa. Bersatu dalam keberagaman merupakan nilai yang dijunjung oleh kami selaku sekolah swasta nasional umum yang tidak berlatar belakang agama, golongan, ataupun etnis tertentu. SMP Taruna bangsa mempersiapkan peserta didik untuk menemukan potensi dan minat, juga memperlengkapi mereka untuk siap menempuh pendidikan lebih lanjut. Kami mendorong peserta didik untuk berproses dalam pendidikan dan mencapai prestasi secara akadamis. Kami juga menanamkan pendidikan karakter melalui budaya sekolah. Sehingga peserta didik bukan hanya cakap secara akademis tetapi juga memiliki karakter dan sikap yang terpuji. Hal ini sejalan dengan tujuan pendidikan yaitu untuk mempertajam kecerdasan, memperkukuh kemauan dan memperhalus perasaan. Kami berkomitmen untuk memperlengkapi dan membimbing peserta didik dalam menyongsong masa depan dan membawa pengaruh bagi banyak orang melalui perilaku yang mengispirasi. Memperlengkapi peserta didik agar cakap dalam berpikir secara kritis, cakap dalam pemecahan masalah, cakap dalam berkomunikasi, mampu mengembangkan kreativitas, menciptakan inovasi dan terampil dalam kolaborasi. Kami mengucapkan terima kasih kepada Bapak/Ibu orangtua yang telah mempercayakan pendidikan putra dan putrinya di SMP taruna bangsa Kami mengajak Bapak/Ibu selaku orang tua peserta didik untuk mendaftarkan putra dan putrinya untuk bergabung di SMP Taruna Bangsa dan bergandengan tangan menjalin kerja sama dalam mendampingi anak-anak.',
+      'SMP Taruna bangsa merupakan sekolah yang berada di bawah naungan Yayasan Pendidikan Taruna Bangsa. Bersatu dalam keberagaman merupakan nilai yang dijunjung oleh kami selaku sekolah swasta nasional umum yang tidak berlatar belakang agama, golongan, ataupun etnis tertentu. SMP Taruna Bangsa mempersiapkan peserta didik untuk menemukan potensi dan minat, juga memperlengkapi mereka untuk siap menempuh pendidikan lebih lanjut. Kami mendorong peserta didik untuk berproses dalam pendidikan dan mencapai prestasi secara akadamis. Kami juga menanamkan pendidikan karakter melalui budaya sekolah. Sehingga peserta didik bukan hanya cakap secara akademis tetapi juga memiliki karakter dan sikap yang terpuji. Hal ini sejalan dengan tujuan pendidikan yaitu untuk mempertajam kecerdasan, memperkukuh kemauan dan memperhalus perasaan.',
   },
+  {
+    key: '',
+    description:
+      'Kami berkomitmen untuk memperlengkapi dan membimbing peserta didik dalam menyongsong masa depan dan membawa pengaruh bagi banyak orang melalui perilaku yang mengispirasi. Memperlengkapi peserta didik agar cakap dalam berpikir secara kritis, cakap dalam pemecahan masalah, cakap dalam berkomunikasi, mampu mengembangkan kreativitas, menciptakan inovasi dan terampil dalam kolaborasi. Kami mengucapkan terima kasih kepada Bapak/Ibu orangtua yang telah mempercayakan pendidikan putra dan putrinya di SMP Taruna Bangsa',
+  },
+  {
+    key: '',
+    description:
+      'Kami mengajak Bapak/Ibu selaku orang tua peserta didik untuk mendaftarkan putra dan putrinya untuk bergabung di SMP Taruna Bangsa dan bergandengan tangan menjalin kerja sama dalam mendampingi anak-anak.',
+  },
+];
+
+const VISSIONS = [
+  'Pengamalan ajaran agamanya dan budi pekerti.',
+  'Berbagai bidang pengetahuan, olahraga, dan seni.',
+  'Partisipasi pelestarian lingkungan sekolah dan masyarakat.',
+];
+const MISSIONS = [
+  'Meningkatkan penghayatan dan pengamalan terhadap ajaran agama yang dianutnya.',
+  'Melaksanakan pembelajaran yang efektif, kreatif, inovatif, dan menyenangkan bagi guru dan siswa.',
+  'Meningkatkan semangat dan motivasi berprestasi warga sekolah dalam berkarya.',
+  'Membantu siswa mengenali bakat dan mengolahnya untuk meningkatkan prestasi.',
+  'Menumbuhkan semangat cinta lingkungan dan berperan dalam pelestarian alam.',
+  'Mengamalkan budaya sekolah.',
 ];
 
 /** Mocked Data */
@@ -43,76 +67,6 @@ const images = [
     link: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
   },
 ];
-
-// const schedules = [
-//   'KB : Senin - Jumat : 10.00 - 12.00 WIB',
-//   'TK : Senin - Jumat : 08.00 - 11.30 WIB',
-// ];
-
-// const activities = [
-//   'Field trip / karyawisata',
-//   'Kunjungan belajar',
-//   'Pemeriksaan gigi',
-//   'Aktivitas di luar kelas (membatik, menanam)',
-//   'Perayaan HUT RI dan Hari Besar Nasional (Kartini, Sumpah Pemuda, dll)',
-//   'Kegiatan akhir semester',
-//   'Porseni',
-// ];
-
-// const exculpatories = [
-//   'Seni : Fashion & Modeling, Modern Dance, Balet, Lukis, Keyboard, Gitar, Vocal',
-//   'Bahasa : Bahasa Inggris, Bahasa Mandarin',
-//   'Olahraga : Futsal, Renang, Anggar',
-//   'Keterampilan : Bakery',
-// ];
-
-// const exculImageSets = [
-//   {
-//     imageSets: {
-//       1: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       2: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
-//       3: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       4: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       5: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//     },
-//   },
-//   {
-//     imageSets: {
-//       1: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       2: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
-//       3: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       4: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       5: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//     },
-//   },
-// ];
-
-// const teachers = [
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-// ];
 
 const exculImageSets = [
   {
@@ -223,8 +177,10 @@ const AcademicSMP: FC = (props) => {
         >
           <VisionMission
             themeColor="lightblue"
-            vision="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            mission="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            visions={VISSIONS}
+            missions={MISSIONS}
+            visionSub="Terwujudnya peserta didik yang beriman, bermoral, dan unggul dalam
+            prestasi. Peserta didik unggul dalam:"
           />
         </Container>
       </Container>

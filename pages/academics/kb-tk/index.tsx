@@ -25,71 +25,20 @@ import { ACADEMIC_KB_TK } from '@/utils/groq';
 
 const sections = [
   {
-    key: 'KB',
+    key: 'KB - TK',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-  },
-  {
-    key: 'TK',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      'KB dan TK Taruna Bangsa sudah berhasil meluluskan sebanyak 18 angkatan. Setiap saat KB dan TK Taruna Bangsa memperbaiki mutu pendidikannya, dengan berbagai pendekatan yang bukan hanya menonjolkan aspek akademis, tetapi juga mengembangkan aspek nonakademis. Pada tahun ajaran ini, KB dan TK Taruna Bangsa  menggunakan kurikulum 2013 menuju merdeka belajar.',
   },
 ];
 
-/** Mocked Data */
-// const images = [
-//   {
-//     url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
-//     link: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
-//   },
-//   {
-//     url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-//     link: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-//   },
-// ];
-
-// const schedules = [
-//   'KB : Senin - Jumat : 10.00 - 12.00 WIB',
-//   'TK : Senin - Jumat : 08.00 - 11.30 WIB',
-// ];
-
-// const activities = [
-//   'Field trip / karyawisata',
-//   'Kunjungan belajar',
-//   'Pemeriksaan gigi',
-//   'Aktivitas di luar kelas (membatik, menanam)',
-//   'Perayaan HUT RI dan Hari Besar Nasional (Kartini, Sumpah Pemuda, dll)',
-//   'Kegiatan akhir semester',
-//   'Porseni',
-// ];
-
-// const exculpatories = [
-//   'Seni : Fashion & Modeling, Modern Dance, Balet, Lukis, Keyboard, Gitar, Vocal',
-//   'Bahasa : Bahasa Inggris, Bahasa Mandarin',
-//   'Olahraga : Futsal, Renang, Anggar',
-//   'Keterampilan : Bakery',
-// ];
-
-// const exculImageSets = [
-//   {
-//     imageSets: {
-//       1: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       2: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
-//       3: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       4: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       5: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//     },
-//   },
-//   {
-//     imageSets: {
-//       1: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       2: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
-//       3: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       4: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       5: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//     },
-//   },
-// ];
+const VISSIONS = [
+  'Menjadi penyelenggara Pendidikan pra sekolah yang berkualitas dan berdaya saing dalam mendidik putra-putri Indonesia menjadi pelajar Pancasila.',
+];
+const MISSIONS = [
+  'Memupuk budi pekerti peserta didik sesuai nilai-nilai Pancasila.',
+  'Membantu tumbuh- kembang anak menjadi cerdas, berani, terampil, dan berprestasi.',
+  'Membentuk anak yang beragama dan bermoral, seimbang dalam sosial emosional,berpikir kritis, dan santun dalam bertutur kata.',
+];
 
 const exculImageSets = [
   {
@@ -142,33 +91,6 @@ const exculImageSets = [
   },
 ];
 
-// const teachers = [
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-// ];
-
 const AcademicKBTK: FC = (props) => {
   /** Utilities */
   const theme = useTheme();
@@ -210,7 +132,8 @@ const AcademicKBTK: FC = (props) => {
         <HeadMasterTestimony
           themeColor="yellow"
           headMasterImage={headMasterPic}
-          testimony="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          testimony="KB dan TK merupakan Pendidikan pertama setelah keluarga yang sangat penting bagi perkembangan kemampuan dasar anak berusia 3-6 tahun. Agar kebutuhan bermain anak terpenuhi, maka pembelajaran bermain sambil belajar merupakan prinsip dasar penyelenggaraan Pendidikan pra sekolah di KB dan TK Taruna Bangsa. Melalui bidang pengembangan Nilai agama dan moral, Pancasila, Sosial Emosional, Fisik Motorik, Bahasa, logika,  para lulusan TK B Taruna Bangsa Diharapkan menunjukkan perkembangan kematangan belajar sehingga dapat melanjutkan Pendidikan ke  tingkat sekolah dasar.  Kepada Ibu Bapak orang tua peserta didik KB dan TK Taruna Bangsa mari kita berkerja sama membantu anak-anak kita bertumbuh kembang sesuai kebutuhan dan usia mereka.
+          Semoga dengan bersekolah di KB dan TK Taruna Bangsa anak-anak dapat menapaki masa kanak-kanak yang ceria dan penuh kegembiraan."
           headMasterName="Fransiska Xaveria E.S., S.Pd, M.M."
           headMasterRole="Kepala KB - TK Taruna Bangsa"
         />
@@ -226,8 +149,8 @@ const AcademicKBTK: FC = (props) => {
         >
           <VisionMission
             themeColor="yellow"
-            vision="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            mission="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            visions={VISSIONS}
+            missions={MISSIONS}
           />
         </Container>
       </Container>
@@ -240,22 +163,35 @@ const AcademicKBTK: FC = (props) => {
             Kurikulum
           </Typography>
           <Typography mt={4} color="whitesmoke" variant="body2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            Kurikulum TK Taruna Bangsa yang mengacu kepada Kurikulum 2013 menuju
+            Kurikulum Merdeka. Hal ini dikarenakan kondisi Pandemi Covid-19 yang
+            belum sepenuhnya berlalu bahkan ada kemungkinan kita harus hidup
+            berdampingan dengannya. Kondisi pandemic yang menyebabkan peserta
+            didik harus belajar secara daring menyebabkan berbagai hal yang di
+            luar harapan. Oleh karenanya mulai tahun pelajaran 2022/2023 dengan
+            keluarnya Surat Edaran dari Menteri Pendidikan Kebudayaan Riset dan
+            Teknologi no. 07 Tahun 2022 tercantum aturan baru Pembelajaran Tatap
+            Muka 100% bagi wilayah yang berada pada zona level 1 dan 2.
+            Kabupaten Bogor pada bulan Juni dan Juli sudah berada pada level 1.
+            Maka TK Taruna Bangsa juga menyelenggarakan pembelajaran secara
+            Tatap Muka, meskipun jika ada perubahan kondisi penyebaran virus C-
+            19 kembali merebak maka kami akan melaksanakan pembelajaran secara
+            Online dan Offline dengan memanfaatkan peralatan Hybrid Learning
+            yang telah tersedia di setiap ruang kelas.
           </Typography>
           <Typography mt={4} color="whitesmoke" variant="body2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            Mengacu ke situasi kondisi maka kurikulum TK Taruna Bangsa pada
+            tahun pelajaran 2022/2023 masih mengimplementasikan Kurikulum 2013
+            penyesuaian dengan Kurikulum Merdeka. Kurikulum 2013 penyesuaian
+            dengan Kurikulum Merdeka. Merupakan pengembangan dari ke delapan
+            Standar Nasional Pendidikan Anak Usia Dini, yakni Standar Tingkat
+            Pencapaian Perkembangan anak, Standar Isi, Standar Proses, Standar
+            Penilaian, Standar PTK, Standar Sarana Prasarana, Standar
+            Pengelolaan, dan Standar Pembiayaan dalam rangka peningkatan mutu
+            Pendidikan yang menitikberatkan kepada pembentukan profil pelajar
+            Pancasila yang beriman, bertakwa,kepada Tuhan YME dan berakhlak
+            mulia. berkebinekaan global, bergotong royong, mandiri, bernalar
+            kritis, kreatif.
           </Typography>
           <Box mt={4}>
             <Divider sx={{ borderWidth: 1, borderColor: 'whitesmoke' }} />

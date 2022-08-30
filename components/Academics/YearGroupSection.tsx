@@ -16,11 +16,11 @@ const YearGroupSection: FC<YearGroupSectionProps> = ({ sections }) => {
     <>
       {sections?.map(({ key, description }) => (
         <Grid
-          mb={Phone ? theme.spacing(6) : theme.spacing(8)}
+          mb={Phone ? theme.spacing(2) : theme.spacing(4)}
           key={key}
           container
           direction="column"
-          spacing={3}
+          spacing={1}
         >
           <Grid item>
             <Typography variant="subtitle1">{key}</Typography>

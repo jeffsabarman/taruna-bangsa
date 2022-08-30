@@ -1,14 +1,14 @@
 import { ArrowRightAlt as ArrowRightIcon } from '@mui/icons-material';
 import { Box, Button, Grid, Typography, useTheme } from '@mui/material';
 import { useResponsive } from 'helpers/custom-hooks';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { useRouter } from 'next/router';
 import React, { FC, useCallback } from 'react';
 
 export type Academic = {
   title: string;
   subtitle: string;
-  avatar: string;
+  avatar: StaticImageData;
   color: 'yellow' | 'red' | 'lightblue' | 'grey';
   url: string;
 };

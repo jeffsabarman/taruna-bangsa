@@ -28,64 +28,19 @@ const sections = [
   {
     key: 'SD',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      'SD Taruna Bangsa sudah berhasil meluluskan 17 angkatan.  SD Taruna Bangsa selalu memperbarui kualitas pendidikannya, baik dengan metode maupun fasilitas yang terkini. SD Taruna Bangsa senantiasa mengembangkan potensi peserta didik secara komprehensif, baik aspek afektif, kognitif, maupun psikomotorik. Sehingga, SD Taruna Bangsa  mampu berprestasi baik di kancah lokal, nasional, maupun internasional. Pada tahun ajaran ini, SD Taruna Bangsa menerapkan kurikulum 2013 menuju merdeka belajar. Peserta didik akan diberikan satu proyek pembelajaran yang hasilnya akan dipresentasikan di hadapan orang tua/wali.',
   },
 ];
 
-/** Mocked Data */
-// const images = [
-//   {
-//     url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
-//     link: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
-//   },
-//   {
-//     url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-//     link: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-//   },
-// ];
+const VISSIONS = [
+  'Menjadi Satuan Pendidikan Dasar  yang unggul dalam mempersiapkan generasi emas Indonesia yang taqwa, cerdas dan berkarakter Pancasila.',
+];
 
-// const schedules = [
-//   'KB : Senin - Jumat : 10.00 - 12.00 WIB',
-//   'TK : Senin - Jumat : 08.00 - 11.30 WIB',
-// ];
-
-// const activities = [
-//   'Field trip / karyawisata',
-//   'Kunjungan belajar',
-//   'Pemeriksaan gigi',
-//   'Aktivitas di luar kelas (membatik, menanam)',
-//   'Perayaan HUT RI dan Hari Besar Nasional (Kartini, Sumpah Pemuda, dll)',
-//   'Kegiatan akhir semester',
-//   'Porseni',
-// ];
-
-// const exculpatories = [
-//   'Seni : Fashion & Modeling, Modern Dance, Balet, Lukis, Keyboard, Gitar, Vocal',
-//   'Bahasa : Bahasa Inggris, Bahasa Mandarin',
-//   'Olahraga : Futsal, Renang, Anggar',
-//   'Keterampilan : Bakery',
-// ];
-
-// const exculImageSets = [
-//   {
-//     imageSets: {
-//       1: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       2: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
-//       3: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       4: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       5: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//     },
-//   },
-//   {
-//     imageSets: {
-//       1: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       2: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
-//       3: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       4: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//       5: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-//     },
-//   },
-// ];
+const MISSIONS = [
+  'Mengembangkan kecerdasan akademis, emosional, dan spiritual.',
+  'Mempersiapkan peserta didik dalam menyongsong era globalisasi.',
+  'Membentuk pribadi peserta didik yang religius, jujur, disiplin, santun, bertanggung jawab, berkebinekaan global, bergotong royong, mandiri, bernalar kritis, kreatif, dan cinta tanah air.',
+];
 
 const exculImageSets = [
   {
@@ -138,33 +93,6 @@ const exculImageSets = [
   },
 ];
 
-// const teachers = [
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-//   {
-//     image:
-//       'https://images.unsplash.com/photo-1548449112-96a38a643324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-//     name: 'Mr.John Doe',
-//     role: 'Wali Kelas TK - A',
-//   },
-// ];
-
 const AcademicSD: FC = (props) => {
   /** Utilities */
   const theme = useTheme();
@@ -206,7 +134,9 @@ const AcademicSD: FC = (props) => {
         <HeadMasterTestimony
           themeColor="red"
           headMasterImage={headMasterPic}
-          testimony="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          testimony="Anak-anak pada usia 6-7 tahun menurut Jean Piaget adalah masa  anak dalam tahap perkembangan konkret operasional, siap dan matang mengikuti Pendidikan formal di SD sampai usia 12 tahun.
+          Dengan bekal masa kanak-kanak yang ceria dan penuh kegembiraan, anak- anak  SD Taruna Bangsa dapat menjadi pribadi yang lebih terbangun dan berkembang sikap spiritual dan sikap sosial, serta terasah kecerdasan intelektual dan terolah minat dan bakatnya sesuai motto ‘Mengasah otak mengolah bakat’ sehingga kelak siap memasuki jenjang sekolah menengah.  Dengan harapan kelak menjadi pribadi dewasa yang bahagia, tangguh, dan berbudi pekerti luhur berjiwa Pancasila.
+          "
           headMasterName="Fransiska Xaveria E.S., S.Pd, M.M."
           headMasterRole="Kepala SD Taruna Bangsa"
         />
@@ -222,8 +152,8 @@ const AcademicSD: FC = (props) => {
         >
           <VisionMission
             themeColor="red"
-            vision="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            mission="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            visions={VISSIONS}
+            missions={MISSIONS}
           />
         </Container>
       </Container>
@@ -236,22 +166,39 @@ const AcademicSD: FC = (props) => {
             Kurikulum
           </Typography>
           <Typography mt={4} color="whitesmoke" variant="body2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            SD Taruna Bangsa mengembangan Kurikulum 2013 menuju Kurikulum
+            Merdeka. Hal ini dikarenakan kondisi Pandemi Covid-19 yang belum
+            sepenuhnya berlalu karenanya dengan tujuan membentuk profil pelajar
+            Pancasila yang beriman, bertakwa,kepada Tuhan YME dan berakhlak
+            mulia. berkebinekaan global, bergotong royong, mandiri, bernalar
+            kritis, kreatif . Dengan tetap berpedoman kepada standar nasional
+            pendidikan untuk menjamin pencapaian tujuan pendidikan nasional.
+            Standar Nasional Pendidikan terdiri atas standar isi, proses,
+            standar kompetensi lulusan, standar pendidik dan tenaga
+            kependidikan, standar sarana dan prasarana, standar pengelolaan,
+            standar pembiayaan, dan standar penilaian pendidikan. Empat dari
+            kedelapan standar nasional pendidikan tersebut, yaitu Standar Isi
+            (SI), Standar Kompetensi Lulusan (SKL), Standar Proses, dan Standar
+            Penilaian merupakan acuan utama bagi satuan pendidikan dalam
+            mengembangkan kurikulum.
           </Typography>
           <Typography mt={4} color="whitesmoke" variant="body2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            Kebutuhan kompetensi abad 21. Pada abad ini, kemampuan kreativitas
+            dan komunikasi akan menjadi sangat penting. Sejalan dengan itu,
+            rumusan kompetensi sikap, pengetahuan, dan keterampilan yang
+            dipergunakan dalam Kurikulum 2013 mengedepankan pentingnya
+            kreativitas dan komunikasi. Sejalan dengan itu, kompetensi yang
+            diharapkan dari seorang lulusan SD Taruna Bangsa memiliki kemampuan
+            pikir dan tindak yang produktif dan kreatif dalam ranah abstrak dan
+            konkret. Kemampuan tersebut diperjelas dalam kompetensi inti yang
+            salah satunya adalah menyajikan pengetahuan dalam bahasa yang jelas,
+            logis dan sistematis, dalam karya yang estetis, atau dalam tindakan
+            yang mencerminkan perilaku anak sehat, beriman, berakhlak mulia.
+            Kompetensi tersebut dirancang untuk dicapai melalui proses
+            pembelajaran berbasis penemuan (discovery based learning) melalui
+            kegiatan-kegiatan berbentuk tugas (project based learning) yang
+            mencakup proses-proses mengamati, menanya, mencoba, menalar, dan
+            mengkomunikasikan
           </Typography>
           <Box mt={4}>
             <Divider sx={{ borderWidth: 1, borderColor: 'whitesmoke' }} />

@@ -3,11 +3,14 @@ import { useResponsive } from 'helpers/custom-hooks';
 import React from 'react';
 import AcademicCard, { Academic } from '../AcademicCard';
 import HeaderLayout from '@/components/HeaderLayout';
+import TK from '@/public/images/TK.jpg';
+import SD from '@/public/images/SD.jpg';
+import SMA from '@/public/images/SMA.jpg';
+import SMP from '@/public/images/SMP.jpg';
 
 const ACADEMICS_LIST: Array<Academic> = [
   {
-    avatar:
-      'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2244&q=80',
+    avatar: TK,
     title: 'kb/tk',
     subtitle:
       'We are a school that empowers students to thrive in academic excellence; personal, social and emotional growth that are needed for success in their live and livelihood.',
@@ -15,8 +18,7 @@ const ACADEMICS_LIST: Array<Academic> = [
     url: '/academics/kb-tk',
   },
   {
-    avatar:
-      'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2244&q=80',
+    avatar: SD,
     title: 'sd',
     subtitle:
       'We are a school that empowers students to thrive in academic excellence; personal, social and emotional growth that are needed for success in their live and livelihood.',
@@ -24,8 +26,7 @@ const ACADEMICS_LIST: Array<Academic> = [
     url: '/academics/sd',
   },
   {
-    avatar:
-      'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2244&q=80',
+    avatar: SMP,
     title: 'smp',
     subtitle:
       'We are a school that empowers students to thrive in academic excellence; personal, social and emotional growth that are needed for success in their live and livelihood.',
@@ -33,8 +34,7 @@ const ACADEMICS_LIST: Array<Academic> = [
     url: '/academics/smp',
   },
   {
-    avatar:
-      'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2244&q=80',
+    avatar: SMA,
     title: 'sma',
     subtitle:
       'We are a school that empowers students to thrive in academic excellence; personal, social and emotional growth that are needed for success in their live and livelihood.',
@@ -52,9 +52,7 @@ const Academics = () => {
       <Grid container direction="column">
         <HeaderLayout
           title="Akademik"
-          subtitle="We are a school that empowers students to thrive in academic
-                excellence; personal, social and emotional growth that are
-                needed for success in their live and livelihood."
+          subtitle="Program pembelajaran di Sekolah Taruna Bangsa menggunakan Kurikulum yang berlaku secara Nasional. Kegiatan belajar mengajar dilaksanakan secara aktif dan interakif serta didukung dengan kegiatan praktik/eksperimen baik di dalam kelas maupun di luar kelas."
         >
           <Grid container spacing={4}>
             {ACADEMICS_LIST?.map((academic: Academic, idx) => (
