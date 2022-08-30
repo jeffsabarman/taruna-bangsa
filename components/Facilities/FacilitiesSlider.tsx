@@ -44,7 +44,7 @@ const FacilitiesSlider = ({ open, handleClose }: FacilitiesSliderProps) => {
       <DialogTitle>Gedung Sekolah</DialogTitle>
       <Grid container width={'55vw'} sx={{ p: 4 }}>
         <SliderCarousel
-          paginationBottom={Tablet ? '1rem' : '2rem'}
+          paginationBottom={Tablet ? '1rem' : '-2rem'}
           images={images}
           themeColor="lightblue"
         />
