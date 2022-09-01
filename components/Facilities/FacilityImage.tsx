@@ -15,7 +15,7 @@ const FacilityImage = ({ image, title, handleClick }: FacilityImageProps) => {
     <Card
       sx={{
         width: '100%',
-        height: '240',
+        height: 240,
         cursor: 'pointer',
         position: 'relative',
         borderRadius: '12px',

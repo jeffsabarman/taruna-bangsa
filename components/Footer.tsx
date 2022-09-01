@@ -50,7 +50,7 @@ const Footer = () => {
           </Grid>
           <Grid item xs={6} container direction="column">
             <MenuItem href="facilities" label="Fasilitas" />
-            <MenuItem href="news-and-events" label="Berita & Acara" />
+            {/* <MenuItem href="news-and-events" label="Berita & Acara" /> */}
             <MenuItem href="contact-us" label="Hubungi Kami" />
           </Grid>
         </Grid>

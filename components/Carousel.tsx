@@ -68,7 +68,7 @@ const ImageCarousel = styled.img`
 type ImageLink = {
   url: string;
   urlSmall?: string;
-  link: string;
+  link?: string;
   alt: string;
 };
 

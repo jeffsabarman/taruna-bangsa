@@ -217,7 +217,7 @@ const AcademicSD: FC = (props) => {
               />
             )}
           </Box>
-          <Box mt={4}>
+          {/* <Box mt={4}>
             <Divider sx={{ borderWidth: 1, borderColor: 'whitesmoke' }} />
           </Box>
           <Box mt={4}>
@@ -235,7 +235,7 @@ const AcademicSD: FC = (props) => {
                 themeColor="white"
               />
             )}
-          </Box>
+          </Box> */}
         </Container>
       </Box>
       <Container

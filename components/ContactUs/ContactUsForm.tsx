@@ -192,7 +192,7 @@ const ContactUsForm = () => {
                 variant={SmallDesktop ? 'body2' : 'body1'}
                 color="whitesmoke"
               >
-                Email : ppdb@taruna-bangsa.com
+                Email : pendaftaran@taruna-bangsa.sch.id
               </Typography>
             </Grid>
           </Grid>

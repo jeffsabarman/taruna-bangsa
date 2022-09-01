@@ -13,7 +13,7 @@ const ACADEMICS_LIST: Array<Academic> = [
     avatar: TK,
     title: 'kb/tk',
     subtitle:
-      'We are a school that empowers students to thrive in academic excellence; personal, social and emotional growth that are needed for success in their live and livelihood.',
+      'KB dan TK Taruna Bangsa sudah berhasil meluluskan sebanyak 18 angkatan. Setiap saat KB dan TK Taruna Bangsa memperbaiki mutu pendidikannya...',
     color: 'yellow',
     url: '/academics/kb-tk',
   },
@@ -21,7 +21,7 @@ const ACADEMICS_LIST: Array<Academic> = [
     avatar: SD,
     title: 'sd',
     subtitle:
-      'We are a school that empowers students to thrive in academic excellence; personal, social and emotional growth that are needed for success in their live and livelihood.',
+      'SD Taruna Bangsa sudah berhasil meluluskan 17 angkatan.  SD Taruna Bangsa selalu memperbarui kualitas pendidikannya, baik dengan metode maupun fasilitas yang terkini...',
     color: 'red',
     url: '/academics/sd',
   },
@@ -29,7 +29,7 @@ const ACADEMICS_LIST: Array<Academic> = [
     avatar: SMP,
     title: 'smp',
     subtitle:
-      'We are a school that empowers students to thrive in academic excellence; personal, social and emotional growth that are needed for success in their live and livelihood.',
+      'SMP Taruna bangsa merupakan sekolah yang berada di bawah naungan Yayasan Pendidikan Taruna Bangsa. Bersatu dalam keberagaman merupakan nilai...',
     color: 'lightblue',
     url: '/academics/smp',
   },
@@ -37,7 +37,7 @@ const ACADEMICS_LIST: Array<Academic> = [
     avatar: SMA,
     title: 'sma',
     subtitle:
-      'We are a school that empowers students to thrive in academic excellence; personal, social and emotional growth that are needed for success in their live and livelihood.',
+      'SMA Taruna Bangsa merupakan sekolah yang bernaung di bawah Yayasan Pendidikan Taruna Bangsa, yang memiliki motto Mengasah Otak Mengolah Bakat.',
     color: 'grey',
     url: '/academics/sma',
   },

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import Dialog from '@mui/material/Dialog';
 import { DialogTitle, Grid } from '@mui/material';
 import { Image } from 'pages/facilities';
@@ -8,44 +8,133 @@ import { useResponsive } from 'helpers/custom-hooks';
 type FacilitiesSliderProps = {
   open: boolean;
   handleClose: () => void;
-  image: Image;
+  focusImage: string;
 };
 
 /** Mocked Data */
-const images = [
+const POOL_IMAGES = [
   {
-    url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
+    url: 'images/swimming-pool.jpg',
     alt: 'facil image',
-    link: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
   },
   {
-    url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
+    url: 'images/swimming-pool-2.jpg',
     alt: 'facil image',
-    link: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
   },
   {
-    url: 'https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+    url: 'images/swimming-pool-3.jpg',
     alt: 'facil image',
-    link: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2338&q=80',
-    alt: 'facil image',
-    link: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
   },
 ];
 
-const FacilitiesSlider = ({ open, handleClose }: FacilitiesSliderProps) => {
+const BASKETBALL_IMAGES = [
+  {
+    url: 'images/basketball.jpg',
+    alt: 'facil image',
+  },
+  {
+    url: 'images/basketball-2.jpg',
+    alt: 'facil image',
+  },
+  {
+    url: 'images/basketball-3.jpg',
+    alt: 'facil image',
+  },
+];
+const BIOLOGY_IMAGES = [
+  {
+    url: 'images/biology-lab.jpg',
+    alt: 'facil image',
+  },
+  {
+    url: 'images/biology-lab-2.jpg',
+    alt: 'facil image',
+  },
+  {
+    url: 'images/biology-lab-3.jpg',
+    alt: 'facil image',
+  },
+];
+const ROBOTIC_IMAGES = [
+  {
+    url: 'images/robotic-lab.jpg',
+    alt: 'facil image',
+  },
+  {
+    url: 'images/robotic-lab-2.jpg',
+    alt: 'facil image',
+  },
+  {
+    url: 'images/robotic-lab-3.jpg',
+    alt: 'facil image',
+  },
+];
+const PLAYGROUND_IMAGES = [
+  {
+    url: 'images/playground.jpg',
+    alt: 'facil image',
+  },
+  {
+    url: 'images/playground-2.jpg',
+    alt: 'facil image',
+  },
+  {
+    url: 'images/playground-3.jpg',
+    alt: 'facil image',
+  },
+];
+const OPEN_SPACE_IMAGES = [
+  {
+    url: 'images/open-space.jpg',
+    alt: 'facil image',
+  },
+  {
+    url: 'images/open-space-2.jpg',
+    alt: 'facil image',
+  },
+  {
+    url: 'images/open-space-3.jpg',
+    alt: 'facil image',
+  },
+];
+
+const FacilitiesSlider = ({
+  open,
+  handleClose,
+  focusImage,
+}: FacilitiesSliderProps) => {
   /** Utilities */
   const { Phone, Tablet, SmallDesktop, Desktop } = useResponsive();
 
+  const getImages = useCallback(() => {
+    switch (focusImage) {
+      case 'pool':
+        return POOL_IMAGES;
+      case 'biology':
+        return BIOLOGY_IMAGES;
+      case 'robotic':
+        return ROBOTIC_IMAGES;
+      case 'playground':
+        return PLAYGROUND_IMAGES;
+      case 'open-space':
+        return OPEN_SPACE_IMAGES;
+      case 'basketball':
+        return BASKETBALL_IMAGES;
+    }
+  }, [focusImage]);
+
   return (
-    <Dialog maxWidth="lg" open={open} onClose={handleClose} aria-labelledby="">
-      <DialogTitle>Gedung Sekolah</DialogTitle>
+    <Dialog
+      maxWidth="md"
+      fullWidth
+      open={open}
+      onClose={handleClose}
+      aria-labelledby=""
+    >
       <Grid container width={'55vw'} sx={{ p: 4 }}>
         <SliderCarousel
           paginationBottom={Tablet ? '1rem' : '-2rem'}
-          images={images}
+          images={getImages()}
           themeColor="lightblue"
         />
       </Grid>

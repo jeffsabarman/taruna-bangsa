@@ -12,34 +12,34 @@ export type Image = {
 
 const facilities = [
   {
-    image:
-      'https://images.unsplash.com/photo-1497465689543-5940d3cede89?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
-    title: 'Gedung Sekolah',
+    image: 'images/swimming-pool.jpg',
+    title: 'Kolam Renang',
+    key: 'pool',
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1497465689543-5940d3cede89?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
-    title: 'Gedung Sekolah',
+    image: 'images/basketball.jpg',
+    title: 'Lapangan Basket',
+    key: 'basketball',
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1497465689543-5940d3cede89?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
-    title: 'Gedung Sekolah',
+    image: 'images/biology-lab.jpg',
+    title: 'Lab. Biologi',
+    key: 'biology',
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1497465689543-5940d3cede89?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
-    title: 'Gedung Sekolah',
+    image: 'images/robotic-lab.jpg',
+    title: 'Lab. Robotic',
+    key: 'robotic',
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1497465689543-5940d3cede89?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
-    title: 'Gedung Sekolah',
+    image: 'images/playground.jpg',
+    title: 'Playground',
+    key: 'playground',
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1497465689543-5940d3cede89?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
-    title: 'Gedung Sekolah',
+    image: 'images/open-space.jpg',
+    title: 'Ruang Terbuka',
+    key: 'open-space',
   },
 ];
 
@@ -47,16 +47,16 @@ const Facilities = () => {
   /** Utilities */
   const theme = useTheme();
   const { Phone, Tablet } = useResponsive();
-  const [focusImageIndex, setFocusImageIndex] = useState(0);
+  const [focusImageKey, setFocusImageKey] = useState('');
   const [showSlider, setShowSlider] = useState(false);
 
   /** Media Queries */
   const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
 
   /** Function */
-  const handleZoomImage = (index: number) => {
+  const handleZoomImage = (key: string) => {
     setShowSlider(true);
-    setFocusImageIndex(index);
+    setFocusImageKey(key);
   };
 
   return (
@@ -78,8 +78,8 @@ const Facilities = () => {
                     mb={Phone ? 2 : 0}
                   >
                     <FacilityImage
-                      handleClick={() => handleZoomImage(index)}
-                      title="Gedung Sekolah"
+                      handleClick={() => handleZoomImage(fac.key)}
+                      title={fac.title}
                       image={fac.image}
                     />
                   </Grid>
@@ -92,7 +92,7 @@ const Facilities = () => {
       <FacilitiesSlider
         open={showSlider}
         handleClose={() => setShowSlider(false)}
-        image={facilities[focusImageIndex]}
+        focusImage={focusImageKey}
       />
     </>
   );

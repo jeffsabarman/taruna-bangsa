@@ -124,7 +124,7 @@ const AcademicCard: FC<AcademicCardProps> = ({ data }) => {
             sx={styles['&.MuiButton-text']}
             endIcon={<ArrowRightIcon />}
           >
-            See More
+            Lihat Lebih
           </Button>
         </Grid>
       </Grid>

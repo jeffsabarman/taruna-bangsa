@@ -17,7 +17,7 @@ const Home: NextPage = () => {
       <WhyTb />
       <Academics />
       <Facilities />
-      <NewsAndEvents />
+      {/* <NewsAndEvents /> */}
       <SocialMedia />
       <YoutubeChanel />
       <ContactUs />

@@ -44,7 +44,7 @@ const ContactUs = () => {
                   Telp : (021) 8795 1016
                 </Typography>
                 <Typography color="whitesmoke">
-                  Email : ppdb@taruna-bangsa.com
+                  Email : pendaftaran@taruna-bangsa.sch.id
                 </Typography>
               </Grid>
             </Grid>
