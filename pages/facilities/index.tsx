@@ -4,6 +4,24 @@ import { Box, Grid, useMediaQuery, useTheme } from '@mui/material';
 import { useResponsive } from 'helpers/custom-hooks';
 import FacilityImage from '@/components/Facilities/FacilityImage';
 import FacilitiesSlider from '@/components/Facilities/FacilitiesSlider';
+//@ts-ignore
+import ImageGallery from 'react-image-gallery';
+import 'react-image-gallery/styles/css/image-gallery.css';
+
+const images = [
+  {
+    original: 'https://picsum.photos/id/1018/1000/600/',
+    thumbnail: 'https://picsum.photos/id/1018/250/150/',
+  },
+  {
+    original: 'https://picsum.photos/id/1015/1000/600/',
+    thumbnail: 'https://picsum.photos/id/1015/250/150/',
+  },
+  {
+    original: 'https://picsum.photos/id/1019/1000/600/',
+    thumbnail: 'https://picsum.photos/id/1019/250/150/',
+  },
+];
 
 export type Image = {
   image: string;
@@ -69,7 +87,7 @@ const Facilities = () => {
               title="Fasilitas"
               subtitle="We are a school that empowers students to thrive in academic excellence; personal, social and emotional growth that are needed for success in their live and livelihood."
             >
-              <Grid mt={Phone ? 1 : 3} container spacing={3}>
+              <Grid mt={1} container spacing={3}>
                 {facilities?.map((fac, index) => (
                   <Grid
                     xs={Phone ? 12 : Tablet ? 6 : 4}
@@ -94,6 +112,7 @@ const Facilities = () => {
         handleClose={() => setShowSlider(false)}
         focusImage={focusImageKey}
       />
+      {/* <ImageGallery items={images} fullscreen={true} /> */}
     </>
   );
 };
