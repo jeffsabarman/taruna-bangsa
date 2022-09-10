@@ -1,4 +1,4 @@
-import { Card, CardMedia, Typography } from '@mui/material';
+import { Card, CardMedia, Typography, useMediaQuery } from '@mui/material';
 import React from 'react';
 import { useResponsive } from 'helpers/custom-hooks';
 
@@ -10,19 +10,24 @@ type FacilityImageProps = {
 
 const FacilityImage = ({ image, title, handleClick }: FacilityImageProps) => {
   const { Phone } = useResponsive();
+  const customLargerPhone = useMediaQuery('(max-width:800px)');
 
   return (
     <Card
       sx={{
         width: '100%',
-        height: 240,
+        height: Phone ? '60vw' : customLargerPhone ? '50vw' : 240,
         cursor: 'pointer',
         position: 'relative',
         borderRadius: '12px',
       }}
       onClick={() => handleClick()}
     >
-      <CardMedia component="img" image={image} sx={{ position: 'relative' }} />
+      <CardMedia
+        component="img"
+        image={image}
+        sx={{ position: 'relative', objectFit: 'cover', height: '100%' }}
+      />
       <Typography
         variant={Phone ? 'caption' : 'body2'}
         p={1}

@@ -64,12 +64,13 @@ const facilities = [
 const Facilities = () => {
   /** Utilities */
   const theme = useTheme();
-  const { Phone, Tablet } = useResponsive();
+  const { Phone, Tablet, SmallDesktop } = useResponsive();
   const [focusImageKey, setFocusImageKey] = useState('');
   const [showSlider, setShowSlider] = useState(false);
 
   /** Media Queries */
   const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
+  const customLargerPhone = useMediaQuery('(max-width:800px)');
 
   /** Function */
   const handleZoomImage = (key: string) => {
@@ -90,10 +91,10 @@ const Facilities = () => {
               <Grid mt={1} container spacing={3}>
                 {facilities?.map((fac, index) => (
                   <Grid
-                    xs={Phone ? 12 : Tablet ? 6 : 4}
+                    xs={customLargerPhone ? 12 : SmallDesktop ? 6 : 4}
                     item
                     key={index}
-                    mb={Phone ? 2 : 0}
+                    mb={customLargerPhone ? 2 : 0}
                   >
                     <FacilityImage
                       handleClick={() => handleZoomImage(fac.key)}
@@ -112,7 +113,6 @@ const Facilities = () => {
         handleClose={() => setShowSlider(false)}
         focusImage={focusImageKey}
       />
-      {/* <ImageGallery items={images} fullscreen={true} /> */}
     </>
   );
 };

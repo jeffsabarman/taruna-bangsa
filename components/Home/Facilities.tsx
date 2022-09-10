@@ -7,6 +7,7 @@ import { SliderCarousel } from '../Carousel';
 import Pool from '@/public/images/swimming-pool.jpg';
 import GalleryImage from '../shared/GalleryImage';
 
+// ? For reference
 // const images = [
 //   {
 //     url: 'images/swimming-pool.jpg',
@@ -73,7 +74,7 @@ const Facilities = () => {
           title="Fasilitas"
           subtitle="We are a school that empowers students to thrive in academic excellence; personal, social and emotional growth that are needed for success in their live and livelihood."
         >
-          {/* <SliderCarousel
+          {/* <SliderCarousel // ? For Reference
             paginationBottom={Tablet ? '1rem' : '-2rem'}
             images={images}
             themeColor="lightblue"
