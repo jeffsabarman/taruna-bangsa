@@ -54,9 +54,16 @@ const Academics = () => {
           title="Akademik"
           subtitle="Program pembelajaran di Sekolah Taruna Bangsa menggunakan Kurikulum yang berlaku secara Nasional. Kegiatan belajar mengajar dilaksanakan secara aktif dan interakif serta didukung dengan kegiatan praktik/eksperimen baik di dalam kelas maupun di luar kelas."
         >
-          <Grid container spacing={4}>
+          <Grid container spacing={4} mt={2}>
             {ACADEMICS_LIST?.map((academic: Academic, idx) => (
-              <Grid item xs={12} sm={6} lg={3} key={idx}>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                lg={3}
+                key={idx}
+                mb={SmallDesktop ? 4 : 0}
+              >
                 <AcademicCard data={academic} />
               </Grid>
             ))}

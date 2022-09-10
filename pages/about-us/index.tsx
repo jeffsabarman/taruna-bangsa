@@ -77,7 +77,7 @@ const AboutUsPage: FC = (props) => {
             missions={MISSIONS}
           />
         </Container>
-        <Container>
+        <Container size={Phone ? 'xs' : SmallDesktop ? 'md' : 'lg'}>
           <Grid container alignItems="flex-start" direction="column">
             <Typography
               sx={{
@@ -100,18 +100,20 @@ const AboutUsPage: FC = (props) => {
               Sekolah Taruna Bangsa
             </Typography>
           </Grid>
-          <Container mt={4}>
+          <Container size="xs" mt={4}>
             <Grid container spacing={1} xs direction="column">
               <Grid
                 direction="row"
-                alignItems="flex-start"
+                alignItems={SmallDesktop ? 'flex-start' : 'center'}
                 container
                 spacing={1}
               >
-                <Typography component="span" variant="h4">
-                  &#183;
-                </Typography>
-                <Grid item xs={11} ml={3} mt={1}>
+                <Grid item>
+                  <Typography component="span" variant="h4">
+                    &#183;
+                  </Typography>
+                </Grid>
+                <Grid item xs ml={2} mt={1}>
                   <Typography variant="body2" color="GrayText">
                     Kami merayakan proses pembelajaran dan penemuan dengan penuh
                     semangat serta berupaya berkontribusi untuk menjadi pemimpin
@@ -121,15 +123,17 @@ const AboutUsPage: FC = (props) => {
               </Grid>
               <Grid
                 direction="row"
-                alignItems="flex-start"
+                alignItems={SmallDesktop ? 'flex-start' : 'center'}
                 container
                 spacing={1}
                 mt={1}
               >
-                <Typography component="span" variant="h4">
-                  &#183;
-                </Typography>
-                <Grid item xs={11} ml={3} mt={1}>
+                <Grid item>
+                  <Typography component="span" variant="h4">
+                    &#183;
+                  </Typography>
+                </Grid>
+                <Grid item xs ml={2} mt={1}>
                   <Typography variant="body2" color="GrayText">
                     Kami menumbuhkan pemikiran kritis, rasa ingin tahu serta
                     mengutamakan sikap pemecahan masalah.
@@ -138,15 +142,17 @@ const AboutUsPage: FC = (props) => {
               </Grid>
               <Grid
                 direction="row"
-                alignItems="flex-start"
+                alignItems={SmallDesktop ? 'flex-start' : 'center'}
                 container
                 spacing={1}
                 mt={1}
               >
-                <Typography component="span" variant="h4">
-                  &#183;
-                </Typography>
-                <Grid item xs={11} ml={3} mt={1}>
+                <Grid item>
+                  <Typography component="span" variant="h4">
+                    &#183;
+                  </Typography>
+                </Grid>
+                <Grid item xs ml={2} mt={1}>
                   <Typography variant="body2" color="GrayText">
                     Kami membangun hubungan harmonis yang berakar pada
                     integritas diri, rasa saling menghormati dan komunikasi
@@ -156,15 +162,17 @@ const AboutUsPage: FC = (props) => {
               </Grid>
               <Grid
                 direction="row"
-                alignItems="flex-start"
+                alignItems={SmallDesktop ? 'flex-start' : 'center'}
                 container
                 spacing={1}
                 mt={1}
               >
-                <Typography component="span" variant="h4">
-                  &#183;
-                </Typography>
-                <Grid item xs={11} ml={3} mt={1}>
+                <Grid item>
+                  <Typography component="span" variant="h4">
+                    &#183;
+                  </Typography>
+                </Grid>
+                <Grid item xs ml={2} mt={1}>
                   <Typography variant="body2" color="GrayText">
                     Kami mendukung inklusivitas, memelihara pemberdayaan untuk
                     menciptakan dampak positif bagi masyarakat kita.
@@ -175,6 +183,7 @@ const AboutUsPage: FC = (props) => {
           </Container>
         </Container>
       </Container>
+      {/** //* ADMINISTRATOR */}
       {/* <Box bgcolor={theme.palette.primary.main}>
         <Container
           py={SmallDesktop ? theme.spacing(1) : theme.spacing(4)}

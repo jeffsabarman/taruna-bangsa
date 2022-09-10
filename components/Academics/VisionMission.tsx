@@ -22,7 +22,7 @@ const VisionMission: FC<VisionMissionProps> = ({
   /** Utilities */
   const styles = useBackgroundTypography();
   const theme = useTheme();
-  const { SmallDesktop, Tablet } = useResponsive();
+  const { SmallDesktop, Tablet, Phone } = useResponsive();
 
   /** Functions */
   const getTitleStyle = useMemo(() => {
@@ -61,19 +61,19 @@ const VisionMission: FC<VisionMissionProps> = ({
         {visions.map((vision, idx) => (
           <Grid
             direction="row"
-            alignItems="center"
+            alignItems={Tablet ? 'flex-start' : 'center'}
             container
             key={idx}
             spacing={1}
             mt={1}
           >
-            <Grid item xs={1}>
+            <Grid item>
               <Typography component="span" variant="h4">
                 &#183;
               </Typography>
             </Grid>
-            <Grid item xs={11}>
-              <Typography variant="body2" color="GrayText">
+            <Grid item xs ml={2}>
+              <Typography variant="body2" color="GrayText" maxWidth="70vw">
                 {vision}
               </Typography>
             </Grid>
@@ -101,18 +101,18 @@ const VisionMission: FC<VisionMissionProps> = ({
         {missions.map((mission, idx) => (
           <Grid
             direction="row"
-            alignItems="center"
+            alignItems={Tablet ? 'flex-start' : 'center'}
             container
             key={idx}
             spacing={1}
             mt={1}
           >
-            <Grid item xs={1}>
+            <Grid item>
               <Typography component="span" variant="h4">
                 &#183;
               </Typography>
             </Grid>
-            <Grid item xs={11}>
+            <Grid item xs ml={2}>
               <Typography variant="body2" color="GrayText">
                 {mission}
               </Typography>

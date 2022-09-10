@@ -20,6 +20,9 @@ interface AcademicCardProps {
 const AcademicCard: FC<AcademicCardProps> = ({ data }) => {
   const theme = useTheme();
   const router = useRouter();
+
+  const { Phone } = useResponsive();
+
   const styles = {
     yellowHeader: {
       backgroundColor: theme.palette.warning.main,
