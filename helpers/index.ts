@@ -13,3 +13,9 @@ export const getShortenText = (
 export const getFormatDate = (date: string | Date) => {
   return moment(new Date(date)).format('DD MMM, YYYY');
 };
+
+export const getEmbedYoutubeLink = (youtubeLink: string) => {
+  return youtubeLink?.includes('embed')
+    ? youtubeLink
+    : youtubeLink.replace('watch?v=', 'embed/');
+};

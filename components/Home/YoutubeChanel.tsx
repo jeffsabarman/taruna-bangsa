@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import HeaderLayout from '../HeaderLayout';
 import { useResponsive } from 'helpers/custom-hooks';
 import LoadingComponent from '../shared/LoadingComponent';
+import { getEmbedYoutubeLink } from 'helpers';
 //* Sanity
 import sanityClient from 'client';
 import { YOUTUBE_EMBED } from '@/utils/groq';
@@ -16,7 +17,7 @@ const YoutubeChanel = () => {
   const getYoutubeEmbed = async () => {
     setIsLoading(true);
     const youtubeEmbed = await sanityClient.fetch(YOUTUBE_EMBED);
-    setYoutubeEmbedLink(youtubeEmbed?.link);
+    setYoutubeEmbedLink(getEmbedYoutubeLink(youtubeEmbed?.link));
     setIsLoading(false);
   };
 
