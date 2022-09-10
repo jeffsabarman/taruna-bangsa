@@ -25,18 +25,23 @@ const theme = createTheme({
     h6: {
       fontWeight: 600,
     },
+    subtitle1: {
+      fontWeight: 600,
+    },
   },
   palette: {
     primary: {
-      main: '#0033FF',
-      dark: '#001980',
-      light: '#00FFFF',
+      main: '#2B3385',
+      light: '#00B3EB',
     },
     secondary: {
       main: '#FF0000',
     },
     text: {
       primary: '#333333',
+    },
+    warning: {
+      main: '#FBBA00',
     },
   },
 });

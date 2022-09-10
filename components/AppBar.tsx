@@ -1,65 +1,25 @@
 import {
   AppBar,
   Toolbar,
-  Typography,
   useScrollTrigger,
   useTheme,
   Grid,
-  Button,
   IconButton,
-  useMediaQuery,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import Link, { LinkProps } from 'next/link';
-import React, { FC, useMemo, useState } from 'react';
+import Link from 'next/link';
+import React, { useMemo, useState } from 'react';
 import Container from '@/components/Container';
 import SideDrawer from '@/components/SideDrawer';
-import { useRouter } from 'next/router';
+import { useResponsive } from 'helpers/custom-hooks';
+import Image from 'next/image';
+import MenuItem from '@/components/MenuItem';
+import { MENU_LIST } from 'helpers/constants';
 
 interface ElevationScrollProps {
   window?: () => Window;
   children: React.ReactElement;
 }
-
-interface MenuItemProps extends LinkProps {
-  label: string;
-}
-
-type MenuItem = {
-  path: string;
-  label: string;
-};
-
-const MenuItem: FC<MenuItemProps> = ({ label, href, ...props }) => {
-  /** Utilities */
-  const theme = useTheme();
-  const router = useRouter();
-  const active = router.pathname === `/${href}`;
-  const styles = {
-    '&.MuiButton-text': {
-      fontSize: '1rem',
-      color: active ? theme.palette.primary.dark : theme.palette.grey[600],
-      textTransform: 'capitalize',
-      padding: '1rem 2rem',
-      borderRadius: active ? 0 : null,
-      borderBottom: active ? '2px solid' : null,
-      '&:hover': {
-        boxShadow: `inset 20rem 0 0 0 ${theme.palette.primary.dark}`,
-        color: theme.palette.background.paper,
-        borderBottom: null,
-        borderRadius: 2,
-      },
-    },
-  };
-
-  return (
-    <Link href={href} passHref {...props}>
-      <Button size="small" sx={styles['&.MuiButton-text']} variant="text">
-        {label}
-      </Button>
-    </Link>
-  );
-};
 
 const ElevationScroll = (props: ElevationScrollProps) => {
   const { children } = props;
@@ -73,42 +33,15 @@ const ElevationScroll = (props: ElevationScrollProps) => {
   });
 };
 
-export const MENU_LIST: Array<MenuItem> = [
-  {
-    path: 'about-us',
-    label: 'About Us',
-  },
-  {
-    path: 'why-tb',
-    label: 'Why TB?',
-  },
-  {
-    path: 'academics',
-    label: 'Academics',
-  },
-  {
-    path: 'facilities',
-    label: 'Facilities',
-  },
-  {
-    path: 'news-and-events',
-    label: 'News & events',
-  },
-  {
-    path: 'contact-us',
-    label: 'Contact Us',
-  },
-];
-
 const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
   /** Utilities */
   const theme = useTheme();
-  const mediumFrame = useMediaQuery(theme.breakpoints.down('lg'));
-  const smallFrame = useMediaQuery(theme.breakpoints.down('sm'));
+  const { SmallDesktop, Desktop, Phone } = useResponsive();
   const styles = {
     hamburger: {
       display: { lg: 'none' },
-      color: theme.palette.primary.dark,
+      color: theme.palette.primary.main,
+      marginRight: theme.spacing(3),
     },
   };
 
@@ -122,7 +55,7 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
 
   /** Components */
   const renderMenuList = useMemo(() => {
-    return MENU_LIST.map(({ path, label }) => {
+    return MENU_LIST?.map(({ path, label }) => {
       return (
         <Grid
           key={path}
@@ -133,7 +66,7 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
         </Grid>
       );
     });
-  }, []);
+  }, [MENU_LIST]);
 
   const renderSideDrawer = useMemo(() => {
     return (
@@ -147,9 +80,12 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
   return (
     <ElevationScroll {...props}>
       <AppBar sx={{ backgroundColor: theme.palette.background.paper }}>
-        <Container size={smallFrame ? 'xs' : mediumFrame ? 'sm' : 'md'}>
+        <Container
+          py={Phone ? 0 : SmallDesktop ? theme.spacing(1) : theme.spacing(2)}
+          size={Phone ? 'xs' : SmallDesktop ? 'sm' : 'md'}
+        >
           <Toolbar>
-            <Grid alignItems="center" container spacing={1}>
+            <Grid alignItems="center" container spacing={Desktop ? 0 : 1}>
               <Grid item>
                 <IconButton
                   aria-label="open drawer"
@@ -161,9 +97,14 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
                 </IconButton>
               </Grid>
               <Grid item>
-                <Typography variant="h6" color="primary.dark">
-                  LOGO
-                </Typography>
+                <Link href={'/'} passHref>
+                  <Image
+                    style={{ cursor: 'pointer' }}
+                    src="/images/stb-logo.svg"
+                    width={Phone ? 140 : 160}
+                    height={80}
+                  />
+                </Link>
               </Grid>
               <Grid item flexGrow={1} />
               {renderMenuList}

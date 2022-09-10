@@ -16,7 +16,7 @@ const Container: FC<ContainerProps> = ({ size = 'md', children, ...props }) => {
   };
 
   return (
-    <Box p={theme.spacing(sizes[size])} {...props}>
+    <Box px={theme.spacing(sizes[size])} {...props}>
       {children}
     </Box>
   );
