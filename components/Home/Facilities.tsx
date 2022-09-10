@@ -49,6 +49,7 @@ const Facilities = () => {
             paginationBottom={Tablet ? '1rem' : '-2rem'}
             images={images}
             themeColor="lightblue"
+            pagination={false}
           />
         </HeaderLayout>
       </Grid>

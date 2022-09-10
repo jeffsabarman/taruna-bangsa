@@ -149,7 +149,7 @@ const SliderCarouselItem = (props: { image: ImageLink | undefined }) => {
       onClick={() => props?.image?.link}
       src={props?.image?.url}
       alt="Taruna Bangsa Slider Image"
-      style={{ height: 500 }}
+      style={{ height: 700 }}
     />
   );
 };
