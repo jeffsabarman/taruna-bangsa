@@ -7,34 +7,6 @@ import { SliderCarousel } from '../Carousel';
 import Pool from '@/public/images/swimming-pool.jpg';
 import GalleryImage from '../shared/GalleryImage';
 
-// ? For reference
-// const images = [
-//   {
-//     url: 'images/swimming-pool.jpg',
-//     alt: 'facil image',
-//   },
-//   {
-//     url: 'images/biology-lab.jpg',
-//     alt: 'facil image',
-//   },
-//   {
-//     url: 'images/robotic-lab.jpg',
-//     alt: 'facil image',
-//   },
-//   {
-//     url: 'images/basketball.jpg',
-//     alt: 'facil image',
-//   },
-//   {
-//     url: 'images/playground.jpg',
-//     alt: 'facil image',
-//   },
-//   {
-//     url: 'images/open-space.jpg',
-//     alt: 'facil image',
-//   },
-// ];
-
 const images = [
   {
     original: 'images/swimming-pool.jpg',
@@ -74,12 +46,6 @@ const Facilities = () => {
           title="Fasilitas"
           subtitle="We are a school that empowers students to thrive in academic excellence; personal, social and emotional growth that are needed for success in their live and livelihood."
         >
-          {/* <SliderCarousel // ? For Reference
-            paginationBottom={Tablet ? '1rem' : '-2rem'}
-            images={images}
-            themeColor="lightblue"
-            pagination={false}
-          /> */}
           <Box maxWidth={Tablet ? '100%' : SmallDesktop ? '75vw' : '60vw'}>
             <GalleryImage
               autoPlay
