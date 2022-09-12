@@ -7,59 +7,12 @@ import FacilitiesSlider from '@/components/Facilities/FacilitiesSlider';
 //@ts-ignore
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
-
-const images = [
-  {
-    original: 'https://picsum.photos/id/1018/1000/600/',
-    thumbnail: 'https://picsum.photos/id/1018/250/150/',
-  },
-  {
-    original: 'https://picsum.photos/id/1015/1000/600/',
-    thumbnail: 'https://picsum.photos/id/1015/250/150/',
-  },
-  {
-    original: 'https://picsum.photos/id/1019/1000/600/',
-    thumbnail: 'https://picsum.photos/id/1019/250/150/',
-  },
-];
+import { FACILITIES } from 'helpers/constants';
 
 export type Image = {
   image: string;
   title: string;
 };
-
-const facilities = [
-  {
-    image: 'images/swimming-pool.jpg',
-    title: 'Kolam Renang',
-    key: 'pool',
-  },
-  {
-    image: 'images/basketball.jpg',
-    title: 'Lapangan Basket',
-    key: 'basketball',
-  },
-  {
-    image: 'images/biology-lab.jpg',
-    title: 'Lab. Biologi',
-    key: 'biology',
-  },
-  {
-    image: 'images/robotic-lab.jpg',
-    title: 'Lab. Robotic',
-    key: 'robotic',
-  },
-  {
-    image: 'images/playground.jpg',
-    title: 'Playground',
-    key: 'playground',
-  },
-  {
-    image: 'images/open-space.jpg',
-    title: 'Ruang Terbuka',
-    key: 'open-space',
-  },
-];
 
 const Facilities = () => {
   /** Utilities */
@@ -89,7 +42,7 @@ const Facilities = () => {
               subtitle="We are a school that empowers students to thrive in academic excellence; personal, social and emotional growth that are needed for success in their live and livelihood."
             >
               <Grid mt={1} container spacing={3}>
-                {facilities?.map((fac, index) => (
+                {FACILITIES?.map((fac, index) => (
                   <Grid
                     xs={customLargerPhone ? 12 : SmallDesktop ? 6 : 4}
                     item

@@ -48,3 +48,36 @@ export const MENU_LIST: Array<MenuItem> = [
     label: 'Hubungi Kami',
   },
 ];
+
+export const FACILITIES = [
+  {
+    image: 'images/swimming-pool.jpg',
+    title: 'Kolam Renang',
+    key: 'pool',
+  },
+  {
+    image: 'images/basketball.jpg',
+    title: 'Lapangan Basket',
+    key: 'basketball',
+  },
+  {
+    image: 'images/biology-lab.jpg',
+    title: 'Lab. Biologi',
+    key: 'biology',
+  },
+  {
+    image: 'images/robotic-lab.jpg',
+    title: 'Lab. Robotic',
+    key: 'robotic',
+  },
+  {
+    image: 'images/playground.jpg',
+    title: 'Playground',
+    key: 'playground',
+  },
+  {
+    image: 'images/open-space.jpg',
+    title: 'Ruang Terbuka',
+    key: 'open-space',
+  },
+];
