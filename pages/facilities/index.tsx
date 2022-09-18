@@ -39,7 +39,7 @@ const Facilities = () => {
             <HeaderLayout
               mode="dark"
               title="Fasilitas"
-              subtitle="We are a school that empowers students to thrive in academic excellence; personal, social and emotional growth that are needed for success in their live and livelihood."
+              subtitle="Sekolah Taruna Bangsa menempati lahan seluas 12.530 m², dilengkapi dengan gedung yang megah dan asri, serta fasilitas pendidikan yang sesuai dengan perkembangan teknologi sangat mendukung peserta didik dalam mengasah otak dan mengolah bakat."
             >
               <Grid mt={1} container spacing={3}>
                 {FACILITIES?.map((fac, index) => (
