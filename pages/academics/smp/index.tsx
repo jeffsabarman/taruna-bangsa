@@ -10,7 +10,7 @@ import {
 import { Box } from '@mui/system';
 import { useResponsive } from 'helpers/custom-hooks';
 import React, { FC, useState, useEffect } from 'react';
-import headMasterPic from '@/public/images/fabiana.png';
+import headMasterPic from '@/public/images/fabi.png';
 //* Components
 import Container from '@/components/Container';
 import YearGroupSection from '@/components/Academics/YearGroupSection';
