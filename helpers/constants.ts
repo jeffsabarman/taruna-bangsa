@@ -39,10 +39,10 @@ export const MENU_LIST: Array<MenuItem> = [
     path: '/facilities',
     label: 'Fasilitas',
   },
-  // {
-  //   path: '/news-and-events',
-  //   label: 'Berita & Acara',
-  // },
+  {
+    path: '/news-and-events',
+    label: 'Berita & Acara',
+  },
   {
     path: '/contact-us',
     label: 'Hubungi Kami',
