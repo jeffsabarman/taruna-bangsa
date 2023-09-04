@@ -5,73 +5,73 @@ import {
   Snackbar,
   Typography,
   useTheme,
-} from '@mui/material';
-import React, { ChangeEvent, FormEventHandler, useState } from 'react';
-import { PrimaryButton } from '@/components/Button';
-import HeaderLayout from '../HeaderLayout';
-import { useResponsive } from 'helpers/custom-hooks';
-import { StyledTextField } from '@/components/TextField';
-import emailjs from '@emailjs/browser';
+} from '@mui/material'
+import React, { ChangeEvent, FormEventHandler, useState } from 'react'
+import { useResponsive } from 'helpers/custom-hooks'
+import emailjs from '@emailjs/browser'
+import { PrimaryButton } from '@/components/Button'
+import HeaderLayout from '../HeaderLayout'
+import { StyledTextField } from '@/components/TextField'
 
-const ContactUsForm = () => {
-  const theme = useTheme();
-  const { Phone, Tablet, SmallDesktop } = useResponsive();
+function ContactUsForm() {
+  const theme = useTheme()
+  const { Phone, Tablet, SmallDesktop } = useResponsive()
   const [emailForm, setEmailForm] = useState({
     name: '',
     email: '',
     title: '',
     message: '',
-  });
+  })
   const [alert, setAlert] = useState<{
-    show: boolean;
-    severity: AlertColor | undefined;
-    message: string;
+    show: boolean
+    severity: AlertColor | undefined
+    message: string
   }>({
     show: false,
     severity: undefined,
     message: '',
-  });
+  })
 
-  const SERVICE_ID = process.env.EMAIL_SERVICE_ID || '';
-  const TEMPLATE_ID = process.env.EMAIL_TEMPLATE_ID || '';
-  const USER_ID = process.env.EMAIL_USER_ID || '';
+  const SERVICE_ID = process.env.EMAIL_SERVICE_ID || ''
+  const TEMPLATE_ID = process.env.EMAIL_TEMPLATE_ID || ''
+  const USER_ID = process.env.EMAIL_USER_ID || ''
 
   /** Functions */
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setEmailForm({ ...emailForm, [name]: value });
-  };
+    const { name, value } = e.target
+    setEmailForm({ ...emailForm, [name]: value })
+  }
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
-    const { title, email, message } = emailForm;
+    e.preventDefault()
+    const { title, email, message } = emailForm
     try {
       const response = await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
         { title, email, message },
-        USER_ID,
-      );
+        USER_ID
+      )
       if (response) {
         setAlert({
           show: true,
           severity: 'success',
           message: 'Pesan Anda berhasil dikirim!',
-        });
-        setEmailForm({ name: '', email: '', title: '', message: '' });
+        })
+        setEmailForm({ name: '', email: '', title: '', message: '' })
       }
-    } catch (error) {
+    } catch {
       setAlert({
         show: true,
         severity: 'error',
         message: 'Terjadi kesalahan dalam mengirim pesan, silakan coba lagi.',
-      });
+      })
     }
-  };
+  }
 
   const handleCloseAlert = () => {
-    setAlert({ show: false, severity: undefined, message: '' });
-  };
+    setAlert({ show: false, severity: undefined, message: '' })
+  }
 
   return (
     <Grid container direction="column" spacing={Phone ? 2 : 3}>
@@ -199,7 +199,7 @@ const ContactUsForm = () => {
         </HeaderLayout>
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
-export default ContactUsForm;
+export default ContactUsForm

@@ -1,9 +1,9 @@
-import { Grid, Typography, useTheme } from '@mui/material';
-import React from 'react';
-import { styled } from '@mui/material/styles';
-import { ArrowRight as ArrowRightIcon } from '@mui/icons-material';
-import { keyframes } from '@mui/system';
-import { useResponsive } from 'helpers/custom-hooks';
+import { Grid, Typography, useTheme } from '@mui/material'
+import React from 'react'
+import { styled } from '@mui/material/styles'
+import { ArrowRight as ArrowRightIcon } from '@mui/icons-material'
+import { keyframes } from '@mui/system'
+import { useResponsive } from 'helpers/custom-hooks'
 
 const scrollMove = keyframes`
  from {
@@ -12,19 +12,19 @@ const scrollMove = keyframes`
  to {
    left: 12px;
  }
-`;
+`
 
-const StyledArrow = styled(ArrowRightIcon)(({ theme }) => ({
+const StyledArrow = styled(ArrowRightIcon)(() => ({
   position: 'relative',
   animation: `${scrollMove} 1s infinite alternate`,
-}));
+}))
 
 const SwipeArrow: React.FC<{ color: string }> = ({ color }) => {
   //* Style
-  const theme = useTheme();
+  const theme = useTheme()
 
   //* Media Query
-  const { Phone } = useResponsive();
+  const { Phone } = useResponsive()
 
   return (
     <Grid item xs={12} style={{ marginTop: theme.spacing(2) }}>
@@ -39,7 +39,7 @@ const SwipeArrow: React.FC<{ color: string }> = ({ color }) => {
         </Grid>
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
-export default SwipeArrow;
+export default SwipeArrow

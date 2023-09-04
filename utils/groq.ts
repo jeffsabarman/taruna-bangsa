@@ -1,4 +1,4 @@
-import groq from 'groq';
+import groq from 'groq'
 
 export const MAIN_CAROUSEL_IMAGES = groq`
 *[_type == "mainCarouselImages" && !(_id in path('drafts.**'))] {
@@ -9,7 +9,7 @@ export const MAIN_CAROUSEL_IMAGES = groq`
     "url": imageFileLarge.asset->url,
 		"link": clickLinkDestination
   }
-`;
+`
 
 export const NEWS_AND_EVENTS_HOME = groq`
 *[_type == "newsEvents" && !(_id in path('drafts.**'))] | order(publishedAt desc) [0...4] {
@@ -17,7 +17,7 @@ export const NEWS_AND_EVENTS_HOME = groq`
   "caption": title,
   "imageUrl": mainImage.asset->url,
 }
-`;
+`
 
 export const ACADEMIC_KB_TK = groq`
 // *[_type == "educations" && educationLevel == "KB/TK" && !(_id in path('drafts.**'))][0] {
@@ -37,7 +37,7 @@ export const ACADEMIC_KB_TK = groq`
     "image": imageFile.asset->url
   }
 }
-`;
+`
 
 export const ACADEMIC_SD = groq`
 *[_type == "academics" && educationLevel == "SD" && !(_id in path('drafts.**'))][0] {
@@ -57,7 +57,7 @@ export const ACADEMIC_SD = groq`
     "image": imageFile.asset->url
   }
 }
-`;
+`
 
 export const ACADEMIC_SMP = groq`
 *[_type == "academics" && educationLevel == "SMP" && !(_id in path('drafts.**'))][0] {
@@ -77,7 +77,7 @@ export const ACADEMIC_SMP = groq`
     "image": imageFile.asset->url
   }
 }
-`;
+`
 
 export const ACADEMIC_SMA = groq`
 *[_type == "academics" && educationLevel == "SMA" && !(_id in path('drafts.**'))][0] {
@@ -97,7 +97,7 @@ export const ACADEMIC_SMA = groq`
     "image": imageFile.asset->url
   }
 }
-`;
+`
 
 export const INSTITUTIONAL_ADMINSTRATOR = groq`
 *[_type == "institutionalAdministrator" && !(_id in path('drafts.**'))] {
@@ -106,7 +106,7 @@ export const INSTITUTIONAL_ADMINSTRATOR = groq`
   "role": jobTitle,
   "image": image.asset->url
 }
-`;
+`
 
 export const FACIILITIES_IMAGES = groq`
 *[_type == "facilitiesImages" && !(_id in path('drafts.**'))] {
@@ -114,7 +114,7 @@ export const FACIILITIES_IMAGES = groq`
   imageTitle,
   "imageUrl": imageFile.asset->url
 }
-`;
+`
 
 // export const YOUTUBE_EMBED = groq`
 // *[_type == "socialMedia" && platformTitle == "Youtube Embed" && !(_id in path('drafts.**'))][0] {
@@ -131,7 +131,7 @@ export const YOUTUBE_EMBED = groq`
   youtubeType,
   link
 }
-`;
+`
 
 export const ALL_NEWS_AND_EVENTS = groq` // TODO: Add pagination
 *[_type == "newsEvents" && !(_id in path('drafts.**'))  && isVisible == true && publishedAt < $today ] | order(publishedAt desc) [$start...$end] {
@@ -144,11 +144,11 @@ export const ALL_NEWS_AND_EVENTS = groq` // TODO: Add pagination
   publishedAt,
   // "bodySnippet": body[0]
 }
-`;
+`
 
 export const NEWS_AND_EVENTS_COUNT = groq`
 count(*[_type == "newsEvents" && !(_id in path('drafts.**')) && isVisible == true && publishedAt < $today] | order(publishedAt desc))
-`;
+`
 
 export const NEWS_AND_EVENTS_CONTENT = groq`
 *[_type == "newsEvents" && slug.current == $slug][0]{
@@ -159,7 +159,7 @@ export const NEWS_AND_EVENTS_CONTENT = groq`
   body,
   publishedAt,
 }
-`;
+`
 
 export const INSTAGRAM_POSTS = groq`
 *[_type == "instagram" && !(_id in path('drafts.**'))] | order(priority desc, _updatedAt desc) [0..2] {
@@ -168,4 +168,4 @@ export const INSTAGRAM_POSTS = groq`
   link,
   "image": imageFile.asset->url
 }
-`;
+`

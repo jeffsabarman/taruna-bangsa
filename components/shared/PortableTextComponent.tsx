@@ -1,22 +1,15 @@
-import {
-  Avatar,
-  useTheme,
-  Grid,
-  Typography,
-  Divider,
-  useMediaQuery,
-} from '@mui/material';
-import { grey } from '@mui/material/colors';
-import { useResponsive } from 'helpers/custom-hooks';
-import ListItem from '@/components/ListItem';
-import sanityClient from 'client';
-import imageUrlBuilder from '@sanity/image-url';
+import { useTheme, Grid, Typography, useMediaQuery } from '@mui/material'
+import { grey } from '@mui/material/colors'
+import { useResponsive } from 'helpers/custom-hooks'
+import sanityClient from 'client'
+import imageUrlBuilder from '@sanity/image-url'
+import ListItem from '@/components/ListItem'
 
 //* Image
-const builder = imageUrlBuilder(sanityClient);
+const builder = imageUrlBuilder(sanityClient)
 
 function urlFor(source: any) {
-  return builder.image(source);
+  return builder.image(source)
 }
 
 //   export const authorBioPtComponents = {
@@ -41,38 +34,38 @@ function urlFor(source: any) {
 
 const isMarkIdMatch = (
   childrenMarks: string[],
-  markDefs: { _key: string }[],
+  markDefs: { _key: string }[]
 ) => {
-  let isMatch = false;
-  childrenMarks.forEach((mark) => {
-    const matchedMark = markDefs.find((markDef) => markDef._key === mark);
+  let isMatch = false
+  for (const mark of childrenMarks) {
+    const matchedMark = markDefs.find((markDef) => markDef._key === mark)
     if (matchedMark) {
-      isMatch = true;
+      isMatch = true
     }
-  });
-  return isMatch;
-};
+  }
+  return isMatch
+}
 
 const getLinkHref = (
   childrenMarks: string[],
-  markDefs: { _key: string; href: string }[],
+  markDefs: { _key: string; href: string }[]
 ) => {
-  let linkHref = '';
-  childrenMarks.forEach((mark) => {
-    const matchedMark = markDefs.find((markDef) => markDef._key === mark);
+  let linkHref = ''
+  for (const mark of childrenMarks) {
+    const matchedMark = markDefs.find((markDef) => markDef._key === mark)
     if (matchedMark) {
-      linkHref = matchedMark.href;
+      linkHref = matchedMark.href
     }
-  });
-  return linkHref;
-};
+  }
+  return linkHref
+}
 
 const isImageDesc = (value: any) => {
-  return value.children[0].text.includes('image-text');
-};
+  return value.children[0].text.includes('image-text')
+}
 
 const getStyleLink = (value: any, objText: any) => {
-  const theme = useTheme();
+  const theme = useTheme()
   return {
     textDecoration: 'underline',
     color:
@@ -80,19 +73,17 @@ const getStyleLink = (value: any, objText: any) => {
       theme.palette.primary.light,
     fontStyle: objText.marks.includes('em') ? 'italic' : 'normal',
     fontWeight: objText.marks.includes('strong') ? 600 : 400,
-  };
-};
+  }
+}
 
 const getStyleListItem = () => {
-  const theme = useTheme();
   // const mediaBreakPhone = useMediaQuery('(max-width: 600px)');
-  const { Phone } = useResponsive();
   return {
     // marginBottom: theme.spacing(1),
     fontSize: '1.4rem',
     // marginLeft: Phone ? theme.spacing(4) : theme.spacing(6),
-  };
-};
+  }
+}
 
 //* LIST COMPONENTS
 export const listComponents = {
@@ -108,7 +99,7 @@ export const listComponents = {
             {children}
           </Typography>
         </li>
-      );
+      )
     },
     number: ({ children }: any) => {
       return (
@@ -120,16 +111,16 @@ export const listComponents = {
             {children}
           </Typography>
         </li>
-      );
+      )
     },
   },
-};
+}
 
 //* CONTENT COMPONENTS
 export const contentComponents = {
   types: {
     image: ({ value }: any) => {
-      const { Phone, Tablet, SmallDesktop } = useResponsive();
+      const { Phone, Tablet, SmallDesktop } = useResponsive()
 
       return (
         <Grid container direction="column" alignItems="center">
@@ -148,6 +139,7 @@ export const contentComponents = {
                   : '32vw',
                 objectFit: 'cover',
               }}
+              alt="content"
             />
           </Grid>
           <Grid item>
@@ -160,13 +152,13 @@ export const contentComponents = {
             </Typography>
           </Grid>
         </Grid>
-      );
+      )
     },
   },
   block: {
     normal: ({ value }: any) => {
       //* Styling
-      const theme = useTheme();
+      const theme = useTheme()
       if (value.children.length > 1) {
         return (
           <Grid
@@ -204,13 +196,13 @@ export const contentComponents = {
                     <a
                       key={objText._key}
                       href={getLinkHref(objText?.marks, value?.markDefs)}
-                      target={'_blank'}
+                      target="_blank"
                       rel="noreferrer"
                       style={getStyleLink(value, objText)}
                     >
                       {objText?.text}
                     </a>
-                  );
+                  )
                 }
                 return (
                   <span
@@ -234,11 +226,11 @@ export const contentComponents = {
                       objText.text
                     }
                   </span>
-                );
+                )
               })}
             </Typography>
           </Grid>
-        );
+        )
       }
       return value.children.map((objText: any) => {
         if (objText.text === '') {
@@ -256,22 +248,22 @@ export const contentComponents = {
             >
               <br />
             </Grid>
-          );
+          )
         }
         // ? for link
-        else if (isMarkIdMatch(objText?.marks, value?.markDefs)) {
+        if (isMarkIdMatch(objText?.marks, value?.markDefs)) {
           return (
             <Typography key={objText._key} variant="body2">
               <a
                 href={getLinkHref(objText?.marks, value?.markDefs)}
-                target={'_blank'}
+                target="_blank"
                 rel="noreferrer"
                 style={getStyleLink(value, objText)}
               >
                 {objText?.text}
               </a>
             </Typography>
-          );
+          )
         }
         // TODO: handle text continue not new line
         return (
@@ -294,8 +286,8 @@ export const contentComponents = {
               {objText.text || ''}
             </Typography>
           </Grid>
-        );
-      });
+        )
+      })
     },
   },
   listItem: {
@@ -305,36 +297,35 @@ export const contentComponents = {
         <li style={getStyleListItem()}>
           <Typography style={{ lineHeight: '3.2rem' }}>{children}</Typography>
         </li>
-      );
+      )
     },
     number: ({ children }: any) => {
       return (
         <li style={getStyleListItem()}>
           <Typography style={{ lineHeight: '3.2rem' }}>{children}</Typography>
         </li>
-      );
+      )
     },
   },
-};
+}
 
 //* PT COMPONENTS
 export const ptComponents = {
   block: {
     normal: ({ value }: any) => {
       //* Styling
-      const theme = useTheme();
+      const theme = useTheme()
 
       //* Media Query
-      const mediaBreakTablet = useMediaQuery('(max-width: 1100px)');
-      const mediaBreakPhone = useMediaQuery('(max-width: 660px)');
-      const mediaBreakPhoneSmall = useMediaQuery('(max-width: 400px)');
+      const mediaBreakTablet = useMediaQuery('(max-width: 1100px)')
+      const mediaBreakPhone = useMediaQuery('(max-width: 660px)')
 
       // ? For a paragraph / text with link (many children)
       if (value.children.length > 1) {
         return (
           <Grid
             item
-            container={isImageDesc(value) ? true : false}
+            container={!!isImageDesc(value)}
             justifyContent={isImageDesc(value) ? 'center' : 'flex-start'}
             style={{
               marginBottom: isImageDesc(value) ? 0 : theme.spacing(1),
@@ -357,13 +348,13 @@ export const ptComponents = {
                     <a
                       key={objText._key}
                       href={getLinkHref(objText?.marks, value?.markDefs)}
-                      target={'_blank'}
+                      target="_blank"
                       rel="noreferrer"
                       style={getStyleLink(value, objText)}
                     >
                       {objText?.text}
                     </a>
-                  );
+                  )
                 }
                 return (
                   <span
@@ -379,14 +370,16 @@ export const ptComponents = {
                     }}
                   >
                     {isImageDesc(value)
-                      ? objText.text.substring(objText.text.indexOf(':') + 1)
+                      ? objText.text.slice(
+                          Math.max(0, objText.text.indexOf(':') + 1)
+                        )
                       : objText.text}
                   </span>
-                );
+                )
               })}
             </Typography>
           </Grid>
-        );
+        )
       }
       // ? For one line text (one children)
       return value.children.map((objText: any) => {
@@ -408,7 +401,7 @@ export const ptComponents = {
                 }}
               />
             </Grid>
-          );
+          )
         }
         if (objText?.text === 'render-full-fit-image') {
           return (
@@ -427,7 +420,7 @@ export const ptComponents = {
                 }}
               />
             </Grid>
-          );
+          )
         }
         // ? for image description
         // else if (objText.text.includes('image-text')) {
@@ -481,7 +474,7 @@ export const ptComponents = {
         //   );
         // }
         // ? for new line (empty text)
-        else if (objText.text === '') {
+        if (objText.text === '') {
           return (
             <Grid
               key={objText._key}
@@ -494,7 +487,7 @@ export const ptComponents = {
             >
               <br />
             </Grid>
-          );
+          )
         }
         // ? for normal text
         return (
@@ -516,8 +509,8 @@ export const ptComponents = {
               {objText.text || '-'}
             </Typography>
           </Grid>
-        );
-      });
+        )
+      })
     },
     // h1: ({ children }) => {
     //   const mediaBreakPhone = useMediaQuery("(max-width: 660px)");
@@ -618,7 +611,7 @@ export const ptComponents = {
         //     {children}
         //   </Typography>
         // </li>
-      );
+      )
     },
     number: ({ children }: any) => {
       return (
@@ -627,7 +620,7 @@ export const ptComponents = {
             {children}
           </Typography>
         </li>
-      );
+      )
     },
   },
-};
+}

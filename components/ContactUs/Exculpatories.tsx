@@ -1,21 +1,21 @@
-import { Box, Typography } from '@mui/material';
-import React, { FC } from 'react';
-import ListItem from '@/components/ListItem';
-import { ThemeColor } from 'helpers/types';
-import { GridCarousel, GridImageSets } from '@/components/Carousel';
+import { Box, Typography } from '@mui/material'
+import React, { FC } from 'react'
+import { ThemeColor } from 'helpers/types'
+import { PortableText } from '@portabletext/react'
+import ListItem from '@/components/ListItem'
+import { GridCarousel, GridImageSets } from '@/components/Carousel'
 //* Sanity
-import { PortableText } from '@portabletext/react';
 import {
   listComponents,
   ptComponents,
-} from '@/components/shared/PortableTextComponent';
+} from '@/components/shared/PortableTextComponent'
 
 interface ExculpatoriesProps {
-  title: string;
+  title: string
   // exculpatories: string[];
-  exculpatories: any;
-  exculImageSets: GridImageSets[];
-  themeColor: ThemeColor;
+  exculpatories: any
+  exculImageSets: GridImageSets[]
+  themeColor: ThemeColor
 }
 
 const Exculpatories: FC<ExculpatoriesProps> = ({
@@ -47,7 +47,7 @@ const Exculpatories: FC<ExculpatoriesProps> = ({
         />
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default Exculpatories;
+export default Exculpatories

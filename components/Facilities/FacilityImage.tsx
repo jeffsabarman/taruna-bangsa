@@ -1,16 +1,16 @@
-import { Card, CardMedia, Typography, useMediaQuery } from '@mui/material';
-import React from 'react';
-import { useResponsive } from 'helpers/custom-hooks';
+import { Card, CardMedia, Typography, useMediaQuery } from '@mui/material'
+import React from 'react'
+import { useResponsive } from 'helpers/custom-hooks'
 
 type FacilityImageProps = {
-  image: string;
-  title: string;
-  handleClick: () => void;
-};
+  image: string
+  title: string
+  handleClick: () => void
+}
 
-const FacilityImage = ({ image, title, handleClick }: FacilityImageProps) => {
-  const { Phone } = useResponsive();
-  const customLargerPhone = useMediaQuery('(max-width:800px)');
+function FacilityImage({ image, title, handleClick }: FacilityImageProps) {
+  const { Phone } = useResponsive()
+  const customLargerPhone = useMediaQuery('(max-width:800px)')
 
   return (
     <Card
@@ -40,7 +40,7 @@ const FacilityImage = ({ image, title, handleClick }: FacilityImageProps) => {
         {title}
       </Typography>
     </Card>
-  );
-};
+  )
+}
 
-export default FacilityImage;
+export default FacilityImage

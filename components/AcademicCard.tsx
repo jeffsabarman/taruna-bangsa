@@ -1,77 +1,81 @@
-import { ArrowRightAlt as ArrowRightIcon } from '@mui/icons-material';
-import { Box, Button, Grid, Typography, useTheme } from '@mui/material';
-import { useResponsive } from 'helpers/custom-hooks';
-import Image, { StaticImageData } from 'next/image';
-import { useRouter } from 'next/router';
-import React, { FC, useCallback } from 'react';
+import { ArrowRightAlt as ArrowRightIcon } from '@mui/icons-material'
+import { Box, Button, Grid, Typography, useTheme } from '@mui/material'
+import Image, { StaticImageData } from 'next/image'
+import { useRouter } from 'next/router'
+import React, { useCallback, useMemo } from 'react'
 
 export type Academic = {
-  title: string;
-  subtitle: string;
-  avatar: StaticImageData;
-  color: 'yellow' | 'red' | 'lightblue' | 'grey';
-  url: string;
-};
-
-interface AcademicCardProps {
-  data: Academic;
+  title: string
+  subtitle: string
+  avatar: string
+  color: 'yellow' | 'red' | 'lightblue' | 'grey'
+  url: string
 }
 
-const AcademicCard: FC<AcademicCardProps> = ({ data }) => {
-  const theme = useTheme();
-  const router = useRouter();
+interface AcademicCardProps {
+  data: Academic
+}
 
-  const { Phone } = useResponsive();
+const AcademicCard = ({ data }: AcademicCardProps) => {
+  const theme = useTheme()
+  const router = useRouter()
 
-  const styles = {
-    yellowHeader: {
-      backgroundColor: theme.palette.warning.main,
-      px: theme.spacing(2),
-    },
-    lighblueHeader: {
-      backgroundColor: theme.palette.primary.light,
-      px: theme.spacing(2),
-    },
-    redHeader: {
-      backgroundColor: theme.palette.secondary.main,
-      px: theme.spacing(2),
-    },
-    greyHeader: {
-      backgroundColor: theme.palette.grey[500],
-      px: theme.spacing(2),
-    },
-    primaryHeader: {
-      backgroundColor: theme.palette.primary.main,
-      px: theme.spacing(2),
-    },
-    '&.MuiButton-text': {
-      fontSize: '1.2rem',
-      textTransform: 'capitalize',
-      color: theme.palette.primary.light,
-      padding: 0,
-      '&:hover': {
-        backgroundColor: theme.palette.background.paper,
+  const styles = useMemo(
+    () => ({
+      yellowHeader: {
+        backgroundColor: theme.palette.warning.main,
+        px: theme.spacing(2),
       },
-    },
-  };
+      lighblueHeader: {
+        backgroundColor: theme.palette.primary.light,
+        px: theme.spacing(2),
+      },
+      redHeader: {
+        backgroundColor: theme.palette.secondary.main,
+        px: theme.spacing(2),
+      },
+      greyHeader: {
+        backgroundColor: theme.palette.grey[500],
+        px: theme.spacing(2),
+      },
+      primaryHeader: {
+        backgroundColor: theme.palette.primary.main,
+        px: theme.spacing(2),
+      },
+      '&.MuiButton-text': {
+        fontSize: '1.2rem',
+        textTransform: 'capitalize',
+        color: theme.palette.primary.light,
+        padding: 0,
+        '&:hover': {
+          backgroundColor: theme.palette.background.paper,
+        },
+      },
+    }),
+    [theme]
+  )
 
   const getTitleStyle = useCallback(() => {
     if (data?.color) {
       switch (data.color) {
-        case 'yellow':
-          return styles.yellowHeader;
+        case 'yellow': {
+          return styles.yellowHeader
+        }
 
-        case 'lightblue':
-          return styles.lighblueHeader;
+        case 'lightblue': {
+          return styles.lighblueHeader
+        }
 
-        case 'red':
-          return styles.redHeader;
+        case 'red': {
+          return styles.redHeader
+        }
 
-        default:
-          return styles.greyHeader;
+        default: {
+          return styles.greyHeader
+        }
       }
     }
-  }, [data?.color]);
+  }, [styles, data?.color])
 
   return (
     <Box>
@@ -98,7 +102,7 @@ const AcademicCard: FC<AcademicCardProps> = ({ data }) => {
               display="inline-block"
               sx={getTitleStyle()}
               textTransform="uppercase"
-              variant={'h6'}
+              variant="h6"
               color="whitesmoke"
               minWidth={120}
             >
@@ -132,7 +136,7 @@ const AcademicCard: FC<AcademicCardProps> = ({ data }) => {
         </Grid>
       </Grid>
     </Box>
-  );
-};
+  )
+}
 
-export default AcademicCard;
+export default AcademicCard

@@ -4,23 +4,22 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
-  Pagination,
   Button,
   CircularProgress,
-} from '@mui/material';
-import { useResponsive } from 'helpers/custom-hooks';
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+} from '@mui/material'
+import { useResponsive } from 'helpers/custom-hooks'
+import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 //* Components
-import CardNewsEvent from '@/components/NewsEvents/CardNewsEvent';
-import Container from '@/components/Container';
 //* Sanity
-import sanityClient from 'client';
-import groq from 'groq';
-import { NEWS_AND_EVENTS_COUNT } from '@/utils/groq';
+import sanityClient from 'client'
+import groq from 'groq'
 //* Jotai
-import { newsEventsAtom, counterPageAtom, dataCountAtom } from 'pages/_app';
-import { useAtom } from 'jotai';
+import { newsEventsAtom, counterPageAtom, dataCountAtom } from 'pages/_app'
+import { useAtom } from 'jotai'
+import { NEWS_AND_EVENTS_COUNT } from '@/utils/groq'
+import Container from '@/components/Container'
+import CardNewsEvent from '@/components/NewsEvents/CardNewsEvent'
 
 // ? For Pagination
 // interface NewsAndEventsPageProps {
@@ -51,15 +50,13 @@ import { useAtom } from 'jotai';
 
 export default function NewsAndEventsPage() {
   /** Utilities */
-  const router = useRouter();
-  const { page } = router?.query;
-  const theme = useTheme();
-  const { Phone, Tablet, SmallDesktop, Desktop } = useResponsive();
+  const theme = useTheme()
+  const { Phone, Tablet, SmallDesktop, Desktop } = useResponsive()
 
   /** Media Queries */
-  const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
-  const customPhone = useMediaQuery('(max-width:700px)');
-  const customSmallDesktop = useMediaQuery('(max-width:1000px)');
+  const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'))
+  const customPhone = useMediaQuery('(max-width:700px)')
+  const customSmallDesktop = useMediaQuery('(max-width:1000px)')
 
   /** State */
   // ? For Load More
@@ -79,13 +76,13 @@ export default function NewsAndEventsPage() {
   //   }[]
   // >([]);
   // const [dataCount, setDataCount] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isClickLoadMore, setIsClickLoadMore] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
+  const [isClickLoadMore, setIsClickLoadMore] = useState(false)
 
   /** Jotai */
-  const [newsEventsData, setNewsEventsData] = useAtom(newsEventsAtom);
-  const [counterPage, setCounterPage] = useAtom(counterPageAtom);
-  const [dataCount, setDataCount] = useAtom(dataCountAtom);
+  const [newsEventsData, setNewsEventsData] = useAtom(newsEventsAtom)
+  const [counterPage, setCounterPage] = useAtom(counterPageAtom)
+  const [dataCount, setDataCount] = useAtom(dataCountAtom)
 
   /** Functions */
   // ? For Pagination
@@ -108,38 +105,38 @@ export default function NewsAndEventsPage() {
   const getData = async (
     start: number,
     end: number,
-    groqAllNewsEvents: any,
+    groqAllNewsEvents: any
   ) => {
-    setIsLoading(true);
+    setIsLoading(true)
     const newsEvents = await sanityClient.fetch(groqAllNewsEvents, {
       today: new Date(),
       start: +start,
       end: +end,
-    });
-    setNewsEventsData(newsEventsData.concat(newsEvents));
+    })
+    setNewsEventsData(newsEventsData.concat(newsEvents))
 
     if (!dataCount) {
       const newsEventsCount = await sanityClient.fetch(NEWS_AND_EVENTS_COUNT, {
         today: new Date(),
-      });
-      setDataCount(newsEventsCount);
+      })
+      setDataCount(newsEventsCount)
     }
-    setIsLoading(false);
-  };
+    setIsLoading(false)
+  }
 
   const handleClickLoadMore = () => {
-    setCounterPage(counterPage + 1);
-    setIsClickLoadMore(true);
-  };
+    setCounterPage(counterPage + 1)
+    setIsClickLoadMore(true)
+  }
 
   /** Hooks */
   // ? For Load More
   useEffect(() => {
     // ? Pagination for load more
-    const limitPerPage = 6;
+    const limitPerPage = 6
     const start =
-      counterPage === 1 ? +counterPage - 1 : (+counterPage - 1) * limitPerPage;
-    const end = +start + limitPerPage;
+      counterPage === 1 ? +counterPage - 1 : (+counterPage - 1) * limitPerPage
+    const end = +start + limitPerPage
 
     const ALL_NEWS_AND_EVENTS = groq`
         *[_type == "newsEvents" && !(_id in path('drafts.**'))  && isVisible == true && publishedAt < $today ] | order(publishedAt desc) [$start...$end] {
@@ -151,12 +148,12 @@ export default function NewsAndEventsPage() {
           "mainImageCaption": mainImage.caption,
           publishedAt,
         }
-        `;
+        `
     if (newsEventsData.length === 0 || isClickLoadMore) {
-      getData(start, end, ALL_NEWS_AND_EVENTS);
+      getData(start, end, ALL_NEWS_AND_EVENTS)
     }
-    setIsClickLoadMore(false);
-  }, [counterPage]);
+    setIsClickLoadMore(false)
+  }, [counterPage])
 
   return (
     <Box mt={largerThanPhone || Phone ? theme.spacing(12) : theme.spacing(8)}>
@@ -250,7 +247,7 @@ export default function NewsAndEventsPage() {
         </Grid>
       </Container>
     </Box>
-  );
+  )
 }
 
 // ? For pagination

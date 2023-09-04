@@ -1,28 +1,26 @@
-import HeadMasterTestimony from '@/components/Academics/HeadMasterTestimony';
-import { HeroCarousel } from '@/components/Carousel';
 import {
   Divider,
   Grid,
   Typography,
   useMediaQuery,
   useTheme,
-} from '@mui/material';
-import { Box } from '@mui/system';
-import { useResponsive } from 'helpers/custom-hooks';
-import React, { FC, useState, useEffect } from 'react';
-import headMasterPic from '@/public/images/karsi.png';
+} from '@mui/material'
+import React, { useState, useEffect } from 'react'
+import sanityClient from 'client'
+import { useResponsive } from 'helpers/custom-hooks'
+import { Box } from '@mui/system'
+import HeadMasterTestimony from '@/components/Academics/HeadMasterTestimony'
+import headMasterPic from '@/public/images/karsi.png'
 //* Components
-import Container from '@/components/Container';
-import YearGroupSection from '@/components/Academics/YearGroupSection';
-import VisionMission from '@/components/Academics/VisionMission';
-import SchedulesAndActivities from '@/components/ContactUs/SchedulesAndActivities';
-import Exculpatories from '@/components/ContactUs/Exculpatories';
-import Teachers from '@/components/Academics/Teachers';
-import HeroSection from '@/components/Home/HeroSection';
-import LoadingComponent from '@/components/shared/LoadingComponent';
+import Container from '@/components/Container'
+import YearGroupSection from '@/components/Academics/YearGroupSection'
+import VisionMission from '@/components/Academics/VisionMission'
+import SchedulesAndActivities from '@/components/ContactUs/SchedulesAndActivities'
+import Teachers from '@/components/Academics/Teachers'
+import HeroSection from '@/components/Home/HeroSection'
+import LoadingComponent from '@/components/shared/LoadingComponent'
 //* Sanity
-import sanityClient from 'client';
-import { ACADEMIC_SD } from '@/utils/groq';
+import { ACADEMIC_SD } from '@/utils/groq'
 
 const sections = [
   {
@@ -30,106 +28,106 @@ const sections = [
     description:
       'Sampai dengan tahun 2023 SD Taruna Bangsa telah berhasil  meluluskan sebanyak 19 angkatan. Dengan didukung fasilitas yang lengkap, SD Taruna Bangsa selalu mengasah dan mengembangkan potensi peserta didik, sehingga mampu berprestasi di berbagai bidang (baik akademik maupun nonakademik) dan berbagai tingkatan (baik lokal, nasional, maupun internasional). Selain fasilitas yang lengkap, adanya pendidik yang kompeten, program ekstrakurikuler yang sesuai bakat dan minat, bimbingan konseling yang terarah, serta lingkungan yang nyaman, sangat mendukung dalam membentuk peserta didik yang unggul dan memiliki karakter sesuai dengan nilai-nilai profil pelajar Pancasila. Pada tahun ajaran 2023/2024 SD Taruna Bangsa menerapkan kurikulum merdeka untuk kelas 1 dan IV, sedangkan kelas II, III, V, dan VI menerapkan kurikulum 2013 menuju merdeka belajar.',
   },
-];
+]
 
 const TESTIMONY = [
   'Pendidikan dasar adalah pondasi penting dalam membentuk pribadi yang berkualitas dan masa depan yang cerah bagi generasi muda kita. Di SD Taruna Bangsa kami berkomitmen untuk memberikan pendidikan yang berkualitas dan berpusat pada siswa. Kami percaya bahwa setiap anak memiliki potensi yang unik dan kami akan berusaha untuk mendukung setiap siswa dalam mengembangkan bakat, pengetahuan, dan keterampilan mereka. Kami akan memberikan lingkungan belajar yang aman, nyaman, dan kondusif, di mana setiap siswa dapat tumbuh secara akademis, sosial, dan emosional.',
   'Kami mengakui bahwa pendidikan adalah usaha bersama antara sekolah, orang tua, dan siswa. Oleh karena itu, kami mengundang orang tua untuk terlibat aktif dalam pendidikan anak-anak mereka. Kolaborasi antara sekolah dan rumah sangat penting dalam menciptakan lingkungan belajar yang sukses dan mendukung perkembangan holistik siswa.',
   'Kami akan terus berupaya untuk meningkatkan kualitas pendidikan kami melalui pengembangan kurikulum yang relevan, metode pengajaran yang inovatif, serta pemanfaatan teknologi pendidikan terbaru. Kami juga akan terus mengembangkan staf kami melalui pelatihan dan pengembangan profesional agar mereka dapat memberikan yang terbaik bagi siswa.',
   'Kami percaya bahwa pendidikan adalah kunci untuk masa depan yang lebih baik. Mari bersama-sama bekerja keras, berkolaborasi, dan mendukung visi dan misi kami dalam memberikan pendidikan yang bermakna bagi setiap siswa di SD Taruna Bangsa.',
-];
+]
 
 const VISSIONS = [
   'Menjadi Satuan Pendidikan Dasar  yang unggul dalam mempersiapkan generasi emas Indonesia yang taqwa, cerdas dan berkarakter Pancasila.',
-];
+]
 
 const MISSIONS = [
   'Mengembangkan kecerdasan akademis, emosional, dan spiritual.',
   'Mempersiapkan peserta didik dalam menyongsong era globalisasi.',
   'Membentuk pribadi peserta didik yang religius, jujur, disiplin, santun, bertanggung jawab, berkebinekaan global, bergotong royong, mandiri, bernalar kritis, kreatif, dan cinta tanah air.',
-];
+]
 
-const exculImageSets = [
-  {
-    imageSets: {
-      1: {
-        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-        alt: 'gambar 1',
-      },
-      2: {
-        url: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
-        alt: 'gambar 2',
-      },
-      3: {
-        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-        alt: 'gambar 1',
-      },
-      4: {
-        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-        alt: 'gambar 1',
-      },
-      5: {
-        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-        alt: 'gambar 1',
-      },
-    },
-  },
-  {
-    imageSets: {
-      1: {
-        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-        alt: 'gambar 1',
-      },
-      2: {
-        url: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
-        alt: 'gambar 2',
-      },
-      3: {
-        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-        alt: 'gambar 1',
-      },
-      4: {
-        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-        alt: 'gambar 1',
-      },
-      5: {
-        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-        alt: 'gambar 1',
-      },
-    },
-  },
-];
+// const exculImageSets = [
+//   {
+//     imageSets: {
+//       1: {
+//         url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//         alt: 'gambar 1',
+//       },
+//       2: {
+//         url: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
+//         alt: 'gambar 2',
+//       },
+//       3: {
+//         url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//         alt: 'gambar 1',
+//       },
+//       4: {
+//         url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//         alt: 'gambar 1',
+//       },
+//       5: {
+//         url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//         alt: 'gambar 1',
+//       },
+//     },
+//   },
+//   {
+//     imageSets: {
+//       1: {
+//         url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//         alt: 'gambar 1',
+//       },
+//       2: {
+//         url: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
+//         alt: 'gambar 2',
+//       },
+//       3: {
+//         url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//         alt: 'gambar 1',
+//       },
+//       4: {
+//         url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//         alt: 'gambar 1',
+//       },
+//       5: {
+//         url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//         alt: 'gambar 1',
+//       },
+//     },
+//   },
+// ]
 
-const AcademicSD: FC = (props) => {
+const AcademicSD = () => {
   /** Utilities */
-  const theme = useTheme();
+  const theme = useTheme()
 
   /** Media Queries */
-  const { Phone, SmallDesktop, Desktop, Tablet } = useResponsive();
-  const customSmallPhone = useMediaQuery('(max-width:360px)');
+  const { Phone, SmallDesktop, Desktop, Tablet } = useResponsive()
+  const customSmallPhone = useMediaQuery('(max-width:360px)')
 
   /** State */
-  const [schedules, setSchedules] = useState([]);
-  const [teachers, setTeachers] = useState([]);
-  const [activities, setActivities] = useState([]);
-  const [exculpatories, setExculpatories] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [schedules, setSchedules] = useState([])
+  const [teachers, setTeachers] = useState([])
+  const [activities, setActivities] = useState([])
+  const [_exculpatories, setExculpatories] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   /** Functions */
   const getAcademicData = async () => {
-    setIsLoading(true);
-    const academicData = await sanityClient.fetch(ACADEMIC_SD);
-    setTeachers(academicData?.teachers);
-    setSchedules(academicData?.scheduleKBM);
-    setActivities(academicData?.activities);
-    setExculpatories(academicData?.extracurricular);
-    setIsLoading(false);
-  };
+    setIsLoading(true)
+    const academicData = await sanityClient.fetch(ACADEMIC_SD)
+    setTeachers(academicData?.teachers)
+    setSchedules(academicData?.scheduleKBM)
+    setActivities(academicData?.activities)
+    setExculpatories(academicData?.extracurricular)
+    setIsLoading(false)
+  }
 
   /** Hooks */
   useEffect(() => {
-    getAcademicData();
-  }, []);
+    getAcademicData()
+  }, [])
 
   return (
     <>
@@ -270,7 +268,7 @@ const AcademicSD: FC = (props) => {
         </Container>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default AcademicSD;
+export default AcademicSD

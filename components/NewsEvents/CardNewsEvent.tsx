@@ -1,52 +1,48 @@
-import { Grid, Typography, Box, useTheme, useMediaQuery } from '@mui/material';
-import { grey } from '@mui/material/colors';
-import { ArrowForwardIos as ArrowIcon } from '@mui/icons-material';
-import { styled } from '@mui/material/styles';
-import { FC } from 'react';
-import Image from 'next/image';
-import { getShortenText, getFormatDate } from 'helpers';
-import { useRouter } from 'next/router';
-import { PortableText } from '@portabletext/react';
-import { contentComponents } from '../shared/PortableTextComponent';
-import { useResponsive } from 'helpers/custom-hooks';
+import { Grid, Typography, Box, useTheme, useMediaQuery } from '@mui/material'
+import { grey } from '@mui/material/colors'
+import { ArrowForwardIos as ArrowIcon } from '@mui/icons-material'
+import { styled } from '@mui/material/styles'
+import { getShortenText, getFormatDate } from 'helpers'
+import { useRouter } from 'next/router'
+import { useResponsive } from 'helpers/custom-hooks'
 
-const StyledBox = styled(Box)(({ theme }) => ({
+const StyledBox = styled(Box)(() => ({
   backgroundColor: grey[100],
   cursor: 'pointer',
   '&:hover': {
     backgroundColor: grey[200],
   },
   height: '100%',
-}));
+}))
 
 interface CardNewsEventProps {
-  imgUrl: string;
-  publishedAt: string;
-  imgCaption: string;
-  title: string;
-  description: string;
-  slug: string;
+  imgUrl: string
+  publishedAt: string
+  imgCaption: string
+  title: string
+  description: string
+  slug: string
 }
 
-const CardNewsEvent: FC<CardNewsEventProps> = ({
+const CardNewsEvent = ({
   imgUrl,
   publishedAt,
   imgCaption,
   title,
   description,
   slug,
-}) => {
+}: CardNewsEventProps) => {
   //* Routing
-  const router = useRouter();
+  const router = useRouter()
 
   //* Style
-  const theme = useTheme();
+  const theme = useTheme()
 
   //* Media Query
-  const { Phone, Tablet, Desktop } = useResponsive();
-  const customSmallDesktop = useMediaQuery('(max-width:1000px)');
-  const customPhone = useMediaQuery('(max-width:700px)');
-  const customSmallPhone = useMediaQuery('(max-width:400px)');
+  const { Phone, Desktop } = useResponsive()
+  const customSmallDesktop = useMediaQuery('(max-width:1000px)')
+  const customPhone = useMediaQuery('(max-width:700px)')
+  const customSmallPhone = useMediaQuery('(max-width:400px)')
 
   return (
     <StyledBox onClick={() => router.push(`news-and-events/${slug}`)}>
@@ -132,7 +128,7 @@ const CardNewsEvent: FC<CardNewsEventProps> = ({
         </Grid>
       </Grid>
     </StyledBox>
-  );
-};
+  )
+}
 
-export default CardNewsEvent;
+export default CardNewsEvent

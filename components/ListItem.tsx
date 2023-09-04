@@ -1,10 +1,10 @@
-import { Circle as CircleIcon } from '@mui/icons-material';
-import { Grid, Typography } from '@mui/material';
-import React from 'react';
-import { useResponsive } from 'helpers/custom-hooks';
+import { Circle as CircleIcon } from '@mui/icons-material'
+import { Grid, Typography } from '@mui/material'
+import React from 'react'
+import { useResponsive } from 'helpers/custom-hooks'
 
-const ListItem = ({ point }: { point: string }) => {
-  const { Phone } = useResponsive();
+function ListItem({ point }: { point: string }) {
+  const { Phone } = useResponsive()
   return (
     <Grid container spacing={2} alignItems="center">
       <Grid item>
@@ -21,7 +21,7 @@ const ListItem = ({ point }: { point: string }) => {
         </Typography>
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
-export default ListItem;
+export default ListItem

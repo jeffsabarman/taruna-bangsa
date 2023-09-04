@@ -1,21 +1,14 @@
-import {
-  Divider,
-  Grid,
-  IconButton,
-  Typography,
-  useTheme,
-  Box,
-} from '@mui/material';
-import Image from 'next/image';
-import React from 'react';
-import MenuItem from '@/components/MenuItem';
-import { Facebook, Instagram, YouTube } from '@mui/icons-material';
-import { useResponsive } from 'helpers/custom-hooks';
+import { Divider, Grid, IconButton, Typography, useTheme } from '@mui/material'
+import Image from 'next/image'
+import React from 'react'
+import { Facebook, Instagram, YouTube } from '@mui/icons-material'
+import { useResponsive } from 'helpers/custom-hooks'
+import MenuItem from '@/components/MenuItem'
 
-const Footer = () => {
-  const theme = useTheme();
+function Footer() {
+  const theme = useTheme()
 
-  const { Phone, SmallDesktop, Tablet } = useResponsive();
+  const { Phone, SmallDesktop, Tablet } = useResponsive()
 
   return (
     <Grid container direction="column">
@@ -50,7 +43,7 @@ const Footer = () => {
           </Grid>
           <Grid item xs={6} container direction="column">
             <MenuItem href="facilities" label="Fasilitas" />
-            {/* <MenuItem href="news-and-events" label="Berita & Acara" /> */}
+            <MenuItem href="news-and-events" label="Berita & Acara" />
             <MenuItem href="contact-us" label="Hubungi Kami" />
           </Grid>
         </Grid>
@@ -76,7 +69,7 @@ const Footer = () => {
               aria-label=""
               onClick={() =>
                 window.open(
-                  'https://www.facebook.com/sekolahtarunabangsasentul/',
+                  'https://www.facebook.com/sekolahtarunabangsasentul/'
                 )
               }
             >
@@ -88,7 +81,7 @@ const Footer = () => {
               aria-label=""
               onClick={() =>
                 window.open(
-                  'https://www.youtube.com/c/SekolahTarunaBangsaSentul',
+                  'https://www.youtube.com/c/SekolahTarunaBangsaSentul'
                 )
               }
             >
@@ -117,7 +110,7 @@ const Footer = () => {
         </Typography>
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

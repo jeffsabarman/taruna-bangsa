@@ -1,43 +1,34 @@
-import {
-  Box,
-  Divider,
-  Grid,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
-import { useResponsive } from 'helpers/custom-hooks';
-import React from 'react';
-import { getFormatDate } from 'helpers';
-import { grey } from '@mui/material/colors';
+import { Box, Grid, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { useResponsive } from 'helpers/custom-hooks'
+import React from 'react'
+import { getFormatDate } from 'helpers'
+import { grey } from '@mui/material/colors'
 //* Sanity
-import sanityClient from 'client';
-import { NEWS_AND_EVENTS_CONTENT } from '@/utils/groq';
-import { PortableText } from '@portabletext/react';
-import { contentComponents } from '@/components/shared/PortableTextComponent';
+import sanityClient from 'client'
+import { PortableText } from '@portabletext/react'
+import { NEWS_AND_EVENTS_CONTENT } from '@/utils/groq'
+import { contentComponents } from '@/components/shared/PortableTextComponent'
 
 interface NewsAndEventsPageProps {
   newsEventsContent: {
-    _id: string;
-    body: any;
-    title: string;
-    mainImageUrl: string;
-    mainImageCaption: string;
-    publishedAt: string;
-  };
-  error: boolean;
+    _id: string
+    body: any
+    title: string
+    mainImageUrl: string
+    mainImageCaption: string
+    publishedAt: string
+  }
 }
 
 export default function NewsAndEventsPage({
   newsEventsContent,
-  error,
 }: NewsAndEventsPageProps) {
   /** Utilities */
-  const theme = useTheme();
-  const { Phone, SmallDesktop, Tablet, Desktop } = useResponsive();
+  const theme = useTheme()
+  const { Phone, SmallDesktop, Tablet } = useResponsive()
 
   /** Media Queries */
-  const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
+  const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'))
 
   return (
     <Box
@@ -76,6 +67,7 @@ export default function NewsAndEventsPage({
                     : '32vw',
                   objectFit: 'cover',
                 }}
+                alt="news"
               />
             </Grid>
             <Grid item>
@@ -93,26 +85,26 @@ export default function NewsAndEventsPage({
         </Grid>
       </Grid>
     </Box>
-  );
+  )
 }
 
 export async function getServerSideProps({
   query,
 }: {
-  query: { slug: string };
+  query: { slug: string }
 }) {
-  const { slug = '' } = query;
+  const { slug = '' } = query
 
   // ? Default Value
-  let newsEventsContent;
-  let error = false;
+  let newsEventsContent
+  let error = false
 
   try {
     newsEventsContent = await sanityClient.fetch(NEWS_AND_EVENTS_CONTENT, {
       slug,
-    });
-  } catch (err) {
-    error = true;
+    })
+  } catch {
+    error = true
   }
 
   return {
@@ -120,5 +112,5 @@ export async function getServerSideProps({
       newsEventsContent,
       error,
     },
-  };
+  }
 }

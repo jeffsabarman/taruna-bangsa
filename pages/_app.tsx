@@ -1,41 +1,37 @@
-import * as React from 'react';
-import Head from 'next/head';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { CacheProvider } from '@emotion/react';
-import theme from '@/styles/theme';
-import createEmotionCache from '@/styles/createemotionCache';
-import ElevationAppBar from '@/components/AppBar';
-import Footer from '@/components/Footer';
-import '@/styles/globals.css';
-import { atom } from 'jotai';
+import * as React from 'react'
+import Head from 'next/head'
+import { ThemeProvider } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
+import { atom } from 'jotai'
+import theme from '@/styles/theme'
+import ElevationAppBar from '@/components/AppBar'
+import Footer from '@/components/Footer'
+import '@/styles/globals.css'
 
 // Client-side cache, shared for the whole session of the user in the browser.
-const clientSideEmotionCache = createEmotionCache();
 export const newsEventsAtom = atom<
   {
-    _id: string;
-    mainImageUrl: string;
-    title: string;
-    description: string;
-    mainImageCaption: string;
+    _id: string
+    mainImageUrl: string
+    title: string
+    description: string
+    mainImageCaption: string
     // bodySnippet: any;
-    publishedAt: string;
+    publishedAt: string
     slug: {
-      current: string;
-    };
+      current: string
+    }
   }[]
->([]);
+>([])
 
-export const counterPageAtom = atom<number>(1);
+export const counterPageAtom = atom<number>(1)
 
-export const dataCountAtom = atom<number>(0);
+export const dataCountAtom = atom<number>(0)
 
 export default function MyApp(props: any) {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const { Component, pageProps } = props
 
   return (
-    // <CacheProvider value={emotionCache}>
     <>
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
@@ -47,6 +43,5 @@ export default function MyApp(props: any) {
         <Footer />
       </ThemeProvider>
     </>
-    // </CacheProvider>
-  );
+  )
 }

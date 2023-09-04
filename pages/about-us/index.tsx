@@ -1,50 +1,27 @@
-import HeadMasterTestimony from '@/components/Academics/HeadMasterTestimony';
-import VisionMission from '@/components/Academics/VisionMission';
-import {
-  HeroCarousel,
-  TeacherCarousel,
-  TeacherCarouselItem,
-} from '@/components/Carousel';
-import Container from '@/components/Container';
-import { Box, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
-import { useBackgroundTypography, useResponsive } from 'helpers/custom-hooks';
-import React, { FC, useEffect, useState } from 'react';
-import headMasterPic from '@/public/images/lingling.png';
-import HeaderLayout from '@/components/HeaderLayout';
-import Academics from '@/components/Home/Academics';
-import HeroSection from '@/components/Home/HeroSection';
-
-/** Mocked Data */
-const images = [
-  {
-    url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
-    link: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-    link: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-  },
-];
+import { Grid, Typography, useTheme } from '@mui/material'
+import { useBackgroundTypography, useResponsive } from 'helpers/custom-hooks'
+import HeadMasterTestimony from '@/components/Academics/HeadMasterTestimony'
+import VisionMission from '@/components/Academics/VisionMission'
+import Container from '@/components/Container'
+import headMasterPic from '@/public/images/lingling.png'
+import Academics from '@/components/Home/Academics'
+import HeroSection from '@/components/Home/HeroSection'
 
 const VISSIONS = [
   'Terwujudnya sekolah yang berkarakter Pancasila, Unggul, dan Berprestasi.',
-];
+]
 
 const MISSIONS = [
   'Menumbuh-kembangkan karakter warga sekolah sesuai dengan nilai-nilai Pancasila.',
   'Membentuk pribadi yang siap bersaing dalam era globalisasi.',
   'Memotivasi warga sekolah untuk berprestasi dalam segala bidang.',
-];
+]
 
-const AboutUsPage: FC = (props) => {
+const AboutUsPage = () => {
   /** Utilities */
-  const theme = useTheme();
-  const { Phone, Tablet, SmallDesktop, Desktop } = useResponsive();
-  const styles = useBackgroundTypography();
-
-  /** Media Queries */
-  const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
-  const SmallLaptop = useMediaQuery('(max-width:1020px)');
+  const theme = useTheme()
+  const { Phone, SmallDesktop } = useResponsive()
+  const styles = useBackgroundTypography()
 
   return (
     <>
@@ -245,7 +222,7 @@ const AboutUsPage: FC = (props) => {
       </Box> */}
       <Academics />
     </>
-  );
-};
+  )
+}
 
-export default AboutUsPage;
+export default AboutUsPage

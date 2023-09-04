@@ -1,20 +1,10 @@
-import { ArrowForward, ArrowRightAlt } from '@mui/icons-material';
-import {
-  Box,
-  BoxProps,
-  Button,
-  Grid,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
-import React, { FC, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { useResponsive } from 'helpers/custom-hooks';
-import { HeroCarousel } from '@/components/Carousel';
+import { Box, BoxProps, Grid, useMediaQuery, useTheme } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import { useResponsive } from 'helpers/custom-hooks'
 //* Sanity
-import sanityClient from 'client';
-import { MAIN_CAROUSEL_IMAGES } from 'utils/groq';
+import sanityClient from 'client'
+import { MAIN_CAROUSEL_IMAGES } from 'utils/groq'
+import { HeroCarousel } from '@/components/Carousel'
 
 /** Mocked Data */
 // const images = [
@@ -48,50 +38,50 @@ import { MAIN_CAROUSEL_IMAGES } from 'utils/groq';
 //   },
 // ];
 
-const HeroSection: FC = (props) => {
+const HeroSection = (props: BoxProps) => {
   /** Utilities */
-  const theme = useTheme();
-  const { Phone, Tablet, SmallDesktop, Desktop } = useResponsive();
+  const theme = useTheme()
+  const { Phone, Tablet, Desktop } = useResponsive()
 
   /** Media Queries */
-  const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
+  const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'))
 
   /** State */
   const [images, setImages] = useState<
     { url: string; link: string; alt: string }[]
-  >([]);
+  >([])
 
   /** Functions */
   const getMainCarouselImages = async () => {
     try {
-      const mainCarouselImages = await sanityClient.fetch(MAIN_CAROUSEL_IMAGES);
+      const mainCarouselImages = await sanityClient.fetch(MAIN_CAROUSEL_IMAGES)
       setImages(
         mainCarouselImages?.map(
           (image: {
-            _id: string;
-            alt: string;
-            url: string;
-            urlSmall: string;
-            link: string;
+            _id: string
+            alt: string
+            url: string
+            urlSmall: string
+            link: string
           }) => {
             return {
               url: image?.url,
               urlSmall: image?.urlSmall,
               link: image?.link,
               alt: image?.alt,
-            };
-          },
-        ),
-      );
-    } catch (err) {
-      console.log(err, '<<< errr');
+            }
+          }
+        )
+      )
+    } catch (error) {
+      console.error(error, '<<< errr')
     }
-  };
+  }
 
   /** Hooks */
   useEffect(() => {
-    getMainCarouselImages();
-  }, []);
+    getMainCarouselImages()
+  }, [])
 
   return (
     <Box
@@ -121,7 +111,7 @@ const HeroSection: FC = (props) => {
         </Grid>
       </Grid>
     </Box>
-  );
-};
+  )
+}
 
-export default HeroSection;
+export default HeroSection

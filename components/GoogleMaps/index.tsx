@@ -1,5 +1,5 @@
-import { Wrapper, Status } from '@googlemaps/react-wrapper';
-import { CircularProgress, Typography } from '@mui/material';
+import { Wrapper, Status } from '@googlemaps/react-wrapper'
+import { CircularProgress, Typography } from '@mui/material'
 import {
   Children,
   cloneElement,
@@ -9,34 +9,39 @@ import {
   useEffect,
   useRef,
   useState,
-} from 'react';
+} from 'react'
 
 /** STB Position */
 const center = {
-  lat: -6.569309387952102,
-  lng: 106.86607360839844,
-};
+  lat: -6.569_309_387_952_102,
+  lng: 106.866_073_608_398_44,
+}
 
 interface MapProps extends google.maps.MapOptions {
-  style: { [key: string]: string | number };
-  onClick?: (e: google.maps.MapMouseEvent) => void;
-  children?: ReactNode;
-  onIdle?: (map: google.maps.Map) => void;
+  style: { [key: string]: string | number }
+  onClick?: (e: google.maps.MapMouseEvent) => void
+  children?: ReactNode
+  onIdle?: (map: google.maps.Map) => void
 }
 
 const render = (status: Status) => {
   switch (status) {
-    case Status.FAILURE:
-      return <Typography color="crimson">Map Error</Typography>;
-    case Status.LOADING:
-      return <CircularProgress />;
+    case Status.FAILURE: {
+      return <Typography color="crimson">Map Error</Typography>
+    }
+    case Status.LOADING: {
+      return <CircularProgress />
+    }
+
+    default: {
+      return <h1>{status}</h1>
+    }
   }
-  return <h1>{status}</h1>;
-};
+}
 
 const Map: FC<MapProps> = ({ children, style, ...options }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [map, setMap] = useState<google.maps.Map>();
+  const ref = useRef<HTMLDivElement>(null)
+  const [map, setMap] = useState<google.maps.Map>()
 
   useEffect(() => {
     if (ref.current && !map) {
@@ -44,10 +49,10 @@ const Map: FC<MapProps> = ({ children, style, ...options }) => {
         new window.google.maps.Map(ref.current, {
           center,
           zoom: 18,
-        }),
-      );
+        })
+      )
     }
-  }, [ref, map]);
+  }, [ref, map])
 
   return (
     <>
@@ -55,37 +60,37 @@ const Map: FC<MapProps> = ({ children, style, ...options }) => {
       {Children.map(children, (child) => {
         if (isValidElement(child)) {
           // set the map prop on the child component
-          return cloneElement(child, { map });
+          return cloneElement(child, { map })
         }
       })}
     </>
-  );
-};
+  )
+}
 
 const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
-  const [marker, setMarker] = useState<google.maps.Marker>();
+  const [marker, setMarker] = useState<google.maps.Marker>()
 
   useEffect(() => {
     if (!marker) {
-      setMarker(new google.maps.Marker());
+      setMarker(new google.maps.Marker())
     }
 
     // remove marker from map on unmount
     return () => {
       if (marker) {
-        marker.setMap(null);
+        marker.setMap(null)
       }
-    };
-  }, [marker]);
+    }
+  }, [marker])
 
   useEffect(() => {
     if (marker) {
-      marker.setOptions(options);
+      marker.setOptions(options)
     }
-  }, [marker, options]);
+  }, [marker, options])
 
-  return null;
-};
+  return null
+}
 
 const ReactMap: FC<{ style: { [key: string]: string | number } }> = ({
   style,
@@ -97,7 +102,7 @@ const ReactMap: FC<{ style: { [key: string]: string | number } }> = ({
         <Marker position={center} title="Sekolah Taruna Bangsa" />
       </Map>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default ReactMap;
+export default ReactMap

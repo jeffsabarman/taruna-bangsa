@@ -1,26 +1,22 @@
-import styled from '@emotion/styled';
-import { Box, Grid, Typography, useTheme, useMediaQuery } from '@mui/material';
-import { useResponsive } from 'helpers/custom-hooks';
-import Image from 'next/image';
-import React, { FC } from 'react';
-import { getShortenText } from 'helpers';
+import { Box, Typography, useTheme, useMediaQuery } from '@mui/material'
+import { useResponsive } from 'helpers/custom-hooks'
+import { getShortenText } from 'helpers'
 
 interface NewsEventsCardProps {
-  imageUrl: string;
-  caption: string;
-  variant?: 'dark' | 'light';
+  imageUrl: string
+  caption: string
+  variant?: 'dark' | 'light'
 }
 
-const NewsEventsCard: FC<NewsEventsCardProps> = ({
+const NewsEventsCard = ({
   imageUrl,
   caption,
   variant,
-}) => {
+}: NewsEventsCardProps) => {
   /** Utilities */
-  const theme = useTheme();
-  const { Phone, Tablet } = useResponsive();
-  const customSmallDesktop = useMediaQuery('(max-width:1320px)');
-  const customSmallPhone = useMediaQuery('(max-width:360px)');
+  const theme = useTheme()
+  const { Phone } = useResponsive()
+  const customSmallPhone = useMediaQuery('(max-width:360px)')
 
   return (
     <Box
@@ -40,6 +36,7 @@ const NewsEventsCard: FC<NewsEventsCardProps> = ({
         <img
           src={imageUrl}
           style={{ width: '100%', objectFit: 'cover', height: '16rem' }}
+          alt="news"
         />
       </Box>
       <Box py={theme.spacing(2)} px={theme.spacing(3)}>
@@ -52,7 +49,7 @@ const NewsEventsCard: FC<NewsEventsCardProps> = ({
         </Typography>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default NewsEventsCard;
+export default NewsEventsCard
