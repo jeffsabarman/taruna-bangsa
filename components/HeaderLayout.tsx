@@ -4,18 +4,18 @@ import {
   TypographyTypeMap,
   useMediaQuery,
   useTheme,
-} from '@mui/material';
-import { useResponsive } from 'helpers/custom-hooks';
-import React, { FC, ReactNode } from 'react';
-import Container from '@/components/Container';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
+} from '@mui/material'
+import { useResponsive } from 'helpers/custom-hooks'
+import React, { FC, ReactNode } from 'react'
+import { OverridableComponent } from '@mui/material/OverridableComponent'
+import Container from '@/components/Container'
 
 interface HeaderLayoutProps {
-  children?: ReactNode;
-  title: string;
-  subtitle?: string;
-  titleProps?: OverridableComponent<TypographyTypeMap<{}, 'span'>>;
-  mode?: 'dark' | 'light';
+  children?: ReactNode
+  title: string
+  subtitle?: string
+  titleProps?: OverridableComponent<TypographyTypeMap<object, 'span'>>
+  mode?: 'dark' | 'light'
 }
 
 const HeaderLayout: FC<HeaderLayoutProps> = ({
@@ -24,9 +24,9 @@ const HeaderLayout: FC<HeaderLayoutProps> = ({
   subtitle,
   mode = 'light',
 }) => {
-  const theme = useTheme();
-  const { Phone, Tablet, SmallDesktop, Desktop } = useResponsive();
-  const customSmallPhone = useMediaQuery('(max-width:350px)');
+  const theme = useTheme()
+  const { Phone, Tablet, SmallDesktop, Desktop } = useResponsive()
+  const customSmallPhone = useMediaQuery('(max-width:350px)')
 
   return (
     <Container
@@ -75,7 +75,7 @@ const HeaderLayout: FC<HeaderLayoutProps> = ({
         {children}
       </Grid>
     </Container>
-  );
-};
+  )
+}
 
-export default HeaderLayout;
+export default HeaderLayout

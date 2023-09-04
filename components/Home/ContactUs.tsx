@@ -1,18 +1,18 @@
-import { Box, Grid, Typography, useTheme } from '@mui/material';
-import React from 'react';
-import Container from '../Container';
-import { Polygon } from '@/components/Shapes';
-import { useResponsive } from 'helpers/custom-hooks';
-import ReactMap from '../GoogleMaps';
+import { Box, Grid, Typography, useTheme } from '@mui/material'
+import React from 'react'
+import { useResponsive } from 'helpers/custom-hooks'
+import Container from '../Container'
+import { Polygon } from '@/components/Shapes'
+import ReactMap from '../GoogleMaps'
 
-const ContactUs = () => {
-  const theme = useTheme();
-  const { SmallDesktop, Tablet, Phone } = useResponsive();
+function ContactUs() {
+  const theme = useTheme()
+  const { SmallDesktop, Phone } = useResponsive()
 
   /** Functions */
   const getPolygonSize = () => {
-    return SmallDesktop ? 'md' : '2xl';
-  };
+    return SmallDesktop ? 'md' : '2xl'
+  }
 
   return (
     <Grid container alignItems="stretch">
@@ -56,7 +56,7 @@ const ContactUs = () => {
         </Box>
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
-export default ContactUs;
+export default ContactUs

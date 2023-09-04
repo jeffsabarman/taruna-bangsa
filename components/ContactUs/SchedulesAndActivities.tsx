@@ -1,26 +1,20 @@
-import { Circle } from '@mui/icons-material';
-import { Box, Grid, Typography } from '@mui/material';
-import React, { FC, useEffect } from 'react';
-import ListItem from '@/components/ListItem';
+import { Box, Grid, Typography } from '@mui/material'
+import React from 'react'
+import { PortableText } from '@portabletext/react'
 //* Sanity
-import { PortableText } from '@portabletext/react';
-import {
-  contentComponents,
-  ptComponents,
-  listComponents,
-} from '@/components/shared/PortableTextComponent';
+import { listComponents } from '@/components/shared/PortableTextComponent'
 
 interface SchedulesAndActivitiesProps {
   // schedules: string[];
-  schedules: any;
+  schedules: any
   // activities: string[];
-  activities: any[];
+  activities: any[]
 }
 
-const SchedulesAndActivities: FC<SchedulesAndActivitiesProps> = ({
+const SchedulesAndActivities = ({
   schedules,
   activities,
-}) => {
+}: SchedulesAndActivitiesProps) => {
   return (
     <Grid container spacing={4}>
       <Grid item xs={12} md={6}>
@@ -54,7 +48,7 @@ const SchedulesAndActivities: FC<SchedulesAndActivitiesProps> = ({
         </Box>
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
-export default SchedulesAndActivities;
+export default SchedulesAndActivities

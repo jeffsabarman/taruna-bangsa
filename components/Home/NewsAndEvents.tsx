@@ -1,14 +1,14 @@
-import { Box, Button, Grid, useMediaQuery, useTheme } from '@mui/material';
-import { useResponsive } from 'helpers/custom-hooks';
-import React, { useEffect, useState } from 'react';
-import { PrimaryButton } from '../Button';
-import HeaderLayout from '../HeaderLayout';
-import NewsEventsCard from '../NewsEventsCard';
-import { useRouter } from 'next/router';
-import LoadingComponent from '../shared/LoadingComponent';
+import { Box, Grid, useMediaQuery, useTheme } from '@mui/material'
+import { useResponsive } from 'helpers/custom-hooks'
+import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import sanityClient from 'client'
+import { PrimaryButton } from '../Button'
+import HeaderLayout from '../HeaderLayout'
+import NewsEventsCard from '../NewsEventsCard'
+import LoadingComponent from '../shared/LoadingComponent'
 //* Sanity
-import sanityClient from 'client';
-import { NEWS_AND_EVENTS_HOME } from '@/utils/groq';
+import { NEWS_AND_EVENTS_HOME } from '@/utils/groq'
 
 // const NEWS_EVENTS: Array<NewsEvent> = [
 //   {
@@ -34,43 +34,42 @@ import { NEWS_AND_EVENTS_HOME } from '@/utils/groq';
 // ];
 
 type NewsEvent = {
-  _id: string;
-  imageUrl: string;
-  caption: string;
-};
+  _id: string
+  imageUrl: string
+  caption: string
+}
 
-const NewsAndEvents = () => {
+function NewsAndEvents() {
   /** Utilities */
-  const theme = useTheme();
-  const router = useRouter();
+  const theme = useTheme()
+  const router = useRouter()
 
   /** Media Query */
-  const { Desktop, Phone, Tablet } = useResponsive();
-  const customSmallDesktop = useMediaQuery('(max-width:1320px)');
-  const customPhone = useMediaQuery('(max-width:715px)');
+  const { Desktop, Phone, Tablet } = useResponsive()
+  const customPhone = useMediaQuery('(max-width:715px)')
 
   /** State */
-  const [newsEvents, setNewsEvents] = useState<NewsEvent[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [newsEvents, setNewsEvents] = useState<NewsEvent[]>([])
+  const [isLoading, setIsLoading] = useState(false)
 
   /** Functions */
   const getNewsEvents = async () => {
-    setIsLoading(true);
-    const newsEventsData = await sanityClient.fetch(NEWS_AND_EVENTS_HOME);
+    setIsLoading(true)
+    const newsEventsData = await sanityClient.fetch(NEWS_AND_EVENTS_HOME)
     setNewsEvents(
       newsEventsData.map((data: NewsEvent) => {
         return {
           ...data,
-        };
-      }),
-    );
-    setIsLoading(false);
-  };
+        }
+      })
+    )
+    setIsLoading(false)
+  }
 
   /** Hooks */
   useEffect(() => {
-    getNewsEvents();
-  }, []);
+    getNewsEvents()
+  }, [])
 
   return (
     <HeaderLayout title="News / Events">
@@ -92,7 +91,7 @@ const NewsAndEvents = () => {
               xs={customPhone ? 12 : Desktop ? 6 : 3}
               key={_id}
               container
-              justifyContent={'center'}
+              justifyContent="center"
               sx={{
                 mb: Phone ? theme.spacing(2) : Desktop ? theme.spacing(4) : 0,
               }}
@@ -126,7 +125,7 @@ const NewsAndEvents = () => {
         </Grid>
       </Grid>
     </HeaderLayout>
-  );
-};
+  )
+}
 
-export default NewsAndEvents;
+export default NewsAndEvents

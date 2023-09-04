@@ -1,45 +1,47 @@
-import { Box, Grid, Typography, useTheme } from '@mui/material';
-import { useBackgroundTypography } from 'helpers/custom-hooks';
-import { ThemeColor } from 'helpers/types';
-import React, { FC, useMemo } from 'react';
-import { TeacherCarousel, TeacherCarouselItem } from '../Carousel';
-import { useResponsive } from 'helpers/custom-hooks';
-import { grey } from '@mui/material/colors';
-import SwipeArrow from '../shared/SwipeArrow';
+import { Box, Grid, Typography } from '@mui/material'
+import { useBackgroundTypography, useResponsive } from 'helpers/custom-hooks'
+import { ThemeColor } from 'helpers/types'
+import React, { useMemo } from 'react'
+import { grey } from '@mui/material/colors'
+import { TeacherCarousel, TeacherCarouselItem } from '../Carousel'
+import SwipeArrow from '../shared/SwipeArrow'
 
 export type TeacherItem = {
-  image: string;
-  name: string;
-  role: string;
-};
-
-interface TeachersProps {
-  themeColor: ThemeColor;
-  title: string;
-  teachersList: TeacherItem[];
+  image: string
+  name: string
+  role: string
 }
 
-const Teachers: FC<TeachersProps> = ({ themeColor, title, teachersList }) => {
-  const styles = useBackgroundTypography();
-  const theme = useTheme();
+interface TeachersProps {
+  themeColor: ThemeColor
+  title: string
+  teachersList: TeacherItem[]
+}
+
+const Teachers = ({ themeColor, title, teachersList }: TeachersProps) => {
+  const styles = useBackgroundTypography()
 
   /** Media Query */
-  const { Phone, Tablet, SmallDesktop } = useResponsive();
+  const { Phone, Tablet, SmallDesktop } = useResponsive()
 
   /** Functions */
   const getTitleStyle = useMemo(() => {
     switch (themeColor) {
-      case 'red':
-        return styles.redHeader;
-      case 'lightblue':
-        return styles.lighblueHeader;
-      case 'grey':
-        return styles.greyHeader;
+      case 'red': {
+        return styles.redHeader
+      }
+      case 'lightblue': {
+        return styles.lighblueHeader
+      }
+      case 'grey': {
+        return styles.greyHeader
+      }
 
-      default:
-        return styles.yellowHeader;
+      default: {
+        return styles.yellowHeader
+      }
     }
-  }, [themeColor]);
+  }, [themeColor])
 
   return (
     <Box>
@@ -90,7 +92,7 @@ const Teachers: FC<TeachersProps> = ({ themeColor, title, teachersList }) => {
                           />
                         </Box>
                       </Grid>
-                    );
+                    )
                   })}
                 </Grid>
                 <SwipeArrow color={grey[500]} />
@@ -106,7 +108,7 @@ const Teachers: FC<TeachersProps> = ({ themeColor, title, teachersList }) => {
         </Grid>
       </Grid>
     </Box>
-  );
-};
+  )
+}
 
-export default Teachers;
+export default Teachers

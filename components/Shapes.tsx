@@ -1,12 +1,12 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
 type PolygonProps = {
-  size?: 'xs' | 'sm' | 'lg' | 'xl' | '2xl' | 'md';
-  primary?: boolean;
-  secondary?: boolean;
-  tertiary?: boolean;
-  grey?: boolean;
-};
+  size?: 'xs' | 'sm' | 'lg' | 'xl' | '2xl' | 'md'
+  primary?: boolean
+  secondary?: boolean
+  tertiary?: boolean
+  grey?: boolean
+}
 
 export const Polygon = styled.div<PolygonProps>`
   width: 0;
@@ -32,7 +32,7 @@ export const Polygon = styled.div<PolygonProps>`
       : p.tertiary
       ? 'transparent transparent transparent #F36621'
       : 'transparent transparent transparent #FBBA00'};
-`;
+`
 
 export const BackwardPolygon = styled.div<PolygonProps>`
   width: 0;
@@ -59,4 +59,4 @@ export const BackwardPolygon = styled.div<PolygonProps>`
       : p.grey
       ? 'transparent #9e9e9e transparent transparent '
       : 'transparent #FBBA00 transparent transparent'};
-`;
+`

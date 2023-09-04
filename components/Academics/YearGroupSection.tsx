@@ -1,16 +1,15 @@
-import { Grid, Typography, useTheme } from '@mui/material';
-import React, { FC } from 'react';
-import { useResponsive } from 'helpers/custom-hooks';
+import { Grid, Typography, useTheme } from '@mui/material'
+import { useResponsive } from 'helpers/custom-hooks'
 
 interface YearGroupSectionProps {
-  sections: { key: string; description: string }[];
+  sections: { key: string; description: string }[]
 }
 
-const YearGroupSection: FC<YearGroupSectionProps> = ({ sections }) => {
+const YearGroupSection = ({ sections }: YearGroupSectionProps) => {
   /** Utilities */
-  const theme = useTheme();
+  const theme = useTheme()
 
-  const { Phone } = useResponsive();
+  const { Phone } = useResponsive()
 
   return (
     <>
@@ -33,7 +32,7 @@ const YearGroupSection: FC<YearGroupSectionProps> = ({ sections }) => {
         </Grid>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default YearGroupSection;
+export default YearGroupSection

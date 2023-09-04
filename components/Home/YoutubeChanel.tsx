@@ -1,37 +1,37 @@
-import { Grid } from '@mui/material';
-import React, { useState, useEffect } from 'react';
-import HeaderLayout from '../HeaderLayout';
-import { useResponsive } from 'helpers/custom-hooks';
-import LoadingComponent from '../shared/LoadingComponent';
-import { getEmbedYoutubeLink } from 'helpers';
+import { Grid } from '@mui/material'
+import React, { useState, useEffect } from 'react'
+import { useResponsive } from 'helpers/custom-hooks'
+import { getEmbedYoutubeLink } from 'helpers'
 //* Sanity
-import sanityClient from 'client';
-import { YOUTUBE_EMBED } from '@/utils/groq';
+import sanityClient from 'client'
+import LoadingComponent from '../shared/LoadingComponent'
+import HeaderLayout from '../HeaderLayout'
+import { YOUTUBE_EMBED } from '@/utils/groq'
 
-const YoutubeChanel = () => {
+function YoutubeChanel() {
   /** State */
-  const [youtubeEmbedLink, setYoutubeEmbedLink] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [youtubeEmbedLink, setYoutubeEmbedLink] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   /** Functions */
   const getYoutubeEmbed = async () => {
-    setIsLoading(true);
+    setIsLoading(true)
     try {
-      const youtubeEmbed = await sanityClient.fetch(YOUTUBE_EMBED);
-      setYoutubeEmbedLink(getEmbedYoutubeLink(youtubeEmbed?.link));
-      setIsLoading(false);
-    } catch (err) {
-      console.error(err);
+      const youtubeEmbed = await sanityClient.fetch(YOUTUBE_EMBED)
+      setYoutubeEmbedLink(getEmbedYoutubeLink(youtubeEmbed?.link))
+      setIsLoading(false)
+    } catch (error) {
+      console.error(error)
     }
-  };
+  }
 
   /** Hooks */
   useEffect(() => {
-    getYoutubeEmbed();
-  }, []);
+    getYoutubeEmbed()
+  }, [])
 
   /** Media Query */
-  const { Phone, SmallDesktop } = useResponsive();
+  const { Phone, SmallDesktop } = useResponsive()
 
   return (
     <HeaderLayout title="Subscribe Channel Youtube Kami">
@@ -56,7 +56,7 @@ const YoutubeChanel = () => {
         </Grid>
       )}
     </HeaderLayout>
-  );
-};
+  )
+}
 
-export default YoutubeChanel;
+export default YoutubeChanel

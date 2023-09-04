@@ -1,43 +1,46 @@
-import { Grid, Typography, useTheme } from '@mui/material';
-import { useBackgroundTypography } from 'helpers/custom-hooks';
-import { ThemeColor } from 'helpers/types';
-import React, { FC, ReactNode, useMemo } from 'react';
-import { useResponsive } from 'helpers/custom-hooks';
+import { Grid, Typography, useTheme } from '@mui/material'
+import { useBackgroundTypography, useResponsive } from 'helpers/custom-hooks'
+import { ThemeColor } from 'helpers/types'
+import React, { useMemo } from 'react'
 
 interface VisionMissionProps {
-  visions: string[];
-  missions: string[];
-  themeColor: ThemeColor;
-  visionSub?: string;
-  missionSub?: string;
+  visions: string[]
+  missions: string[]
+  themeColor: ThemeColor
+  visionSub?: string
+  missionSub?: string
 }
 
-const VisionMission: FC<VisionMissionProps> = ({
+const VisionMission = ({
   visions,
   missions,
   themeColor,
   visionSub,
   missionSub,
-}) => {
+}: VisionMissionProps) => {
   /** Utilities */
-  const styles = useBackgroundTypography();
-  const theme = useTheme();
-  const { SmallDesktop, Tablet, Phone } = useResponsive();
+  const styles = useBackgroundTypography()
+  const theme = useTheme()
+  const { SmallDesktop, Tablet } = useResponsive()
 
   /** Functions */
   const getTitleStyle = useMemo(() => {
     switch (themeColor) {
-      case 'red':
-        return styles.redHeader;
-      case 'lightblue':
-        return styles.lighblueHeader;
-      case 'grey':
-        return styles.greyHeader;
+      case 'red': {
+        return styles.redHeader
+      }
+      case 'lightblue': {
+        return styles.lighblueHeader
+      }
+      case 'grey': {
+        return styles.greyHeader
+      }
 
-      default:
-        return styles.yellowHeader;
+      default: {
+        return styles.yellowHeader
+      }
     }
-  }, [themeColor]);
+  }, [themeColor])
 
   return (
     <Grid container spacing={8}>
@@ -121,7 +124,7 @@ const VisionMission: FC<VisionMissionProps> = ({
         ))}
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
-export default VisionMission;
+export default VisionMission

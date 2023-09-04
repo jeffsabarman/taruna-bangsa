@@ -5,25 +5,25 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
-} from '@mui/material';
-import { ThemeColor } from 'helpers/types';
-import Image, { StaticImageData } from 'next/image';
-import React, { FC, useMemo } from 'react';
-import Container from '../Container';
-import { BackwardPolygon } from '../Shapes';
-import { useResponsive } from 'helpers/custom-hooks';
+} from '@mui/material'
+import { ThemeColor } from 'helpers/types'
+import Image, { StaticImageData } from 'next/image'
+import React, { FC, useMemo } from 'react'
+import { useResponsive } from 'helpers/custom-hooks'
+import Container from '../Container'
+import { BackwardPolygon } from '../Shapes'
 
 interface HeadMasterTestimonyProps {
-  headMasterImage: StaticImageData;
-  headMasterName: string;
-  headMasterRole: string;
-  testimony: string;
-  themeColor: ThemeColor;
-  inverted?: boolean;
-  testimonialSenderRole?: string;
+  headMasterImage: StaticImageData
+  headMasterName: string
+  headMasterRole: string
+  testimony: string
+  themeColor: ThemeColor
+  inverted?: boolean
+  testimonialSenderRole?: string
 }
 
-const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
+const HeadMasterTestimony = ({
   headMasterImage,
   headMasterName,
   headMasterRole,
@@ -31,56 +31,63 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
   themeColor,
   inverted,
   testimonialSenderRole = '{testimonialS}',
-}) => {
+}: HeadMasterTestimonyProps) => {
   /** Utilities */
-  const theme = useTheme();
-  const styles = {
-    yellowHeader: {
-      backgroundColor: theme.palette.warning.main,
-      p: theme.spacing(1),
-    },
-    lighblueHeader: {
-      backgroundColor: theme.palette.primary.light,
-      p: theme.spacing(1),
-    },
-    redHeader: {
-      backgroundColor: theme.palette.secondary.main,
-      p: theme.spacing(1),
-    },
-    greyHeader: {
-      backgroundColor: theme.palette.grey[500],
-      p: theme.spacing(1),
-    },
-    primaryHeader: {
-      backgroundColor: theme.palette.primary.main,
-      p: theme.spacing(1),
-    },
-    divider: {
-      borderWidth: 1.5,
-      borderColor: theme.palette.grey[400],
-    },
-  };
+  const theme = useTheme()
+  const styles = useMemo(
+    () => ({
+      yellowHeader: {
+        backgroundColor: theme.palette.warning.main,
+        p: theme.spacing(1),
+      },
+      lighblueHeader: {
+        backgroundColor: theme.palette.primary.light,
+        p: theme.spacing(1),
+      },
+      redHeader: {
+        backgroundColor: theme.palette.secondary.main,
+        p: theme.spacing(1),
+      },
+      greyHeader: {
+        backgroundColor: theme.palette.grey[500],
+        p: theme.spacing(1),
+      },
+      primaryHeader: {
+        backgroundColor: theme.palette.primary.main,
+        p: theme.spacing(1),
+      },
+      divider: {
+        borderWidth: 1.5,
+        borderColor: theme.palette.grey[400],
+      },
+    }),
+    []
+  )
 
   /** Media Query */
-  const { SmallDesktop, Tablet, Phone } = useResponsive();
-  const customSmallPhone = useMediaQuery('(max-width:360px)');
+  const { SmallDesktop, Phone } = useResponsive()
+  const customSmallPhone = useMediaQuery('(max-width:360px)')
 
   /** Functions */
   const getTitleStyle = useMemo(() => {
     switch (themeColor) {
-      case 'red':
-        return styles.redHeader;
+      case 'red': {
+        return styles.redHeader
+      }
 
-      case 'lightblue':
-        return styles.lighblueHeader;
+      case 'lightblue': {
+        return styles.lighblueHeader
+      }
 
-      case 'grey':
-        return styles.greyHeader;
+      case 'grey': {
+        return styles.greyHeader
+      }
 
-      default:
-        return styles.yellowHeader;
+      default: {
+        return styles.yellowHeader
+      }
     }
-  }, [themeColor]);
+  }, [styles, themeColor])
 
   return (
     <Box>
@@ -321,7 +328,7 @@ const HeadMasterTestimony: FC<HeadMasterTestimonyProps> = ({
         )}
       </Grid>
     </Box>
-  );
-};
+  )
+}
 
-export default HeadMasterTestimony;
+export default HeadMasterTestimony

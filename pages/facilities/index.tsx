@@ -1,35 +1,33 @@
-import React, { useState } from 'react';
-import HeaderLayout from '@/components/HeaderLayout';
-import { Box, Grid, useMediaQuery, useTheme } from '@mui/material';
-import { useResponsive } from 'helpers/custom-hooks';
-import FacilityImage from '@/components/Facilities/FacilityImage';
-import FacilitiesSlider from '@/components/Facilities/FacilitiesSlider';
-//@ts-ignore
-import ImageGallery from 'react-image-gallery';
-import 'react-image-gallery/styles/css/image-gallery.css';
-import { FACILITIES } from 'helpers/constants';
+import React, { useState } from 'react'
+import { Box, Grid, useMediaQuery, useTheme } from '@mui/material'
+import { useResponsive } from 'helpers/custom-hooks'
+import { FACILITIES } from 'helpers/constants'
+import HeaderLayout from '@/components/HeaderLayout'
+import FacilityImage from '@/components/Facilities/FacilityImage'
+import FacilitiesSlider from '@/components/Facilities/FacilitiesSlider'
+import 'react-image-gallery/styles/css/image-gallery.css'
 
 export type Image = {
-  image: string;
-  title: string;
-};
+  image: string
+  title: string
+}
 
-const Facilities = () => {
+function Facilities() {
   /** Utilities */
-  const theme = useTheme();
-  const { Phone, Tablet, SmallDesktop } = useResponsive();
-  const [focusImageKey, setFocusImageKey] = useState('');
-  const [showSlider, setShowSlider] = useState(false);
+  const theme = useTheme()
+  const { Phone, SmallDesktop } = useResponsive()
+  const [focusImageKey, setFocusImageKey] = useState('')
+  const [showSlider, setShowSlider] = useState(false)
 
   /** Media Queries */
-  const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
-  const customLargerPhone = useMediaQuery('(max-width:800px)');
+  const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'))
+  const customLargerPhone = useMediaQuery('(max-width:800px)')
 
   /** Function */
   const handleZoomImage = (key: string) => {
-    setShowSlider(true);
-    setFocusImageKey(key);
-  };
+    setShowSlider(true)
+    setFocusImageKey(key)
+  }
 
   return (
     <>
@@ -67,7 +65,7 @@ const Facilities = () => {
         focusImage={focusImageKey}
       />
     </>
-  );
-};
+  )
+}
 
-export default Facilities;
+export default Facilities

@@ -1,13 +1,12 @@
-import React, { useCallback } from 'react';
-import Dialog from '@mui/material/Dialog';
-import { useResponsive } from 'helpers/custom-hooks';
-import GalleryImage from '@/components/shared/GalleryImage';
+import React, { useCallback } from 'react'
+import Dialog from '@mui/material/Dialog'
+import GalleryImage from '@/components/shared/GalleryImage'
 
 type FacilitiesSliderProps = {
-  open: boolean;
-  handleClose: () => void;
-  focusImage: string;
-};
+  open: boolean
+  handleClose: () => void
+  focusImage: string
+}
 
 /** Mocked Data */
 const POOL_IMAGES = [
@@ -26,7 +25,7 @@ const POOL_IMAGES = [
     thumbnail: 'images/swimming-pool-3.jpg',
     originalAlt: 'facil image',
   },
-];
+]
 
 const BASKETBALL_IMAGES = [
   {
@@ -44,7 +43,7 @@ const BASKETBALL_IMAGES = [
     thumbnail: 'images/basketball-3.jpg',
     originalAlt: 'facil image',
   },
-];
+]
 const BIOLOGY_IMAGES = [
   {
     original: 'images/biology-lab.jpg',
@@ -61,7 +60,7 @@ const BIOLOGY_IMAGES = [
     thumbnail: 'images/biology-lab-3.jpg',
     originalAlt: 'facil image',
   },
-];
+]
 const ROBOTIC_IMAGES = [
   {
     original: 'images/robotic-lab.jpg',
@@ -78,7 +77,7 @@ const ROBOTIC_IMAGES = [
     thumbnail: 'images/robotic-lab-3.jpg',
     originalAlt: 'facil image',
   },
-];
+]
 const PLAYGROUND_IMAGES = [
   {
     original: 'images/playground.jpg',
@@ -95,7 +94,7 @@ const PLAYGROUND_IMAGES = [
     thumbnail: 'images/playground-3.jpg',
     originalAlt: 'facil image',
   },
-];
+]
 const OPEN_SPACE_IMAGES = [
   {
     original: 'images/open-space.jpg',
@@ -112,32 +111,41 @@ const OPEN_SPACE_IMAGES = [
     thumbnail: 'images/open-space-3.jpg',
     originalAlt: 'facil image',
   },
-];
+]
 
-const FacilitiesSlider = ({
+function FacilitiesSlider({
   open,
   handleClose,
   focusImage,
-}: FacilitiesSliderProps) => {
+}: FacilitiesSliderProps) {
   /** Utilities */
-  const { Phone, Tablet, SmallDesktop, Desktop } = useResponsive();
 
   const getImages = useCallback(() => {
     switch (focusImage) {
-      case 'pool':
-        return POOL_IMAGES;
-      case 'biology':
-        return BIOLOGY_IMAGES;
-      case 'robotic':
-        return ROBOTIC_IMAGES;
-      case 'playground':
-        return PLAYGROUND_IMAGES;
-      case 'open-space':
-        return OPEN_SPACE_IMAGES;
-      case 'basketball':
-        return BASKETBALL_IMAGES;
+      case 'pool': {
+        return POOL_IMAGES
+      }
+      case 'biology': {
+        return BIOLOGY_IMAGES
+      }
+      case 'robotic': {
+        return ROBOTIC_IMAGES
+      }
+      case 'playground': {
+        return PLAYGROUND_IMAGES
+      }
+      case 'open-space': {
+        return OPEN_SPACE_IMAGES
+      }
+      case 'basketball': {
+        return BASKETBALL_IMAGES
+      }
+
+      default: {
+        return ''
+      }
     }
-  }, [focusImage]);
+  }, [focusImage])
 
   return (
     <Dialog
@@ -149,13 +157,13 @@ const FacilitiesSlider = ({
       style={{ backgroundColor: 'rgba(1,1,1,0.4)' }}
     >
       <GalleryImage
-        images={getImages()}
+        images={getImages() || []}
         autoPlay
         showFullscreenButton
         showPlayButton
       />
     </Dialog>
-  );
-};
+  )
+}
 
-export default FacilitiesSlider;
+export default FacilitiesSlider

@@ -15,12 +15,12 @@ export const ACADEMICS_SUBMENU = [
     label: 'SMA',
     path: '/academics/sma',
   },
-];
+]
 
 export type MenuItem = {
-  path: string;
-  label: string;
-};
+  path: string
+  label: string
+}
 
 export const MENU_LIST: Array<MenuItem> = [
   {
@@ -47,7 +47,7 @@ export const MENU_LIST: Array<MenuItem> = [
     path: '/contact-us',
     label: 'Hubungi Kami',
   },
-];
+]
 
 export const FACILITIES = [
   {
@@ -80,4 +80,4 @@ export const FACILITIES = [
     title: 'Ruang Terbuka',
     key: 'open-space',
   },
-];
+]

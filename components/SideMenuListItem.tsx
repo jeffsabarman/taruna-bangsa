@@ -1,35 +1,34 @@
 import {
   KeyboardArrowDown as KeyboardArrowDownIcon,
   KeyboardArrowUp as KeyboardArrowUpIcon,
-} from '@mui/icons-material';
+} from '@mui/icons-material'
 import {
   Collapse,
-  Grid,
   List,
   ListItemButton,
   ListItemIcon,
   ListItemText,
   useTheme,
-} from '@mui/material';
-import { useRouter } from 'next/router';
-import React, { FC, useState } from 'react';
+} from '@mui/material'
+import { useRouter } from 'next/router'
+import React, { useState } from 'react'
 
 interface SideMenuListItemProps {
-  label: string;
+  label: string
   submenus: {
-    label: string;
-    path: string;
-  }[];
-  onClickSubmenu: () => void;
+    label: string
+    path: string
+  }[]
+  onClickSubmenu: () => void
 }
 
-const SideMenuListItem: FC<SideMenuListItemProps> = ({
+const SideMenuListItem = ({
   label,
   submenus,
   onClickSubmenu,
-}) => {
+}: SideMenuListItemProps) => {
   /** Utilities */
-  const theme = useTheme();
+  const theme = useTheme()
   const styles = {
     listItemText: {
       color: theme.palette.grey['300'],
@@ -43,17 +42,17 @@ const SideMenuListItem: FC<SideMenuListItemProps> = ({
       marginLeft: theme.spacing(6),
       marginRight: theme.spacing(4),
     },
-  };
-  const router = useRouter();
+  }
+  const router = useRouter()
 
   /** States */
-  const [showSubmenu, setShowSubmenu] = useState(false);
+  const [showSubmenu, setShowSubmenu] = useState(false)
 
   /** Functions */
   const handleNavigate = (path: string) => {
-    router.push(path);
-    onClickSubmenu();
-  };
+    router.push(path)
+    onClickSubmenu()
+  }
 
   return (
     <>
@@ -86,7 +85,7 @@ const SideMenuListItem: FC<SideMenuListItemProps> = ({
         ))}
       </Collapse>
     </>
-  );
-};
+  )
+}
 
-export default SideMenuListItem;
+export default SideMenuListItem

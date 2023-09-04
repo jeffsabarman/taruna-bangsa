@@ -5,53 +5,53 @@ import {
   useTheme,
   Grid,
   IconButton,
-} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import Link from 'next/link';
-import React, { useMemo, useState } from 'react';
-import Container from '@/components/Container';
-import SideDrawer from '@/components/SideDrawer';
-import { useResponsive } from 'helpers/custom-hooks';
-import Image from 'next/image';
-import MenuItem from '@/components/MenuItem';
-import { MENU_LIST } from 'helpers/constants';
+} from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu'
+import Link from 'next/link'
+import React, { useMemo, useState } from 'react'
+import { useResponsive } from 'helpers/custom-hooks'
+import Image from 'next/image'
+import { MENU_LIST } from 'helpers/constants'
+import Container from '@/components/Container'
+import SideDrawer from '@/components/SideDrawer'
+import MenuItem from '@/components/MenuItem'
 
 interface ElevationScrollProps {
-  window?: () => Window;
-  children: React.ReactElement;
+  window?: () => Window
+  children: React.ReactElement
 }
 
 const ElevationScroll = (props: ElevationScrollProps) => {
-  const { children } = props;
+  const { children } = props
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
-  });
+  })
 
   return React.cloneElement(children, {
     elevation: trigger ? 4 : 0,
-  });
-};
+  })
+}
 
-const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
+function ElevationAppBar(props: Partial<ElevationScrollProps>) {
   /** Utilities */
-  const theme = useTheme();
-  const { SmallDesktop, Desktop, Phone } = useResponsive();
+  const theme = useTheme()
+  const { SmallDesktop, Desktop, Phone } = useResponsive()
   const styles = {
     hamburger: {
       display: { lg: 'none' },
       color: theme.palette.primary.main,
       marginRight: theme.spacing(3),
     },
-  };
+  }
 
   /** States */
-  const [showSideDrawer, setShowSideDrawer] = useState<boolean>(false);
+  const [showSideDrawer, setShowSideDrawer] = useState<boolean>(false)
 
   /** Functions */
   const handleDrawerToggle = () => {
-    setShowSideDrawer((prevState) => !prevState);
-  };
+    setShowSideDrawer((prevState) => !prevState)
+  }
 
   /** Components */
   const renderMenuList = useMemo(() => {
@@ -64,9 +64,9 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
         >
           <MenuItem href={path} label={label} />
         </Grid>
-      );
-    });
-  }, [MENU_LIST]);
+      )
+    })
+  }, [])
 
   const renderSideDrawer = useMemo(() => {
     return (
@@ -74,8 +74,8 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
         open={showSideDrawer}
         onClose={() => setShowSideDrawer(false)}
       />
-    );
-  }, [showSideDrawer]);
+    )
+  }, [showSideDrawer])
 
   return (
     <ElevationScroll {...props}>
@@ -97,7 +97,7 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
                 </IconButton>
               </Grid>
               <Grid item>
-                <Link href={'/'} passHref>
+                <Link href="/" passHref>
                   <Image
                     style={{ cursor: 'pointer' }}
                     src="/images/stb-logo.svg"
@@ -114,7 +114,7 @@ const ElevationAppBar = (props: Partial<ElevationScrollProps>) => {
         {renderSideDrawer}
       </AppBar>
     </ElevationScroll>
-  );
-};
+  )
+}
 
-export default ElevationAppBar;
+export default ElevationAppBar

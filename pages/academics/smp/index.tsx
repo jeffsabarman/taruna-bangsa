@@ -1,28 +1,26 @@
-import HeadMasterTestimony from '@/components/Academics/HeadMasterTestimony';
-import { HeroCarousel } from '@/components/Carousel';
 import {
   Divider,
   Grid,
   Typography,
   useMediaQuery,
   useTheme,
-} from '@mui/material';
-import { Box } from '@mui/system';
-import { useResponsive } from 'helpers/custom-hooks';
-import React, { FC, useState, useEffect } from 'react';
-import headMasterPic from '@/public/images/fabi.png';
+} from '@mui/material'
+import { Box } from '@mui/system'
+import { useResponsive } from 'helpers/custom-hooks'
+import React, { useState, useEffect } from 'react'
+import sanityClient from 'client'
+import HeadMasterTestimony from '@/components/Academics/HeadMasterTestimony'
+import headMasterPic from '@/public/images/fabi.png'
 //* Components
-import Container from '@/components/Container';
-import YearGroupSection from '@/components/Academics/YearGroupSection';
-import VisionMission from '@/components/Academics/VisionMission';
-import SchedulesAndActivities from '@/components/ContactUs/SchedulesAndActivities';
-import Exculpatories from '@/components/ContactUs/Exculpatories';
-import Teachers from '@/components/Academics/Teachers';
-import HeroSection from '@/components/Home/HeroSection';
-import LoadingComponent from '@/components/shared/LoadingComponent';
+import Container from '@/components/Container'
+import YearGroupSection from '@/components/Academics/YearGroupSection'
+import VisionMission from '@/components/Academics/VisionMission'
+import SchedulesAndActivities from '@/components/ContactUs/SchedulesAndActivities'
+import Teachers from '@/components/Academics/Teachers'
+import HeroSection from '@/components/Home/HeroSection'
+import LoadingComponent from '@/components/shared/LoadingComponent'
 //* Sanity
-import sanityClient from 'client';
-import { ACADEMIC_SMP } from '@/utils/groq';
+import { ACADEMIC_SMP } from '@/utils/groq'
 
 const sections = [
   {
@@ -40,13 +38,13 @@ const sections = [
     description:
       'Kami mengajak Bapak/Ibu selaku orang tua peserta didik untuk mendaftarkan putra dan putrinya untuk bergabung di SMP Taruna Bangsa dan bergandengan tangan menjalin kerja sama dalam mendampingi anak-anak.',
   },
-];
+]
 
 const VISSIONS = [
   'Pengamalan ajaran agamanya dan budi pekerti.',
   'Berbagai bidang pengetahuan, olahraga, dan seni.',
   'Partisipasi pelestarian lingkungan sekolah dan masyarakat.',
-];
+]
 const MISSIONS = [
   'Meningkatkan penghayatan dan pengamalan terhadap ajaran agama yang dianutnya.',
   'Melaksanakan pembelajaran yang efektif, kreatif, inovatif, dan menyenangkan bagi guru dan siswa.',
@@ -54,101 +52,101 @@ const MISSIONS = [
   'Membantu siswa mengenali bakat dan mengolahnya untuk meningkatkan prestasi.',
   'Menumbuhkan semangat cinta lingkungan dan berperan dalam pelestarian alam.',
   'Mengamalkan budaya sekolah.',
-];
+]
 
 /** Mocked Data */
-const images = [
-  {
-    url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
-    link: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-    link: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-  },
-];
+// const images = [
+//   {
+//     url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
+//     link: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2626&q=80',
+//   },
+//   {
+//     url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
+//     link: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2Nob29sfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
+//   },
+// ]
 
-const exculImageSets = [
-  {
-    imageSets: {
-      1: {
-        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-        alt: 'gambar 1',
-      },
-      2: {
-        url: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
-        alt: 'gambar 2',
-      },
-      3: {
-        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-        alt: 'gambar 1',
-      },
-      4: {
-        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-        alt: 'gambar 1',
-      },
-      5: {
-        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-        alt: 'gambar 1',
-      },
-    },
-  },
-  {
-    imageSets: {
-      1: {
-        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-        alt: 'gambar 1',
-      },
-      2: {
-        url: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
-        alt: 'gambar 2',
-      },
-      3: {
-        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-        alt: 'gambar 1',
-      },
-      4: {
-        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-        alt: 'gambar 1',
-      },
-      5: {
-        url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
-        alt: 'gambar 1',
-      },
-    },
-  },
-];
+// const exculImageSets = [
+//   {
+//     imageSets: {
+//       1: {
+//         url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//         alt: 'gambar 1',
+//       },
+//       2: {
+//         url: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
+//         alt: 'gambar 2',
+//       },
+//       3: {
+//         url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//         alt: 'gambar 1',
+//       },
+//       4: {
+//         url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//         alt: 'gambar 1',
+//       },
+//       5: {
+//         url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//         alt: 'gambar 1',
+//       },
+//     },
+//   },
+//   {
+//     imageSets: {
+//       1: {
+//         url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//         alt: 'gambar 1',
+//       },
+//       2: {
+//         url: 'https://images.unsplash.com/photo-1554042317-efd62f19bc95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1291&q=80',
+//         alt: 'gambar 2',
+//       },
+//       3: {
+//         url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//         alt: 'gambar 1',
+//       },
+//       4: {
+//         url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//         alt: 'gambar 1',
+//       },
+//       5: {
+//         url: 'https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80',
+//         alt: 'gambar 1',
+//       },
+//     },
+//   },
+// ]
 
-const AcademicSMP: FC = (props) => {
+const AcademicSMP = () => {
   /** Utilities */
-  const theme = useTheme();
+  const theme = useTheme()
 
   /** Media Queries */
-  const { Phone, SmallDesktop, Desktop, Tablet } = useResponsive();
-  const customSmallPhone = useMediaQuery('(max-width:360px)');
+  const { Phone, SmallDesktop, Desktop, Tablet } = useResponsive()
+  const customSmallPhone = useMediaQuery('(max-width:360px)')
 
   /** State */
-  const [schedules, setSchedules] = useState([]);
-  const [teachers, setTeachers] = useState([]);
-  const [activities, setActivities] = useState([]);
-  const [exculpatories, setExculpatories] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [schedules, setSchedules] = useState([])
+  const [teachers, setTeachers] = useState([])
+  const [activities, setActivities] = useState([])
+  const [_exculpatories, setExculpatories] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   /** Functions */
   const getAcademicData = async () => {
-    setIsLoading(true);
-    const academicData = await sanityClient.fetch(ACADEMIC_SMP);
-    setTeachers(academicData?.teachers);
-    setSchedules(academicData?.scheduleKBM);
-    setActivities(academicData?.activities);
-    setExculpatories(academicData?.extracurricular);
-    setIsLoading(false);
-  };
+    setIsLoading(true)
+    const academicData = await sanityClient.fetch(ACADEMIC_SMP)
+    setTeachers(academicData?.teachers)
+    setSchedules(academicData?.scheduleKBM)
+    setActivities(academicData?.activities)
+    setExculpatories(academicData?.extracurricular)
+    setIsLoading(false)
+  }
 
   /** Hooks */
   useEffect(() => {
-    getAcademicData();
-  }, []);
+    getAcademicData()
+  }, [])
 
   return (
     <>
@@ -266,7 +264,7 @@ const AcademicSMP: FC = (props) => {
         </Container>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default AcademicSMP;
+export default AcademicSMP

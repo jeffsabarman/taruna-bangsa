@@ -5,37 +5,35 @@ import {
   MenuList,
   MenuItem as MUIMenuItem,
   useTheme,
-  Typography,
   Divider,
   Box,
-} from '@mui/material';
-import { ACADEMICS_SUBMENU } from 'helpers/constants';
-import { useResponsive } from 'helpers/custom-hooks';
-import Link, { LinkProps } from 'next/link';
-import { useRouter } from 'next/router';
-import React, { FC, useState } from 'react';
+} from '@mui/material'
+import { ACADEMICS_SUBMENU } from 'helpers/constants'
+import { useResponsive } from 'helpers/custom-hooks'
+import Link, { LinkProps } from 'next/link'
+import { useRouter } from 'next/router'
+import React, { useState } from 'react'
 
 interface MenuItemProps extends LinkProps {
-  label: string;
+  label: string
 }
 
-const MenuItem: FC<MenuItemProps> = ({ label, href, ...props }) => {
+const MenuItem = ({ label, href, ...props }: MenuItemProps) => {
   /** Utilities */
-  const theme = useTheme();
-  const router = useRouter();
+  const theme = useTheme()
+  const router = useRouter()
 
   /** Media Query */
-  const { Desktop } = useResponsive();
+  const { Desktop } = useResponsive()
 
   const getIsActive = () => {
     if (label === 'Akademik') {
       return ACADEMICS_SUBMENU.map((submenu) => submenu?.path).includes(
-        router.pathname,
-      );
-    } else {
-      return router.pathname === `${href}`;
+        router.pathname
+      )
     }
-  };
+    return router.pathname === `${href}`
+  }
 
   // const active = router.pathname === `${href}`;
   const styles = {
@@ -61,22 +59,20 @@ const MenuItem: FC<MenuItemProps> = ({ label, href, ...props }) => {
       outline: 'none',
       padding: 0,
     },
-  };
+  }
   /** States */
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null)
 
   /** Functions */
   const handleClick = (event: any) => {
-    if (label === 'Akademik') {
-      if (anchorEl !== event.currentTarget) {
-        setAnchorEl(event.currentTarget);
-      }
+    if (label === 'Akademik' && anchorEl !== event.currentTarget) {
+      setAnchorEl(event.currentTarget)
     }
-  };
+  }
 
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
   return (
     <>
@@ -126,7 +122,7 @@ const MenuItem: FC<MenuItemProps> = ({ label, href, ...props }) => {
         </MenuList>
       </Menu>
     </>
-  );
-};
+  )
+}
 
-export default MenuItem;
+export default MenuItem

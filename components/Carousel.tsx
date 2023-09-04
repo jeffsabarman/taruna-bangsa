@@ -1,11 +1,9 @@
-import theme from '@/styles/theme';
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 import {
   ArrowLeft,
   ArrowRight,
   Circle as CircleIcon,
-  CircleOutlined as CircleOutlinedIcon,
-} from '@mui/icons-material';
+} from '@mui/icons-material'
 import {
   Box,
   BoxProps,
@@ -16,61 +14,30 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
-} from '@mui/material';
-import { grey } from '@mui/material/colors';
-import { useResponsive } from 'helpers/custom-hooks';
-import { ThemeColor } from 'helpers/types';
-import React, { FC, ReactNode, useMemo } from 'react';
+} from '@mui/material'
+import { useResponsive } from 'helpers/custom-hooks'
+import { ThemeColor } from 'helpers/types'
+import React, { FC, ReactNode, useMemo } from 'react'
 import ElasticCarousel, {
   ReactElasticCarouselProps,
   // @ts-ignore
   consts,
   RenderPaginationProps,
-} from 'react-elastic-carousel';
-import { Url } from 'url';
-import { TeacherItem } from './Academics/Teachers';
-
-type IndicatorProps = {
-  active: boolean;
-};
-
-const Pagination = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 2rem 0px;
-  position: absolute;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 0.6rem;
-  border-radius: 0.4rem;
-`;
-
-const Indicator = styled.button<IndicatorProps>`
-  width: 2rem;
-  height: 0.4rem;
-  outline: none;
-  cursor: pointer;
-  border-radius: 1rem;
-  margin-right: 0.4rem;
-  margin-left: 0.4rem;
-  background-color: ${(p: any) => (p.active ? '#001980' : 'lightgrey')};
-  border: none;
-`;
+} from 'react-elastic-carousel'
+import { TeacherItem } from './Academics/Teachers'
 
 const ImageCarousel = styled.img`
   width: 100vw;
   object-fit: cover;
   cursor: pointer;
-`;
+`
 
 type ImageLink = {
-  url: string;
-  urlSmall?: string;
-  link?: string;
-  alt: string;
-};
+  url: string
+  urlSmall?: string
+  link?: string
+  alt: string
+}
 
 export type GridImageSets = {
   // imageSets: { url: string; alt: string }[];
@@ -81,69 +48,67 @@ export type GridImageSets = {
     // 4: string;
     // 5: string;
     1: {
-      url: string;
-      alt: string;
-    };
+      url: string
+      alt: string
+    }
     2: {
-      url: string;
-      alt: string;
-    };
+      url: string
+      alt: string
+    }
     3: {
-      url: string;
-      alt: string;
-    };
+      url: string
+      alt: string
+    }
     4: {
-      url: string;
-      alt: string;
-    };
+      url: string
+      alt: string
+    }
     5: {
-      url: string;
-      alt: string;
-    };
-  };
-};
+      url: string
+      alt: string
+    }
+  }
+}
 
 interface IElasticCarouselProps extends Partial<ReactElasticCarouselProps> {
-  children?: ReactNode;
-  images?: ImageLink[];
-  gridImages?: GridImageSets[];
-  teachersList?: TeacherItem[];
-  themeColor?: ThemeColor;
-  paginationBottom?: string;
-  isSetBackground?: boolean;
+  children?: ReactNode
+  images?: ImageLink[]
+  gridImages?: GridImageSets[]
+  teachersList?: TeacherItem[]
+  themeColor?: ThemeColor
+  paginationBottom?: string
+  isSetBackground?: boolean
 }
 
 interface CarouselArrowProps {
-  type: any;
-  onClick: () => void;
-  isEdge: boolean;
-  themeColor: ThemeColor;
+  type: any
+  onClick: () => void
+  isEdge: boolean
+  themeColor: ThemeColor
 }
 
 // @ts-ignore
 interface PaginationProps extends Partial<RenderPaginationProps> {
-  pages: number[];
-  activePage: number;
-  onClick: (page: number) => void;
-  type: 'hero' | 'grid' | 'teacher';
-  paginationBottom?: string | number;
-  themeColor?: ThemeColor;
-  isSetBackground?: false;
+  pages: number[]
+  activePage: number
+  onClick: (page: number) => void
+  type: 'hero' | 'grid' | 'teacher'
+  paginationBottom?: string | number
+  themeColor?: ThemeColor
+  isSetBackground?: false
 }
 
-const StyledElasticCarousel: FC<IElasticCarouselProps> = ({
+const StyledElasticCarousel = ({
   children,
   ...props
-}) => {
+}: IElasticCarouselProps) => {
   return (
     // @ts-ignore
     <ElasticCarousel {...props}>{children}</ElasticCarousel>
-  );
-};
+  )
+}
 
-const SliderCarouselItem = (props: { image: ImageLink | undefined }) => {
-  const { SmallDesktop, Desktop, Tablet, Phone } = useResponsive();
-
+function SliderCarouselItem(props: { image: ImageLink | undefined }) {
   return (
     <ImageCarousel
       onClick={() => props?.image?.link}
@@ -151,8 +116,8 @@ const SliderCarouselItem = (props: { image: ImageLink | undefined }) => {
       alt="Taruna Bangsa Slider Image"
       style={{ height: '40vw' }}
     />
-  );
-};
+  )
+}
 
 const CarouselArrow: FC<CarouselArrowProps> = ({
   type,
@@ -160,39 +125,46 @@ const CarouselArrow: FC<CarouselArrowProps> = ({
   isEdge,
   themeColor,
 }) => {
-  const theme = useTheme();
+  const theme = useTheme()
   const getIconColor = useMemo(() => {
     if (themeColor) {
       switch (themeColor) {
-        case 'red':
-          return theme.palette.secondary.main;
-        case 'lightblue':
-          return theme.palette.primary.light;
-        case 'grey':
-          return theme.palette.grey[500];
-        case 'white':
-          return theme.palette.background.paper;
-        case 'blue':
-          return theme.palette.primary.main;
+        case 'red': {
+          return theme.palette.secondary.main
+        }
+        case 'lightblue': {
+          return theme.palette.primary.light
+        }
+        case 'grey': {
+          return theme.palette.grey[500]
+        }
+        case 'white': {
+          return theme.palette.background.paper
+        }
+        case 'blue': {
+          return theme.palette.primary.main
+        }
 
-        default:
-          return theme.palette.warning.main;
+        default: {
+          return theme.palette.warning.main
+        }
       }
     }
-  }, [themeColor]);
+    return ''
+  }, [themeColor])
 
   const getSxIcon = () => {
     return {
       color: getIconColor,
-    };
-  };
+    }
+  }
 
   const pointer =
     type === consts.PREV ? (
       <ArrowLeft sx={getSxIcon()} />
     ) : (
       <ArrowRight sx={getSxIcon()} />
-    );
+    )
   return (
     <Button
       onClick={onClick}
@@ -201,48 +173,53 @@ const CarouselArrow: FC<CarouselArrowProps> = ({
     >
       {pointer}
     </Button>
-  );
-};
+  )
+}
 
 const StyledPagination: FC<PaginationProps> = ({
   pages,
   activePage,
   onClick,
-  type,
   paginationBottom = '2rem',
   themeColor = 'yellow',
   isSetBackground = false,
 }) => {
-  const { Phone } = useResponsive();
-  const customSmallPhone = useMediaQuery('(max-width:360px)');
-  const theme = useTheme();
+  const { Phone } = useResponsive()
+  const customSmallPhone = useMediaQuery('(max-width:360px)')
+  const theme = useTheme()
 
   const getIconColor = useMemo(() => {
     if (themeColor) {
       switch (themeColor) {
-        case 'red':
-          return theme.palette.secondary.main;
-        case 'lightblue':
-          return theme.palette.primary.light;
-        case 'grey':
-          return theme.palette.grey[500];
-        case 'white':
-          return theme.palette.background.paper;
-        case 'blue':
-          return theme.palette.primary.main;
+        case 'red': {
+          return theme.palette.secondary.main
+        }
+        case 'lightblue': {
+          return theme.palette.primary.light
+        }
+        case 'grey': {
+          return theme.palette.grey[500]
+        }
+        case 'white': {
+          return theme.palette.background.paper
+        }
+        case 'blue': {
+          return theme.palette.primary.main
+        }
 
-        default:
-          return theme.palette.warning.main;
+        default: {
+          return theme.palette.warning.main
+        }
       }
     }
-  }, [themeColor]);
+  }, [themeColor])
 
   const getSxIcon = () => {
     return {
       color: getIconColor,
       fontSize: customSmallPhone ? '1rem' : Phone ? '1.2rem' : '1.3rem',
-    };
-  };
+    }
+  }
 
   // const getSxIconInactive = () => {
   //   return {
@@ -283,7 +260,7 @@ const StyledPagination: FC<PaginationProps> = ({
       >
         <Grid container spacing={1}>
           {pages.map((page) => {
-            const isActivePage: boolean = activePage === page;
+            const isActivePage: boolean = activePage === page
 
             return (
               // <Indicator
@@ -301,23 +278,23 @@ const StyledPagination: FC<PaginationProps> = ({
                   ) : (
                     <CircleIcon
                       sx={getSxIcon()}
-                      style={{ color: `rgba(189, 189, 189, 0.8)` }}
+                      style={{ color: 'rgba(189, 189, 189, 0.8)' }}
                     />
                   )}
                 </IconButton>
               </Grid>
-            );
+            )
           })}
         </Grid>
       </Grid>
     </Grid>
     //   }
     // </Pagination>
-  );
-};
+  )
+}
 
-const CarouselItem = (props: { image: ImageLink | undefined }) => {
-  const { SmallDesktop, Desktop, Tablet, Phone } = useResponsive();
+function CarouselItem(props: { image: ImageLink | undefined }) {
+  const { Desktop, Tablet, Phone } = useResponsive()
   // const customDesktop = useMediaQuery("(max-width:)")
 
   return (
@@ -335,8 +312,8 @@ const CarouselItem = (props: { image: ImageLink | undefined }) => {
       // alt="Taruna Bangsa Banner Image"
       alt={props?.image?.alt}
     />
-  );
-};
+  )
+}
 
 const HeroCarousel: FC<IElasticCarouselProps> = ({
   itemsToShow = 1,
@@ -346,7 +323,7 @@ const HeroCarousel: FC<IElasticCarouselProps> = ({
   isSetBackground = true,
   ...props
 }) => {
-  const breakPoints = [{ width: 1, itemsToShow }];
+  const breakPoints = [{ width: 1, itemsToShow }]
 
   return (
     <StyledElasticCarousel
@@ -376,27 +353,27 @@ const HeroCarousel: FC<IElasticCarouselProps> = ({
         <CarouselItem key={idx} image={image} />
       ))}
     </StyledElasticCarousel>
-  );
-};
+  )
+}
 
 type ImageProps = {
-  orientation: 'landscape' | 'portrait';
-};
+  orientation: 'landscape' | 'portrait'
+}
 
 const Image = styled.img<ImageProps>`
   height: ${(p: any) => (p.orientation === 'landscape' ? '14vw' : '100%')};
   width: 100%;
   object-fit: cover;
-`;
+`
 
-interface GridImage extends BoxProps {
-  url: string;
-  alt: string;
-  orientation: 'landscape' | 'portrait';
+interface GridImageProps extends BoxProps {
+  url: string
+  alt: string
+  orientation: 'landscape' | 'portrait'
 }
 
-const GridImage: FC<GridImage> = ({ url, alt, orientation, ...props }) => {
-  const { sx, ...other } = props;
+const GridImage: FC<GridImageProps> = ({ url, alt, orientation, ...props }) => {
+  const { sx, ...other } = props
   const styles = {
     container: {
       borderRadius: 2,
@@ -404,8 +381,8 @@ const GridImage: FC<GridImage> = ({ url, alt, orientation, ...props }) => {
       boxShadow: '0px 10px 15px 6px rgba(0,0,0,0.1)',
       ...sx,
     },
-  };
-  const { Phone, Tablet } = useResponsive();
+  }
+  const { Phone, Tablet } = useResponsive()
 
   return (
     <Box sx={styles.container} {...other}>
@@ -425,8 +402,8 @@ const GridImage: FC<GridImage> = ({ url, alt, orientation, ...props }) => {
         }}
       />
     </Box>
-  );
-};
+  )
+}
 
 const GridCarousel: FC<IElasticCarouselProps> = ({
   itemsToShow = 1,
@@ -435,8 +412,8 @@ const GridCarousel: FC<IElasticCarouselProps> = ({
   themeColor,
   ...props
 }) => {
-  const breakPoints = [{ width: 1, itemsToShow }];
-  const { Phone, Tablet } = useResponsive();
+  const breakPoints = [{ width: 1, itemsToShow }]
+  const { Phone, Tablet } = useResponsive()
 
   // TODO: HANDLE RESPONSIVE
 
@@ -536,44 +513,49 @@ const GridCarousel: FC<IElasticCarouselProps> = ({
         </Box>
       ))}
     </StyledElasticCarousel>
-  );
-};
+  )
+}
 
 const TeacherImage = styled.img`
   width: 100%;
   height: 24rem;
   object-fit: cover;
   border-radius: 14px;
-`;
+`
 
-export const TeacherCarouselItem = ({
+export function TeacherCarouselItem({
   teacher,
   themeColor,
 }: {
-  teacher: TeacherItem;
-  themeColor: ThemeColor;
-}) => {
-  const theme = useTheme();
+  teacher: TeacherItem
+  themeColor: ThemeColor
+}) {
+  const theme = useTheme()
   const getBorderStyle = useMemo(() => {
     if (themeColor) {
       switch (themeColor) {
-        case 'red':
-          return theme.palette.secondary.main;
-        case 'lightblue':
-          return theme.palette.primary.light;
-        case 'grey':
-          return theme.palette.grey[500];
-        case 'white':
-          return theme.palette.background.paper;
+        case 'red': {
+          return theme.palette.secondary.main
+        }
+        case 'lightblue': {
+          return theme.palette.primary.light
+        }
+        case 'grey': {
+          return theme.palette.grey[500]
+        }
+        case 'white': {
+          return theme.palette.background.paper
+        }
 
-        default:
-          return theme.palette.warning.main;
+        default: {
+          return theme.palette.warning.main
+        }
       }
     }
-  }, [themeColor]);
+  }, [theme, themeColor])
 
-  const { Desktop, SmallDesktop, Tablet, Phone, BigDesktop } = useResponsive();
-  const customSmallPhone = useMediaQuery('(max-width:360px)');
+  const { Desktop, SmallDesktop, Tablet, Phone, BigDesktop } = useResponsive()
+  const customSmallPhone = useMediaQuery('(max-width:360px)')
 
   return (
     <Grid
@@ -624,8 +606,8 @@ export const TeacherCarouselItem = ({
         <Divider sx={{ borderWidth: 1.5, borderColor: getBorderStyle }} />
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
 const TeacherCarousel: FC<IElasticCarouselProps> = ({
   itemsToShow = 3,
@@ -634,7 +616,7 @@ const TeacherCarousel: FC<IElasticCarouselProps> = ({
   paginationBottom,
   ...props
 }) => {
-  const breakPoints = [{ width: 1, itemsToShow }];
+  const breakPoints = [{ width: 1, itemsToShow }]
 
   return (
     <StyledElasticCarousel
@@ -644,7 +626,7 @@ const TeacherCarousel: FC<IElasticCarouselProps> = ({
       renderArrow={({ type, onClick, isEdge }) => (
         <CarouselArrow {...{ type, onClick, isEdge, themeColor }} />
       )}
-      showArrows={true}
+      showArrows
       // @ts-ignore
       // renderPagination={StyledPagination}
       renderPagination={({ pages, activePage, onClick }) => (
@@ -670,8 +652,8 @@ const TeacherCarousel: FC<IElasticCarouselProps> = ({
         />
       ))}
     </StyledElasticCarousel>
-  );
-};
+  )
+}
 
 const SliderCarousel: FC<IElasticCarouselProps> = ({
   itemsToShow = 1,
@@ -680,7 +662,7 @@ const SliderCarousel: FC<IElasticCarouselProps> = ({
   themeColor = 'lightblue',
   ...props
 }) => {
-  const breakPoints = [{ width: 1, itemsToShow }];
+  const breakPoints = [{ width: 1, itemsToShow }]
 
   return (
     <StyledElasticCarousel
@@ -708,7 +690,7 @@ const SliderCarousel: FC<IElasticCarouselProps> = ({
         <SliderCarouselItem key={idx} image={image} />
       ))}
     </StyledElasticCarousel>
-  );
-};
+  )
+}
 
-export { HeroCarousel, GridCarousel, TeacherCarousel, SliderCarousel };
+export { HeroCarousel, GridCarousel, TeacherCarousel, SliderCarousel }

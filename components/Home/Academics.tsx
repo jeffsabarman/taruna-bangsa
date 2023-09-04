@@ -1,16 +1,12 @@
-import { Box, Grid, Typography, useTheme } from '@mui/material';
-import { useResponsive } from 'helpers/custom-hooks';
-import React from 'react';
-import AcademicCard, { Academic } from '../AcademicCard';
-import HeaderLayout from '@/components/HeaderLayout';
-import TK from '@/public/images/TK.jpg';
-import SD from '@/public/images/SD.jpg';
-import SMA from '@/public/images/SMA.jpg';
-import SMP from '@/public/images/SMP.jpg';
+import { Box, Grid } from '@mui/material'
+import { useResponsive } from 'helpers/custom-hooks'
+import React from 'react'
+import AcademicCard, { Academic } from '../AcademicCard'
+import HeaderLayout from '@/components/HeaderLayout'
 
 const ACADEMICS_LIST: Array<Academic> = [
   {
-    avatar: TK,
+    avatar: '/images/TK.jpg',
     title: 'kb/tk',
     subtitle:
       'KB dan TK Taruna Bangsa sudah berhasil meluluskan sebanyak 18 angkatan. Setiap saat KB dan TK Taruna Bangsa memperbaiki mutu pendidikannya...',
@@ -18,7 +14,7 @@ const ACADEMICS_LIST: Array<Academic> = [
     url: '/academics/kb-tk',
   },
   {
-    avatar: SD,
+    avatar: '/images/SD.jpg',
     title: 'sd',
     subtitle:
       'SD Taruna Bangsa sudah berhasil meluluskan 17 angkatan.  SD Taruna Bangsa selalu memperbarui kualitas pendidikannya, baik dengan metode maupun fasilitas yang terkini...',
@@ -26,7 +22,7 @@ const ACADEMICS_LIST: Array<Academic> = [
     url: '/academics/sd',
   },
   {
-    avatar: SMP,
+    avatar: '/images/SMP.jpg',
     title: 'smp',
     subtitle:
       'SMP Taruna bangsa merupakan sekolah yang berada di bawah naungan Yayasan Pendidikan Taruna Bangsa. Bersatu dalam keberagaman merupakan nilai...',
@@ -34,18 +30,17 @@ const ACADEMICS_LIST: Array<Academic> = [
     url: '/academics/smp',
   },
   {
-    avatar: SMA,
+    avatar: '/images/SMA.jpg',
     title: 'sma',
     subtitle:
       'SMA Taruna Bangsa merupakan sekolah yang bernaung di bawah Yayasan Pendidikan Taruna Bangsa, yang memiliki motto Mengasah Otak Mengolah Bakat.',
     color: 'grey',
     url: '/academics/sma',
   },
-];
+]
 
-const Academics = () => {
-  const theme = useTheme();
-  const { Phone, SmallDesktop, Desktop } = useResponsive();
+function Academics() {
+  const { SmallDesktop } = useResponsive()
 
   return (
     <Box>
@@ -71,7 +66,7 @@ const Academics = () => {
         </HeaderLayout>
       </Grid>
     </Box>
-  );
-};
+  )
+}
 
-export default Academics;
+export default Academics

@@ -1,6 +1,6 @@
-import { Grid, Typography, useTheme, useMediaQuery } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import React from 'react';
+import { Grid, Typography, useTheme, useMediaQuery } from '@mui/material'
+import { styled } from '@mui/material/styles'
+import React from 'react'
 
 const StyledSpanLink = styled('span')(({ theme }) => ({
   color: theme.palette.primary.light,
@@ -9,14 +9,13 @@ const StyledSpanLink = styled('span')(({ theme }) => ({
     cursor: 'pointer',
     color: theme.palette.primary.main,
   },
-}));
+}))
 
-const RegistrationFlow = () => {
+function RegistrationFlow() {
   /** Utilities */
-  const theme = useTheme();
+  const theme = useTheme()
 
   /** Media Query */
-  const customSmallPhone = useMediaQuery('(max-width:390px)');
 
   return (
     <Grid container direction="column" spacing={3}>
@@ -115,7 +114,7 @@ const RegistrationFlow = () => {
         </Grid>
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
-export default RegistrationFlow;
+export default RegistrationFlow

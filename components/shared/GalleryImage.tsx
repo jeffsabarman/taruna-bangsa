@@ -1,23 +1,23 @@
-import { useTheme, Box } from '@mui/material';
-//@ts-ignore
-import ImageGallery from 'react-image-gallery';
-import 'react-image-gallery/styles/css/image-gallery.css';
+import { useTheme, Box } from '@mui/material'
+// @ts-ignore
+import ImageGallery from 'react-image-gallery'
+import 'react-image-gallery/styles/css/image-gallery.css'
 
 interface GalleryImageProps {
   images:
     | {
-        original: string;
-        thumbnail?: string;
-        originalAlt?: string;
-        description?: string;
+        original: string
+        thumbnail?: string
+        originalAlt?: string
+        description?: string
       }[]
-    | undefined;
-  slideDuration?: number;
-  autoPlay?: boolean;
-  thumbnailPosition?: 'top' | 'right' | 'bottom' | 'left';
-  showFullscreenButton?: boolean;
-  showPlayButton?: boolean;
-  showBullets?: boolean;
+    | undefined
+  slideDuration?: number
+  autoPlay?: boolean
+  thumbnailPosition?: 'top' | 'right' | 'bottom' | 'left'
+  showFullscreenButton?: boolean
+  showPlayButton?: boolean
+  showBullets?: boolean
 }
 
 function GalleryImage({
@@ -29,7 +29,7 @@ function GalleryImage({
   showPlayButton = false,
   showBullets = false,
 }: GalleryImageProps) {
-  const theme = useTheme();
+  const theme = useTheme()
 
   return (
     <Box
@@ -47,7 +47,7 @@ function GalleryImage({
         showBullets={showBullets}
       />
     </Box>
-  );
+  )
 }
 
-export default GalleryImage;
+export default GalleryImage

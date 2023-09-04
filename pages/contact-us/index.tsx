@@ -1,19 +1,19 @@
-import ContactUsForm from '@/components/ContactUs/ContactUsForm';
-import RegistrationFlow from '@/components/ContactUs/RegistrationFlow';
-import ReactMap from '@/components/GoogleMaps';
-import HeaderLayout from '@/components/HeaderLayout';
-import { Box, Grid, useMediaQuery, useTheme } from '@mui/material';
-import { useResponsive } from 'helpers/custom-hooks';
-import React from 'react';
+import { Box, Grid, useMediaQuery, useTheme } from '@mui/material'
+import { useResponsive } from 'helpers/custom-hooks'
+import React from 'react'
+import ContactUsForm from '@/components/ContactUs/ContactUsForm'
+import RegistrationFlow from '@/components/ContactUs/RegistrationFlow'
+import ReactMap from '@/components/GoogleMaps'
+import HeaderLayout from '@/components/HeaderLayout'
 
-const ContactUs = () => {
+function ContactUs() {
   /** Utilities */
-  const theme = useTheme();
-  const { Phone } = useResponsive();
+  const theme = useTheme()
+  const { Phone } = useResponsive()
 
   /** Media Queries */
-  const customSmallPhone = useMediaQuery('(max-width:350px)');
-  const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'));
+  const customSmallPhone = useMediaQuery('(max-width:350px)')
+  const largerThanPhone = useMediaQuery(theme.breakpoints.up('md'))
 
   return (
     <Box mt={largerThanPhone || Phone ? theme.spacing(12) : theme.spacing(8)}>
@@ -45,7 +45,7 @@ const ContactUs = () => {
         </Box>
       </Grid>
     </Box>
-  );
-};
+  )
+}
 
-export default ContactUs;
+export default ContactUs

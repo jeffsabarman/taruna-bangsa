@@ -1,32 +1,28 @@
-import React, { FC, useMemo } from 'react';
-import Drawer from '@mui/material/Drawer';
+import React, { FC, useMemo } from 'react'
+import Drawer from '@mui/material/Drawer'
 import {
-  Grid,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
   useMediaQuery,
   useTheme,
-} from '@mui/material';
-import {
-  Close as CloseIcon,
-  KeyboardArrowDown as KeyboardArrowDownIcon,
-} from '@mui/icons-material';
-import { useRouter } from 'next/router';
-import SideMenuListItem from './SideMenuListItem';
-import { ACADEMICS_SUBMENU, MENU_LIST } from 'helpers/constants';
+} from '@mui/material'
+import { Close as CloseIcon } from '@mui/icons-material'
+import { useRouter } from 'next/router'
+import { ACADEMICS_SUBMENU, MENU_LIST } from 'helpers/constants'
+import SideMenuListItem from './SideMenuListItem'
 
 interface IDrawerProps {
-  open: boolean;
-  onClose: () => void;
+  open: boolean
+  onClose: () => void
 }
 
-const SideDrawer: FC<IDrawerProps> = ({ open, onClose }) => {
+const SideDrawer = ({ open, onClose }: IDrawerProps) => {
   /** Utilities */
-  const theme = useTheme();
-  const router = useRouter();
-  const smallFrame = useMediaQuery(theme.breakpoints.down('sm'));
+  const theme = useTheme()
+  const router = useRouter()
+  const smallFrame = useMediaQuery(theme.breakpoints.down('sm'))
   const styles = {
     listContainer: {
       width: smallFrame ? '100vw' : '40vw',
@@ -39,13 +35,13 @@ const SideDrawer: FC<IDrawerProps> = ({ open, onClose }) => {
       marginLeft: theme.spacing(2),
       fontSize: '1.2rem',
     },
-  };
+  }
 
   /** Functions */
   const handleNavigate = (path: string) => {
-    router.push(path);
-    onClose();
-  };
+    router.push(path)
+    onClose()
+  }
 
   /** Components */
   const renderMenuItem = useMemo(() => {
@@ -64,9 +60,9 @@ const SideDrawer: FC<IDrawerProps> = ({ open, onClose }) => {
             primary={label}
           />
         </ListItemButton>
-      );
-    });
-  }, [MENU_LIST]);
+      )
+    })
+  }, [MENU_LIST])
 
   return (
     <Drawer
@@ -87,7 +83,7 @@ const SideDrawer: FC<IDrawerProps> = ({ open, onClose }) => {
         {renderMenuItem}
       </List>
     </Drawer>
-  );
-};
+  )
+}
 
-export default SideDrawer;
+export default SideDrawer

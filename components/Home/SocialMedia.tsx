@@ -1,21 +1,15 @@
-import {
-  Box,
-  Grid,
-  useTheme,
-  useMediaQuery,
-  CircularProgress,
-} from '@mui/material';
-import React, { useState, useEffect } from 'react';
-import { PrimaryButton } from '../Button';
-import HeaderLayout from '../HeaderLayout';
-import { styled } from '@mui/material/styles';
-import { useResponsive } from 'helpers/custom-hooks';
-import LoadingComponent from '../shared/LoadingComponent';
+import { Box, Grid, useTheme, useMediaQuery } from '@mui/material'
+import React, { useState, useEffect } from 'react'
+import { styled } from '@mui/material/styles'
+import { useResponsive } from 'helpers/custom-hooks'
+import sanityClient from 'client'
+import { PrimaryButton } from '../Button'
+import HeaderLayout from '../HeaderLayout'
+import LoadingComponent from '../shared/LoadingComponent'
 //* Sanity
-import sanityClient from 'client';
-import { INSTAGRAM_POSTS } from '@/utils/groq';
+import { INSTAGRAM_POSTS } from '@/utils/groq'
 
-const StyledImage = styled('img')(({ theme }) => ({
+const StyledImage = styled('img')(() => ({
   height: '100%',
   width: '100%',
   objectFit: 'cover',
@@ -23,33 +17,33 @@ const StyledImage = styled('img')(({ theme }) => ({
   '&:hover': {
     cursor: 'pointer',
   },
-}));
+}))
 
-const SocialMedia = () => {
-  const theme = useTheme();
+function SocialMedia() {
+  const theme = useTheme()
 
   //* Media Query
-  const { Phone } = useResponsive();
-  const customPhone = useMediaQuery('(max-width:480px)');
+  const { Phone } = useResponsive()
+  const customPhone = useMediaQuery('(max-width:480px)')
 
   //* State
   const [instagramPosts, setInstagramPosts] = useState<
     { _id: string; image: string; link: string; postTitle: string }[]
-  >([]);
-  const [isLoading, setIsLoading] = useState(false);
+  >([])
+  const [isLoading, setIsLoading] = useState(false)
 
   //* Functions
   const getInstagramPosts = async () => {
-    setIsLoading(true);
-    const data = await sanityClient.fetch(INSTAGRAM_POSTS);
-    setInstagramPosts(data);
-    setIsLoading(false);
-  };
+    setIsLoading(true)
+    const data = await sanityClient.fetch(INSTAGRAM_POSTS)
+    setInstagramPosts(data)
+    setIsLoading(false)
+  }
 
   //* Hooks
   useEffect(() => {
-    getInstagramPosts();
-  }, []);
+    getInstagramPosts()
+  }, [])
 
   return (
     <Box bgcolor={theme.palette.primary.main}>
@@ -88,7 +82,7 @@ const SocialMedia = () => {
         </Grid>
       </HeaderLayout>
     </Box>
-  );
-};
+  )
+}
 
-export default SocialMedia;
+export default SocialMedia

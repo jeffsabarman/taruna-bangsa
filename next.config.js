@@ -2,7 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['images.unsplash.com'],
+    domains: ['maps.googleapis.com', 'ucarecdn.com'],
+    dangerouslyAllowSVG: true,
   },
   env: {
     EMAIL_SERVICE_ID: process.env.EMAIL_SERVICE_ID,
@@ -13,6 +14,6 @@ const nextConfig = {
     SANITY_TOKEN: process.env.SANITY_TOKEN,
     GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
