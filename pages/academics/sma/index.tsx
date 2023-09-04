@@ -144,8 +144,9 @@ const AcademicSMA = () => {
         <HeadMasterTestimony
           themeColor="grey"
           headMasterImage={headMasterPic}
-          testimony="Untuk mewujudkan peserta didik yang berbudi pekerti luhur, unggul dalam prestasi, berwawasan lingkungan, menguasai iptek, dan kompetitif dalam era globalisasi, SMA Taruna Bangsa terus meningkatkan mutu sekolah, sehingga menjadi sekolah unggulan, semakin dikenal, dan mendapat kepercayaan dari  masyarakat dan pemerintah. Bimbingan guru-guru yang handal dan berkualitas, menghantarkan putra-putri SMA Taruna Bangsa meraih berbagai prestasi bidang akademik dan non akademik, baik tingkat kabupaten, tingkat provinsi, tingkat nasional, maupun internasional. Setiap tahunnya, lulusan SMA Taruna Bangsa selalu ada yang diterima di Perguruan Tinggi Negeri (PTN), baik melalui jalur SNMPTN, jalur prestasi, maupun jalur SBMPTN.
-          Mari bergabung bersama SMA Taruna Bangsa, maju bersama mencerdaskan bangsa."
+          testimony={[
+            'Untuk mewujudkan peserta didik yang berbudi pekerti luhur, unggul dalam prestasi, berwawasan lingkungan, menguasai iptek, dan kompetitif dalam era globalisasi, SMA Taruna Bangsa terus meningkatkan mutu sekolah, sehingga menjadi sekolah unggulan, semakin dikenal, dan mendapat kepercayaan dari  masyarakat dan pemerintah. Bimbingan guru-guru yang handal dan berkualitas, menghantarkan putra-putri SMA Taruna Bangsa meraih berbagai prestasi bidang akademik dan non akademik, baik tingkat kabupaten, tingkat provinsi, tingkat nasional, maupun internasional. Setiap tahunnya, lulusan SMA Taruna Bangsa selalu ada yang diterima di Perguruan Tinggi Negeri (PTN), baik melalui jalur SNMPTN, jalur prestasi, maupun jalur SBMPTN. Mari bergabung bersama SMA Taruna Bangsa, maju bersama mencerdaskan bangsa.',
+          ]}
           headMasterName="Joanita Dewi Riris K., S.Pd."
           headMasterRole="Kepala SMA Taruna Bangsa"
         />

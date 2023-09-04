@@ -33,11 +33,9 @@ const AboutUsPage = () => {
         <HeadMasterTestimony
           themeColor="red"
           headMasterImage={headMasterPic}
-          testimony="Selamat datang di situs web Taruna Bangsa.
-          Salam sejahtera untuk kita semua.
-          Yayasan Pendidikan Taruna Bangsa bergerak di bidang pendidikan, mulai dari jenjang KB, TK, SD, SMP dan SMA. Kami terus mengupayakan peningkatan sarana dan prasarana, serta kualitas tenaga pendidik dan kependidikan yang sesuai dengan perkembangan teknologi dan informasi, sehingga mampu bersaing dan menghasilkan lulusan yang berkualitas dalam karakter, pengetahuan, dan keterampilan.
-          Berpedoman pada visi dan misi Yayasan Pendidikan Taruna Bangsa, serta motto Sekolah Taruna Bangsa: “Mengasah Otak Mengolah Bakat”,  dan berpegang teguh pada nilai-nilai karakter Pelajar Pancasila, kami berusaha menjadikan peserta didik Taruna Bangsa menjadi pribadi siap bersaing di era globalisasi dan berprestasi di bidangnya.
-          Terima kasih dan Salam Sehat"
+          testimony={[
+            'Selamat datang di situs web Taruna Bangsa. Salam sejahtera untuk kita semua. Yayasan Pendidikan Taruna Bangsa bergerak di bidang pendidikan, mulai dari jenjang KB, TK, SD, SMP dan SMA. Kami terus mengupayakan peningkatan sarana dan prasarana, serta kualitas tenaga pendidik dan kependidikan yang sesuai dengan perkembangan teknologi dan informasi, sehingga mampu bersaing dan menghasilkan lulusan yang berkualitas dalam karakter, pengetahuan, dan keterampilan. Berpedoman pada visi dan misi Yayasan Pendidikan Taruna Bangsa, serta motto Sekolah Taruna Bangsa: “Mengasah Otak Mengolah Bakat”,  dan berpegang teguh pada nilai-nilai karakter Pelajar Pancasila, kami berusaha menjadikan peserta didik Taruna Bangsa menjadi pribadi siap bersaing di era globalisasi dan berprestasi di bidangnya. Terima kasih dan Salam Sehat',
+          ]}
           headMasterName="Ling Ling Dewi Murniati, S.E."
           headMasterRole="Direktur Eksekutif Sekolah Taruna Bangsa"
           testimonialSenderRole="Direktur Eksekutif STB"

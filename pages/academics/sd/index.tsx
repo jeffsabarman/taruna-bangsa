@@ -5,12 +5,12 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material'
-import { Box } from '@mui/system'
-import { useResponsive } from 'helpers/custom-hooks'
 import React, { useState, useEffect } from 'react'
 import sanityClient from 'client'
+import { useResponsive } from 'helpers/custom-hooks'
+import { Box } from '@mui/system'
 import HeadMasterTestimony from '@/components/Academics/HeadMasterTestimony'
-import headMasterPic from '@/public/images/fransiska-xaveria.png'
+import headMasterPic from '@/public/images/karsi.png'
 //* Components
 import Container from '@/components/Container'
 import YearGroupSection from '@/components/Academics/YearGroupSection'
@@ -26,8 +26,15 @@ const sections = [
   {
     key: 'SD',
     description:
-      'SD Taruna Bangsa sudah berhasil meluluskan 17 angkatan.  SD Taruna Bangsa selalu memperbarui kualitas pendidikannya, baik dengan metode maupun fasilitas yang terkini. SD Taruna Bangsa senantiasa mengembangkan potensi peserta didik secara komprehensif, baik aspek afektif, kognitif, maupun psikomotorik. Sehingga, SD Taruna Bangsa  mampu berprestasi baik di kancah lokal, nasional, maupun internasional. Pada tahun ajaran ini, SD Taruna Bangsa menerapkan kurikulum 2013 menuju merdeka belajar. Peserta didik akan diberikan satu proyek pembelajaran yang hasilnya akan dipresentasikan di hadapan orang tua/wali.',
+      'Sampai dengan tahun 2023 SD Taruna Bangsa telah berhasil  meluluskan sebanyak 19 angkatan. Dengan didukung fasilitas yang lengkap, SD Taruna Bangsa selalu mengasah dan mengembangkan potensi peserta didik, sehingga mampu berprestasi di berbagai bidang (baik akademik maupun nonakademik) dan berbagai tingkatan (baik lokal, nasional, maupun internasional). Selain fasilitas yang lengkap, adanya pendidik yang kompeten, program ekstrakurikuler yang sesuai bakat dan minat, bimbingan konseling yang terarah, serta lingkungan yang nyaman, sangat mendukung dalam membentuk peserta didik yang unggul dan memiliki karakter sesuai dengan nilai-nilai profil pelajar Pancasila. Pada tahun ajaran 2023/2024 SD Taruna Bangsa menerapkan kurikulum merdeka untuk kelas 1 dan IV, sedangkan kelas II, III, V, dan VI menerapkan kurikulum 2013 menuju merdeka belajar.',
   },
+]
+
+const TESTIMONY = [
+  'Pendidikan dasar adalah pondasi penting dalam membentuk pribadi yang berkualitas dan masa depan yang cerah bagi generasi muda kita. Di SD Taruna Bangsa kami berkomitmen untuk memberikan pendidikan yang berkualitas dan berpusat pada siswa. Kami percaya bahwa setiap anak memiliki potensi yang unik dan kami akan berusaha untuk mendukung setiap siswa dalam mengembangkan bakat, pengetahuan, dan keterampilan mereka. Kami akan memberikan lingkungan belajar yang aman, nyaman, dan kondusif, di mana setiap siswa dapat tumbuh secara akademis, sosial, dan emosional.',
+  'Kami mengakui bahwa pendidikan adalah usaha bersama antara sekolah, orang tua, dan siswa. Oleh karena itu, kami mengundang orang tua untuk terlibat aktif dalam pendidikan anak-anak mereka. Kolaborasi antara sekolah dan rumah sangat penting dalam menciptakan lingkungan belajar yang sukses dan mendukung perkembangan holistik siswa.',
+  'Kami akan terus berupaya untuk meningkatkan kualitas pendidikan kami melalui pengembangan kurikulum yang relevan, metode pengajaran yang inovatif, serta pemanfaatan teknologi pendidikan terbaru. Kami juga akan terus mengembangkan staf kami melalui pelatihan dan pengembangan profesional agar mereka dapat memberikan yang terbaik bagi siswa.',
+  'Kami percaya bahwa pendidikan adalah kunci untuk masa depan yang lebih baik. Mari bersama-sama bekerja keras, berkolaborasi, dan mendukung visi dan misi kami dalam memberikan pendidikan yang bermakna bagi setiap siswa di SD Taruna Bangsa.',
 ]
 
 const VISSIONS = [
@@ -132,10 +139,8 @@ const AcademicSD = () => {
         <HeadMasterTestimony
           themeColor="red"
           headMasterImage={headMasterPic}
-          testimony="Anak-anak pada usia 6-7 tahun menurut Jean Piaget adalah masa  anak dalam tahap perkembangan konkret operasional, siap dan matang mengikuti Pendidikan formal di SD sampai usia 12 tahun.
-          Dengan bekal masa kanak-kanak yang ceria dan penuh kegembiraan, anak- anak  SD Taruna Bangsa dapat menjadi pribadi yang lebih terbangun dan berkembang sikap spiritual dan sikap sosial, serta terasah kecerdasan intelektual dan terolah minat dan bakatnya sesuai motto ‘Mengasah otak mengolah bakat’ sehingga kelak siap memasuki jenjang sekolah menengah.  Dengan harapan kelak menjadi pribadi dewasa yang bahagia, tangguh, dan berbudi pekerti luhur berjiwa Pancasila.
-          "
-          headMasterName="Fransiska Xaveria E.S., S.Pd, M.M."
+          testimony={TESTIMONY}
+          headMasterName="Karsi, S.Pd."
           headMasterRole="Kepala SD Taruna Bangsa"
         />
         <Container

@@ -5,12 +5,12 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material'
-import { Box } from '@mui/system'
-import { useResponsive } from 'helpers/custom-hooks'
 import React, { useEffect, useState } from 'react'
 import sanityClient from 'client'
+import { useResponsive } from 'helpers/custom-hooks'
+import { Box } from '@mui/system'
 import HeadMasterTestimony from '@/components/Academics/HeadMasterTestimony'
-import headMasterPic from '@/public/images/fransiska-xaveria.png'
+import headMasterPic from '@/public/images/suci.png'
 import Container from '@/components/Container'
 import YearGroupSection from '@/components/Academics/YearGroupSection'
 import VisionMission from '@/components/Academics/VisionMission'
@@ -130,9 +130,10 @@ const AcademicKBTK = () => {
         <HeadMasterTestimony
           themeColor="yellow"
           headMasterImage={headMasterPic}
-          testimony="KB dan TK merupakan Pendidikan pertama setelah keluarga yang sangat penting bagi perkembangan kemampuan dasar anak berusia 3-6 tahun. Agar kebutuhan bermain anak terpenuhi, maka pembelajaran bermain sambil belajar merupakan prinsip dasar penyelenggaraan Pendidikan pra sekolah di KB dan TK Taruna Bangsa. Melalui bidang pengembangan Nilai agama dan moral, Pancasila, Sosial Emosional, Fisik Motorik, Bahasa, logika,  para lulusan TK B Taruna Bangsa Diharapkan menunjukkan perkembangan kematangan belajar sehingga dapat melanjutkan Pendidikan ke  tingkat sekolah dasar.  Kepada Ibu Bapak orang tua peserta didik KB dan TK Taruna Bangsa mari kita berkerja sama membantu anak-anak kita bertumbuh kembang sesuai kebutuhan dan usia mereka.
-          Semoga dengan bersekolah di KB dan TK Taruna Bangsa anak-anak dapat menapaki masa kanak-kanak yang ceria dan penuh kegembiraan."
-          headMasterName="Fransiska Xaveria E.S., S.Pd, M.M."
+          testimony={[
+            'KB dan TK merupakan Pendidikan pertama setelah keluarga yang sangat penting bagi perkembangan kemampuan dasar anak berusia 3-6 tahun. Agar kebutuhan bermain anak terpenuhi, maka pembelajaran bermain sambil belajar merupakan prinsip dasar penyelenggaraan Pendidikan pra sekolah di KB dan TK Taruna Bangsa. Melalui bidang pengembangan Nilai agama dan moral, Pancasila, Sosial Emosional, Fisik Motorik, Bahasa, logika,  para lulusan TK B Taruna Bangsa Diharapkan menunjukkan perkembangan kematangan belajar sehingga dapat melanjutkan Pendidikan ke  tingkat sekolah dasar.  Kepada Ibu Bapak orang tua peserta didik KB dan TK Taruna Bangsa mari kita berkerja sama membantu anak-anak kita bertumbuh kembang sesuai kebutuhan dan usia mereka. Semoga dengan bersekolah di KB dan TK Taruna Bangsa anak-anak dapat menapaki masa kanak-kanak yang ceria dan penuh kegembiraan.',
+          ]}
+          headMasterName="Kristina Suci Retnowati, M.Pd."
           headMasterRole="Kepala KB - TK Taruna Bangsa"
         />
         <Container

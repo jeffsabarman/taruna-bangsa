@@ -5,13 +5,13 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material'
-import { Box } from '@mui/system'
-import { useResponsive } from 'helpers/custom-hooks'
 import React, { useState, useEffect } from 'react'
 import sanityClient from 'client'
-import HeadMasterTestimony from '@/components/Academics/HeadMasterTestimony'
-import headMasterPic from '@/public/images/fabi.png'
+import { useResponsive } from 'helpers/custom-hooks'
+import { Box } from '@mui/system'
+import headMasterPic from '@/public/images/nano.png'
 //* Components
+import HeadMasterTestimony from '@/components/Academics/HeadMasterTestimony'
 import Container from '@/components/Container'
 import YearGroupSection from '@/components/Academics/YearGroupSection'
 import VisionMission from '@/components/Academics/VisionMission'
@@ -22,21 +22,26 @@ import LoadingComponent from '@/components/shared/LoadingComponent'
 //* Sanity
 import { ACADEMIC_SMP } from '@/utils/groq'
 
+const TESTIMONY = [
+  'Pendidikan adalah kunci untuk membuka pintu masa depan yang penuh harapan bagi generasi muda kita. Dunia terus berkembang dengan pesat, dan kita dihadapkan pada era globalisasi dan revolusi industri 4.0. Oleh karena itu, penting bagi kita semua untuk menyadari bahwa pembelajaran abad 21 menjadi kebutuhan mendesak dalam persiapan peserta didik untuk menghadapi tuntutan zaman yang semakin kompleks.',
+  'Pembelajaran abad 21 mencakup serangkaian keterampilan dan kompetensi yang membantu peserta didik untuk menjadi lebih siap dan adaptif dalam menghadapi perubahan yang cepat. Beberapa keterampilan utama dalam pembelajaran abad 21 antara lain, Keterampilan berpikir kritis (Critical Thinking), Keterampilan Berkomunikasi (Communication), Berpikir Kreatif (Creative) dan Keterampilan Kolaborasi (Collaborative). Selain keterampilan – keterampilan di atas, peserta didik juga perlu dibekali dengan literasi digital, pemecahan masalah (problem solving) dan tentu saja perlu dibekali dengan landasan karakter dan akhlak mulia yang kuat.',
+]
+
 const sections = [
   {
     key: 'SMP',
     description:
-      'SMP Taruna bangsa merupakan sekolah yang berada di bawah naungan Yayasan Pendidikan Taruna Bangsa. Bersatu dalam keberagaman merupakan nilai yang dijunjung oleh kami selaku sekolah swasta nasional umum yang tidak berlatar belakang agama, golongan, ataupun etnis tertentu. SMP Taruna Bangsa mempersiapkan peserta didik untuk menemukan potensi dan minat, juga memperlengkapi mereka untuk siap menempuh pendidikan lebih lanjut. Kami mendorong peserta didik untuk berproses dalam pendidikan dan mencapai prestasi secara akadamis. Kami juga menanamkan pendidikan karakter melalui budaya sekolah. Sehingga peserta didik bukan hanya cakap secara akademis tetapi juga memiliki karakter dan sikap yang terpuji. Hal ini sejalan dengan tujuan pendidikan yaitu untuk mempertajam kecerdasan, memperkukuh kemauan dan memperhalus perasaan.',
+      'SMP Taruna Bangsa yang berada di bawah naungan Yayasan Pendidikan Taruna Bangsa berkomitmen  untuk mengintegrasikan pembelajaran abad 21 ke dalam kurikulum dan metodologi pembelajarannya. Sebagai sekolah, tugas kami adalah menciptakan lingkungan yang memfasilitasi perkembangan keterampilan abad 21, dimana peserta didik merasa didukung dan diilhami untuk menjadi yang terbaik.',
   },
   {
     key: '',
     description:
-      'Kami berkomitmen untuk memperlengkapi dan membimbing peserta didik dalam menyongsong masa depan dan membawa pengaruh bagi banyak orang melalui perilaku yang mengispirasi. Memperlengkapi peserta didik agar cakap dalam berpikir secara kritis, cakap dalam pemecahan masalah, cakap dalam berkomunikasi, mampu mengembangkan kreativitas, menciptakan inovasi dan terampil dalam kolaborasi. Kami mengucapkan terima kasih kepada Bapak/Ibu orangtua yang telah mempercayakan pendidikan putra dan putrinya di SMP Taruna Bangsa',
+      'Kami terus memotivasi para pendidik untuk terus berinovasi dalam mengajar dan mendukung peserta didik dalam mengembangkan keterampilan mereka. Guru harus menjadi contoh inspiratif dan juga teladan bagi mereka dalam menggali potensi dan menghadapi tantangan dengan penuh semangat. Kami juga mengajak peserta didik dalam berbagai aktivitas yang mengembangkan keterampilan abad 21 di luar lingkungan sekolah, serta selalu ikut mendukung dan memotivasi mereka dalam proses belajar.',
   },
   {
     key: '',
     description:
-      'Kami mengajak Bapak/Ibu selaku orang tua peserta didik untuk mendaftarkan putra dan putrinya untuk bergabung di SMP Taruna Bangsa dan bergandengan tangan menjalin kerja sama dalam mendampingi anak-anak.',
+      'SMP Taruna Bangsa adalah tempat yang tepat di mana pembelajaran abad 21 menjadi bagian yang tak terpisahkan dari perjalanan pendidikan setiap peserta didik. Bersama, kita akan membentuk generasi penerus yang berdaya saing, berwawasan luas, dan mampu menghadapi tantangan masa depan dengan penuh keyakinan, keteguhan dan akhlak mulia yang tinggi.',
   },
 ]
 
@@ -158,9 +163,8 @@ const AcademicSMP = () => {
         <HeadMasterTestimony
           themeColor="lightblue"
           headMasterImage={headMasterPic}
-          testimony="Perkembangan dan perubahan dunia pendidikan di Indonesia tidak terlepas dari pengaruh perubahan global, perkembangan ilmu pengetahuan dan teknologi, serta seni dan budaya. Perkembangan dan perubahan tersebut menuntut perubahan dan peningkatan di bidang pendidikan dalam menyiapkan peserta didik untuk mewujudkan Sumber Daya Manusia yang berbudi pekerti luhur, berbudaya, berwawasan lingkungan, unggul dalam prestasi serta kompetitif dalam dunia global. Mari kita belajar dengan giat dan selalu bersemangat.
-          Bergabunglah bersama SMP Taruna Bangsa."
-          headMasterName="Fabiana, S.T."
+          testimony={TESTIMONY}
+          headMasterName="F. Nano Suharno, M.Pd."
           headMasterRole="Kepala SMP Taruna Bangsa"
         />
         <Container

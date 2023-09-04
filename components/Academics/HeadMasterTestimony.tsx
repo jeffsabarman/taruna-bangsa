@@ -2,6 +2,7 @@ import {
   Box,
   Divider,
   Grid,
+  Stack,
   Typography,
   useMediaQuery,
   useTheme,
@@ -17,7 +18,7 @@ interface HeadMasterTestimonyProps {
   headMasterImage: StaticImageData
   headMasterName: string
   headMasterRole: string
-  testimony: string
+  testimony: string[]
   themeColor: ThemeColor
   inverted?: boolean
   testimonialSenderRole?: string
@@ -151,13 +152,18 @@ const HeadMasterTestimony = ({
                     <Divider sx={styles.divider} />
                   </Grid>
                   <Grid item>
-                    <Typography
-                      color="GrayText"
-                      variant="body2"
-                      // textAlign="right"
-                    >
-                      {testimony}
-                    </Typography>
+                    <Stack mt={3} direction="column" gap={3}>
+                      {testimony.map((p, idx) => (
+                        <Typography
+                          color="GrayText"
+                          variant="body2"
+                          key={idx}
+                          // textAlign="right"
+                        >
+                          {p}
+                        </Typography>
+                      ))}
+                    </Stack>
                   </Grid>
                 </Grid>
               </Container>
@@ -285,15 +291,18 @@ const HeadMasterTestimony = ({
                   <Grid item>
                     <Divider sx={styles.divider} />
                   </Grid>
-                  <Grid item>
-                    <Typography
-                      color="GrayText"
-                      variant="body2"
-                      // textAlign="right"
-                    >
-                      {testimony}
-                    </Typography>
-                  </Grid>
+                  <Stack mt={3} direction="column" gap={3}>
+                    {testimony.map((p, idx) => (
+                      <Typography
+                        color="GrayText"
+                        variant="body2"
+                        key={idx}
+                        // textAlign="right"
+                      >
+                        {p}
+                      </Typography>
+                    ))}
+                  </Stack>
                 </Grid>
               </Container>
             </Grid>
