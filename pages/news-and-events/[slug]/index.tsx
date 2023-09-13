@@ -59,6 +59,7 @@ export default function NewsAndEventsPage({
                 src={newsEventsContent?.mainImageUrl}
                 width={1200}
                 height={600}
+                objectFit="cover"
                 alt="news"
               />
             </Grid>

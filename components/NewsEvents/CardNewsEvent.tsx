@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles'
 import { getShortenText, getFormatDate } from 'helpers'
 import { useRouter } from 'next/router'
 import { useResponsive } from 'helpers/custom-hooks'
+import Image from 'next/image'
 
 const StyledBox = styled(Box)(() => ({
   backgroundColor: grey[100],
@@ -48,22 +49,12 @@ const CardNewsEvent = ({
     <StyledBox onClick={() => router.push(`news-and-events/${slug}`)}>
       <Grid container direction="column">
         <Grid item>
-          <img
+          <Image
             src={imgUrl}
             alt={imgCaption}
-            style={{
-              width: '100%',
-              height: customSmallPhone
-                ? '64vw'
-                : customPhone
-                ? '50vw'
-                : customSmallDesktop
-                ? '32vw'
-                : Desktop
-                ? '24vw'
-                : '18vw',
-              objectFit: 'cover',
-            }}
+            width={1200}
+            height={600}
+            objectFit="cover"
           />
         </Grid>
         <Grid container direction="column" spacing={2} p={3} pt={1}>
