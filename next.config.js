@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['maps.googleapis.com', 'ucarecdn.com'],
+    domains: ['maps.googleapis.com', 'ucarecdn.com', 'cdn.sanity.io'],
     dangerouslyAllowSVG: true,
   },
   env: {

@@ -6,6 +6,7 @@ import { grey } from '@mui/material/colors'
 //* Sanity
 import sanityClient from 'client'
 import { PortableText } from '@portabletext/react'
+import Image from 'next/image'
 import { NEWS_AND_EVENTS_CONTENT } from '@/utils/groq'
 import { contentComponents } from '@/components/shared/PortableTextComponent'
 
@@ -53,20 +54,11 @@ export default function NewsAndEventsPage({
         </Grid>
         <Grid item>
           <Grid container direction="column" alignItems="center">
-            <Grid item width="100%">
-              <img
+            <Grid item container xs width="100%" justifyContent="center">
+              <Image
                 src={newsEventsContent?.mainImageUrl}
-                style={{
-                  width: '100%',
-                  height: Phone
-                    ? '52vw'
-                    : Tablet
-                    ? '44vw'
-                    : SmallDesktop
-                    ? '36vw'
-                    : '32vw',
-                  objectFit: 'cover',
-                }}
+                width={1200}
+                height={600}
                 alt="news"
               />
             </Grid>
