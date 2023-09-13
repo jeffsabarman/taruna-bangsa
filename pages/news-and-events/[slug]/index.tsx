@@ -21,6 +21,24 @@ interface NewsAndEventsPageProps {
   }
 }
 
+interface QueryParams {
+  params: { slug: string }
+}
+
+export async function getServerSideProps({ params }: QueryParams) {
+  const slug = params.slug || ''
+
+  try {
+    const newsEventsContent = await sanityClient.fetch(
+      NEWS_AND_EVENTS_CONTENT,
+      { slug }
+    )
+    return { props: { newsEventsContent, error: false } }
+  } catch {
+    return { props: { newsEventsContent: undefined, error: true } }
+  }
+}
+
 export default function NewsAndEventsPage({
   newsEventsContent,
 }: NewsAndEventsPageProps) {
@@ -79,31 +97,4 @@ export default function NewsAndEventsPage({
       </Grid>
     </Box>
   )
-}
-
-export async function getServerSideProps({
-  query,
-}: {
-  query: { slug: string }
-}) {
-  const { slug = '' } = query
-
-  // ? Default Value
-  let newsEventsContent
-  let error = false
-
-  try {
-    newsEventsContent = await sanityClient.fetch(NEWS_AND_EVENTS_CONTENT, {
-      slug,
-    })
-  } catch {
-    error = true
-  }
-
-  return {
-    props: {
-      newsEventsContent,
-      error,
-    },
-  }
 }

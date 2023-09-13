@@ -1,4 +1,4 @@
-import groq from 'groq'
+import { groq } from 'next-sanity'
 
 export const MAIN_CAROUSEL_IMAGES = groq`
 *[_type == "mainCarouselImages" && !(_id in path('drafts.**'))] {
