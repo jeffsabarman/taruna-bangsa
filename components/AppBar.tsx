@@ -102,6 +102,7 @@ function ElevationAppBar(props: Partial<ElevationScrollProps>) {
                     style={{ cursor: 'pointer' }}
                     src="/images/stb-logo.svg"
                     width={Phone ? 140 : 160}
+                    alt="logo"
                     height={80}
                   />
                 </Link>

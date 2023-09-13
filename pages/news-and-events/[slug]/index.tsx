@@ -6,7 +6,7 @@ import { grey } from '@mui/material/colors'
 //* Sanity
 import sanityClient from 'client'
 import { PortableText } from '@portabletext/react'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import { NEWS_AND_EVENTS_CONTENT } from '@/utils/groq'
 import { contentComponents } from '@/components/shared/PortableTextComponent'
 

@@ -26,7 +26,12 @@ function Footer() {
           container
           justifyContent="center"
         >
-          <Image src="/images/stb-logo.svg" width={160} height={80} />
+          <Image
+            src="/images/stb-logo.svg"
+            width={160}
+            height={80}
+            alt="logo"
+          />
         </Grid>
         <Grid
           item

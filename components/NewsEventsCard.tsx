@@ -1,6 +1,7 @@
 import { Box, Typography, useTheme, useMediaQuery } from '@mui/material'
 import { useResponsive } from 'helpers/custom-hooks'
 import { getShortenText } from 'helpers'
+import Image from 'next/image'
 
 interface NewsEventsCardProps {
   imageUrl: string
@@ -33,9 +34,11 @@ const NewsEventsCard = ({
       // sx={{ width: customSmallDesktop ? '20rem' : '100%' }}
     >
       <Box position="relative">
-        <img
+        <Image
           src={imageUrl}
-          style={{ width: '100%', objectFit: 'cover', height: '16rem' }}
+          width={400}
+          height={280}
+          objectFit="cover"
           alt="news"
         />
       </Box>

@@ -6,5 +6,5 @@ export default createClient({
   dataset: process.env.SANITY_DATASET,
   apiVersion: moment(new Date()).format('YYYY-MM-DD'),
   token: process.env.SANITY_TOKEN,
-  useCdn: true,
+  useCdn: process.env.NODE_ENV === 'production',
 })
